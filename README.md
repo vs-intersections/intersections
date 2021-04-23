@@ -14,6 +14,16 @@ Personal To-do:
 
 - Set all nodes to link with gray lines by default, as well as color artists and artwork nodes their associated colors (green and orange)
 
+Other things:
+
+- First query of data needs to have all meta data
+- Tie this data to its respective node
+- The nodes will also have a 'selected' property with a selector that has been chosen (artist, theme, etc)
+- The 'selected' property will only be populated the selected node(s) (noting here for my own sanity)
+- I need to figure out why the graph repopulates with additional nodes when new nodes/links are created from linkGenerator
+- look at the data before and after
+- there be your answer
+
 ### David's notes
 
 a place for your notes and thoughts
