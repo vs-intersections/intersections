@@ -12,7 +12,6 @@ const links = []
 let artistsTempNodes = []
 
 export const defaultLinkGenerator = (data, selectedFilter = null) => {
-  console.log(selectedFilter)
   // for default node links, this function needs to query artists and artwork
   // it then populates React state with the artists as parent nodes, - may need to use useContext
   // and artwork as child nodes

@@ -1,5 +1,4 @@
 import React, { useContext } from "react"
-// import { handleClickArtist } from "../utils/clickHandlers"
 import FilterContext from "./context/FilterContext"
 
 const Navigation = () => {

@@ -172,7 +172,7 @@ const NodeGraph = () => {
       .attr("alignment-baseline", "middle")
       .style("pointer-events", "none")
       .text(node => node.name)
-    console.log(nodes)
+
     // simulation rendering function
     simulation.on("tick", () => {
       circles.attr("cx", node => node.x).attr("cy", node => node.y)
