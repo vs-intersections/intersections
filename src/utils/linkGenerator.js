@@ -1,4 +1,3 @@
-// import { useArtist, useArtwork } from '../hooks'
 import { scaleLinear } from "d3"
 
 const MAIN_NODE_SIZE = 15
@@ -12,7 +11,8 @@ const nodes = []
 const links = []
 let artistsTempNodes = []
 
-export const linkGenerator = () => {
+export const linkGenerator = data => {
+  console.log(data)
   // for default node links, this function needs to query artists and artwork
   // it then populates React state with the artists as parent nodes, - may need to use useContext
   // and artwork as child nodes
@@ -71,17 +71,17 @@ export const linkGenerator = () => {
   // create parent nodes
   const createParentNodes = (artistsArray, artworkArray) => {
     artistsArray.forEach((artist, i) => {
-      const parentNodeId = artist.id
-      const parentNode = { id: artist.id, name: artist.fields.Name }
+      const parentNodeId = artist.recordId
+      const parentNode = { id: artist.recordId, name: artist.data.Name }
       addMainNode(parentNode, i)
 
       // create child nodes
       artworkArray.forEach(artwork => {
         if (
-          artwork.fields.Name !== undefined &&
-          artwork.fields["Primary Artist (REQUIRED)"][0] == parentNodeId
+          artwork.data.Name !== undefined &&
+          artwork.data.Primary_Artist__REQUIRED_[0] == parentNodeId
         ) {
-          assembleChildNode(parentNode, artwork.fields.Name)
+          assembleChildNode(parentNode, artwork.data.Name)
         }
       })
     })
@@ -95,21 +95,17 @@ export const linkGenerator = () => {
     })
   }
 
-  const populateArrays = async () => {
-    const artistData = await useArtist()
+  const populateArrays = () => {
     // spreading the array to concatenate the data (else, array of arrays)
-    artists.push(...artistData)
-
-    const artworkData = await useArtwork()
-    artwork.push(...artworkData)
-
+    artists.push(...data.artists.nodes)
+    artwork.push(...data.artwork.nodes)
     createParentNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
     return nodes
   }
 
-  const populatedNodes = async () => {
-    const res = await populateArrays()
+  const populatedNodes = () => {
+    const res = populateArrays()
     return { nodes: res, links }
   }
 

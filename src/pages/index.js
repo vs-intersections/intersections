@@ -2,12 +2,11 @@ import React from "react"
 import LayoutMain from "../components/LayoutMain"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-import NodeGraph from "../components/NodeGraph"
+import NodeGraph from "../components/NodeGraph/NodeGraph"
 import LayoutSidebar from "../components/LayoutSidebar"
 import InfoMenu from "../components/InfoMenu"
 
 export default function Home() {
-  console.log(process.env.AIRTABLE_API_KEY)
   return (
     <LayoutMain>
       <div className="h-screen grid grid-rows-layout lg:grid-rows-layoutLg">

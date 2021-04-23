@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react"
-import { linkGenerator } from "../utils"
+import { graphql, useStaticQuery } from "gatsby"
+import { linkGenerator } from "../../utils"
 import {
   forceSimulation,
   forceManyBody,
@@ -14,6 +15,29 @@ import {
 } from "d3"
 
 const NodeGraph = () => {
+  const queryData = useStaticQuery(graphql`
+    {
+      artists: allAirtable(filter: { table: { eq: "Artist" } }) {
+        nodes {
+          data {
+            Name
+            Artwork
+          }
+          recordId
+        }
+      }
+      artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
+        nodes {
+          data {
+            Name
+            Primary_Artist__REQUIRED_
+          }
+          recordId
+        }
+      }
+    }
+  `)
+
   // ref to grab the SVG element
   const ref = useRef()
   const containerRef = useRef()
@@ -34,11 +58,8 @@ const NodeGraph = () => {
   // after the page has loaded, grab Airtable data from linkGenerator,
   // then populate React state and begin the data viz
   useEffect(() => {
-    // const getData = async () => {
-    //   const data = await linkGenerator()
-    //   main(data)
-    // }
-    // getData()
+    const results = linkGenerator(queryData)
+    main(results)
   }, [])
 
   const main = data => {
