@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors")
+
 module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
@@ -10,6 +12,8 @@ module.exports = {
       red: "#FF404B",
       yellow: "#E7FF57",
       lightBlue: "#43F4FF",
+      gray: colors.trueGray,
+      black: colors.black,
     },
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],

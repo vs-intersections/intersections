@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useContext } from "react"
+import FilterContext from "../context/FilterContext"
 import { graphql, useStaticQuery } from "gatsby"
 import { defaultLinkGenerator } from "../../utils"
 import {
@@ -15,6 +16,7 @@ import {
 } from "d3"
 
 const NodeGraph = () => {
+  const [selectedFilter] = useContext(FilterContext)
   const queryData = useStaticQuery(graphql`
     {
       artists: allAirtable(filter: { table: { eq: "Artist" } }) {
@@ -31,6 +33,7 @@ const NodeGraph = () => {
           data {
             Name
             Primary_Artist__REQUIRED_
+            Collaborators
           }
           recordId
         }
@@ -49,14 +52,14 @@ const NodeGraph = () => {
   // after the page has loaded, grab Airtable data from defaultLinkGenerator,
   // then populate React state and begin the data viz
   useEffect(() => {
-    const results = defaultLinkGenerator(queryData)
+    const results = defaultLinkGenerator(queryData, selectedFilter)
     main(results)
-  }, [])
+  }, [selectedFilter])
 
   const main = data => {
     // grab nodes and links from the data generated from defaultLinkGenerator
-    const nodes = data.nodes
-    const links = data.links
+    let nodes = data.nodes
+    let links = data.links
 
     // svg specific variables
     // set the D3 container to a certain aspect ratio
@@ -169,7 +172,7 @@ const NodeGraph = () => {
       .attr("alignment-baseline", "middle")
       .style("pointer-events", "none")
       .text(node => node.name)
-
+    console.log(nodes)
     // simulation rendering function
     simulation.on("tick", () => {
       circles.attr("cx", node => node.x).attr("cy", node => node.y)

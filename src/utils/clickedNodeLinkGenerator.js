@@ -11,21 +11,10 @@ const nodes = []
 const links = []
 let artistsTempNodes = []
 
-export const defaultLinkGenerator = (data, selectedFilter = null) => {
-  console.log(selectedFilter)
-  // for default node links, this function needs to query artists and artwork
-  // it then populates React state with the artists as parent nodes, - may need to use useContext
-  // and artwork as child nodes
-  // it then links parents to each other
-  // and links parents to their associated artwork
-
-  // create color scale for nodes
-  // const colorScale = scaleLinear() /* the color domain needs to be based off of the artist array length */
-  //   .domain([0, 8])
-  //   .range(["#24afff", "#c6ff0c"])
-
+export const clickedNodeLinkGenerator = (data, filter = null) => {
+  console.log(data)
   // function to create parent nodes
-  const addMainNode = node => {
+  const addMainNode = (node, index) => {
     node.size = MAIN_NODE_SIZE
     node.color = "#A3F78E"
     nodes.push(node)
@@ -52,12 +41,8 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
   }
 
   // function to create child nodes by calling the above function
-  const assembleChildNode = (parentNode, artwork) => {
-    let childNode = {
-      id: artwork.recordId,
-      name: artwork.data.Name,
-      collaborators: artwork.data?.Collaborators || null,
-    }
+  const assembleChildNode = (parentNode, id, childName) => {
+    let childNode = { id, name: childName }
     addChildNode(parentNode, childNode, CHILD_NODE_SIZE, CHILD_NODE_DISTANCE)
   }
 
@@ -73,10 +58,10 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
 
   // create parent nodes
   const createParentNodes = (artistsArray, artworkArray) => {
-    artistsArray.forEach(artist => {
+    artistsArray.forEach((artist, i) => {
       const parentNodeId = artist.recordId
       const parentNode = { id: artist.recordId, name: artist.data.Name }
-      addMainNode(parentNode)
+      addMainNode(parentNode, i)
 
       // create child nodes
       artworkArray.forEach(artwork => {
@@ -84,7 +69,7 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
           artwork.data.Name !== undefined &&
           artwork.data.Primary_Artist__REQUIRED_[0] === parentNodeId
         ) {
-          assembleChildNode(parentNode, artwork)
+          assembleChildNode(parentNode, artwork.recordId, artwork.data.Name)
         }
       })
     })
