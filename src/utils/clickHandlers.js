@@ -1,5 +1,6 @@
-import { useArtist } from '../hooks'
+// import { useStaticQuery, graphql } from "gatsby"
+import { clickedNodeLinkGenerator } from "./clickedNodeLinkGenerator"
 
-export const handleClickArtist = () => {
-  useArtist().then((data) => console.log(data))
+export const handleClickArtist = artistId => {
+  clickedNodeLinkGenerator(artistId)
 }
