@@ -10,6 +10,10 @@
 
 I've been developing with the idea to separate items into their own components and lay them out responsively on the page. I'm not worrying about the content just yet. We need to work on functionality and basic animation of the sidebar, navigation comp, etc
 
+Personal To-do:
+
+- Set all nodes to link with gray lines by default, as well as color artists and artwork nodes their associated colors (green and orange)
+
 ### David's notes
 
 a place for your notes and thoughts
