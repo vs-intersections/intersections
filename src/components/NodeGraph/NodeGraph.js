@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { linkGenerator } from "../../utils"
+import { defaultLinkGenerator } from "../../utils"
 import {
   forceSimulation,
   forceManyBody,
@@ -42,28 +42,19 @@ const NodeGraph = () => {
   const ref = useRef()
   const containerRef = useRef()
 
-  // CONSTANTS
-  const MAIN_NODE_SIZE = 30
-  const CHILD_NODE_SIZE = 15
-  const LEAF_NODE_SIZE = 5
-  const DEFAULT_DISTANCE = 60
-  const MAIN_NODE_DISTANCE = 150
-  const CHILD_NODE_DISTANCE = 80
-  const LEAF_NODE_DISTANCE = 25
-
   // these values are arbitrary but allow a finer detail for SVG elements
   let width = 500
   let height = 500
 
-  // after the page has loaded, grab Airtable data from linkGenerator,
+  // after the page has loaded, grab Airtable data from defaultLinkGenerator,
   // then populate React state and begin the data viz
   useEffect(() => {
-    const results = linkGenerator(queryData)
+    const results = defaultLinkGenerator(queryData)
     main(results)
   }, [])
 
   const main = data => {
-    // grab nodes and links from the data generated from linkGenerator
+    // grab nodes and links from the data generated from defaultLinkGenerator
     const nodes = data.nodes
     const links = data.links
 
@@ -139,7 +130,7 @@ const NodeGraph = () => {
         .transition()
         .duration(250)
         .attr("r", datapoint => (datapoint.size *= 1.2))
-        .attr("fill", datapoint => (datapoint.color = "orange"))
+        .attr("fill", datapoint => (datapoint.color = "dodgerBlue"))
 
       select(this).on("mouseout", function () {
         select(this)
@@ -156,7 +147,7 @@ const NodeGraph = () => {
       .data(links)
       .enter()
       .append("line")
-      .attr("stroke", link => link.color || "black")
+      .attr("stroke", "#c7c7c7")
 
     const circles = svg
       .selectAll("circle")
