@@ -1,4 +1,3 @@
-import { scaleLinear, select } from "d3"
 import addChildNode from "./addChildNode"
 
 const MAIN_NODE_SIZE = 15
@@ -8,13 +7,17 @@ const MAIN_NODE_DISTANCE = 150
 const CHILD_NODE_DISTANCE = 20
 export let nodes = []
 export let links = []
+let artists = []
+let artwork = []
+let artistsTempNodes = []
 
 export const linkGenerator = (data, selectedFilter = null) => {
-  let artists = []
-  let artwork = []
+  // reinitialize these arrays to empty
+  artists = []
+  artwork = []
   nodes = []
   links = []
-  let artistsTempNodes = []
+  artistsTempNodes = []
 
   // function to create parent nodes
   const addMainNode = node => {
