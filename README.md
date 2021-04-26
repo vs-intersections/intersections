@@ -12,7 +12,9 @@ I've been developing with the idea to separate items into their own components a
 
 Personal To-do:
 
-- Set all nodes to link with gray lines by default, as well as color artists and artwork nodes their associated colors (green and orange)
+- Get node graph to render at same VX, VX, X and Y (it currently jumps)
+- Node Haloing
+- Node tooltips
 
 Other things:
 
