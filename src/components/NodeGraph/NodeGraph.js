@@ -24,6 +24,7 @@ const NodeGraph = () => {
           data {
             Name
             Artwork
+            Influence
           }
           recordId
         }
@@ -34,6 +35,9 @@ const NodeGraph = () => {
             Name
             Primary_Artist__REQUIRED_
             Collaborators
+            Locations
+            Medium
+            Theme
           }
           recordId
         }
@@ -64,6 +68,9 @@ const NodeGraph = () => {
     // svg specific variables
     // set the D3 container to a certain aspect ratio
     const svg = select(ref.current).attr("viewBox", `0 0 ${width} ${height}`)
+    svg.selectAll("line").remove()
+    svg.selectAll("circle").remove()
+    svg.selectAll("text").remove()
 
     const centerX = width / 2
     const centerY = height / 2
@@ -112,17 +119,10 @@ const NodeGraph = () => {
       width = containerRef.current.clientWidth
       height = containerRef.current.clientHeight
       svg.attr("width", width).attr("height", height)
-      // force.size([width, height]).resume()
     }
 
     resize()
     select(window).on("resize", resize)
-
-    // function resize() {
-    //   width = window.innerWidth, height = window.innerHeight;
-    //   svg.attr("width", width).attr("height", height);
-    //   force.size([width, height]).resume();
-    // }
 
     // highlight nodes on mouse hover
     function highlight(e, datapoint) {

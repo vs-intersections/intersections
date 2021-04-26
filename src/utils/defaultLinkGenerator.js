@@ -56,6 +56,9 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
       id: artwork.recordId,
       name: artwork.data.Name,
       collaborators: artwork.data?.Collaborators || null,
+      locations: artwork.data.Locations,
+      medium: artwork.data.Medium,
+      theme: artwork.data.Theme,
     }
     addChildNode(parentNode, childNode, CHILD_NODE_SIZE, CHILD_NODE_DISTANCE)
   }
@@ -74,7 +77,11 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
   const createParentNodes = (artistsArray, artworkArray) => {
     artistsArray.forEach(artist => {
       const parentNodeId = artist.recordId
-      const parentNode = { id: artist.recordId, name: artist.data.Name }
+      const parentNode = {
+        id: artist.recordId,
+        name: artist.data.Name,
+        influence: artist.data.Influence,
+      }
       addMainNode(parentNode)
 
       // create child nodes
