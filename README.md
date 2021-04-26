@@ -15,6 +15,7 @@ Personal To-do:
 - Get node graph to render at same VX, VX, X and Y (it currently jumps)
 - Node Haloing
 - Node tooltips
+- Graph zooming
 
 Other things:
 

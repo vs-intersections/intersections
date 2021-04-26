@@ -13,6 +13,7 @@ import {
   layout,
   scaleLinear,
   zoom,
+  selectAll,
 } from "d3"
 
 const NodeGraph = () => {
@@ -61,6 +62,7 @@ const NodeGraph = () => {
   }, [selectedFilter])
 
   const main = data => {
+    console.log(data)
     // grab nodes and links from the data generated from defaultLinkGenerator
     let nodes = data.nodes
     let links = data.links
@@ -128,6 +130,7 @@ const NodeGraph = () => {
     function highlight(e, datapoint) {
       let oldColor = datapoint.color
       let oldSize = datapoint.size
+      let oldFill = datapoint.fill
 
       select(this)
         .transition()
@@ -139,7 +142,11 @@ const NodeGraph = () => {
         select(this)
           .transition()
           .duration(250)
-          .attr("fill", datapoint => (datapoint.color = oldColor))
+          .attr("fill", datapoint =>
+            datapoint.isParent
+              ? (datapoint.fill = oldFill)
+              : (datapoint.color = oldColor)
+          )
           .attr("r", datapoint => (datapoint.size = oldSize))
       })
     }
@@ -158,8 +165,11 @@ const NodeGraph = () => {
       .data(nodes)
       .enter()
       .append("circle")
-      .attr("fill", node => node.color || "gray")
+      .attr("fill", node => (node.isParent ? node.fill : node.color))
+      .attr("stroke", node => (node.isParent ? node.color : "none"))
+      .attr("stroke-width", node => (node.isParent ? 5 : "none"))
       .attr("r", node => node.size)
+      .classed("parent", node => node.isParent)
       .on("mouseover", highlight)
       .call(dragInteraction(simulation))
 

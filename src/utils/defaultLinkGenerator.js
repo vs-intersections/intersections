@@ -25,7 +25,7 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
 
   // function to create parent nodes
   const addMainNode = node => {
-    node.size = MAIN_NODE_SIZE
+    node.size = node.isParent ? MAIN_NODE_SIZE * 1.35 : MAIN_NODE_SIZE
     node.color = "#A3F78E"
     defaultNodes.push(node)
     // to interate over later and grab the D3 properties (color, etc)
@@ -48,6 +48,23 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
       target: childNode,
       distance: distance,
     })
+
+    // logic for selecting specific artist - creates node links from parent to child
+    if (parentNode.id === selectedFilter) {
+      defaultLinks.push({
+        source: parentNode,
+        target: childNode,
+        distance: distance,
+        color: "#A3F78E",
+        strokeWidth: 5,
+      })
+    } else {
+      defaultLinks.push({
+        source: parentNode,
+        target: childNode,
+        distance: distance,
+      })
+    }
   }
 
   // function to create child nodes by calling the above function
@@ -107,6 +124,12 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
         name: artist.data.Name,
         influence: artist.data.Influence,
       }
+      // adds property when selectedFilter is a specific artist
+      if (parentNodeId === selectedFilter) {
+        parentNode.isParent = true
+        parentNode.fill = "white"
+      }
+
       addMainNode(parentNode)
 
       // create child nodes
@@ -123,7 +146,6 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
 
   const linkParentNodes = artistsArray => {
     // links every artist to each artist
-    console.log(artistsArray)
     artistsArray.forEach((artistA, i) => {
       artistsArray.slice(i + 1).forEach(artistB => {
         // checks to see if there is a filtered selection
@@ -140,6 +162,8 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     // spreading the array to concatenate the data (else, array of arrays)
     artists.push(...data.artists.nodes)
     artwork.push(...data.artwork.nodes)
+    console.log(artists)
+    console.log(artwork)
     createParentNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
     return defaultNodes
