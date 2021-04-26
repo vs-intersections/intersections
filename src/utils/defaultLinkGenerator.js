@@ -5,13 +5,13 @@ const CHILD_NODE_SIZE = 15
 const DEFAULT_DISTANCE = 60
 const MAIN_NODE_DISTANCE = 150
 const CHILD_NODE_DISTANCE = 20
-let artists = []
-let artwork = []
-const nodes = []
-const links = []
-let artistsTempNodes = []
 
 export const defaultLinkGenerator = (data, selectedFilter = null) => {
+  let artists = []
+  let artwork = []
+  let nodes = []
+  let links = []
+  let artistsTempNodes = []
   // for default node links, this function needs to query artists and artwork
   // it then populates React state with the artists as parent nodes, - may need to use useContext
   // and artwork as child nodes
@@ -108,6 +108,7 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
 
   const populatedNodes = () => {
     const res = populateArrays()
+    console.log(res) // LEFT OFF HERE - why does this create a bigger array on click?
     return { nodes: res, links }
   }
 
