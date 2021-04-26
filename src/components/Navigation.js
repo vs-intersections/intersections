@@ -10,7 +10,7 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-lightGreen"
-            onClick={() => setSelectedFilter("rec1jGlX4IHyhr35R")}
+            onClick={() => setSelectedFilter("rec1jGlX4IHyhr35R")} // Morgan Bernard
           >
             ARTIST
           </button>
@@ -18,7 +18,7 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-orange"
-            onClick={() => setSelectedFilter("recLpR2bY2fV2iTzN")}
+            onClick={() => setSelectedFilter("recLpR2bY2fV2iTzN")} // Artwork 1
           >
             ARTWORK
           </button>
@@ -26,7 +26,7 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-blue"
-            onClick={() => setSelectedFilter("recgKDeImSD3gw0cu")}
+            onClick={() => setSelectedFilter("rec4vtVJRHYXcYyw1")} // Meow Wolf
           >
             LOCATION
           </button>
@@ -34,7 +34,7 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-lightBlue"
-            onClick={() => setSelectedFilter("rec9y2JnU59iEAkJ9")}
+            onClick={() => setSelectedFilter("recS2uDVGjVosAS5e")} // abstract
           >
             THEME
           </button>
@@ -42,7 +42,7 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-pink"
-            onClick={() => setSelectedFilter("rec9cbZXkPJxOViEY")}
+            onClick={() => setSelectedFilter("recNSnjXAfAqvbB6b")} // oil paint
           >
             MEDIUM
           </button>
@@ -50,7 +50,7 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-yellow"
-            onClick={() => setSelectedFilter("rec3NKKGDbIaVJ641")}
+            onClick={() => setSelectedFilter("rec3NKKGDbIaVJ641")} // meditation
           >
             INFLUENCE
           </button>
