@@ -36,11 +36,12 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
   const addChildNode = (
     parentNode,
     childNode,
-    size = CHILD_NODE_SIZE,
-    distance = DEFAULT_DISTANCE
+    distance = DEFAULT_DISTANCE,
+    isParent = false
   ) => {
-    childNode.size = size
     childNode.color = "#FF985F"
+    childNode.isParent = isParent
+    childNode.size = isParent ? CHILD_NODE_SIZE * 1.35 : CHILD_NODE_SIZE
     defaultNodes.push(childNode)
 
     defaultLinks.push({
@@ -50,12 +51,21 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     })
 
     // logic for selecting specific artist - creates node links from parent to child
-    if (parentNode.id === selectedFilter) {
+    if (parentNode.id === selectedFilter.filterName) {
       defaultLinks.push({
         source: parentNode,
         target: childNode,
         distance: distance,
         color: "#A3F78E",
+        strokeWidth: 5,
+      })
+      // logic for selecting specific artwork
+    } else if (childNode.id === selectedFilter.filterName) {
+      defaultLinks.push({
+        source: parentNode,
+        target: childNode,
+        distance: distance,
+        color: childNode.color,
         strokeWidth: 5,
       })
     } else {
@@ -76,8 +86,18 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
       locations: artwork.data.Locations,
       medium: artwork.data.Medium,
       theme: artwork.data.Theme,
+      size: CHILD_NODE_SIZE,
     }
-    addChildNode(parentNode, childNode, CHILD_NODE_SIZE, CHILD_NODE_DISTANCE)
+
+    if (selectedFilter.filterName === artwork.recordId) {
+      childNode.fill = "white"
+    }
+
+    if (selectedFilter.filterName === artwork.recordId) {
+      addChildNode(parentNode, childNode, CHILD_NODE_DISTANCE, true)
+    } else {
+      addChildNode(parentNode, childNode, CHILD_NODE_DISTANCE)
+    }
   }
 
   // function to create default node links
@@ -100,8 +120,9 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     let hasBeenInvoked = false
     for (let x = 0; x < artwork.length; x++) {
       if (
-        artistB.id === selectedFilter &&
-        artwork[x].data.Primary_Artist__REQUIRED_[0] === selectedFilter &&
+        artistB.id === selectedFilter.filterName &&
+        artwork[x].data.Primary_Artist__REQUIRED_[0] ===
+          selectedFilter.filterName &&
         artwork[x].data.Collaborators !== null
       ) {
         for (let y = 0; y < artwork[x].data.Collaborators.length; y++) {
@@ -125,14 +146,14 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
         influence: artist.data.Influence,
       }
       // adds property when selectedFilter is a specific artist
-      if (parentNodeId === selectedFilter) {
+      if (parentNodeId === selectedFilter.filterName) {
         parentNode.isParent = true
         parentNode.fill = "white"
       }
 
       addMainNode(parentNode)
 
-      // create child nodes
+      // create default child nodes
       artworkArray.forEach(artwork => {
         if (
           artwork.data.Name !== undefined &&
@@ -149,7 +170,10 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     artistsArray.forEach((artistA, i) => {
       artistsArray.slice(i + 1).forEach(artistB => {
         // checks to see if there is a filtered selection
-        if (selectedFilter === artistA.id || selectedFilter === artistB.id) {
+        if (
+          selectedFilter.filterName === artistA.id ||
+          selectedFilter.filterName === artistB.id
+        ) {
           linkMainNodesArtist(artistA, artistB)
         } else {
           linkMainNodesDefault(artistA, artistB)

@@ -10,7 +10,12 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-lightGreen"
-            onClick={() => setSelectedFilter("rec1jGlX4IHyhr35R")} // Morgan Bernard
+            onClick={() =>
+              setSelectedFilter({
+                filterName: "rec1jGlX4IHyhr35R",
+                filterType: "artist",
+              })
+            } // Morgan Bernard
           >
             ARTIST
           </button>
@@ -18,7 +23,12 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-orange"
-            onClick={() => setSelectedFilter("recLpR2bY2fV2iTzN")} // Artwork 1
+            onClick={() =>
+              setSelectedFilter({
+                filterName: "recLpR2bY2fV2iTzN",
+                filterType: "artwork",
+              })
+            } // Artwork 1
           >
             ARTWORK
           </button>
