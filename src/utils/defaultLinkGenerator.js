@@ -1,4 +1,4 @@
-import { scaleLinear } from "d3"
+import { scaleLinear, select } from "d3"
 
 const MAIN_NODE_SIZE = 15
 const CHILD_NODE_SIZE = 15
@@ -9,8 +9,8 @@ const CHILD_NODE_DISTANCE = 20
 export const defaultLinkGenerator = (data, selectedFilter = null) => {
   let artists = []
   let artwork = []
-  let nodes = []
-  let links = []
+  let defaultNodes = []
+  let defaultLinks = []
   let artistsTempNodes = []
   // for default node links, this function needs to query artists and artwork
   // it then populates React state with the artists as parent nodes, - may need to use useContext
@@ -27,7 +27,7 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
   const addMainNode = node => {
     node.size = MAIN_NODE_SIZE
     node.color = "#A3F78E"
-    nodes.push(node)
+    defaultNodes.push(node)
     // to interate over later and grab the D3 properties (color, etc)
     artistsTempNodes.push(node)
   }
@@ -41,9 +41,9 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
   ) => {
     childNode.size = size
     childNode.color = "#FF985F"
-    nodes.push(childNode)
+    defaultNodes.push(childNode)
 
-    links.push({
+    defaultLinks.push({
       source: parentNode,
       target: childNode,
       distance: distance,
@@ -63,14 +63,39 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     addChildNode(parentNode, childNode, CHILD_NODE_SIZE, CHILD_NODE_DISTANCE)
   }
 
-  // function to link nodes
-  const linkMainNodes = (source, target) => {
-    links.push({
+  // function to create default node links
+  const linkMainNodesDefault = (
+    source,
+    target,
+    color = "#c7c7c7",
+    strokeWidth = 1
+  ) => {
+    defaultLinks.push({
       source,
       target,
       distance: MAIN_NODE_DISTANCE,
-      color: source.color,
+      color,
+      strokeWidth,
     })
+  }
+
+  const linkMainNodesArtist = (artistA, artistB) => {
+    let hasBeenInvoked = false
+    for (let x = 0; x < artwork.length; x++) {
+      if (
+        artistB.id === selectedFilter &&
+        artwork[x].data.Primary_Artist__REQUIRED_[0] === selectedFilter &&
+        artwork[x].data.Collaborators !== null
+      ) {
+        for (let y = 0; y < artwork[x].data.Collaborators.length; y++) {
+          if (artwork[x].data.Collaborators[y] === artistA.id) {
+            hasBeenInvoked = true
+            return linkMainNodesDefault(artistA, artistB, "#A3F78E", 5)
+          }
+        }
+      }
+    }
+    if (!hasBeenInvoked) linkMainNodesDefault(artistA, artistB)
   }
 
   // create parent nodes
@@ -97,9 +122,16 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
   }
 
   const linkParentNodes = artistsArray => {
+    // links every artist to each artist
+    console.log(artistsArray)
     artistsArray.forEach((artistA, i) => {
       artistsArray.slice(i + 1).forEach(artistB => {
-        linkMainNodes(artistA, artistB)
+        // checks to see if there is a filtered selection
+        if (selectedFilter === artistA.id || selectedFilter === artistB.id) {
+          linkMainNodesArtist(artistA, artistB)
+        } else {
+          linkMainNodesDefault(artistA, artistB)
+        }
       })
     })
   }
@@ -110,14 +142,13 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     artwork.push(...data.artwork.nodes)
     createParentNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
-    return nodes
+    return defaultNodes
   }
 
-  const populatedNodes = () => {
+  const populatedDefaultNodes = () => {
     const res = populateArrays()
-    console.log(res) // LEFT OFF HERE - why does this create a bigger array on click?
-    return { nodes: res, links }
+    return { nodes: res, links: defaultLinks }
   }
 
-  return populatedNodes()
+  return populatedDefaultNodes()
 }

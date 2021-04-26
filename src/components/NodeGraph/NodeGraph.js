@@ -150,7 +150,8 @@ const NodeGraph = () => {
       .data(links)
       .enter()
       .append("line")
-      .attr("stroke", "#c7c7c7")
+      .attr("stroke", line => line.color || "#c7c7c7")
+      .attr("stroke-width", line => line.strokeWidth || 1)
 
     const circles = svg
       .selectAll("circle")
