@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useContext } from "react"
 import FilterContext from "../context/FilterContext"
 import { graphql, useStaticQuery } from "gatsby"
-import { defaultLinkGenerator } from "../../utils"
+import { linkGenerator } from "../../utils"
 import {
   forceSimulation,
   forceManyBody,
@@ -26,6 +26,7 @@ const NodeGraph = () => {
             Name
             Artwork
             Influence
+            Collaborated_On
           }
           recordId
         }
@@ -54,16 +55,16 @@ const NodeGraph = () => {
   let width = 500
   let height = 500
 
-  // after the page has loaded, grab Airtable data from defaultLinkGenerator,
+  // after the page has loaded, grab Airtable data from linkGenerator,
   // then populate React state and begin the data viz
   useEffect(() => {
-    const results = defaultLinkGenerator(queryData, selectedFilter)
+    const results = linkGenerator(queryData, selectedFilter)
     main(results)
   }, [selectedFilter])
 
   const main = data => {
     console.log(data)
-    // grab nodes and links from the data generated from defaultLinkGenerator
+    // grab nodes and links from the data generated from linkGenerator
     let nodes = data.nodes
     let links = data.links
 

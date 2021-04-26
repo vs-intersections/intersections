@@ -6,28 +6,18 @@ const DEFAULT_DISTANCE = 60
 const MAIN_NODE_DISTANCE = 150
 const CHILD_NODE_DISTANCE = 20
 
-export const defaultLinkGenerator = (data, selectedFilter = null) => {
+export const linkGenerator = (data, selectedFilter = null) => {
   let artists = []
   let artwork = []
-  let defaultNodes = []
-  let defaultLinks = []
+  let nodes = []
+  let links = []
   let artistsTempNodes = []
-  // for default node links, this function needs to query artists and artwork
-  // it then populates React state with the artists as parent nodes, - may need to use useContext
-  // and artwork as child nodes
-  // it then links parents to each other
-  // and links parents to their associated artwork
-
-  // create color scale for nodes
-  // const colorScale = scaleLinear() /* the color domain needs to be based off of the artist array length */
-  //   .domain([0, 8])
-  //   .range(["#24afff", "#c6ff0c"])
 
   // function to create parent nodes
   const addMainNode = node => {
     node.size = node.isParent ? MAIN_NODE_SIZE * 1.35 : MAIN_NODE_SIZE
     node.color = "#A3F78E"
-    defaultNodes.push(node)
+    nodes.push(node)
     // to interate over later and grab the D3 properties (color, etc)
     artistsTempNodes.push(node)
   }
@@ -42,9 +32,9 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     childNode.color = "#FF985F"
     childNode.isParent = isParent
     childNode.size = isParent ? CHILD_NODE_SIZE * 1.35 : CHILD_NODE_SIZE
-    defaultNodes.push(childNode)
+    nodes.push(childNode)
 
-    defaultLinks.push({
+    links.push({
       source: parentNode,
       target: childNode,
       distance: distance,
@@ -52,29 +42,45 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
 
     // logic for selecting specific artist - creates node links from parent to child
     if (parentNode.id === selectedFilter.filterName) {
-      defaultLinks.push({
+      links.push({
         source: parentNode,
         target: childNode,
         distance: distance,
         color: "#A3F78E",
         strokeWidth: 5,
       })
-      // logic for selecting specific artwork
+      // logic for selecting specific artwork - creates node links from parent to child
     } else if (childNode.id === selectedFilter.filterName) {
-      defaultLinks.push({
+      links.push({
         source: parentNode,
         target: childNode,
         distance: distance,
         color: childNode.color,
         strokeWidth: 5,
       })
+      // creates default node links from parent to child
     } else {
-      defaultLinks.push({
+      links.push({
         source: parentNode,
         target: childNode,
         distance: distance,
       })
     }
+
+    // // links the selected artwork node to the collaborators
+    // if (childNode.recordId === selectedFilter.filterName) {
+    //   artwork.forEach(art => {
+    //     art.data.Collaborators?.forEach(collab => {
+    //       links.push({
+    //         source: parentNode,
+    //         target: childNode,
+    //         distance: distance,
+    //         color: childNode.color,
+    //         strokeWidth: 5,
+    //       })
+    //     })
+    //   })
+    // }
   }
 
   // function to create child nodes by calling the above function
@@ -107,7 +113,7 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     color = "#c7c7c7",
     strokeWidth = 1
   ) => {
-    defaultLinks.push({
+    links.push({
       source,
       target,
       distance: MAIN_NODE_DISTANCE,
@@ -136,6 +142,18 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     if (!hasBeenInvoked) linkMainNodesDefault(artistA, artistB)
   }
 
+  // create child nodes
+  const createChildNodes = (artworkArray, parentNodeId, parentNode) => {
+    artworkArray.forEach(artwork => {
+      if (
+        artwork.data.Name !== undefined &&
+        artwork.data.Primary_Artist__REQUIRED_[0] === parentNodeId
+      ) {
+        assembleChildNode(parentNode, artwork)
+      }
+    })
+  }
+
   // create parent nodes
   const createParentNodes = (artistsArray, artworkArray) => {
     artistsArray.forEach(artist => {
@@ -153,15 +171,7 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
 
       addMainNode(parentNode)
 
-      // create default child nodes
-      artworkArray.forEach(artwork => {
-        if (
-          artwork.data.Name !== undefined &&
-          artwork.data.Primary_Artist__REQUIRED_[0] === parentNodeId
-        ) {
-          assembleChildNode(parentNode, artwork)
-        }
-      })
+      createChildNodes(artworkArray, parentNodeId, parentNode)
     })
   }
 
@@ -187,15 +197,15 @@ export const defaultLinkGenerator = (data, selectedFilter = null) => {
     artists.push(...data.artists.nodes)
     artwork.push(...data.artwork.nodes)
     console.log(artists)
-    console.log(artwork)
     createParentNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
-    return defaultNodes
+
+    return nodes
   }
 
   const populatedDefaultNodes = () => {
     const res = populateArrays()
-    return { nodes: res, links: defaultLinks }
+    return { nodes: res, links }
   }
 
   return populatedDefaultNodes()

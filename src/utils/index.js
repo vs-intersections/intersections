@@ -1,2 +1,2 @@
 export { handleClickArtist } from "./clickHandlers"
-export { defaultLinkGenerator } from "./defaultLinkGenerator"
+export { linkGenerator } from "./linkGenerator"
