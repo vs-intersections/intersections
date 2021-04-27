@@ -42,43 +42,14 @@ const Navigation = ({ data }) => {
     name: el.data.Name,
   }))
 
-  const artistsDropdown = artists.map(el => (
-    <option value={el.id} key={el.id}>
-      {el.name}
-    </option>
-  ))
+  const generateDropdown = (filterType, arr, color) => {
 
-  const artworkDropdown = artwork.map(el => (
-    <option value={el.id} key={el.id}>
-      {el.name}
-    </option>
-  ))
+    let options = arr.map(el => (
+      <option value={el.id} key={el.id}>
+        {el.name}
+      </option>
+    ))
 
-  const locationsDropdown = locations.map(el => (
-    <option value={el.id} key={el.id}>
-      {el.name}
-    </option>
-  ))
-
-  const themesDropdown = themes.map(el => (
-    <option value={el.id} key={el.id}>
-      {el.name}
-    </option>
-  ))
-
-  const mediumsDropdown = mediums.map(el => (
-    <option value={el.id} key={el.id}>
-      {el.name}
-    </option>
-  ))
-
-  const influencesDropdown = influences.map(el => (
-    <option value={el.id} key={el.id}>
-      {el.name}
-    </option>
-  ))
-
-  const generateDropdown = (filterType, dropdownFunc, color) => {
     return (
       <li>
         <label className="block text-center lg:text-lg">
@@ -93,7 +64,7 @@ const Navigation = ({ data }) => {
             })
           }}
         >
-          {dropdownFunc}
+          {options}
         </select>
         <div className={`border-b-2 border-${color}`}></div>
       </li>
@@ -103,12 +74,12 @@ const Navigation = ({ data }) => {
   return (
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
-        {generateDropdown("artists", artistsDropdown, "lightGreen")}
-        {generateDropdown("artwork", artworkDropdown, "orange")}
-        {generateDropdown("location", locationsDropdown, "blue")}
-        {generateDropdown("theme", themesDropdown, "pink")}
-        {generateDropdown("medium", mediumsDropdown, "lightBlue")}
-        {generateDropdown("influence", influencesDropdown, "yellow")}
+        {generateDropdown("artists", artists, "lightGreen")}
+        {generateDropdown("artwork", artwork, "orange")}
+        {generateDropdown("location", locations, "blue")}
+        {generateDropdown("theme", themes, "pink")}
+        {generateDropdown("medium", mediums, "lightBlue")}
+        {generateDropdown("influence", influences, "yellow")}
       </ul>
     </nav>
   )
