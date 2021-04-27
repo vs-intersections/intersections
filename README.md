@@ -31,6 +31,8 @@ Other things:
 
 a place for your notes and thoughts
 
+IDEA: Add node context - use nodecontext to track to state of 
+
 ---
 
 ## To-do items
