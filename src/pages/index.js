@@ -6,6 +6,7 @@ import NodeGraph from "../components/NodeGraph/NodeGraph"
 import SidebarMobile from "../components/SidebarMobile"
 import InfoMenu from "../components/InfoMenu"
 import SidebarDesktop from "../components/SidebarDesktop"
+import Footer from "../components/Footer"
 import { useWindowSize } from "../hooks"
 import { graphql, useStaticQuery } from "gatsby"
 
@@ -51,8 +52,7 @@ export default function Home() {
             <main className="h-full grid grid-rows-mainContent lg:grid-rows-mainContentLg">
               <NodeGraph data={data} />
               {IS_MOBILE ? <SidebarMobile /> : <SidebarDesktop />}
-              {IS_MOBILE && <InfoMenu />}
-              {/* NEED TO RENDER OUT THE FOOTER INSTEAD OF INFOBAR @ MIN-WIDTH:1024PX */}
+              {IS_MOBILE ? <InfoMenu /> : <Footer />}
             </main>
           </div>
         </div>
