@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useContext } from "react"
 import FilterContext from "../context/FilterContext"
 import { graphql, useStaticQuery } from "gatsby"
-import { defaultLinkGenerator } from "../../utils"
+import { linkGenerator } from "../../utils"
 import {
   forceSimulation,
   forceManyBody,
@@ -13,6 +13,7 @@ import {
   layout,
   scaleLinear,
   zoom,
+  selectAll,
 } from "d3"
 
 const NodeGraph = () => {
@@ -24,6 +25,8 @@ const NodeGraph = () => {
           data {
             Name
             Artwork
+            Influence
+            Collaborated_On
           }
           recordId
         }
@@ -34,6 +37,9 @@ const NodeGraph = () => {
             Name
             Primary_Artist__REQUIRED_
             Collaborators
+            Locations
+            Medium
+            Theme
           }
           recordId
         }
@@ -49,21 +55,24 @@ const NodeGraph = () => {
   let width = 500
   let height = 500
 
-  // after the page has loaded, grab Airtable data from defaultLinkGenerator,
+  // after the page has loaded, grab Airtable data from linkGenerator,
   // then populate React state and begin the data viz
   useEffect(() => {
-    const results = defaultLinkGenerator(queryData, selectedFilter)
+    const results = linkGenerator(queryData, selectedFilter)
     main(results)
   }, [selectedFilter])
 
   const main = data => {
-    // grab nodes and links from the data generated from defaultLinkGenerator
+    // grab nodes and links from the data generated from linkGenerator
     let nodes = data.nodes
     let links = data.links
 
     // svg specific variables
     // set the D3 container to a certain aspect ratio
     const svg = select(ref.current).attr("viewBox", `0 0 ${width} ${height}`)
+    svg.selectAll("line").remove()
+    svg.selectAll("circle").remove()
+    svg.selectAll("text").remove()
 
     const centerX = width / 2
     const centerY = height / 2
@@ -112,22 +121,16 @@ const NodeGraph = () => {
       width = containerRef.current.clientWidth
       height = containerRef.current.clientHeight
       svg.attr("width", width).attr("height", height)
-      // force.size([width, height]).resume()
     }
 
     resize()
     select(window).on("resize", resize)
 
-    // function resize() {
-    //   width = window.innerWidth, height = window.innerHeight;
-    //   svg.attr("width", width).attr("height", height);
-    //   force.size([width, height]).resume();
-    // }
-
     // highlight nodes on mouse hover
     function highlight(e, datapoint) {
       let oldColor = datapoint.color
       let oldSize = datapoint.size
+      let oldFill = datapoint.fill
 
       select(this)
         .transition()
@@ -139,7 +142,11 @@ const NodeGraph = () => {
         select(this)
           .transition()
           .duration(250)
-          .attr("fill", datapoint => (datapoint.color = oldColor))
+          .attr("fill", datapoint =>
+            datapoint.isParent
+              ? (datapoint.fill = oldFill)
+              : (datapoint.color = oldColor)
+          )
           .attr("r", datapoint => (datapoint.size = oldSize))
       })
     }
@@ -150,15 +157,19 @@ const NodeGraph = () => {
       .data(links)
       .enter()
       .append("line")
-      .attr("stroke", "#c7c7c7")
+      .attr("stroke", line => line.color || "#c7c7c7")
+      .attr("stroke-width", line => line.strokeWidth || 1)
 
     const circles = svg
       .selectAll("circle")
       .data(nodes)
       .enter()
       .append("circle")
-      .attr("fill", node => node.color || "gray")
+      .attr("fill", node => (node.isParent ? node.fill : node.color))
+      .attr("stroke", node => (node.isParent ? node.color : "none"))
+      .attr("stroke-width", node => (node.isParent ? 5 : "none"))
       .attr("r", node => node.size)
+      .classed("parent", node => node.isParent)
       .on("mouseover", highlight)
       .call(dragInteraction(simulation))
 
@@ -172,7 +183,7 @@ const NodeGraph = () => {
       .attr("alignment-baseline", "middle")
       .style("pointer-events", "none")
       .text(node => node.name)
-    console.log(nodes)
+
     // simulation rendering function
     simulation.on("tick", () => {
       circles.attr("cx", node => node.x).attr("cy", node => node.y)

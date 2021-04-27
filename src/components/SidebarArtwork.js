@@ -5,11 +5,11 @@ import Location from "./Location"
 
 const SidebarArtwork = () => {
   return (
-    <div>
+    <>
       <Description />
       <ArtistsAndArtwork />
       <Location />
-    </div>
+    </>
   )
 }
 

@@ -1,5 +1,4 @@
 import React, { useContext } from "react"
-// import { handleClickArtist } from "../utils/clickHandlers"
 import FilterContext from "./context/FilterContext"
 
 const Navigation = () => {
@@ -11,33 +10,58 @@ const Navigation = () => {
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-lightGreen"
-            onClick={() => setSelectedFilter("rec1jGlX4IHyhr35R")}
+            onClick={() =>
+              setSelectedFilter({
+                filterName: "rec1jGlX4IHyhr35R",
+                filterType: "artist",
+              })
+            } // Morgan Bernard
           >
             ARTIST
           </button>
         </li>
         <li>
-          <button className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-orange">
+          <button
+            className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-orange"
+            onClick={() =>
+              setSelectedFilter({
+                filterName: "recLpR2bY2fV2iTzN",
+                filterType: "artwork",
+              })
+            } // Artwork 1
+          >
             ARTWORK
           </button>
         </li>
         <li>
-          <button className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-blue">
+          <button
+            className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-blue"
+            onClick={() => setSelectedFilter("rec4vtVJRHYXcYyw1")} // Meow Wolf
+          >
             LOCATION
           </button>
         </li>
         <li>
-          <button className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-lightBlue">
+          <button
+            className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-lightBlue"
+            onClick={() => setSelectedFilter("recS2uDVGjVosAS5e")} // abstract
+          >
             THEME
           </button>
         </li>
         <li>
-          <button className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-pink">
+          <button
+            className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-pink"
+            onClick={() => setSelectedFilter("recNSnjXAfAqvbB6b")} // oil paint
+          >
             MEDIUM
           </button>
         </li>
         <li>
-          <button className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-yellow">
+          <button
+            className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-yellow"
+            onClick={() => setSelectedFilter("rec3NKKGDbIaVJ641")} // meditation
+          >
             INFLUENCE
           </button>
         </li>
