@@ -48,10 +48,10 @@ export default function Home() {
         <Header />
         <Navigation data={data} />
         <div className="relative">
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-gray-500">
+          <div className="absolute top-0 bottom-0 left-0 right-0">
             <main className="h-full grid grid-rows-mainContent lg:grid-rows-mainContentLg">
               <NodeGraph data={data} />
-              {IS_MOBILE ? <SidebarMobile /> : <SidebarDesktop />}
+              {/* {IS_MOBILE ? <SidebarMobile /> : <SidebarDesktop />} */}
               {IS_MOBILE ? <InfoMenu /> : <Footer />}
             </main>
           </div>
