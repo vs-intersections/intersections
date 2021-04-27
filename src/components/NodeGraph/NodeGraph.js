@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from "react"
+import React, { useEffect, useRef, useContext, useState } from "react"
 import FilterContext from "../context/FilterContext"
 import { graphql, useStaticQuery } from "gatsby"
 import { linkGenerator } from "../../utils"
@@ -16,37 +16,11 @@ import {
   selectAll,
 } from "d3"
 
-const NodeGraph = () => {
+const NodeGraph = ({ data }) => {
   const [selectedFilter] = useContext(FilterContext)
-  const queryData = useStaticQuery(graphql`
-    {
-      artists: allAirtable(filter: { table: { eq: "Artist" } }) {
-        nodes {
-          data {
-            Name
-            Artwork
-            Influence
-            Collaborated_On
-          }
-          recordId
-        }
-      }
-      artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
-        nodes {
-          data {
-            Name
-            Primary_Artist__REQUIRED_
-            Collaborators
-            Locations
-            Medium
-            Theme
-          }
-          recordId
-        }
-      }
-    }
-  `)
 
+
+  
   // ref to grab the SVG element
   const ref = useRef()
   const containerRef = useRef()
@@ -58,7 +32,7 @@ const NodeGraph = () => {
   // after the page has loaded, grab Airtable data from linkGenerator,
   // then populate React state and begin the data viz
   useEffect(() => {
-    const results = linkGenerator(queryData, selectedFilter)
+    const results = linkGenerator(data, selectedFilter)
     main(results)
   }, [selectedFilter])
 

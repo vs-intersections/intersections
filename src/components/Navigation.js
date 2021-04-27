@@ -1,31 +1,54 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import FilterContext from "./context/FilterContext"
 
-const Navigation = () => {
+const Navigation = ({ data }) => {
   const [selectedFilter, setSelectedFilter] = useContext(FilterContext)
 
+  // Selected Node
+  const [selectedNode, setSelectedNode] = useState(null)
+  // Artists
+  const artists = data?.artists?.nodes.map(el => ({
+    id: el.recordId,
+    name: el.data.Name,
+  }))
+
+  const artistsDropdown = artists.map(el => (
+    <option
+      value={el.id}
+      key={el.id}
+      // onClick={() =>
+      //   setSelectedFilter(prev => ({
+      //     id: el.id,
+      //     filterType: "artist",
+      //   }))
+      // }
+    >
+      {el.name}
+    </option>
+  ))
   return (
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
         <li>
-          <button
-            className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-lightGreen"
-            onClick={() =>
+          <select
+            value={selectedFilter.id}
+            onChange={e => {
               setSelectedFilter({
-                filterName: "rec1jGlX4IHyhr35R",
+                filterName: e.target.value,
                 filterType: "artist",
               })
-            } // Morgan Bernard
+            }}
           >
-            ARTIST
-          </button>
+            <label>Artist</label>
+            {artistsDropdown}
+          </select>
         </li>
         <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-orange"
             onClick={() =>
               setSelectedFilter({
-                filterName: "recLpR2bY2fV2iTzN",
+                id: "recLpR2bY2fV2iTzN",
                 filterType: "artwork",
               })
             } // Artwork 1

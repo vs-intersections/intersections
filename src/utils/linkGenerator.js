@@ -158,7 +158,6 @@ export const linkGenerator = (
     // spreading the array to concatenate the data (else, array of arrays)
     artists.push(...data.artists.nodes)
     artwork.push(...data.artwork.nodes)
-    console.log(artists)
     createParentNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
 
