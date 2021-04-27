@@ -6,8 +6,14 @@ const Navigation = ({ data }) => {
 
   // Selected Node
   const [selectedNode, setSelectedNode] = useState(null)
+
   // Artists
   const artists = data?.artists?.nodes.map(el => ({
+    id: el.recordId,
+    name: el.data.Name,
+  }))
+
+  const artwork = data?.artwork?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,
   }))
@@ -16,12 +22,15 @@ const Navigation = ({ data }) => {
     <option
       value={el.id}
       key={el.id}
-      // onClick={() =>
-      //   setSelectedFilter(prev => ({
-      //     id: el.id,
-      //     filterType: "artist",
-      //   }))
-      // }
+    >
+      {el.name}
+    </option>
+  ))
+
+  const artworkDropdown = artwork.map(el => (
+    <option
+      value={el.id}
+      key={el.id}
     >
       {el.name}
     </option>
@@ -44,7 +53,20 @@ const Navigation = ({ data }) => {
           </select>
         </li>
         <li>
-          <button
+
+        <select
+            value={selectedFilter.id}
+            onChange={e => {
+              setSelectedFilter({
+                filterName: e.target.value,
+                filterType: "artwork",
+              })
+            }}
+          >
+            <label>Artwork</label>
+            {artworkDropdown}
+          </select>
+          {/* <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-orange"
             onClick={() =>
               setSelectedFilter({
@@ -54,7 +76,7 @@ const Navigation = ({ data }) => {
             } // Artwork 1
           >
             ARTWORK
-          </button>
+          </button> */}
         </li>
         <li>
           <button
