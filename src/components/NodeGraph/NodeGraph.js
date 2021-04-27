@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useContext, useState } from "react"
 import FilterContext from "../context/FilterContext"
-import { graphql, useStaticQuery } from "gatsby"
 import { linkGenerator } from "../../utils"
 import {
   forceSimulation,
@@ -10,30 +9,58 @@ import {
   forceCollide,
   select,
   drag,
-  layout,
-  scaleLinear,
   zoom,
-  selectAll,
 } from "d3"
 
 const NodeGraph = ({ data }) => {
+  // this keeps track of the selected filter
   const [selectedFilter] = useContext(FilterContext)
 
-
-  
-  // ref to grab the SVG element
+  // refs to grab the SVG element and SVG element container
   const ref = useRef()
   const containerRef = useRef()
 
-  // these values are arbitrary but allow a finer detail for SVG elements
-  let width = 500
-  let height = 500
+  // declare vars here to be used through out this component
+  let IS_MOBILE = 0,
+    width,
+    height,
+    aspectBase,
+    aspectW,
+    aspectH,
+    aspectRatioWidth,
+    aspectRatioHeight
 
-  // after the page has loaded, grab Airtable data from linkGenerator,
-  // then populate React state and begin the data viz
+  // determine aspect ratio of value inputs
+  // this only determines one of the values, depending on if you want the width or height aspect ratio
+  // if width: (width, height) | if height: (height, width)
+  const getAspect = (x, y) => {
+    return Math.round((x / y) * 100) / 100
+  }
+
+  const setAspectRatio = () => {
+    // grab svg container width and height
+    width = containerRef.current.clientWidth
+    height = containerRef.current.clientHeight
+    // determine if the current view is on mobile
+    IS_MOBILE = width <= 1024
+    // determine the aspect values through the Maths (see function)
+    aspectW = getAspect(width, height)
+    aspectH = getAspect(height, width)
+    // set the default zoom of the SVG
+    aspectBase = IS_MOBILE ? 550 : 500
+    // set the aspect ratio (to be used in the viewbox)
+    aspectRatioWidth = aspectBase * aspectW || 500
+    aspectRatioHeight = aspectBase * aspectH || 500
+  }
+
   useEffect(() => {
+    // set values for viewbox, and SVG width and height
+    setAspectRatio()
+    // after the page has loaded, grab Airtable data from linkGenerator,
     const results = linkGenerator(data, selectedFilter)
+    // begin the data viz
     main(results)
+    // re-run useEffect if a new filter has been chosen
   }, [selectedFilter])
 
   const main = data => {
@@ -43,13 +70,16 @@ const NodeGraph = ({ data }) => {
 
     // svg specific variables
     // set the D3 container to a certain aspect ratio
-    const svg = select(ref.current).attr("viewBox", `0 0 ${width} ${height}`)
+    const svg = select(ref.current)
+      .attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
+      .attr("width", width)
+      .attr("height", height)
     svg.selectAll("line").remove()
     svg.selectAll("circle").remove()
     svg.selectAll("text").remove()
 
-    const centerX = width / 2
-    const centerY = height / 2
+    let centerX = width / 2
+    let centerY = height / 2
 
     // simulation force settings
     const simulation = forceSimulation(nodes)
@@ -92,26 +122,34 @@ const NodeGraph = ({ data }) => {
     }
 
     const resize = () => {
-      width = containerRef.current.clientWidth
-      height = containerRef.current.clientHeight
+      setAspectRatio()
+
+      // re-center SVG after window resizing
+      centerX = aspectRatioWidth / 2
+      centerY = aspectRatioHeight / 2
+      simulation.force("center", forceCenter(centerX, centerY))
+      // set new values for viewbox, and SVG width and height
+      svg.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
       svg.attr("width", width).attr("height", height)
     }
 
+    // run the resize function to center the SVG, then listen for more resizing
     resize()
     select(window).on("resize", resize)
 
     // highlight nodes on mouse hover
     function highlight(e, datapoint) {
+      // keep track of the nodes previous attributes - will be reverted after the highlight action
       let oldColor = datapoint.color
       let oldSize = datapoint.size
       let oldFill = datapoint.fill
-
+      // select the hovered node and transition its radius and fill over 250ms
       select(this)
         .transition()
         .duration(250)
         .attr("r", datapoint => (datapoint.size *= 1.2))
         .attr("fill", datapoint => (datapoint.color = "dodgerBlue"))
-
+      // when the selected node is no longer hovered, revert its animated states (fill and radius)
       select(this).on("mouseout", function () {
         select(this)
           .transition()
@@ -171,9 +209,12 @@ const NodeGraph = ({ data }) => {
   }
 
   return (
-    <div className="flex flex-col h-full justify-center items-center">
-      <div ref={containerRef} className="flex-grow-0 w-auto h-full">
-        <svg ref={ref} className="w-auto h-full" version="1.1"></svg>
+    <div
+      ref={containerRef}
+      className="flex flex-col justify-center items-center"
+    >
+      <div className="flex-grow-0 w-full">
+        <svg ref={ref} className="w-full" version="1.1"></svg>
       </div>
     </div>
   )

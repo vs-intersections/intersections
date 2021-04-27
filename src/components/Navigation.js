@@ -19,19 +19,13 @@ const Navigation = ({ data }) => {
   }))
 
   const artistsDropdown = artists.map(el => (
-    <option
-      value={el.id}
-      key={el.id}
-    >
+    <option value={el.id} key={el.id}>
       {el.name}
     </option>
   ))
 
   const artworkDropdown = artwork.map(el => (
-    <option
-      value={el.id}
-      key={el.id}
-    >
+    <option value={el.id} key={el.id}>
       {el.name}
     </option>
   ))
@@ -53,8 +47,7 @@ const Navigation = ({ data }) => {
           </select>
         </li>
         <li>
-
-        <select
+          <select
             value={selectedFilter.id}
             onChange={e => {
               setSelectedFilter({
@@ -78,7 +71,7 @@ const Navigation = ({ data }) => {
             ARTWORK
           </button> */}
         </li>
-        <li>
+        {/* <li>
           <button
             className="border-gray-500 rounded-sm border py-2 px-4 hover:bg-blue"
             onClick={() => setSelectedFilter("rec4vtVJRHYXcYyw1")} // Meow Wolf
@@ -109,7 +102,7 @@ const Navigation = ({ data }) => {
           >
             INFLUENCE
           </button>
-        </li>
+        </li> */}
       </ul>
     </nav>
   )
