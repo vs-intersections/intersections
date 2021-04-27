@@ -12,8 +12,8 @@ I've been developing with the idea to separate items into their own components a
 
 Personal To-do:
 
-- Get node graph to render at same VX, VX, X and Y (it currently jumps)
-- Node Haloing
+- Get node graph to render at same VX, VX, X and Y (it currently jumps) - still an issue - maybe not a huge one?
+- Node Haloing - LOL - maybe.... it's wack
 - Node tooltips
 - Graph zooming
 
@@ -31,7 +31,7 @@ Other things:
 
 a place for your notes and thoughts
 
-IDEA: Add node context - use nodecontext to track to state of 
+IDEA: Add node context - use nodecontext to track to state of
 
 ---
 
@@ -61,8 +61,7 @@ IDEA: Add node context - use nodecontext to track to state of
 
 - Sidebar component
 
-  - sidebar needs to move to the right-side at min-width 1024px (through Tailwind)
-  - 'open' functionality (slide up / slide out effect)
+  - INFO tab needs to stay at the right side of the screen responsively (currently does not)
   - expand icon needs to stay at the top of the container when scrolling (and expanding)
 
 - ArtistsAndArtwork component
