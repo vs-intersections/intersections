@@ -208,14 +208,19 @@ const NodeGraph = ({ data }) => {
     })
   }
 
+  // return (
+  //   <div
+  //     ref={containerRef}
+  //     className="flex flex-col justify-center items-center"
+  //   >
+  //     <div className="flex-grow-0 w-full">
+  //       <svg ref={ref} className="w-full" version="1.1"></svg>
+  //     </div>
+  //   </div>
+  // )
   return (
-    <div
-      ref={containerRef}
-      className="flex flex-col justify-center items-center"
-    >
-      <div className="flex-grow-0 w-full">
-        <svg ref={ref} className="w-full" version="1.1"></svg>
-      </div>
+    <div ref={containerRef} className="w-full">
+      <svg ref={ref} className="w-full" version="1.1"></svg>
     </div>
   )
 }

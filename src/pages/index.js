@@ -6,6 +6,7 @@ import NodeGraph from "../components/NodeGraph/NodeGraph"
 import SidebarMobile from "../components/SidebarMobile"
 import InfoMenu from "../components/InfoMenu"
 import SidebarDesktop from "../components/SidebarDesktop"
+import Footer from "../components/Footer"
 import { useWindowSize } from "../hooks"
 import { graphql, useStaticQuery } from "gatsby"
 
@@ -39,6 +40,42 @@ export default function Home() {
           recordId
         }
       }
+      locations: allAirtable(filter: { table: { eq: "Location" } }) {
+        nodes {
+          data {
+            Name
+            Artwork
+          }
+          recordId
+        }
+      }
+      themes: allAirtable(filter: { table: { eq: "Theme" } }) {
+        nodes {
+          data {
+            Name
+            Artwork
+          }
+          recordId
+        }
+      }
+      mediums: allAirtable(filter: { table: { eq: "Medium" } }) {
+        nodes {
+          data {
+            Name
+            Artwork
+          }
+          recordId
+        }
+      }
+      influences: allAirtable(filter: { table: { eq: "Influence" } }) {
+        nodes {
+          data {
+            Name
+            Artist
+          }
+          recordId
+        }
+      }
     }
   `)
   return (
@@ -47,12 +84,11 @@ export default function Home() {
         <Header />
         <Navigation data={data} />
         <div className="relative">
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-gray-500">
+          <div className="absolute top-0 bottom-0 left-0 right-0">
             <main className="h-full grid grid-rows-mainContent lg:grid-rows-mainContentLg">
               <NodeGraph data={data} />
               {IS_MOBILE ? <SidebarMobile /> : <SidebarDesktop />}
-              {IS_MOBILE && <InfoMenu />}
-              {/* NEED TO RENDER OUT THE FOOTER INSTEAD OF INFOBAR @ MIN-WIDTH:1024PX */}
+              {IS_MOBILE ? <InfoMenu /> : <Footer />}
             </main>
           </div>
         </div>

@@ -21,6 +21,22 @@ module.exports = {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Artwork`,
           },
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
+            tableName: `Location`,
+          },
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
+            tableName: `Theme`,
+          },
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
+            tableName: `Medium`,
+          },
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
+            tableName: `Influence`,
+          },
         ],
       },
     },

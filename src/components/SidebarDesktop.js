@@ -22,12 +22,11 @@ const SidebarDesktop = () => {
         font-weight: 600;
         font-size: 12px;
         line-height: 16px;
-        bottom: 366%;
+        position: absolute;
+        top: 0;
         @media (min-width: 768px) {
           font-size: 16px;
           line-height: 32px;
-          bottom: 18.5rem;
-          bottom: 366%;
         }
       `}
     >
@@ -45,13 +44,15 @@ const SidebarDesktop = () => {
         INFO{" "}
       </div>
       <p className="py-4 mx-4">
-        Whether you are looking to refinance, purchase or renovate – we’ve got
-        you covered! <br />
-        <br /> Don’t be afraid to reach out If you have questions or need some
-        guidance, simply complete the contact me form below. You are also free
-        to email me directly, text me or send me a message via social media. No
-        matter what, we will do our best to answer your questions in a timely
-        manner. We want to hear from you!
+        Dummy text? More like dummy thicc text, amirite? <br />
+        <br /> You probably haven't heard of them kogi tattooed, jean shorts
+        single-origin coffee salvia la croix. Locavore bespoke quinoa bicycle
+        rights echo park vaporware, cliche chartreuse hoodie art party
+        dreamcatcher. Lo-fi crucifix shaman health goth hot chicken pug
+        williamsburg banh mi yr pok pok YOLO. Next level neutra meditation tofu.
+        Quinoa art party marfa, green juice waistcoat hot chicken kitsch
+        microdosing raclette tacos yuccie. Gastropub aesthetic pour-over fam.
+        DIY swag before they sold out chillwave cliche.
       </p>
     </div>
   )
