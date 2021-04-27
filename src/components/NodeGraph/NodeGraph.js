@@ -63,7 +63,6 @@ const NodeGraph = () => {
   }, [selectedFilter])
 
   const main = data => {
-    console.log(data)
     // grab nodes and links from the data generated from linkGenerator
     let nodes = data.nodes
     let links = data.links

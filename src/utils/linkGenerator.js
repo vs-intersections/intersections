@@ -5,18 +5,19 @@ export const CHILD_NODE_SIZE = 15
 export const DEFAULT_DISTANCE = 60
 const MAIN_NODE_DISTANCE = 150
 const CHILD_NODE_DISTANCE = 20
-export let nodes = []
-export let links = []
 let artists = []
 let artwork = []
 let artistsTempNodes = []
 
-export const linkGenerator = (data, selectedFilter = null) => {
+export const linkGenerator = (
+  data,
+  selectedFilter = null,
+  nodes = [],
+  links = []
+) => {
   // reinitialize these arrays to empty
   artists = []
   artwork = []
-  nodes = []
-  links = []
   artistsTempNodes = []
 
   // function to create parent nodes
@@ -46,6 +47,8 @@ export const linkGenerator = (data, selectedFilter = null) => {
 
     if (selectedFilter.filterName === artwork.recordId) {
       addChildNode(
+        links,
+        nodes,
         parentNode,
         childNode,
         CHILD_NODE_DISTANCE,
@@ -54,6 +57,8 @@ export const linkGenerator = (data, selectedFilter = null) => {
       )
     } else {
       addChildNode(
+        links,
+        nodes,
         parentNode,
         childNode,
         CHILD_NODE_DISTANCE,

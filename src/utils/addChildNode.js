@@ -1,11 +1,8 @@
-import {
-  DEFAULT_DISTANCE,
-  CHILD_NODE_SIZE,
-  nodes,
-  links,
-} from "./linkGenerator"
+import { DEFAULT_DISTANCE, CHILD_NODE_SIZE } from "./linkGenerator"
 
 const addChildNode = (
+  links,
+  nodes,
   parentNode,
   childNode,
   distance = DEFAULT_DISTANCE,
