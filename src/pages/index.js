@@ -40,6 +40,42 @@ export default function Home() {
           recordId
         }
       }
+      locations: allAirtable(filter: { table: { eq: "Location" } }) {
+        nodes {
+          data {
+            Name
+            Artwork
+          }
+          recordId
+        }
+      }
+      themes: allAirtable(filter: { table: { eq: "Theme" } }) {
+        nodes {
+          data {
+            Name
+            Artwork
+          }
+          recordId
+        }
+      }
+      mediums: allAirtable(filter: { table: { eq: "Medium" } }) {
+        nodes {
+          data {
+            Name
+            Artwork
+          }
+          recordId
+        }
+      }
+      influences: allAirtable(filter: { table: { eq: "Influence" } }) {
+        nodes {
+          data {
+            Name
+            Artist
+          }
+          recordId
+        }
+      }
     }
   `)
   return (
