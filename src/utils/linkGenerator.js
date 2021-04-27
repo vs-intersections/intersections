@@ -53,7 +53,8 @@ export const linkGenerator = (
         childNode,
         CHILD_NODE_DISTANCE,
         true,
-        selectedFilter
+        selectedFilter,
+        artwork
       )
     } else {
       addChildNode(
@@ -63,7 +64,8 @@ export const linkGenerator = (
         childNode,
         CHILD_NODE_DISTANCE,
         false,
-        selectedFilter
+        selectedFilter,
+        artwork
       )
     }
   }
@@ -154,13 +156,50 @@ export const linkGenerator = (
     })
   }
 
+  // link selected artwork to main artist and collaborators
+  // works by locating artwork in nodes, then locating collaborators in nodes
+  // then linking them together
+  const linkArtworkToCollaborators = () => {
+    for (let y = 0; y < artwork.length; y++) {
+      if (artwork[y].recordId === selectedFilter.filterName) {
+        artwork[y].data.Collaborators?.forEach(collab => {
+          for (
+            let artistCounter = 0;
+            artistCounter < nodes.length;
+            artistCounter++
+          ) {
+            if (nodes[artistCounter].id === collab) {
+              for (
+                let artworkCounter = 0;
+                artworkCounter < nodes.length;
+                artworkCounter++
+              ) {
+                console.log(nodes[artworkCounter].id)
+                if (nodes[artworkCounter].id === selectedFilter.filterName) {
+                  return links.push({
+                    source: nodes[artworkCounter],
+                    target: nodes[artistCounter],
+                    distance: DEFAULT_DISTANCE,
+                    color: nodes[artworkCounter].color,
+                    strokeWidth: 5,
+                  })
+                }
+              }
+            }
+          }
+        })
+        return
+      }
+    }
+  }
+
   const populateArrays = () => {
     // spreading the array to concatenate the data (else, array of arrays)
     artists.push(...data.artists.nodes)
     artwork.push(...data.artwork.nodes)
     createParentNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
-
+    linkArtworkToCollaborators()
     return nodes
   }
 

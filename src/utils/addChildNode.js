@@ -46,21 +46,6 @@ const addChildNode = (
       distance: distance,
     })
   }
-
-  // // links the selected artwork node to the collaborators
-  // if (childNode.recordId === selectedFilter.filterName) {
-  //   artwork.forEach(art => {
-  //     art.data.Collaborators?.forEach(collab => {
-  //       links.push({
-  //         source: parentNode,
-  //         target: childNode,
-  //         distance: distance,
-  //         color: childNode.color,
-  //         strokeWidth: 5,
-  //       })
-  //     })
-  //   })
-  // }
 }
 
 export default addChildNode
