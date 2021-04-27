@@ -174,7 +174,6 @@ export const linkGenerator = (
                 artworkCounter < nodes.length;
                 artworkCounter++
               ) {
-                console.log(nodes[artworkCounter].id)
                 if (nodes[artworkCounter].id === selectedFilter.filterName) {
                   return links.push({
                     source: nodes[artworkCounter],

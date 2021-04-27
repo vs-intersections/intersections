@@ -78,9 +78,12 @@ const Navigation = ({ data }) => {
     </option>
   ))
 
-  const generateDropdown = (filterType, dropdownFunc) => {
+  const generateDropdown = (filterType, dropdownFunc, color) => {
     return (
       <li>
+        <label className="block text-center lg:text-lg">
+          {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+        </label>
         <select
           value={selectedFilter.id}
           onChange={e => {
@@ -90,11 +93,9 @@ const Navigation = ({ data }) => {
             })
           }}
         >
-          <label>
-            {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-          </label>
           {dropdownFunc}
         </select>
+        <div className={`border-b-2 border-${color}`}></div>
       </li>
     )
   }
@@ -102,12 +103,12 @@ const Navigation = ({ data }) => {
   return (
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
-        {generateDropdown("artists", artistsDropdown)}
-        {generateDropdown("artwork", artworkDropdown)}
-        {generateDropdown("location", locationsDropdown)}
-        {generateDropdown("theme", themesDropdown)}
-        {generateDropdown("medium", mediumsDropdown)}
-        {generateDropdown("influence", influencesDropdown)}
+        {generateDropdown("artists", artistsDropdown, "lightGreen")}
+        {generateDropdown("artwork", artworkDropdown, "orange")}
+        {generateDropdown("location", locationsDropdown, "blue")}
+        {generateDropdown("theme", themesDropdown, "pink")}
+        {generateDropdown("medium", mediumsDropdown, "lightBlue")}
+        {generateDropdown("influence", influencesDropdown, "yellow")}
       </ul>
     </nav>
   )
