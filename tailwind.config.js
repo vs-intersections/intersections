@@ -24,7 +24,7 @@ module.exports = {
         layout: "4rem 4rem auto",
         layoutLg: "2.5rem 3.625rem auto",
         mainContent: "auto 10.75rem 3.25rem",
-        mainContentLg: "auto 10.75rem 1.25rem",
+        mainContentLg: "auto 1.25rem",
       },
       gridTemplateColumns: {
         artwork: "1fr 2fr",
