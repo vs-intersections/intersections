@@ -22,7 +22,7 @@ module.exports = {
     extend: {
       gridTemplateRows: {
         layout: "4rem 4rem auto",
-        layoutLg: "2.5rem 3.625rem auto",
+        layoutLg: "2.5rem 4.5rem auto",
         mainContent: "auto 10.75rem 3.25rem",
         mainContentLg: "auto 1.5rem",
       },

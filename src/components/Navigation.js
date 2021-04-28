@@ -43,7 +43,6 @@ const Navigation = ({ data }) => {
   }))
 
   const generateDropdown = (filterType, arr, color) => {
-
     let options = arr.map(el => (
       <option value={el.id} key={el.id}>
         {el.name}
@@ -51,10 +50,11 @@ const Navigation = ({ data }) => {
     ))
 
     return (
-      <li>
+      <li className="pb-2">
         <label className="block text-center lg:text-lg">
           {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
         </label>
+        <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
           value={selectedFilter.id}
           onChange={e => {
@@ -66,7 +66,6 @@ const Navigation = ({ data }) => {
         >
           {options}
         </select>
-        <div className={`border-b-2 border-${color}`}></div>
       </li>
     )
   }
