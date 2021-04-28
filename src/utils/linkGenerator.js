@@ -39,6 +39,7 @@ export const linkGenerator = (
       medium: artwork.data.Medium,
       theme: artwork.data.Theme,
       size: CHILD_NODE_SIZE,
+      table: artwork.table
     }
 
     if (selectedFilter.filterName === artwork.recordId) {
@@ -53,7 +54,8 @@ export const linkGenerator = (
         childNode,
         CHILD_NODE_DISTANCE,
         true,
-        selectedFilter
+        selectedFilter,
+        artwork
       )
     } else {
       addChildNode(
@@ -63,7 +65,8 @@ export const linkGenerator = (
         childNode,
         CHILD_NODE_DISTANCE,
         false,
-        selectedFilter
+        selectedFilter,
+        artwork
       )
     }
   }
@@ -120,10 +123,13 @@ export const linkGenerator = (
   const createParentNodes = (artistsArray, artworkArray) => {
     artistsArray.forEach(artist => {
       const parentNodeId = artist.recordId
+
+      // ADD MORE PROPERTIES HERE
       const parentNode = {
         id: artist.recordId,
         name: artist.data.Name,
         influence: artist.data.Influence,
+        table: artist.table
       }
       // adds property when selectedFilter is a specific artist
       if (parentNodeId === selectedFilter.filterName) {
@@ -154,14 +160,49 @@ export const linkGenerator = (
     })
   }
 
+  // link selected artwork to main artist and collaborators
+  // works by locating artwork in nodes, then locating collaborators in nodes
+  // then linking them together
+  const linkArtworkToCollaborators = () => {
+    for (let y = 0; y < artwork.length; y++) {
+      if (artwork[y].recordId === selectedFilter.filterName) {
+        artwork[y].data.Collaborators?.forEach(collab => {
+          for (
+            let artistCounter = 0;
+            artistCounter < nodes.length;
+            artistCounter++
+          ) {
+            if (nodes[artistCounter].id === collab) {
+              for (
+                let artworkCounter = 0;
+                artworkCounter < nodes.length;
+                artworkCounter++
+              ) {
+                if (nodes[artworkCounter].id === selectedFilter.filterName) {
+                  return links.push({
+                    source: nodes[artworkCounter],
+                    target: nodes[artistCounter],
+                    distance: DEFAULT_DISTANCE,
+                    color: nodes[artworkCounter].color,
+                    strokeWidth: 5,
+                  })
+                }
+              }
+            }
+          }
+        })
+        return
+      }
+    }
+  }
+
   const populateArrays = () => {
     // spreading the array to concatenate the data (else, array of arrays)
     artists.push(...data.artists.nodes)
     artwork.push(...data.artwork.nodes)
-    console.log(artists)
     createParentNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
-
+    linkArtworkToCollaborators()
     return nodes
   }
 

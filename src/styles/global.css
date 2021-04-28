@@ -9,13 +9,13 @@ html {
 .bannerIsOpen {
   transition-duration: 0.5s;
   transition-delay: 0s;
-  left: 50%;
+  left: 50vw;
 }
 
 .bannerIsClosed {
   transition-duration: 0.5s;
   transition-delay: 0s;
-  left: 90%;
+  left: 94vw;
 }
 
 /* .parent {

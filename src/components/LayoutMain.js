@@ -1,16 +1,12 @@
-import React, { useState } from "react"
-import FilterContext from "./context/FilterContext"
-
-const LayoutMain = ({ children }) => {
-  const [selectedFilter, setSelectedFilter] = useState({
-    filterName: "",
-    filterType: "",
-  })
+import React from "react"
+import { FilterContextProvider } from "./context/FilterContext"
+import { NodeContextProvider } from "./context/NodeContext"
+const LayoutMain = ({ children, nodes }) => {
   return (
     <div className="h-screen">
-      <FilterContext.Provider value={[selectedFilter, setSelectedFilter]}>
-        {children}
-      </FilterContext.Provider>
+      <NodeContextProvider nodes={nodes}>
+        <FilterContextProvider>{children}</FilterContextProvider>
+      </NodeContextProvider>
     </div>
   )
 }
