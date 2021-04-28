@@ -39,6 +39,7 @@ export const linkGenerator = (
       medium: artwork.data.Medium,
       theme: artwork.data.Theme,
       size: CHILD_NODE_SIZE,
+      table: artwork.table
     }
 
     if (selectedFilter.filterName === artwork.recordId) {
@@ -122,10 +123,13 @@ export const linkGenerator = (
   const createParentNodes = (artistsArray, artworkArray) => {
     artistsArray.forEach(artist => {
       const parentNodeId = artist.recordId
+
+      // ADD MORE PROPERTIES HERE
       const parentNode = {
         id: artist.recordId,
         name: artist.data.Name,
         influence: artist.data.Influence,
+        table: artist.table
       }
       // adds property when selectedFilter is a specific artist
       if (parentNodeId === selectedFilter.filterName) {

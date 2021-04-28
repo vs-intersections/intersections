@@ -18,6 +18,7 @@ export default function Home() {
     {
       artists: allAirtable(filter: { table: { eq: "Artist" } }) {
         nodes {
+          table
           data {
             Name
             Artwork
@@ -29,6 +30,7 @@ export default function Home() {
       }
       artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
         nodes {
+          table
           data {
             Name
             Primary_Artist__REQUIRED_
@@ -79,7 +81,7 @@ export default function Home() {
     }
   `)
   return (
-    <LayoutMain>
+    <LayoutMain nodes={data}>
       <div className="h-screen grid grid-rows-layout lg:grid-rows-layoutLg overflow-x-hidden">
         <Header />
         <Navigation data={data} />

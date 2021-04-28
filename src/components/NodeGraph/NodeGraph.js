@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useContext, useState } from "react"
-import FilterContext from "../context/FilterContext"
+import { useFilterContext } from "../context/FilterContext"
+import { useNodeContext } from "../context/NodeContext"
 import { linkGenerator } from "../../utils"
 import {
   forceSimulation,
@@ -14,7 +15,9 @@ import {
 
 const NodeGraph = ({ data }) => {
   // this keeps track of the selected filter
-  const [selectedFilter] = useContext(FilterContext)
+  const { selectedFilter, setSelectedFilter } = useFilterContext()
+
+  const { nodes, selectedNode, setSelectedNode } = useNodeContext()
 
   // refs to grab the SVG element and SVG element container
   const ref = useRef()
@@ -57,6 +60,7 @@ const NodeGraph = ({ data }) => {
     // set values for viewbox, and SVG width and height
     setAspectRatio()
     // after the page has loaded, grab Airtable data from linkGenerator,
+    console.log(selectedFilter)
     const results = linkGenerator(data, selectedFilter)
     // begin the data viz
     main(results)
@@ -163,6 +167,15 @@ const NodeGraph = ({ data }) => {
       })
     }
 
+
+    function nodeClick(e, datapoint) {
+      setSelectedNode(datapoint)
+      console.log(datapoint)
+      setSelectedFilter({
+        filterName: datapoint.id,
+        filterType: datapoint.table
+      })
+    }
     // svg elements
     const lines = svg
       .selectAll("line")
@@ -184,6 +197,9 @@ const NodeGraph = ({ data }) => {
       .classed("parent", node => node.isParent)
       .on("mouseover", highlight)
       .call(dragInteraction(simulation))
+
+
+      svg.selectAll('circle').on("click", nodeClick)
 
     const text = svg
       .selectAll("text")
@@ -220,6 +236,7 @@ const NodeGraph = ({ data }) => {
   // )
   return (
     <div ref={containerRef} className="w-full">
+      {JSON.stringify(selectedNode)}
       <svg ref={ref} className="w-full" version="1.1"></svg>
     </div>
   )

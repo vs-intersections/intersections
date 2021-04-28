@@ -1,13 +1,9 @@
 import React, { useContext, useState } from "react"
-import FilterContext from "./context/FilterContext"
+import { useFilterContext } from "./context/FilterContext"
 
 const Navigation = ({ data }) => {
-  const [selectedFilter, setSelectedFilter] = useContext(FilterContext)
+  const { selectedFilter, setSelectedFilter } = useFilterContext()
 
-  // Selected Node
-  const [selectedNode, setSelectedNode] = useState(null)
-
-  // Artists
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,

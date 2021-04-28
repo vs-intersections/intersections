@@ -1,5 +1,28 @@
-import React, { createContext } from "react"
+import React, { createContext, useContext, useState } from "react"
+export const FilterContext = createContext(null)
 
-const FilterContext = createContext()
+export const FilterContextProvider = ({ children } ) => {
 
-export default FilterContext
+    const [selectedFilter, setSelectedFilter] = useState({ 
+        filterName: "",
+        filterType: "",
+      })
+  return (
+    <FilterContext.Provider
+      value={{
+       selectedFilter, setSelectedFilter
+      }}
+    >
+      {children}
+    </FilterContext.Provider>
+  )
+}
+
+
+export const useFilterContext = () => {
+  const {selectedFilter, setSelectedFilter } = useContext(FilterContext)
+
+  return {
+   selectedFilter, setSelectedFilter
+  }
+}
