@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { useFilterContext } from "./context/FilterContext"
+import { useNodeContext } from "./context/NodeContext"
 
 const Navigation = ({ data }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
-
+  const { selectedNode  } = useNodeContext()
+  console.log(selectedNode)
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,
@@ -44,7 +46,6 @@ const Navigation = ({ data }) => {
         {el.name}
       </option>
     ))
-
     return (
       <li className="pb-2">
         <label className="block text-center lg:text-lg">
@@ -52,12 +53,12 @@ const Navigation = ({ data }) => {
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
-          value={selectedFilter.id}
+          value={selectedNode?.id || selectedFilter?.id}
           onChange={e => {
-            setSelectedFilter({
+            setSelectedFilter(prev => ({
               filterName: e.target.value,
               filterType,
-            })
+            }))
           }}
         >
           {options}
