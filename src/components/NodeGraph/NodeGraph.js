@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import { useFilterContext } from "../context/FilterContext"
 import { useNodeContext } from "../context/NodeContext"
 import { linkGenerator } from "../../utils"
@@ -17,7 +17,7 @@ const NodeGraph = ({ data }) => {
   // this keeps track of the selected filter
   const { selectedFilter, setSelectedFilter } = useFilterContext()
 
-  const { nodes, selectedNode, setSelectedNode } = useNodeContext()
+  const { setSelectedNode } = useNodeContext()
 
   // refs to grab the SVG element and SVG element container
   const ref = useRef()
@@ -59,8 +59,7 @@ const NodeGraph = ({ data }) => {
   useEffect(() => {
     // set values for viewbox, and SVG width and height
     setAspectRatio()
-    // after the page has loaded, grab Airtable data from linkGenerator,
-    console.log(selectedFilter)
+    // after the page has loaded, grab Airtable data from linkGenerator
     const results = linkGenerator(data, selectedFilter)
     // begin the data viz
     main(results)
@@ -167,13 +166,12 @@ const NodeGraph = ({ data }) => {
       })
     }
 
-
     function nodeClick(e, datapoint) {
       setSelectedNode(datapoint)
       console.log(datapoint)
       setSelectedFilter({
         filterName: datapoint.id,
-        filterType: datapoint.table
+        filterType: datapoint.table,
       })
     }
     // svg elements
@@ -196,10 +194,10 @@ const NodeGraph = ({ data }) => {
       .attr("r", node => node.size)
       .classed("parent", node => node.isParent)
       .on("mouseover", highlight)
+      .on("click", nodeClick)
       .call(dragInteraction(simulation))
 
-
-      svg.selectAll('circle').on("click", nodeClick)
+    circles.append("title").text(d => d.name)
 
     const text = svg
       .selectAll("text")
@@ -236,7 +234,6 @@ const NodeGraph = ({ data }) => {
   // )
   return (
     <div ref={containerRef} className="w-full">
-      {JSON.stringify(selectedNode)}
       <svg ref={ref} className="w-full" version="1.1"></svg>
     </div>
   )
