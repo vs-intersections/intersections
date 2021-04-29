@@ -22,7 +22,8 @@ export const linkGenerator = (
 
   // function to create parent nodes
   const addMainNode = node => {
-    node.size = node.isParent ? MAIN_NODE_SIZE * 1.35 : MAIN_NODE_SIZE
+    // node.size = node.isSelectedParent ? MAIN_NODE_SIZE * 1.35 : MAIN_NODE_SIZE
+    node.size = MAIN_NODE_SIZE
     node.color = "#A3F78E"
     nodes.push(node)
     // to interate over later and grab the D3 properties (color, etc)
@@ -96,6 +97,7 @@ export const linkGenerator = (
           selectedFilter.filterName &&
         artwork[x].data.Collaborators !== null
       ) {
+        artwork[x].data.isSelectedParent = true
         for (let y = 0; y < artwork[x].data.Collaborators.length; y++) {
           if (artwork[x].data.Collaborators[y] === artistA.id) {
             hasBeenInvoked = true
@@ -133,7 +135,7 @@ export const linkGenerator = (
       }
       // adds property when selectedFilter is a specific artist
       if (parentNodeId === selectedFilter.filterName) {
-        parentNode.isParent = true
+        parentNode.isSelectedParent = true
         parentNode.fill = "white"
       }
 
@@ -179,6 +181,8 @@ export const linkGenerator = (
                 artworkCounter++
               ) {
                 if (nodes[artworkCounter].id === selectedFilter.filterName) {
+                  console.log(nodes[artworkCounter].id)
+                  console.log(nodes[artistCounter].id)
                   return links.push({
                     source: nodes[artworkCounter],
                     target: nodes[artistCounter],

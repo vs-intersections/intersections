@@ -6,12 +6,12 @@ const addChildNode = (
   parentNode,
   childNode,
   distance = DEFAULT_DISTANCE,
-  isParent = false,
+  isSelectedParent = false,
   selectedFilter
 ) => {
   childNode.color = "#FF985F"
-  childNode.isParent = isParent
-  childNode.size = isParent ? CHILD_NODE_SIZE * 1.35 : CHILD_NODE_SIZE
+  childNode.isSelectedParent = isSelectedParent
+  childNode.size = CHILD_NODE_SIZE
   nodes.push(childNode)
 
   links.push({

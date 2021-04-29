@@ -76,7 +76,7 @@ IDEA: Add node context - use nodecontext to track to state of
 
 - Navigation component
 
-  - layout nav items (nav items need to be created - see below)
+  - When a node is clicked, the dropdown no longer functions correctly
 
 - Node component
 
