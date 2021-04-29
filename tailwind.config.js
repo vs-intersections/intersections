@@ -29,6 +29,15 @@ module.exports = {
       gridTemplateColumns: {
         artwork: "1fr 2fr",
       },
+      spacing: {
+        n3vw: "-3vw",
+        "3vw": "3vw",
+        "5vw": "5vw",
+        "40vw": "40vw",
+        "45vw": "45vw",
+        "60vw": "60vw",
+        "100vw": "100vw",
+      },
     },
     fill: theme => ({
       lightgray: theme("colors.gray.400"),

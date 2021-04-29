@@ -72,9 +72,6 @@ const NodeGraph = ({ data }) => {
     let nodes = data.nodes
     let links = data.links
 
-    console.log(nodes)
-    console.log(links)
-
     // svg specific variables
     // set the D3 container to a certain aspect ratio
     const svg = select(ref.current)
@@ -162,11 +159,6 @@ const NodeGraph = ({ data }) => {
           .transition()
           .duration(250)
           .attr("fill", datapoint => (datapoint.color = oldColor))
-          // .attr("fill", datapoint =>
-          //   datapoint.isSelectedParent
-          //     ? (datapoint.fill = oldFill)
-          //     : (datapoint.color = oldColor)
-          // )
           .attr("r", datapoint => (datapoint.size = oldSize))
       })
     }
@@ -187,23 +179,12 @@ const NodeGraph = ({ data }) => {
       .attr("stroke", line => line.color || "#c7c7c7")
       .attr("stroke-width", line => line.strokeWidth || 1)
 
-    // const circles = svg
-    //   .selectAll("circle")
-    //   .data(nodes)
-    //   .enter()
-    //   .append("circle")
-    //   .attr("fill", node => (node.isSelectedParent ? node.fill : node.color))
-    //   .attr("stroke", node => (node.isSelectedParent ? node.color : "none"))
-    //   .attr("stroke-width", node => (node.isSelectedParent ? 5 : "none"))
-    //   .attr("r", node => node.size)
-    //   .classed("parent", node => node.isSelectedParent)
-    //   .on("mouseover", highlight)
-    //   .on("click", nodeClick)
-    //   .call(dragInteraction(simulation))
-
+    // group the circle nodes to add sibling elements (tooltips and halo)
     const circleGroups = svg.selectAll("g").data(nodes).enter().append("g")
+    // tooltips
     circleGroups.append("title").text(d => d.name)
-
+    // halo circles styled based on 'isParent' node metadata
+    // this may attribute to perf issues as duplicate node circles are being created
     const circlesHalo = circleGroups
       .append("circle")
       .attr("fill", node => (node.isSelectedParent ? node.fill : node.color))
@@ -211,9 +192,6 @@ const NodeGraph = ({ data }) => {
       .attr("stroke-width", node => (node.isSelectedParent ? 5 : "none"))
       .attr("r", node => (node.isSelectedParent ? node.size * 1.35 : node.size))
       .classed("parent-halo", node => node.isSelectedParent)
-    // .on("mouseover", highlight)
-    // .on("click", nodeClick)
-    // .call(dragInteraction(simulation))
 
     const circles = circleGroups
       .append("circle")
@@ -225,16 +203,6 @@ const NodeGraph = ({ data }) => {
       .on("mouseover", highlight)
       .on("click", nodeClick)
       .call(dragInteraction(simulation))
-
-    // const circles = circleGroups
-    //   .append("circle")
-    //   .attr("fill", node => node.color)
-    //   .attr("stroke", "none")
-    //   .attr("stroke-width", "none")
-    //   .attr("r", node => node.size)
-    //   .on("mouseover", highlight)
-    //   .on("click", nodeClick)
-    //   .call(dragInteraction(simulation))
 
     const text = svg
       .selectAll("text")
@@ -261,7 +229,7 @@ const NodeGraph = ({ data }) => {
   }
 
   return (
-    <div ref={containerRef} className="w-full">
+    <div ref={containerRef} className="w-full h-full">
       <svg ref={ref} className="w-full" version="1.1"></svg>
     </div>
   )

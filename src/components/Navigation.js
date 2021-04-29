@@ -4,7 +4,7 @@ import { useNodeContext } from "./context/NodeContext"
 
 const Navigation = ({ data }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
-  const { selectedNode  } = useNodeContext()
+  const { selectedNode } = useNodeContext()
   console.log(selectedNode)
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
@@ -70,9 +70,9 @@ const Navigation = ({ data }) => {
   return (
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
-        {generateDropdown("artists", artists, "lightGreen")}
+        {/* {generateDropdown("artists", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
-        {generateDropdown("location", locations, "blue")}
+        {generateDropdown("location", locations, "blue")} */}
         {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}
         {generateDropdown("influence", influences, "yellow")}
