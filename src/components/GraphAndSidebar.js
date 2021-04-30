@@ -29,8 +29,8 @@ const GraphAndSidebar = ({ data }) => {
               className="absolute top-10 left-0 w-3vw h-48 bg-orange rounded-tl-lg rounded-bl-lg"
               onClick={toggleSidebar}
             >
-              <span className="transform -rotate-90 origin-center translate-y-24 block">
-                ARTWORK
+              <span className="transform -rotate-90 origin-center translate-y-24 block text-xl">
+                {selectedNode ? selectedNode.table.toUpperCase() : "ARTWORK"}
               </span>
             </div>
             <div className="absolute left-3vw w-40vw h-full bg-gray-500">

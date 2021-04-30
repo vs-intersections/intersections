@@ -13,7 +13,7 @@ const Header = () => {
           </span>
         </Link>
       </div>
-      <ul className="hidden lg:flex space-x-6 items-center uppercase">
+      <ul className="hidden lg:flex space-x-16 items-center uppercase w-1/4">
         <li className="hover:text-yellow-600 tracking-widest">
           <Link to="/">Home</Link>
         </li>
