@@ -38,6 +38,15 @@ const addChildNode = (
       color: childNode.color,
       strokeWidth: 5,
     })
+    // logic for selecting specific location - creates node links from parent to child
+  } else if (childNode.isSelectedChild) {
+    links.push({
+      source: parentNode,
+      target: childNode,
+      distance: distance,
+      color: parentNode.color,
+      strokeWidth: 5,
+    })
     // creates default node links from parent to child
   } else {
     links.push({

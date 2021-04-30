@@ -70,8 +70,8 @@ const Navigation = ({ data }) => {
   return (
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
-        {/* {generateDropdown("artists", artists, "lightGreen")}
-        {generateDropdown("artwork", artwork, "orange")} */}
+        {generateDropdown("artists", artists, "lightGreen")}
+        {generateDropdown("artwork", artwork, "orange")}
         {generateDropdown("location", locations, "blue")}
         {/* {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}

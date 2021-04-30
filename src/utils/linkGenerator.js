@@ -1,4 +1,5 @@
 import addChildNode from "./addChildNode"
+import { locationsAddParentField } from "./filterByLocations"
 
 const MAIN_NODE_SIZE = 15
 export const CHILD_NODE_SIZE = 15
@@ -22,7 +23,6 @@ export const linkGenerator = (
 
   // function to create parent nodes
   const addMainNode = node => {
-    // node.size = node.isSelectedParent ? MAIN_NODE_SIZE * 1.35 : MAIN_NODE_SIZE
     node.size = MAIN_NODE_SIZE
     node.color = "#A3F78E"
     nodes.push(node)
@@ -41,13 +41,11 @@ export const linkGenerator = (
       theme: artwork.data.Theme,
       size: CHILD_NODE_SIZE,
       table: artwork.table,
+      isSelectedChild: artwork.data.isSelectedChild || false,
     }
 
     if (selectedFilter.filterName === artwork.recordId) {
       childNode.fill = "white"
-    }
-
-    if (selectedFilter.filterName === artwork.recordId) {
       addChildNode(
         links,
         nodes,
@@ -133,10 +131,15 @@ export const linkGenerator = (
         influence: artist.data.Influence,
         table: artist.table,
       }
-      // adds property when selectedFilter is a specific artist
+      // adds property when selectedFilter is a specific Artist
       if (parentNodeId === selectedFilter.filterName) {
         parentNode.isSelectedParent = true
         parentNode.fill = "white"
+      }
+
+      if (selectedFilter.filterType === "location") {
+        console.log(selectedFilter.filterType)
+        locationsAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
       addMainNode(parentNode)
@@ -144,6 +147,7 @@ export const linkGenerator = (
       createChildNodes(artworkArray, parentNodeId, parentNode)
     })
   }
+  console.log(selectedFilter)
 
   const linkParentNodes = artistsArray => {
     // links every artist to each artist
@@ -181,8 +185,6 @@ export const linkGenerator = (
                 artworkCounter++
               ) {
                 if (nodes[artworkCounter].id === selectedFilter.filterName) {
-                  console.log(nodes[artworkCounter].id)
-                  console.log(nodes[artistCounter].id)
                   return links.push({
                     source: nodes[artworkCounter],
                     target: nodes[artistCounter],
