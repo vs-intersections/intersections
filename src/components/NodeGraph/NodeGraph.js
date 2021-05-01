@@ -72,8 +72,6 @@ const NodeGraph = ({ data }) => {
     let nodes = data.nodes
     let links = data.links
 
-    console.log(nodes)
-
     // svg specific variables
     // set the D3 container to a certain aspect ratio
     const svg = select(ref.current)
@@ -172,6 +170,7 @@ const NodeGraph = ({ data }) => {
         filterType: datapoint.table,
       })
     }
+
     // svg elements
     const lines = svg
       .selectAll("line")
@@ -193,7 +192,8 @@ const NodeGraph = ({ data }) => {
       .attr("stroke", node =>
         node.isSelectedParent
           ? `${
-              selectedFilter.filterType === "location"
+              selectedFilter.filterType === "location" ||
+              selectedFilter.filterType === "theme"
                 ? node.linkColor
                 : node.color
             }`

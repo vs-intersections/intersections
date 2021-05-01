@@ -1,5 +1,6 @@
 import addChildNode from "./addChildNode"
 import { locationsAddParentField } from "./filterByLocations"
+import { themeAddParentField } from "./filterByTheme"
 
 const MAIN_NODE_SIZE = 15
 export const CHILD_NODE_SIZE = 15
@@ -46,8 +47,9 @@ export const linkGenerator = (
     }
 
     if (
-      artwork.data.isSelectedChild &&
-      selectedFilter.filterType === "location"
+      (artwork.data.isSelectedChild &&
+        selectedFilter.filterType === "location") ||
+      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme")
     ) {
       childNode.isSelectedChild = true
     }
@@ -152,6 +154,11 @@ export const linkGenerator = (
         locationsAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
+      // calls function to add property when selectedFilter is a specific Artist
+      if (selectedFilter.filterType === "theme") {
+        themeAddParentField(artworkArray, parentNode, selectedFilter)
+      }
+
       addMainNode(parentNode)
 
       createChildNodes(artworkArray, parentNodeId, parentNode)
@@ -163,8 +170,18 @@ export const linkGenerator = (
     artistsArray.forEach((artistA, i) => {
       artistsArray.slice(i + 1).forEach(artistB => {
         // checks to see if there is a filtered selection
-        if (artistA.isSelectedParent && artistB.isSelectedParent) {
+        if (
+          artistA.isSelectedParent &&
+          artistB.isSelectedParent &&
+          selectedFilter.filterType === "location"
+        ) {
           linkMainNodesDefault(artistA, artistB, "#62B4FF", 5)
+        } else if (
+          artistA.isSelectedParent &&
+          artistB.isSelectedParent &&
+          selectedFilter.filterType === "theme"
+        ) {
+          linkMainNodesDefault(artistA, artistB, "#F36AFF", 5)
         } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id
