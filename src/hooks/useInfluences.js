@@ -11,7 +11,6 @@ export const useInfluences = () => {
           recordId
           data {
             Name
-            Notes
             Description
             Artist
           }

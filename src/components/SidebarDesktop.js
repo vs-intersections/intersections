@@ -1,10 +1,12 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from "react"
+import { useNodeContext } from "./context/NodeContext"
 import classNames from "classnames"
 import { css, jsx } from "@emotion/react"
 
 const SidebarDesktop = () => {
   const [sidebarBannerIsOpen, setSidebarBannerIsOpen] = useState(false)
+  const { selectedNode } = useNodeContext()
   const toggleConnectBanner = () => {
     setSidebarBannerIsOpen(!sidebarBannerIsOpen)
   }
@@ -44,7 +46,7 @@ const SidebarDesktop = () => {
         INFO{" "}
       </div>
       <p className="py-4 mx-4">
-        Dummy text? More like dummy thicc text, amirite? <br />
+        {JSON.stringify(selectedNode)} <br />
         <br /> You probably haven't heard of them kogi tattooed, jean shorts
         single-origin coffee salvia la croix. Locavore bespoke quinoa bicycle
         rights echo park vaporware, cliche chartreuse hoodie art party

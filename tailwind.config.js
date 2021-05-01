@@ -5,13 +5,13 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      blue: "#62B4FF",
-      lightGreen: "#A3F78E",
-      orange: "#FF985F",
-      pink: "#F36AFF",
+      blue: "#62B4FF", // LOCATION
+      lightGreen: "#A3F78E", // ARTIST
+      orange: "#FF985F", // ARTWORK
+      pink: "#F36AFF", // THEME
       red: "#FF404B",
-      yellow: "#E7FF57",
-      lightBlue: "#43F4FF",
+      yellow: "#E7FF57", // INFLUENCE
+      lightBlue: "#43F4FF", // MEDIUM
       gray: colors.trueGray,
       black: colors.black,
     },
@@ -28,6 +28,15 @@ module.exports = {
       },
       gridTemplateColumns: {
         artwork: "1fr 2fr",
+      },
+      spacing: {
+        n3vw: "-3vw",
+        "3vw": "3vw",
+        "5vw": "5vw",
+        "40vw": "40vw",
+        "45vw": "45vw",
+        "60vw": "60vw",
+        "100vw": "100vw",
       },
     },
     fill: theme => ({

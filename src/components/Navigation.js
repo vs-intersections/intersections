@@ -4,8 +4,8 @@ import { useNodeContext } from "./context/NodeContext"
 
 const Navigation = ({ data }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
-  const { selectedNode  } = useNodeContext()
-  console.log(selectedNode)
+  const { selectedNode } = useNodeContext()
+
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,

@@ -27,6 +27,37 @@ Other things:
 - look at the data before and after
 - there be your answer
 
+SCHEDULE
+
+Saturday
+
+- Node linking (medium and influence) - medium doesn't link children properly
+
+Sunday
+
+- Child node haloing
+- Node graph zooming
+
+Monday
+
+- Mobile Sidebar expanding/compressing animation
+- Info mobile sidebar expanding/compressing animation
+
+Tuesday
+
+- Infinite Scroll mobile navigation
+- Navigation filtering selectors (styling and updating node graph)
+
+Wednesday
+
+- Sidebar content and media
+- Sidebar title centering (it is not currently centered within the tab)
+
+Thursday
+
+- Pages: Video and about
+- Mobile hamburger menu
+
 ### David's notes
 
 a place for your notes and thoughts
@@ -76,7 +107,7 @@ IDEA: Add node context - use nodecontext to track to state of
 
 - Navigation component
 
-  - layout nav items (nav items need to be created - see below)
+  - When a node is clicked, the dropdown no longer functions correctly
 
 - Node component
 

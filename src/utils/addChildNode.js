@@ -6,12 +6,12 @@ const addChildNode = (
   parentNode,
   childNode,
   distance = DEFAULT_DISTANCE,
-  isParent = false,
+  isSelectedParent = false,
   selectedFilter
 ) => {
   childNode.color = "#FF985F"
-  childNode.isParent = isParent
-  childNode.size = isParent ? CHILD_NODE_SIZE * 1.35 : CHILD_NODE_SIZE
+  childNode.isSelectedParent = isSelectedParent
+  childNode.size = CHILD_NODE_SIZE
   nodes.push(childNode)
 
   links.push({
@@ -36,6 +36,16 @@ const addChildNode = (
       target: childNode,
       distance: distance,
       color: childNode.color,
+      strokeWidth: 5,
+    })
+    // logic for selecting specific location - creates node links from parent to child
+  } else if (childNode.isSelectedChild && parentNode.isSelectedParent) {
+    links.push({
+      source: parentNode,
+      target: childNode,
+      distance: distance,
+      color: parentNode.color,
+      linkColor: parentNode.linkColor,
       strokeWidth: 5,
     })
     // creates default node links from parent to child
