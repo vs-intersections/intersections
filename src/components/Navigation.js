@@ -75,7 +75,7 @@ const Navigation = ({ data }) => {
         {generateDropdown("location", locations, "blue")}
         {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}
-        {/* {generateDropdown("influence", influences, "yellow")} */}
+        {generateDropdown("influence", influences, "yellow")}
       </ul>
     </nav>
   )

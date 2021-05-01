@@ -36,6 +36,7 @@ Saturday
 Sunday
 
 - Child node haloing
+- Node graph zooming
 
 Monday
 
@@ -55,6 +56,7 @@ Wednesday
 Thursday
 
 - Pages: Video and about
+- Mobile hamburger menu
 
 ### David's notes
 
