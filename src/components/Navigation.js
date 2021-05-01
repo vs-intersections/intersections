@@ -72,10 +72,10 @@ const Navigation = ({ data }) => {
       <ul className="flex items-center text-xs justify-evenly w-full">
         {generateDropdown("artists", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
-        {/* {generateDropdown("location", locations, "blue")} */}
+        {generateDropdown("location", locations, "blue")}
         {generateDropdown("theme", themes, "pink")}
-        {/* {generateDropdown("medium", mediums, "lightBlue")}
-        {generateDropdown("influence", influences, "yellow")} */}
+        {generateDropdown("medium", mediums, "lightBlue")}
+        {/* {generateDropdown("influence", influences, "yellow")} */}
       </ul>
     </nav>
   )

@@ -193,7 +193,8 @@ const NodeGraph = ({ data }) => {
         node.isSelectedParent
           ? `${
               selectedFilter.filterType === "location" ||
-              selectedFilter.filterType === "theme"
+              selectedFilter.filterType === "theme" ||
+              selectedFilter.filterType === "medium"
                 ? node.linkColor
                 : node.color
             }`

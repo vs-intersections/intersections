@@ -1,6 +1,7 @@
 import addChildNode from "./addChildNode"
 import { locationsAddParentField } from "./filterByLocations"
 import { themeAddParentField } from "./filterByTheme"
+import { mediumAddParentField } from "./filterByMedium"
 
 const MAIN_NODE_SIZE = 15
 export const CHILD_NODE_SIZE = 15
@@ -49,7 +50,8 @@ export const linkGenerator = (
     if (
       (artwork.data.isSelectedChild &&
         selectedFilter.filterType === "location") ||
-      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme")
+      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme") ||
+      (artwork.data.isSelectedChild && selectedFilter.filterType === "medium")
     ) {
       childNode.isSelectedChild = true
     }
@@ -149,14 +151,19 @@ export const linkGenerator = (
         parentNode.fill = "white"
       }
 
-      // calls function to add property when selectedFilter is a specific Artist
+      // calls function to add property when selectedFilter is a specific Location
       if (selectedFilter.filterType === "location") {
         locationsAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
-      // calls function to add property when selectedFilter is a specific Artist
+      // calls function to add property when selectedFilter is a specific Theme
       if (selectedFilter.filterType === "theme") {
         themeAddParentField(artworkArray, parentNode, selectedFilter)
+      }
+
+      // calls function to add property when selectedFilter is a specific Medium
+      if (selectedFilter.filterType === "medium") {
+        mediumAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
       addMainNode(parentNode)
@@ -182,6 +189,12 @@ export const linkGenerator = (
           selectedFilter.filterType === "theme"
         ) {
           linkMainNodesDefault(artistA, artistB, "#F36AFF", 5)
+        } else if (
+          artistA.isSelectedParent &&
+          artistB.isSelectedParent &&
+          selectedFilter.filterType === "medium"
+        ) {
+          linkMainNodesDefault(artistA, artistB, "#43F4FF", 5)
         } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id

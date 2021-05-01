@@ -5,13 +5,13 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      blue: "#62B4FF",
-      lightGreen: "#A3F78E",
-      orange: "#FF985F",
-      pink: "#F36AFF",
+      blue: "#62B4FF", // LOCATION
+      lightGreen: "#A3F78E", // ARTIST
+      orange: "#FF985F", // ARTWORK
+      pink: "#F36AFF", // THEME
       red: "#FF404B",
-      yellow: "#E7FF57",
-      lightBlue: "#43F4FF",
+      yellow: "#E7FF57", // INFLUENCE
+      lightBlue: "#43F4FF", // MEDIUM
       gray: colors.trueGray,
       black: colors.black,
     },
