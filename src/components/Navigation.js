@@ -53,7 +53,11 @@ const Navigation = ({ data }) => {
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
-          value={selectedNode?.id || selectedFilter?.id}
+          // Todo fix logic here
+          value={
+            // selectedNode?.id ||
+            selectedFilter?.id
+          }
           onChange={e => {
             setSelectedFilter(prev => ({
               filterName: e.target.value,
@@ -70,9 +74,10 @@ const Navigation = ({ data }) => {
   return (
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
-        {generateDropdown("artists", artists, "lightGreen")}
+        {generateDropdown("artist", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
         {generateDropdown("location", locations, "blue")}
+        {selectedFilter.id}
         {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}
         {generateDropdown("influence", influences, "yellow")}

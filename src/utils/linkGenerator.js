@@ -2,6 +2,7 @@ import addChildNode from "./addChildNode"
 import { locationsAddParentField } from "./filterByLocations"
 import { themeAddParentField } from "./filterByTheme"
 import { mediumAddParentField } from "./filterByMedium"
+import { influenceAddParentField } from "./filterByInfluence"
 
 const MAIN_NODE_SIZE = 15
 export const CHILD_NODE_SIZE = 15
@@ -41,7 +42,7 @@ export const linkGenerator = (
       locations: artwork.data.Locations,
       medium: artwork.data.Medium,
       theme: artwork.data.Theme,
-      linkColor: artwork.data.linkColor,
+      // linkColor: artwork.data.linkColor,
       size: CHILD_NODE_SIZE,
       table: artwork.table,
       isSelectedChild: false,
@@ -166,6 +167,11 @@ export const linkGenerator = (
         mediumAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
+      // calls function to add property when selectedFilter is a specific Medium
+      if (selectedFilter.filterType === "influence") {
+        influenceAddParentField(artistsArray, parentNode, selectedFilter)
+      }
+
       addMainNode(parentNode)
 
       createChildNodes(artworkArray, parentNodeId, parentNode)
@@ -195,6 +201,12 @@ export const linkGenerator = (
           selectedFilter.filterType === "medium"
         ) {
           linkMainNodesDefault(artistA, artistB, "#43F4FF", 5)
+        } else if (
+          artistA.isSelectedParent &&
+          artistB.isSelectedParent &&
+          selectedFilter.filterType === "influence"
+        ) {
+          linkMainNodesDefault(artistA, artistB, "#E7FF57", 5)
         } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id
