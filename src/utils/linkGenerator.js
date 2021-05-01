@@ -39,9 +39,17 @@ export const linkGenerator = (
       locations: artwork.data.Locations,
       medium: artwork.data.Medium,
       theme: artwork.data.Theme,
+      linkColor: artwork.data.linkColor,
       size: CHILD_NODE_SIZE,
       table: artwork.table,
-      isSelectedChild: artwork.data.isSelectedChild || false,
+      isSelectedChild: false,
+    }
+
+    if (
+      artwork.data.isSelectedChild &&
+      selectedFilter.filterType === "location"
+    ) {
+      childNode.isSelectedChild = true
     }
 
     if (selectedFilter.filterName === artwork.recordId) {
@@ -89,6 +97,8 @@ export const linkGenerator = (
   const linkMainNodesArtist = (artistA, artistB) => {
     let hasBeenInvoked = false
     for (let x = 0; x < artwork.length; x++) {
+      // if artistB.id equals the current filter name AND current artwork primary artist equals the filter name
+      // AND the current artwork collaborators is not empty
       if (
         artistB.id === selectedFilter.filterName &&
         artwork[x].data.Primary_Artist__REQUIRED_[0] ===
@@ -137,8 +147,8 @@ export const linkGenerator = (
         parentNode.fill = "white"
       }
 
+      // calls function to add property when selectedFilter is a specific Artist
       if (selectedFilter.filterType === "location") {
-        console.log(selectedFilter.filterType)
         locationsAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
@@ -147,14 +157,15 @@ export const linkGenerator = (
       createChildNodes(artworkArray, parentNodeId, parentNode)
     })
   }
-  console.log(selectedFilter)
 
   const linkParentNodes = artistsArray => {
     // links every artist to each artist
     artistsArray.forEach((artistA, i) => {
       artistsArray.slice(i + 1).forEach(artistB => {
         // checks to see if there is a filtered selection
-        if (
+        if (artistA.isSelectedParent && artistB.isSelectedParent) {
+          linkMainNodesDefault(artistA, artistB, "#62B4FF", 5)
+        } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id
         ) {

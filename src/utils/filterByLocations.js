@@ -1,11 +1,3 @@
-// if artwork contains the selected location, add a link from artwork to parent
-// add a field on the artwork 'hasLink'
-// this field will be looked at during the childNodeLinking process
-// to determine if a new link needs to be created, skip is hasLink is present
-const addLink = links => {
-  console.log(links)
-}
-
 // if the current filter is Location
 // iterate over the artwork array, check to see if selectedFilter Location is listed
 // on any of the artwork, and if it is, add isSelectedParent to artist,
@@ -21,11 +13,9 @@ export const locationsAddParentField = (
         if (location === selectedFilter.filterName) {
           parentNode.isSelectedParent = true
           parentNode.fill = "white"
-          // call 'add child link' function
-          // addLink(links)
+          parentNode.linkColor = "#62B4FF"
+          artwork.data.linkColor = "#62B4FF"
           artwork.data.isSelectedChild = true
-        } else {
-          artwork.data.isSelectedChild = false
         }
       })
   })

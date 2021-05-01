@@ -72,6 +72,8 @@ const NodeGraph = ({ data }) => {
     let nodes = data.nodes
     let links = data.links
 
+    console.log(nodes)
+
     // svg specific variables
     // set the D3 container to a certain aspect ratio
     const svg = select(ref.current)
@@ -176,7 +178,7 @@ const NodeGraph = ({ data }) => {
       .data(links)
       .enter()
       .append("line")
-      .attr("stroke", line => line.color || "#c7c7c7")
+      .attr("stroke", line => line.linkColor || line.color || "#c7c7c7")
       .attr("stroke-width", line => line.strokeWidth || 1)
 
     // group the circle nodes to add sibling elements (tooltips and halo)
@@ -188,7 +190,15 @@ const NodeGraph = ({ data }) => {
     const circlesHalo = circleGroups
       .append("circle")
       .attr("fill", node => (node.isSelectedParent ? node.fill : node.color))
-      .attr("stroke", node => (node.isSelectedParent ? node.color : "none"))
+      .attr("stroke", node =>
+        node.isSelectedParent
+          ? `${
+              selectedFilter.filterType === "location"
+                ? node.linkColor
+                : node.color
+            }`
+          : "none"
+      )
       .attr("stroke-width", node => (node.isSelectedParent ? 5 : "none"))
       .attr("r", node => (node.isSelectedParent ? node.size * 1.35 : node.size))
       .classed("parent-halo", node => node.isSelectedParent)
