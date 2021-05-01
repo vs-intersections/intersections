@@ -31,17 +31,17 @@ SCHEDULE
 
 Saturday
 
-- Node linking (medium and influence) - medium doesn't link children properly
+- Node linking (influence)
 
 Sunday
 
 - Child node haloing
-- Node graph zooming
 
 Monday
 
 - Mobile Sidebar expanding/compressing animation
 - Info mobile sidebar expanding/compressing animation
+- Node graph zooming (SECONDARY)
 
 Tuesday
 

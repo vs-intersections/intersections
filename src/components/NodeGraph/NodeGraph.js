@@ -58,6 +58,7 @@ const NodeGraph = ({ data }) => {
   }
 
   useEffect(() => {
+    console.log(selectedFilter)
     // set values for viewbox, and SVG width and height
     setAspectRatio()
     // after the page has loaded, grab Airtable data from linkGenerator
@@ -194,7 +195,8 @@ const NodeGraph = ({ data }) => {
           ? `${
               selectedFilter.filterType === "location" ||
               selectedFilter.filterType === "theme" ||
-              selectedFilter.filterType === "medium"
+              selectedFilter.filterType === "medium" ||
+              selectedFilter.filterType === "influence"
                 ? node.linkColor
                 : node.color
             }`

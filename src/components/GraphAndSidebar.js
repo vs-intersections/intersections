@@ -15,11 +15,17 @@ const GraphAndSidebar = ({ data }) => {
     setSidebarOpened(!sidebarOpened)
   }
 
-  let currentTheme = selectedNode?.table || selectedFilter?.filterType || "bg-orange"
+  let currentTheme =
+    selectedFilter?.filterType?.toLowerCase() ||
+    selectedNode?.table?.toLowerCase()
 
   let tabClass = classNames({
-    "bg-orange": currentTheme === "Artwork",
-    "bg-lightGreen": currentTheme === "Artist",
+    "bg-orange": currentTheme === "artwork",
+    "bg-lightGreen": currentTheme === "artist",
+    "bg-blue": currentTheme === "location",
+    "bg-pink": currentTheme === "theme",
+    "bg-lightBlue": currentTheme === "medium",
+    "bg-yellow": currentTheme === "influence",
   })
 
   return (
@@ -35,16 +41,17 @@ const GraphAndSidebar = ({ data }) => {
         <div className="relative flex-1">
           <div className={`h-full w-45vw absolute left-n3vw`}>
             <div
-              className={`${tabClass} absolute top-10 left-0 w-3vw h-48  rounded-tl-lg rounded-bl-lg`}
+              className={`${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg`}
               onClick={toggleSidebar}
             >
               <span className="transform -rotate-90 origin-center translate-y-24 block text-xl">
-                {selectedNode?.table?.toUpperCase() || selectedFilter?.filterName}
+                {selectedFilter?.filterType ||
+                  selectedNode?.table?.toUpperCase()}
               </span>
             </div>
             <div className="absolute left-3vw w-40vw h-full bg-gray-500">
-              {JSON.stringify({selectedNode})}
-              {JSON.stringify({selectedFilter})}
+              {JSON.stringify({ selectedNode })}
+              {JSON.stringify({ selectedFilter })}
             </div>
           </div>
         </div>
