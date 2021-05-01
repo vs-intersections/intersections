@@ -1,4 +1,4 @@
-name: Build and Deploy to Netlify every two hours
+name: Build and Deploy to Netlify every twelve hours
 
 on:
   # 1. Trigger the workflow every 12 hours
