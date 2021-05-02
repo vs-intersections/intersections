@@ -48,11 +48,13 @@ export const linkGenerator = (
       isSelectedChild: false,
     }
 
+    // TO-DO: Child linking to parents is wonky - CAUSING THE BUG!!!
     if (
       (artwork.data.isSelectedChild &&
         selectedFilter.filterType === "location") ||
-      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme") ||
-      (artwork.data.isSelectedChild && selectedFilter.filterType === "medium")
+      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme")
+      // ||
+      // (artwork.data.isSelectedChild && selectedFilter.filterType === "medium")
     ) {
       childNode.isSelectedChild = true
     }
