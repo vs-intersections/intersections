@@ -31,32 +31,35 @@ SCHEDULE
 
 Saturday
 
-- Node linking (influence)
+- Node linking (influence) - DONE
 
 Sunday
 
-- Child node haloing
+- Child node haloing (ALBERT)
+- Link Artists to collab artists (ALBERT)
+- Child linking to parents is wonky (filter - video) (ALBERT)
 
 Monday
 
-- Mobile Sidebar expanding/compressing animation
-- Info mobile sidebar expanding/compressing animation
+- Mobile Sidebar expanding/compressing animation (DAVID)
+- Info mobile sidebar expanding/compressing animation (DAVID)
+- Node graph overlay descriptor (ALBERT)
 - Node graph zooming (SECONDARY)
 
 Tuesday
 
-- Infinite Scroll mobile navigation
-- Navigation filtering selectors (styling and updating node graph)
+- Infinite Scroll mobile navigation (DAVID)
+- Navigation filtering selectors (styling and updating node graph) (ALBERT)
 
 Wednesday
 
-- Sidebar content and media
-- Sidebar title centering (it is not currently centered within the tab)
+- Sidebar content and media (ALBERT)
+- Sidebar title centering (it is not currently centered within the tab) (ALBERT)
 
 Thursday
 
-- Pages: Video and about
-- Mobile hamburger menu
+- Pages: Video and about (DAVID)
+- Mobile hamburger menu (DAVID)
 
 ### David's notes
 

@@ -14,9 +14,9 @@ export const mediumAddParentField = (
           parentNode.isSelectedParent = true
           parentNode.fill = "white"
           parentNode.linkColor = "#43F4FF"
-          artwork.data.linkColor = "#43F4FF"
           artwork.data.isSelectedChild = true
         }
       })
   })
+  return artworkArray
 }

@@ -2,7 +2,7 @@
 // iterate over the artwork array, check to see if selectedFilter Location is listed
 // on any of the artwork, and if it is, add isSelectedParent to artist,
 // then add isSelectedChild field to the Artwork piece
-export const locationsAddParentField = (
+export const locationAddParentField = (
   artworkArray,
   parentNode,
   selectedFilter
@@ -14,9 +14,9 @@ export const locationsAddParentField = (
           parentNode.isSelectedParent = true
           parentNode.fill = "white"
           parentNode.linkColor = "#62B4FF"
-          artwork.data.linkColor = "#62B4FF"
           artwork.data.isSelectedChild = true
         }
       })
   })
+  return artworkArray
 }

@@ -6,6 +6,13 @@ const Navigation = ({ data }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode } = useNodeContext()
 
+  const handleSelect = e => {
+    setSelectedFilter({
+      filterName: e.target.value,
+      filterType: e.target.id,
+    })
+  }
+
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,
@@ -53,16 +60,14 @@ const Navigation = ({ data }) => {
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
+          id={filterType}
           // Todo fix logic here
           value={
             // selectedNode?.id ||
-            selectedFilter?.id
+            selectedFilter?.filterName
           }
           onChange={e => {
-            setSelectedFilter(prev => ({
-              filterName: e.target.value,
-              filterType,
-            }))
+            handleSelect(e)
           }}
         >
           {options}
@@ -77,7 +82,6 @@ const Navigation = ({ data }) => {
         {generateDropdown("artist", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
         {generateDropdown("location", locations, "blue")}
-        {selectedFilter.id}
         {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}
         {generateDropdown("influence", influences, "yellow")}

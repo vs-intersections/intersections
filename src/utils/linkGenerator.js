@@ -1,5 +1,7 @@
 import addChildNode from "./addChildNode"
-import { locationsAddParentField } from "./filterByLocations"
+import { artistAddParentField } from "./filterByArtist"
+import { artworkAddParentField } from "./filterByArtwork"
+import { locationAddParentField } from "./filterByLocation"
 import { themeAddParentField } from "./filterByTheme"
 import { mediumAddParentField } from "./filterByMedium"
 import { influenceAddParentField } from "./filterByInfluence"
@@ -9,6 +11,7 @@ export const CHILD_NODE_SIZE = 15
 export const DEFAULT_DISTANCE = 60
 const MAIN_NODE_DISTANCE = 150
 const CHILD_NODE_DISTANCE = 20
+const PARENT_NODE_COLOR = "#A3F78E"
 let artists = []
 let artwork = []
 let artistsTempNodes = []
@@ -24,11 +27,12 @@ export const linkGenerator = (
   artwork = []
   artistsTempNodes = []
 
-  // function to create parent nodes
+  // function to add parent nodes to the node array
   const addMainNode = node => {
     node.size = MAIN_NODE_SIZE
-    node.color = "#A3F78E"
+    node.color = PARENT_NODE_COLOR
     nodes.push(node)
+
     // to interate over later and grab the D3 properties (color, etc)
     artistsTempNodes.push(node)
   }
@@ -38,49 +42,29 @@ export const linkGenerator = (
     let childNode = {
       id: artwork.recordId,
       name: artwork.data.Name,
-      collaborators: artwork.data?.Collaborators || null,
+      collaborators: artwork.data.Collaborators || null,
       locations: artwork.data.Locations,
       medium: artwork.data.Medium,
       theme: artwork.data.Theme,
-      // linkColor: artwork.data.linkColor,
-      size: CHILD_NODE_SIZE,
+      linkColor: artwork.data.linkColor || null,
+      size: artwork.data.isSelectedChild
+        ? CHILD_NODE_SIZE * 0.8
+        : CHILD_NODE_SIZE,
       table: artwork.table,
-      isSelectedChild: false,
+      fill: artwork.data.fill,
+      isSelectedChild: artwork.data.isSelectedChild,
+      isSelectedParent: artwork.data.isSelectedParent,
     }
 
-    if (
-      (artwork.data.isSelectedChild &&
-        selectedFilter.filterType === "location") ||
-      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme") ||
-      (artwork.data.isSelectedChild && selectedFilter.filterType === "medium")
-    ) {
-      childNode.isSelectedChild = true
-    }
-
-    if (selectedFilter.filterName === artwork.recordId) {
-      childNode.fill = "white"
-      addChildNode(
-        links,
-        nodes,
-        parentNode,
-        childNode,
-        CHILD_NODE_DISTANCE,
-        true,
-        selectedFilter,
-        artwork
-      )
-    } else {
-      addChildNode(
-        links,
-        nodes,
-        parentNode,
-        childNode,
-        CHILD_NODE_DISTANCE,
-        false,
-        selectedFilter,
-        artwork
-      )
-    }
+    addChildNode(
+      links,
+      nodes,
+      parentNode,
+      childNode,
+      CHILD_NODE_DISTANCE,
+      selectedFilter,
+      artwork
+    )
   }
 
   // function to create default node links
@@ -114,7 +98,7 @@ export const linkGenerator = (
         for (let y = 0; y < artwork[x].data.Collaborators.length; y++) {
           if (artwork[x].data.Collaborators[y] === artistA.id) {
             hasBeenInvoked = true
-            return linkMainNodesDefault(artistA, artistB, "#A3F78E", 5)
+            return linkMainNodesDefault(artistA, artistB, PARENT_NODE_COLOR, 5)
           }
         }
       }
@@ -123,58 +107,77 @@ export const linkGenerator = (
   }
 
   // create child nodes
-  const createChildNodes = (artworkArray, parentNodeId, parentNode) => {
+  const createChildNodes = (artworkArray, parentNode) => {
     artworkArray.forEach(artwork => {
-      if (
-        artwork.data.Name !== undefined &&
-        artwork.data.Primary_Artist__REQUIRED_[0] === parentNodeId
-      ) {
+      if (artwork.data.Primary_Artist__REQUIRED_[0] === parentNode.id) {
         assembleChildNode(parentNode, artwork)
       }
     })
   }
 
   // create parent nodes
-  const createParentNodes = (artistsArray, artworkArray) => {
+  const createParentAndChildNodes = (artistsArray, artworkArray) => {
     artistsArray.forEach(artist => {
-      const parentNodeId = artist.recordId
-
-      // ADD MORE PROPERTIES HERE
+      // add additional parent node properties here
       const parentNode = {
         id: artist.recordId,
         name: artist.data.Name,
         influence: artist.data.Influence,
         table: artist.table,
       }
-      // adds property when selectedFilter is a specific Artist
-      if (parentNodeId === selectedFilter.filterName) {
-        parentNode.isSelectedParent = true
-        parentNode.fill = "white"
+      // calls function to add property when selectedFilter is a specific Artist
+      if (parentNode.id === selectedFilter.filterName) {
+        artistAddParentField(artworkArray, parentNode)
+      }
+
+      // calls function to add property when selectedFilter is a specific Artwork
+      if (selectedFilter.filterType === "artwork") {
+        let tempArr = artworkAddParentField(
+          artworkArray,
+          parentNode,
+          selectedFilter
+        )
+        artworkArray = [...tempArr]
       }
 
       // calls function to add property when selectedFilter is a specific Location
       if (selectedFilter.filterType === "location") {
-        locationsAddParentField(artworkArray, parentNode, selectedFilter)
+        let tempArr = locationAddParentField(
+          artworkArray,
+          parentNode,
+          selectedFilter
+        )
+        artworkArray = [...tempArr]
       }
 
-      // calls function to add property when selectedFilter is a specific Theme
+      // // calls function to add property when selectedFilter is a specific Theme
       if (selectedFilter.filterType === "theme") {
-        themeAddParentField(artworkArray, parentNode, selectedFilter)
+        let tempArr = themeAddParentField(
+          artworkArray,
+          parentNode,
+          selectedFilter
+        )
+        artworkArray = [...tempArr]
       }
 
-      // calls function to add property when selectedFilter is a specific Medium
+      // // calls function to add property when selectedFilter is a specific Medium
       if (selectedFilter.filterType === "medium") {
-        mediumAddParentField(artworkArray, parentNode, selectedFilter)
+        let tempArr = mediumAddParentField(
+          artworkArray,
+          parentNode,
+          selectedFilter
+        )
+        artworkArray = [...tempArr]
       }
 
-      // calls function to add property when selectedFilter is a specific Medium
+      // // calls function to add property when selectedFilter is a specific Influence
       if (selectedFilter.filterType === "influence") {
-        influenceAddParentField(artistsArray, parentNode, selectedFilter)
+        influenceAddParentField(parentNode, selectedFilter)
       }
 
       addMainNode(parentNode)
 
-      createChildNodes(artworkArray, parentNodeId, parentNode)
+      createChildNodes(artworkArray, parentNode)
     })
   }
 
@@ -258,17 +261,29 @@ export const linkGenerator = (
   const populateArrays = () => {
     // spreading the array to concatenate the data (else, array of arrays)
     artists.push(...data.artists.nodes)
+    // setting the isSelectedParent property to false to fix numerous rendering issues
+    artists.forEach(artist => {
+      artist.data.isSelectedParent = false
+      artist.data.isSelectedChildMain = false
+    })
     artwork.push(...data.artwork.nodes)
-    createParentNodes(artists, artwork)
+    // setting the isSelectedChild property to false to fix numerous rendering issues
+    artwork.forEach(art => {
+      art.data.isSelectedParent = false
+      art.data.isSelectedChild = false
+    })
+    createParentAndChildNodes(artists, artwork)
     linkParentNodes(artistsTempNodes)
     linkArtworkToCollaborators()
     return nodes
   }
 
-  const populatedDefaultNodes = () => {
+  const populateNodesAndLinks = () => {
+    // generates an array of nodes and links
     const res = populateArrays()
+    // return the array of nodes and links to be used by the node graph
     return { nodes: res, links }
   }
 
-  return populatedDefaultNodes()
+  return populateNodesAndLinks()
 }

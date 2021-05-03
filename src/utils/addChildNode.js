@@ -1,4 +1,4 @@
-import { DEFAULT_DISTANCE, CHILD_NODE_SIZE } from "./linkGenerator"
+import { DEFAULT_DISTANCE } from "./linkGenerator"
 
 const addChildNode = (
   links,
@@ -6,14 +6,16 @@ const addChildNode = (
   parentNode,
   childNode,
   distance = DEFAULT_DISTANCE,
-  isSelectedParent = false,
   selectedFilter
 ) => {
   childNode.color = "#FF985F"
-  childNode.isSelectedParent = isSelectedParent
-  childNode.size = CHILD_NODE_SIZE
+  childNode.fill = "white"
+  childNode.linkColor = childNode.isSelectedChild
+    ? parentNode.linkColor
+    : childNode.linkColor
   nodes.push(childNode)
 
+  // creates default gray lines that connect children to parent nodes
   links.push({
     source: parentNode,
     target: childNode,
