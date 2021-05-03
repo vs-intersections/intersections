@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useState } from "react"
 export const FilterContext = createContext(null)
 
-export const FilterContextProvider = ({ children } ) => {
-
-    const [selectedFilter, setSelectedFilter] = useState({ 
-        filterName: "",
-        filterType: "",
-      })
+export const FilterContextProvider = ({ children }) => {
+  const [selectedFilter, setSelectedFilter] = useState({
+    filterName: "",
+    filterType: "",
+  })
   return (
     <FilterContext.Provider
       value={{
-       selectedFilter, setSelectedFilter
+        selectedFilter,
+        setSelectedFilter,
       }}
     >
       {children}
@@ -18,11 +18,11 @@ export const FilterContextProvider = ({ children } ) => {
   )
 }
 
-
 export const useFilterContext = () => {
-  const {selectedFilter, setSelectedFilter } = useContext(FilterContext)
+  const { selectedFilter, setSelectedFilter } = useContext(FilterContext)
 
   return {
-   selectedFilter, setSelectedFilter
+    selectedFilter,
+    setSelectedFilter,
   }
 }

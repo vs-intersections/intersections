@@ -14,7 +14,6 @@ export const themeAddParentField = (
           parentNode.isSelectedParent = true
           parentNode.fill = "white"
           parentNode.linkColor = "#F36AFF"
-          artwork.data.linkColor = "#F36AFF"
           artwork.data.isSelectedChild = true
         }
       })

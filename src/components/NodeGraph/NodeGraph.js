@@ -18,7 +18,7 @@ const NodeGraph = ({ data }) => {
   // this keeps track of the selected filter
   const { selectedFilter, setSelectedFilter } = useFilterContext()
 
-  const { setSelectedNode } = useNodeContext()
+  const { selectedNode, setSelectedNode } = useNodeContext()
 
   // refs to grab the SVG element and SVG element container
   const ref = useRef()
@@ -61,7 +61,6 @@ const NodeGraph = ({ data }) => {
     // set values for viewbox, and SVG width and height
     setAspectRatio()
     // after the page has loaded, grab Airtable data from linkGenerator
-    console.log(data)
     const results = linkGenerator(data, selectedFilter)
     // begin the data viz
     main(results)
@@ -168,7 +167,7 @@ const NodeGraph = ({ data }) => {
     }
 
     function nodeClick(e, datapoint) {
-      setSelectedNode(datapoint)
+      // setSelectedNode(datapoint)
       setSelectedFilter({
         filterName: datapoint.id,
         filterType: datapoint.table.toLowerCase(),
@@ -193,17 +192,33 @@ const NodeGraph = ({ data }) => {
     const circlesHalo = circleGroups
       .append("circle")
       .attr("fill", node =>
-        node.isSelectedParent || node.isSelectedChild ? node.fill : node.color
+        node.isSelectedParent ||
+        node.isSelectedChild ||
+        node.isSelectedChildMain
+          ? node.fill
+          : node.color
       )
       .attr("stroke", node =>
-        node.isSelectedParent || node.isSelectedChild
+        node.isSelectedParent ||
+        node.isSelectedChild ||
+        node.isSelectedChildMain
           ? node.linkColor
           : node.color || "none"
       )
       .attr("stroke-width", node =>
-        node.isSelectedParent ? 5 : node.isSelectedChild ? 3 : "none"
+        node.isSelectedParent || node.isSelectedChildMain
+          ? 5
+          : node.isSelectedChild
+          ? 2
+          : "none"
       )
-      .attr("r", node => (node.isSelectedParent ? node.size * 1.35 : node.size))
+      .attr("r", node =>
+        node.isSelectedParent || node.isSelectedChildMain
+          ? node.size * 1.35
+          : node.isSelectedChild
+          ? node.size * 1.25
+          : node.size
+      )
       .classed("parent-halo", node => node.isSelectedParent)
 
     const circles = circleGroups
