@@ -4,7 +4,7 @@ export const FilterContext = createContext(null)
 export const FilterContextProvider = ({ children }) => {
   const [selectedFilter, setSelectedFilter] = useState({
     filterName: "",
-    filterType: "",
+    filterType: "artist",
   })
   return (
     <FilterContext.Provider

@@ -14,6 +14,7 @@ module.exports = {
       lightBlue: "#43F4FF", // MEDIUM
       gray: colors.trueGray,
       black: colors.black,
+      white: colors.white,
     },
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],

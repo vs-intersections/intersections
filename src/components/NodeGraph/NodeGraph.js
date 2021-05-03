@@ -51,10 +51,10 @@ const NodeGraph = ({ data }) => {
     aspectW = getAspect(width, height)
     aspectH = getAspect(height, width)
     // set the default zoom of the SVG
-    aspectBase = IS_MOBILE ? 550 : 500
+    aspectBase = 550
     // set the aspect ratio (to be used in the viewbox)
-    aspectRatioWidth = aspectBase * aspectW || 500
-    aspectRatioHeight = aspectBase * aspectH || 500
+    aspectRatioWidth = aspectBase * aspectW || 550
+    aspectRatioHeight = aspectBase * aspectH || 550
   }
 
   useEffect(() => {
@@ -86,7 +86,7 @@ const NodeGraph = ({ data }) => {
     svg.selectAll("text").remove()
 
     let centerX = width / 2
-    let centerY = height / 2
+    let centerY = height / 1.75
 
     // simulation force settings
     const simulation = forceSimulation(nodes)
@@ -133,7 +133,7 @@ const NodeGraph = ({ data }) => {
 
       // re-center SVG after window resizing
       centerX = aspectRatioWidth / 2
-      centerY = aspectRatioHeight / 2
+      centerY = aspectRatioHeight / 1.75
       simulation.force("center", forceCenter(centerX, centerY))
       // set new values for viewbox, and SVG width and height
       svg.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
@@ -167,7 +167,7 @@ const NodeGraph = ({ data }) => {
     }
 
     function nodeClick(e, datapoint) {
-      // setSelectedNode(datapoint)
+      setSelectedNode(datapoint)
       setSelectedFilter({
         filterName: datapoint.id,
         filterType: datapoint.table.toLowerCase(),
