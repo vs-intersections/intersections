@@ -190,10 +190,15 @@ export const linkGenerator = (
       }
 
       // // calls function to add property when selectedFilter is a specific Theme
-      // if (selectedFilter.filterType === "theme") {
-      //   console.log("running specific theme func")
-      //   themeAddParentField(artworkArray, parentNode, selectedFilter)
-      // }
+      if (selectedFilter.filterType === "theme") {
+        console.log("running specific theme func")
+        let tempArr = themeAddParentField(
+          artworkArray,
+          parentNode,
+          selectedFilter
+        )
+        artworkArray = [...tempArr]
+      }
 
       // // calls function to add property when selectedFilter is a specific Medium
       // if (selectedFilter.filterType === "medium") {
@@ -224,12 +229,12 @@ export const linkGenerator = (
           selectedFilter.filterType === "location"
         ) {
           linkMainNodesDefault(artistA, artistB, "#62B4FF", 5)
-          // } else if (
-          //   artistA.isSelectedParent &&
-          //   artistB.isSelectedParent &&
-          //   selectedFilter.filterType === "theme"
-          // ) {
-          //   linkMainNodesDefault(artistA, artistB, "#F36AFF", 5)
+        } else if (
+          artistA.isSelectedParent &&
+          artistB.isSelectedParent &&
+          selectedFilter.filterType === "theme"
+        ) {
+          linkMainNodesDefault(artistA, artistB, "#F36AFF", 5)
           // } else if (
           //   artistA.isSelectedParent &&
           //   artistB.isSelectedParent &&

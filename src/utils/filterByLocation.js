@@ -8,7 +8,7 @@ export const locationAddParentField = (
   selectedFilter
 ) => {
   artworkArray.forEach(artwork => {
-    if (parentNode.id === artwork.data.Primary_Artist__REQUIRED_[0]) {
+    parentNode.id === artwork.data.Primary_Artist__REQUIRED_[0] &&
       artwork.data.Locations?.forEach(location => {
         if (location === selectedFilter.filterName) {
           parentNode.isSelectedParent = true
@@ -17,7 +17,6 @@ export const locationAddParentField = (
           artwork.data.isSelectedChild = true
         }
       })
-    }
   })
   return artworkArray
 }

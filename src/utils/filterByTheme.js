@@ -18,4 +18,6 @@ export const themeAddParentField = (
         }
       })
   })
+
+  return artworkArray
 }
