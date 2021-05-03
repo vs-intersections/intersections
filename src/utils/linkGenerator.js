@@ -179,10 +179,15 @@ export const linkGenerator = (
       }
 
       // calls function to add property when selectedFilter is a specific Location
-      // if (selectedFilter.filterType === "location") {
-      //   console.log("running specific location func")
-      //   locationAddParentField(artworkArray, parentNode, selectedFilter)
-      // }
+      if (selectedFilter.filterType === "location") {
+        console.log("running specific location func")
+        let tempArr = locationAddParentField(
+          artworkArray,
+          parentNode,
+          selectedFilter
+        )
+        artworkArray = [...tempArr]
+      }
 
       // // calls function to add property when selectedFilter is a specific Theme
       // if (selectedFilter.filterType === "theme") {

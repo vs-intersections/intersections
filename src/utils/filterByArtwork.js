@@ -6,13 +6,10 @@ export const artworkAddParentField = (
   parentNode,
   selectedFilter
 ) => {
-  // parentNode.isSelectedParent = true
-  // parentNode.fill = "white"
-  // parentNode.linkColor = "#A3F78E" // light green
   artworkArray.forEach(artwork => {
     if (artwork.recordId === selectedFilter.filterName) {
       artwork.data.isSelectedParent = true
-      artwork.data.linkColor = "#FF985F"
+      artwork.data.linkColor = "#FF985F" // orange
       artwork.data.fill = "white"
 
       if (parentNode.id === artwork.data.Primary_Artist__REQUIRED_[0]) {

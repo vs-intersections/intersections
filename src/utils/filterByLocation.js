@@ -19,4 +19,5 @@ export const locationAddParentField = (
       })
     }
   })
+  return artworkArray
 }
