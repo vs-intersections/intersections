@@ -56,7 +56,7 @@ const Navigation = ({ data }) => {
           // Todo fix logic here
           value={
             // selectedNode?.id ||
-            selectedFilter?.id
+            selectedFilter?.filterType
           }
           onChange={e => {
             setSelectedFilter(prev => ({
@@ -77,7 +77,6 @@ const Navigation = ({ data }) => {
         {generateDropdown("artist", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
         {generateDropdown("location", locations, "blue")}
-        {selectedFilter.id}
         {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}
         {generateDropdown("influence", influences, "yellow")}

@@ -1,4 +1,5 @@
 import addChildNode from "./addChildNode"
+import { artistAddParentField } from "./filterByArtist"
 import { locationsAddParentField } from "./filterByLocations"
 import { themeAddParentField } from "./filterByTheme"
 import { mediumAddParentField } from "./filterByMedium"
@@ -32,29 +33,30 @@ export const linkGenerator = (
     // to interate over later and grab the D3 properties (color, etc)
     artistsTempNodes.push(node)
   }
-
   // function to assemble child nodes before calling addChildNode
   const assembleChildNode = (parentNode, artwork) => {
     let childNode = {
       id: artwork.recordId,
       name: artwork.data.Name,
-      collaborators: artwork.data?.Collaborators || null,
+      collaborators: artwork.data.Collaborators || null,
       locations: artwork.data.Locations,
       medium: artwork.data.Medium,
       theme: artwork.data.Theme,
-      // linkColor: artwork.data.linkColor,
-      size: CHILD_NODE_SIZE,
+      linkColor: artwork.data.linkColor || null,
+      size: artwork.data.isSelectedChild
+        ? CHILD_NODE_SIZE * 0.8
+        : CHILD_NODE_SIZE,
       table: artwork.table,
-      isSelectedChild: false,
+      fill: artwork.data.fill,
+      isSelectedChild: artwork.data.isSelectedChild || false,
     }
 
     // TO-DO: Child linking to parents is wonky - CAUSING THE BUG!!!
     if (
       (artwork.data.isSelectedChild &&
         selectedFilter.filterType === "location") ||
-      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme")
-      // ||
-      // (artwork.data.isSelectedChild && selectedFilter.filterType === "medium")
+      (artwork.data.isSelectedChild && selectedFilter.filterType === "theme") ||
+      (artwork.data.isSelectedChild && selectedFilter.filterType === "medium")
     ) {
       childNode.isSelectedChild = true
     }
@@ -148,29 +150,33 @@ export const linkGenerator = (
         influence: artist.data.Influence,
         table: artist.table,
       }
-      // adds property when selectedFilter is a specific Artist
+      // calls function to add property when selectedFilter is a specific Artist
       if (parentNodeId === selectedFilter.filterName) {
-        parentNode.isSelectedParent = true
-        parentNode.fill = "white"
+        console.log("running specific Artist func")
+        artistAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
       // calls function to add property when selectedFilter is a specific Location
       if (selectedFilter.filterType === "location") {
+        console.log("running specific location func")
         locationsAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
       // calls function to add property when selectedFilter is a specific Theme
       if (selectedFilter.filterType === "theme") {
+        console.log("running specific theme func")
         themeAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
       // calls function to add property when selectedFilter is a specific Medium
       if (selectedFilter.filterType === "medium") {
+        console.log("running specific medium func")
         mediumAddParentField(artworkArray, parentNode, selectedFilter)
       }
 
       // calls function to add property when selectedFilter is a specific Medium
       if (selectedFilter.filterType === "influence") {
+        console.log("running specific influence func")
         influenceAddParentField(artistsArray, parentNode, selectedFilter)
       }
 
