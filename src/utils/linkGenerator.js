@@ -32,7 +32,7 @@ export const linkGenerator = (
     node.size = MAIN_NODE_SIZE
     node.color = PARENT_NODE_COLOR
     nodes.push(node)
-    console.log(nodes)
+
     // to interate over later and grab the D3 properties (color, etc)
     artistsTempNodes.push(node)
   }
@@ -56,51 +56,15 @@ export const linkGenerator = (
       isSelectedParent: artwork.data.isSelectedParent,
     }
 
-    // add haloing to child nodes if filter is a specific Artist
-    if (parentNode.id === selectedFilter.filterName) {
-      console.log("adding isSelectedChild to child node")
-      childNode.isSelectedChild = artwork.data.isSelectedChild
-    }
-
-    // TO-DO: Child linking to parents is wonky - CAUSING THE BUG!!!
-    // if (
-    //   (artwork.data.isSelectedChild &&
-    //     selectedFilter.filterType === "location") ||
-    //   (artwork.data.isSelectedChild && selectedFilter.filterType === "theme") ||
-    //   (artwork.data.isSelectedChild && selectedFilter.filterType === "medium")
-    // ) {
-    //   console.log("adding isSelectedChild to child node")
-    //   childNode.isSelectedChild = true
-    // }
-
-    if (selectedFilter.filterType === "location") {
-      if (artwork.data.isSelectedChild) {
-        childNode.isSelectedChild = true
-      }
-    }
-
-    if (selectedFilter.filterName === artwork.recordId) {
-      childNode.fill = "white"
-      addChildNode(
-        links,
-        nodes,
-        parentNode,
-        childNode,
-        CHILD_NODE_DISTANCE,
-        selectedFilter,
-        artwork
-      )
-    } else {
-      addChildNode(
-        links,
-        nodes,
-        parentNode,
-        childNode,
-        CHILD_NODE_DISTANCE,
-        selectedFilter,
-        artwork
-      )
-    }
+    addChildNode(
+      links,
+      nodes,
+      parentNode,
+      childNode,
+      CHILD_NODE_DISTANCE,
+      selectedFilter,
+      artwork
+    )
   }
 
   // function to create default node links
@@ -163,13 +127,11 @@ export const linkGenerator = (
       }
       // calls function to add property when selectedFilter is a specific Artist
       if (parentNode.id === selectedFilter.filterName) {
-        console.log("running specific artist function")
         artistAddParentField(artworkArray, parentNode)
       }
 
       // calls function to add property when selectedFilter is a specific Artwork
       if (selectedFilter.filterType === "artwork") {
-        console.log("running specific artwork func")
         let tempArr = artworkAddParentField(
           artworkArray,
           parentNode,
@@ -180,7 +142,6 @@ export const linkGenerator = (
 
       // calls function to add property when selectedFilter is a specific Location
       if (selectedFilter.filterType === "location") {
-        console.log("running specific location func")
         let tempArr = locationAddParentField(
           artworkArray,
           parentNode,
@@ -191,7 +152,6 @@ export const linkGenerator = (
 
       // // calls function to add property when selectedFilter is a specific Theme
       if (selectedFilter.filterType === "theme") {
-        console.log("running specific theme func")
         let tempArr = themeAddParentField(
           artworkArray,
           parentNode,
@@ -201,16 +161,19 @@ export const linkGenerator = (
       }
 
       // // calls function to add property when selectedFilter is a specific Medium
-      // if (selectedFilter.filterType === "medium") {
-      //   console.log("running specific medium func")
-      //   mediumAddParentField(artworkArray, parentNode, selectedFilter)
-      // }
+      if (selectedFilter.filterType === "medium") {
+        let tempArr = mediumAddParentField(
+          artworkArray,
+          parentNode,
+          selectedFilter
+        )
+        artworkArray = [...tempArr]
+      }
 
       // // calls function to add property when selectedFilter is a specific Influence
-      // if (selectedFilter.filterType === "influence") {
-      //   console.log("running specific influence func")
-      //   influenceAddParentField(artistsArray, parentNode, selectedFilter)
-      // }
+      if (selectedFilter.filterType === "influence") {
+        influenceAddParentField(parentNode, selectedFilter)
+      }
 
       addMainNode(parentNode)
 
@@ -235,18 +198,18 @@ export const linkGenerator = (
           selectedFilter.filterType === "theme"
         ) {
           linkMainNodesDefault(artistA, artistB, "#F36AFF", 5)
-          // } else if (
-          //   artistA.isSelectedParent &&
-          //   artistB.isSelectedParent &&
-          //   selectedFilter.filterType === "medium"
-          // ) {
-          //   linkMainNodesDefault(artistA, artistB, "#43F4FF", 5)
-          // } else if (
-          //   artistA.isSelectedParent &&
-          //   artistB.isSelectedParent &&
-          //   selectedFilter.filterType === "influence"
-          // ) {
-          // linkMainNodesDefault(artistA, artistB, "#E7FF57", 5)
+        } else if (
+          artistA.isSelectedParent &&
+          artistB.isSelectedParent &&
+          selectedFilter.filterType === "medium"
+        ) {
+          linkMainNodesDefault(artistA, artistB, "#43F4FF", 5)
+        } else if (
+          artistA.isSelectedParent &&
+          artistB.isSelectedParent &&
+          selectedFilter.filterType === "influence"
+        ) {
+          linkMainNodesDefault(artistA, artistB, "#E7FF57", 5)
         } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id
@@ -318,7 +281,6 @@ export const linkGenerator = (
   const populateNodesAndLinks = () => {
     // generates an array of nodes and links
     const res = populateArrays()
-    console.log(nodes)
     // return the array of nodes and links to be used by the node graph
     return { nodes: res, links }
   }

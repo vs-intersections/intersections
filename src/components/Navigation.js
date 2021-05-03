@@ -6,9 +6,6 @@ const Navigation = ({ data }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode } = useNodeContext()
 
-  console.log(selectedFilter)
-  console.log(selectedNode)
-
   const handleSelect = e => {
     setSelectedFilter({
       filterName: e.target.value,
