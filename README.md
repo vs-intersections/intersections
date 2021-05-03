@@ -29,22 +29,12 @@ Other things:
 
 SCHEDULE
 
-Saturday
-
-- Node linking (influence) - DONE
-
-Sunday
-
-- Child node haloing (ALBERT)
-- Link Artists to collab artists (ALBERT)
-- Child linking to parents is wonky (filter - video) (ALBERT)
-
 Monday
 
 - Mobile Sidebar expanding/compressing animation (DAVID)
 - Info mobile sidebar expanding/compressing animation (DAVID)
 - Node graph overlay descriptor (ALBERT)
-- Node graph zooming (SECONDARY)
+- Link Artists to collab artists (ALBERT)
 
 Tuesday
 
@@ -60,6 +50,7 @@ Thursday
 
 - Pages: Video and about (DAVID)
 - Mobile hamburger menu (DAVID)
+- Node graph zooming (ALBERT - SECONDARY)
 
 ### David's notes
 
