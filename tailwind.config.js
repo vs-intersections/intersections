@@ -8,6 +8,7 @@ module.exports = {
       blue: "#62B4FF", // LOCATION
       lightGreen: "#A3F78E", // ARTIST
       orange: "#FF985F", // ARTWORK
+      orangeWhite: '#ffebe0',
       pink: "#F36AFF", // THEME
       red: "#FF404B",
       yellow: "#E7FF57", // INFLUENCE

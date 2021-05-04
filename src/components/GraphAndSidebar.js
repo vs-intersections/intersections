@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useWindowSize } from "../hooks"
 import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
+import { getMetadataByFilterId } from "../utils"
 import { BsInfoCircle } from "react-icons/bs"
 import NodeGraph from "./NodeGraph/NodeGraph"
 import classNames from "classnames"
@@ -16,7 +17,6 @@ const GraphAndSidebar = ({ data }) => {
     setSidebarOpened(!sidebarOpened)
   }
 
-  console.log(selectedNode)
 
   let currentTheme =
     selectedFilter?.filterType?.toLowerCase() ||
@@ -43,9 +43,9 @@ const GraphAndSidebar = ({ data }) => {
             className={`w-80 h-12 border-2 rounded border-${tabClass} bg-white flex`}
           >
             <div className="w-10/12 text-center text-gray-500 flex justify-center items-center">
-              NAME OF THE THING
+              {selectedNode?.name || getMetadataByFilterId(data, selectedFilter?.filterName).data.Name}
             </div>
-            <div className="w-2/12 flex justify-center items-center">
+            <div className="w-2/12 flex justify-center items-center cursor-pointer" onClick={toggleSidebar}>
               <BsInfoCircle className="w-full h-full p-2 fill-current text-gray-500" />
             </div>
           </div>
@@ -70,7 +70,7 @@ const GraphAndSidebar = ({ data }) => {
                   selectedNode?.table?.toUpperCase()}
               </span>
             </div>
-            <div className="absolute left-3vw w-40vw h-full bg-gray-500">
+            <div className="absolute left-3vw w-40vw h-full bg-orangeWhite">
               {JSON.stringify({ selectedNode })}
               {JSON.stringify({ selectedFilter })}
             </div>

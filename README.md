@@ -53,10 +53,11 @@ Thursday
 - Node graph zooming (ALBERT - SECONDARY)
 
 ### David's notes
-
-a place for your notes and thoughts
-
-IDEA: Add node context - use nodecontext to track to state of
+- Infinite Scroll mobile navigation (DAVID)
+- Info mobile sidebar expanding/compressing animation (DAVID)
+- Mobile Sidebar expanding/compressing animation (DAVID)
+- Mobile hamburger menu (DAVID)
+- Pages: Video and about (DAVID)
 
 ---
 

@@ -1,17 +1,19 @@
 import React, { useContext, useState, useEffect } from "react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
+import { getMetadataByFilterId } from "../utils"
 
 const Navigation = ({ data }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
 
   const handleSelect = e => {
-    console.log(e.name)
+    // console.log(e.name)
     setSelectedFilter({
       filterName: e.target.value,
       filterType: e.target.id,
     })
+    setSelectedNode(null)
   }
 
   const artists = data?.artists?.nodes.map(el => ({
@@ -48,6 +50,7 @@ const Navigation = ({ data }) => {
     name: el.data.Name,
   }))
 
+  
   const generateDropdown = (filterType, arr, color) => {
     let options = arr.map(el => (
       <option value={el.id} key={el.id}>
@@ -84,8 +87,8 @@ const Navigation = ({ data }) => {
         {generateDropdown("artwork", artwork, "orange")}
         {generateDropdown("location", locations, "blue")}
         {generateDropdown("theme", themes, "pink")}
-        {generateDropdown("medium", mediums, "lightBlue")}
-        {generateDropdown("influence", influences, "yellow")}
+        {/* {generateDropdown("medium", mediums, "lightBlue")} */}
+        {/* {generateDropdown("influence", influences, "yellow")} */}
       </ul>
     </nav>
   )
