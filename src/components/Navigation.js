@@ -1,16 +1,19 @@
 import React, { useContext, useState, useEffect } from "react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
+import { getMetadataByFilterId } from "../utils"
 
 const Navigation = ({ data }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
-  const { selectedNode } = useNodeContext()
+  const { selectedNode, setSelectedNode } = useNodeContext()
 
   const handleSelect = e => {
+    // console.log(e.name)
     setSelectedFilter({
       filterName: e.target.value,
       filterType: e.target.id,
     })
+    setSelectedNode(null)
   }
 
   const artists = data?.artists?.nodes.map(el => ({

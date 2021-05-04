@@ -29,43 +29,37 @@ Other things:
 
 SCHEDULE
 
-Saturday
-
-- Node linking (influence) - DONE
-
-Sunday
-
-- Child node haloing (ALBERT)
-- Link Artists to collab artists (ALBERT)
-- Child linking to parents is wonky (filter - video) (ALBERT)
-
 Monday
 
-- Mobile Sidebar expanding/compressing animation (DAVID)
-- Info mobile sidebar expanding/compressing animation (DAVID)
-- Node graph overlay descriptor (ALBERT)
-- Node graph zooming (SECONDARY)
+- ~~Node graph overlay descriptor (ALBERT)~~
+- ~~Mobile hamburger menu (DAVID)~~
+- Link Artists to collab artists (ALBERT)
 
 Tuesday
 
 - Infinite Scroll mobile navigation (DAVID)
+- Info mobile sidebar expanding/compressing animation (DAVID)
 - Navigation filtering selectors (styling and updating node graph) (ALBERT)
 
 Wednesday
 
+- Mobile Sidebar expanding/compressing animation (DAVID)
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
 
 Thursday
 
 - Pages: Video and about (DAVID)
-- Mobile hamburger menu (DAVID)
+- Node graph zooming (ALBERT - SECONDARY)
 
 ### David's notes
 
-a place for your notes and thoughts
-
-IDEA: Add node context - use nodecontext to track to state of
+- ~~Display Link data in sidebar~~
+- Infinite Scroll mobile navigation (DAVID)
+- Info mobile sidebar expanding/compressing animation (DAVID)
+- Mobile Sidebar expanding/compressing animation (DAVID)
+- ~~Mobile hamburger menu (DAVID)~~
+- Pages: Video and about (DAVID)
 
 ---
 
