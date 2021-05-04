@@ -17,7 +17,6 @@ const GraphAndSidebar = ({ data }) => {
     setSidebarOpened(!sidebarOpened)
   }
 
-
   let currentTheme =
     selectedFilter?.filterType?.toLowerCase() ||
     selectedNode?.table?.toLowerCase()
@@ -33,24 +32,33 @@ const GraphAndSidebar = ({ data }) => {
 
   return (
     <div className="w-full flex relative">
-      {!IS_MOBILE && (
-        <div
-          className={`transition-all duration-500 ${
-            sidebarOpened ? "w-60vw" : "w-100vw"
-          } h-20 absolute flex justify-center items-center`}
-        >
+      {/* Only show the info box if there viewport is not mobile 
+      AND there is a selected Node name
+       OR data AND selectedFilter FilterName  */}
+      {!IS_MOBILE &&
+        (selectedNode?.name || (data && selectedFilter?.filterName)) && (
           <div
-            className={`w-80 h-12 border-2 rounded border-${tabClass} bg-white flex`}
+            className={`transition-all duration-500 ${
+              sidebarOpened ? "w-60vw" : "w-100vw"
+            } h-20 absolute flex justify-center items-center`}
           >
-            <div className="w-10/12 text-center text-gray-500 flex justify-center items-center">
-              {selectedNode?.name || getMetadataByFilterId(data, selectedFilter?.filterName).data.Name}
-            </div>
-            <div className="w-2/12 flex justify-center items-center cursor-pointer" onClick={toggleSidebar}>
-              <BsInfoCircle className="w-full h-full p-2 fill-current text-gray-500" />
+            <div
+              className={`w-80 h-12 border-2 rounded border-${tabClass} bg-white flex`}
+            >
+              <div className="w-10/12 text-center text-gray-500 flex justify-center items-center">
+                {selectedNode?.name ||
+                  getMetadataByFilterId(data, selectedFilter?.filterName)?.data
+                    ?.Name}
+              </div>
+              <div
+                className="w-2/12 flex justify-center items-center cursor-pointer"
+                onClick={toggleSidebar}
+              >
+                <BsInfoCircle className="w-full h-full p-2 fill-current text-gray-500" />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       <div
         className={`h-full transition-all duration-500 ${
           sidebarOpened ? "w-60vw" : "w-100vw"
@@ -71,8 +79,12 @@ const GraphAndSidebar = ({ data }) => {
               </span>
             </div>
             <div className="absolute left-3vw w-40vw h-full bg-orangeWhite">
-              {JSON.stringify({ selectedNode })}
-              {JSON.stringify({ selectedFilter })}
+              {/* {JSON.stringify({ selectedNode })} */}
+              {data &&
+                selectedFilter?.filterName &&
+                JSON.stringify(
+                  getMetadataByFilterId(data, selectedFilter?.filterName)
+                )}
             </div>
           </div>
         </div>

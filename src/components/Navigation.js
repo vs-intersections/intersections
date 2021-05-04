@@ -84,9 +84,9 @@ const Navigation = ({ data }) => {
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
         {generateDropdown("artist", artists, "lightGreen")}
-        {generateDropdown("artwork", artwork, "orange")}
-        {generateDropdown("location", locations, "blue")}
-        {generateDropdown("theme", themes, "pink")}
+        {/* {generateDropdown("artwork", artwork, "orange")} */}
+        {/* {generateDropdown("location", locations, "blue")} */}
+        {/* {generateDropdown("theme", themes, "pink")} */}
         {/* {generateDropdown("medium", mediums, "lightBlue")} */}
         {/* {generateDropdown("influence", influences, "yellow")} */}
       </ul>
