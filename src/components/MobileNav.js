@@ -5,18 +5,16 @@ import { css, jsx } from "@emotion/react"
 function MobileNav({ isOpen }) {
   return (
     <ul
-      className={`flex flex-col justify-center align-middle items-center transform transition-transform`}
+      className={`bg-white flex flex-col justify-center align-middle items-center transition-all`}
       css={css`
         color: blue;
         height: ${isOpen ? "calc(100vh - 64px)" : "0px"};
-        display: ${isOpen ? "visible" : "none"};
         position: absolute;
-        bottom: 0;
+        bottom: ${isOpen ? "0" : "-100vh"};
+        overflow-y: hidden;
         left: 0;
         width: 100%;
         z-index: 49;
-        background-color: pink;
-        animation: fade-in 1s;
         transition-timing-function: ease-in-out;
       `}
     >
