@@ -127,7 +127,13 @@ export const linkGenerator = (
       }
       // calls function to add property when selectedFilter is a specific Artist
       if (parentNode.id === selectedFilter.filterName) {
-        artistAddParentField(artworkArray, parentNode)
+        let tempArr = artistAddParentField(
+          artworkArray,
+          artistsArray,
+          parentNode
+        )
+        console.log(tempArr)
+        artistsArray = [...tempArr]
       }
 
       // calls function to add property when selectedFilter is a specific Artwork
@@ -281,6 +287,7 @@ export const linkGenerator = (
   const populateNodesAndLinks = () => {
     // generates an array of nodes and links
     const res = populateArrays()
+    console.log(nodes)
     // return the array of nodes and links to be used by the node graph
     return { nodes: res, links }
   }
