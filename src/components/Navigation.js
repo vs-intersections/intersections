@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React from "react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
@@ -85,9 +85,9 @@ const Navigation = ({ data }) => {
         {generateDropdown("artist", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
         {generateDropdown("location", locations, "blue")}
-        {generateDropdown("theme", themes, "pink")}
+        {/* {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}
-        {generateDropdown("influence", influences, "yellow")}
+        {generateDropdown("influence", influences, "yellow")} */}
       </ul>
     </nav>
   )

@@ -3,7 +3,7 @@ import Description from "./Description"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
 import Location from "./Location"
 
-const SidebarArtwork = () => {
+const SidebarArtwork = ({ data }) => {
   return (
     <>
       <Description />

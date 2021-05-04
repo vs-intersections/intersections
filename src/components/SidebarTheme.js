@@ -3,7 +3,7 @@ import Description from "./Description"
 import Location from "./Location"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
 
-const SidebarTheme = () => {
+const SidebarTheme = ({ data }) => {
   return (
     <>
       <Description />

@@ -6,6 +6,7 @@ import { getMetadataByFilterId } from "../utils"
 import { BsInfoCircle } from "react-icons/bs"
 import NodeGraph from "./NodeGraph/NodeGraph"
 import classNames from "classnames"
+import SidebarContent from "./SidebarContent"
 const GraphAndSidebar = ({ data }) => {
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024
@@ -78,13 +79,17 @@ const GraphAndSidebar = ({ data }) => {
                   selectedNode?.table?.toUpperCase()}
               </span>
             </div>
-            <div className="absolute left-3vw w-40vw h-full bg-orangeWhite">
+            <div
+              className={`absolute left-3vw w-40vw h-full bg-${tabClass} bg-opacity-10`}
+            >
+              {/* <SidebarContent /> */}
               {/* {JSON.stringify({ selectedNode })} */}
-              {data &&
+              {/* {data &&
                 selectedFilter?.filterName &&
                 JSON.stringify(
                   getMetadataByFilterId(data, selectedFilter?.filterName)
-                )}
+                )} */}
+              {data && <SidebarContent data={data} />}
             </div>
           </div>
         </div>

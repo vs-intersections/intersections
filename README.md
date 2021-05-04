@@ -33,10 +33,10 @@ Monday
 
 - ~~Node graph overlay descriptor (ALBERT)~~
 - ~~Mobile hamburger menu (DAVID)~~
-- Link Artists to collab artists (ALBERT)
 
 Tuesday
 
+- Link Artists to collab artists (ALBERT)
 - Infinite Scroll mobile navigation (DAVID)
 - Info mobile sidebar expanding/compressing animation (DAVID)
 - Navigation filtering selectors (styling and updating node graph) (ALBERT)
@@ -46,6 +46,7 @@ Wednesday
 - Mobile Sidebar expanding/compressing animation (DAVID)
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
+- On Location view, when clicking 'Buffalo Thunder", the Artist field is empty and media and themes are IDs instead of names (ALBERT)
 
 Thursday
 

@@ -5,15 +5,15 @@ import Location from "./Location"
 import Influence from "./Influence"
 import Favorites from "./Favorites"
 
-const SidebarArtist = () => {
+const SidebarArtist = ({ data }) => {
   return (
-    <div>
+    <>
       <Description />
       <ArtistsAndArtwork />
       <Location />
       <Influence />
       <Favorites />
-    </div>
+    </>
   )
 }
 

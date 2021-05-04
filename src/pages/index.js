@@ -27,6 +27,11 @@ export default function Home() {
             Artwork
             Influence
             Collaborated_On
+            Bio
+            Hometown
+            Email
+            Website
+            Interview
           }
           recordId
         }
@@ -35,10 +40,18 @@ export default function Home() {
         nodes {
           table
           data {
+            Image {
+              id
+            }
             Name
             Primary_Artist__REQUIRED_
             Collaborators
             Locations
+            Description
+            Image_or_Audio {
+              id
+            }
+            Video
             Medium
             Theme
           }
@@ -47,42 +60,65 @@ export default function Home() {
       }
       locations: allAirtable(filter: { table: { eq: "Location" } }) {
         nodes {
+          table
           data {
+            Image {
+              id
+            }
             Name
+            Address
             Artwork
+            Description
+            Video
           }
           recordId
         }
       }
       themes: allAirtable(filter: { table: { eq: "Theme" } }) {
         nodes {
+          table
           data {
             Name
             Artwork
+            Description
+            Image {
+              id
+            }
           }
           recordId
         }
       }
       mediums: allAirtable(filter: { table: { eq: "Medium" } }) {
         nodes {
+          table
           data {
             Name
             Artwork
+            Description
+            Image {
+              id
+            }
           }
           recordId
         }
       }
       influences: allAirtable(filter: { table: { eq: "Influence" } }) {
         nodes {
+          table
           data {
             Name
             Artist
+            Description
+            Image {
+              id
+            }
           }
           recordId
         }
       }
     }
   `)
+
   return (
     <>
       <MobileNav isOpen={isOpen} />
