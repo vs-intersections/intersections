@@ -50,7 +50,6 @@ const Navigation = ({ data }) => {
     name: el.data.Name,
   }))
 
-  
   const generateDropdown = (filterType, arr, color) => {
     let options = arr.map(el => (
       <option value={el.id} key={el.id}>
@@ -84,11 +83,11 @@ const Navigation = ({ data }) => {
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
         {generateDropdown("artist", artists, "lightGreen")}
-        {/* {generateDropdown("artwork", artwork, "orange")} */}
-        {/* {generateDropdown("location", locations, "blue")} */}
-        {/* {generateDropdown("theme", themes, "pink")} */}
-        {/* {generateDropdown("medium", mediums, "lightBlue")} */}
-        {/* {generateDropdown("influence", influences, "yellow")} */}
+        {generateDropdown("artwork", artwork, "orange")}
+        {generateDropdown("location", locations, "blue")}
+        {generateDropdown("theme", themes, "pink")}
+        {generateDropdown("medium", mediums, "lightBlue")}
+        {generateDropdown("influence", influences, "yellow")}
       </ul>
     </nav>
   )
