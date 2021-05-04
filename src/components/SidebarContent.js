@@ -15,6 +15,7 @@ const SidebarContent = ({ data }) => {
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(data, selectedFilter?.filterName)
+    console.log("MetaData:")
     console.log(metadata)
   }
 
@@ -30,20 +31,31 @@ const SidebarContent = ({ data }) => {
       const {
         table,
         data: {
-          Name: locationName,
+          Name: filterName,
           Artwork: artwork,
           Description: description,
+          Bio: bio,
+          Influence: influence,
+          Favorites: favorites,
         },
       } = metadata
 
       return selectedFilter.filterType === "artist" ? (
-        <SidebarArtist data={data} />
+        <SidebarArtist
+          data={data}
+          bio={bio}
+          artistName={filterName}
+          artwork={artwork}
+          influence={influence}
+          favorites={favorites}
+          table={table}
+        />
       ) : selectedFilter.filterType === "artwork" ? (
         <SidebarArtwork data={data} />
       ) : selectedFilter.filterType === "location" ? (
         <SidebarLocation
           data={data}
-          locationName={locationName}
+          locationName={filterName}
           artwork={artwork}
           description={description}
           table={table}

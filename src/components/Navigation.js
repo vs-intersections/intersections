@@ -84,9 +84,9 @@ const Navigation = ({ data }) => {
         {generateDropdown("artist", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
         {generateDropdown("location", locations, "blue")}
-        {/* {generateDropdown("theme", themes, "pink")}
+        {generateDropdown("theme", themes, "pink")}
         {generateDropdown("medium", mediums, "lightBlue")}
-        {generateDropdown("influence", influences, "yellow")} */}
+        {generateDropdown("influence", influences, "yellow")}
       </ul>
     </nav>
   )

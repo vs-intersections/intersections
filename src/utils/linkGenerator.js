@@ -132,7 +132,6 @@ export const linkGenerator = (
           artistsArray,
           parentNode
         )
-        console.log(tempArr)
         artistsArray = [...tempArr]
       }
 
@@ -287,7 +286,6 @@ export const linkGenerator = (
   const populateNodesAndLinks = () => {
     // generates an array of nodes and links
     const res = populateArrays()
-    console.log(nodes)
     // return the array of nodes and links to be used by the node graph
     return { nodes: res, links }
   }

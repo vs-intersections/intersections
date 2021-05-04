@@ -1,8 +1,10 @@
 import React from "react"
+import { useFilterContext } from "./context/FilterContext"
 
 // When clicking 'Buffalo Thunder", the Artist field is empty and media and themes are IDs instead of names
 
 const ArtistsAndArtwork = ({ artwork, data }) => {
+  const { selectedFilter } = useFilterContext()
   const renderedArtistsAndArtwork = artwork?.map(art => {
     // vars that will be assigned from destructuring
     let artist = [],
@@ -50,16 +52,20 @@ const ArtistsAndArtwork = ({ artwork, data }) => {
       })
     })
 
+    console.log(selectedFilter.filterType)
+
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
         <div className="w-auto h-auto bg-gray-500 color-white">
           IMAGE GOES HERE
         </div>
         <div>
-          <p className="text-lg">
-            <span className="font-bold">Artist: </span>
-            {artistByName}
-          </p>
+          {selectedFilter.filterType !== "artist" && (
+            <p className="text-lg">
+              <span className="font-bold">Artist: </span>
+              {artistByName}
+            </p>
+          )}
           <p className="text-lg">
             <span className="font-bold">Title: </span>
             {title}
