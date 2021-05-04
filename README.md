@@ -53,6 +53,8 @@ Thursday
 - Node graph zooming (ALBERT - SECONDARY)
 
 ### David's notes
+
+- Display 
 - Infinite Scroll mobile navigation (DAVID)
 - Info mobile sidebar expanding/compressing animation (DAVID)
 - Mobile Sidebar expanding/compressing animation (DAVID)
