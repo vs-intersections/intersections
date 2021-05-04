@@ -28,17 +28,6 @@ const Header = ({setIsOpen, isOpen}) => {
           <button onClick={() => setIsOpen(!isOpen)}>
             <img src={menu} alt="" className="h-6" />
           </button>
-          {/* <div className={`flex h-screen flex-col absolute left-5 transform transition-transform ${isOpen ? '-translate-y-32' : "translate-y-5"}`}>
-          <li className="hover:text-yellow-600 tracking-widest">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="hover:text-yellow-600 tracking-widest">
-            <Link to="/videos">Videos</Link>
-          </li>
-          <li className="hover:text-yellow-600 tracking-widest">
-            <Link to="/about">About</Link>
-          </li>
-          </div> */}
         </div>
       </header>
   )
