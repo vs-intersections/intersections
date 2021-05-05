@@ -47,6 +47,7 @@ Wednesday
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
 - On Location view, when clicking 'Buffalo Thunder", the Artist field is empty and media and themes are IDs instead of names (ALBERT)
+- On Theme view: click Franklin's in Location, then click Fantasy in Theme - the theme node links are inconsistent
 
 Thursday
 

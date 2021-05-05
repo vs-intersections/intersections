@@ -9,12 +9,16 @@ import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 
 const SidebarContent = ({ data }) => {
-  console.log(data)
+  const dataObjCopy = Object.assign({}, data)
+
+  console.log("BEFORE")
+  if (data) console.log(data.artwork.nodes[7].data.Theme)
+
   const { selectedFilter } = useFilterContext()
   let metadata
 
   if (selectedFilter.filterType) {
-    metadata = getMetadataByFilterId(data, selectedFilter?.filterName)
+    metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
     console.log("MetaData:")
     console.log(metadata)
   }
@@ -69,6 +73,9 @@ const SidebarContent = ({ data }) => {
       )
     }
   }
+
+  console.log("AFTER")
+  if (data) console.log(data.artwork.nodes[7].data.Theme)
 
   return (
     <div className="h-full pt-4 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300">

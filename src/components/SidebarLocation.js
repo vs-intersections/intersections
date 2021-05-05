@@ -13,7 +13,7 @@ const SidebarLocation = ({
     <>
       <Description
         table={table}
-        locationName={locationName}
+        name={locationName}
         description={description}
       />
       <ArtistsAndArtwork artwork={artwork} data={data} />

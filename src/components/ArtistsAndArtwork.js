@@ -11,7 +11,9 @@ const ArtistsAndArtwork = ({ artwork, data }) => {
       title,
       media = [],
       themes = [],
-      artistByName
+      artistByName,
+      themesCopy = [],
+      mediaCopy = []
     // look at artwork prop and see if any artworks match
     data.artwork.nodes.forEach(node => {
       if (node.recordId === art) {
@@ -33,26 +35,26 @@ const ArtistsAndArtwork = ({ artwork, data }) => {
         }
       })
       // converts returned media array from IDs to names
+      mediaCopy = []
       media.forEach((medium, i) => {
         data.mediums.nodes.forEach(node => {
           if (node.recordId === medium) {
-            media[i] = node.data.Name
-            return media
+            mediaCopy.push(node.data.Name)
           }
         })
       })
       // converts returned themes array from IDs to names
-      themes.forEach((theme, i) => {
-        data.themes.nodes.forEach(node => {
+      themesCopy = [] // empty the array before pushing new items to it
+      themes?.forEach((theme, i) => {
+        data.themes?.nodes.forEach(node => {
           if (node.recordId === theme) {
-            themes[i] = node.data.Name
-            return themes
+            themesCopy.push(node.data.Name)
           }
         })
       })
     })
 
-    console.log(selectedFilter.filterType)
+    console.log(themesCopy)
 
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
@@ -72,22 +74,22 @@ const ArtistsAndArtwork = ({ artwork, data }) => {
           </p>
           <p className="text-lg">
             <span className="font-bold">Media: </span>
-            {media.map((item, i) => {
+            {mediaCopy.map((item, i) => {
               return (
                 <span key={item}>
                   {item}
-                  {media.length > i + 1 ? ", " : ""}
+                  {mediaCopy.length > i + 1 ? ", " : ""}
                 </span>
               )
             })}
           </p>
           <p className="text-lg">
             <span className="font-bold">Theme: </span>
-            {themes.map((item, i) => {
+            {themesCopy.map((item, i) => {
               return (
                 <span key={item}>
                   {item}
-                  {themes.length > i + 1 ? ", " : ""}
+                  {themesCopy.length > i + 1 ? ", " : ""}
                 </span>
               )
             })}

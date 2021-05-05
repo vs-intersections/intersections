@@ -1,7 +1,6 @@
 import React from "react"
 import Description from "./Description"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
-import Location from "./Location"
 import Influence from "./Influence"
 import Favorites from "./Favorites"
 // import { data } from "autoprefixer"
@@ -19,9 +18,8 @@ const SidebarArtist = ({
     <>
       <Description table={table} name={artistName} description={bio} />
       <ArtistsAndArtwork artwork={artwork} data={data} />
-      <Location />
-      <Influence />
-      <Favorites />
+      <Influence data={data} influence={influence} />
+      <Favorites data={data} favorites={favorites} />
     </>
   )
 }

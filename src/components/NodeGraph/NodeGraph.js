@@ -25,6 +25,7 @@ const NodeGraph = ({ data }) => {
   const containerRef = useRef()
 
   // declare vars here to be used through out this component
+  const DEFAULT_LINK_COLOR = "#ddd"
   let IS_MOBILE = 0,
     width,
     height,
@@ -51,10 +52,10 @@ const NodeGraph = ({ data }) => {
     aspectW = getAspect(width, height)
     aspectH = getAspect(height, width)
     // set the default zoom of the SVG
-    aspectBase = 550
+    aspectBase = 625
     // set the aspect ratio (to be used in the viewbox)
-    aspectRatioWidth = aspectBase * aspectW || 550
-    aspectRatioHeight = aspectBase * aspectH || 550
+    aspectRatioWidth = aspectBase * aspectW || 600
+    aspectRatioHeight = aspectBase * aspectH || 600
   }
 
   useEffect(() => {
@@ -180,7 +181,10 @@ const NodeGraph = ({ data }) => {
       .data(links)
       .enter()
       .append("line")
-      .attr("stroke", line => line.linkColor || line.color || "#c7c7c7")
+      .attr(
+        "stroke",
+        line => line.linkColor || line.color || DEFAULT_LINK_COLOR
+      )
       .attr("stroke-width", line => line.strokeWidth || 1)
 
     // group the circle nodes to add sibling elements (tooltips and halo)
