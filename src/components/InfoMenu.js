@@ -8,7 +8,7 @@ const InfoMenu = () => {
     <div
       className="bg-gray-200 h-screen z-50 flex justify-center transition-transform"
       css={css`
-      height: ${infoMenuIsOpen ? "calc(100vh - 64px)" : "100%"};
+      height: ${infoMenuIsOpen ? "calc(100vh - 108px)" : "100%"};
       transform: ${infoMenuIsOpen ? "translateY(-100%)" : ""};
       `}
     >
