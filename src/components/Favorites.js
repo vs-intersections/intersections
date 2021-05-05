@@ -2,7 +2,11 @@ import React from "react"
 
 const Favorites = ({ favorites }) => {
   const renderedData = favorites?.map(item => {
-    return <p className="text-lg">{item}</p>
+    return (
+      <p key={item} className="text-lg">
+        {item}
+      </p>
+    )
   })
   return (
     <div>

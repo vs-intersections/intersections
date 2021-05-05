@@ -131,7 +131,7 @@ export default function Home() {
             <div className="absolute top-0 bottom-0 left-0 right-0">
               <main className="h-full grid grid-rows-mainContent lg:grid-rows-mainContentLg">
                 <GraphAndSidebar data={data} />
-                {IS_MOBILE && <SidebarMobile />}
+                {IS_MOBILE && <SidebarMobile data={data} />}
                 {IS_MOBILE ? <InfoMenu /> : <Footer />}
               </main>
             </div>
