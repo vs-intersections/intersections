@@ -37,11 +37,11 @@ Monday
 Tuesday
 
 - Infinite Scroll mobile navigation (DAVID)
-- Info mobile sidebar expanding/compressing animation (DAVID)
+- ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
 
 Wednesday
 
-- Mobile Sidebar expanding/compressing animation (DAVID)
+- ~~Mobile Sidebar expanding/compressing animation (DAVID)~~
 - Link Artists to collab artists (ALBERT)
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
@@ -49,6 +49,7 @@ Wednesday
 - On Theme view: click Franklin's in Location, then click Fantasy in Theme - the theme node links are inconsistent
 - Render images in sidebar content (Albert)
 - Add links for all metadata in sidebar (Albert)
+- Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (Albert)
 
 Thursday
 
@@ -59,7 +60,7 @@ Thursday
 
 - ~~Display Link data in sidebar~~
 - Infinite Scroll mobile navigation (DAVID)
-- Info mobile sidebar expanding/compressing animation (DAVID)
+- ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
 - Mobile Sidebar expanding/compressing animation (DAVID)
 - ~~Mobile hamburger menu (DAVID)~~
 - Pages: Video and about (DAVID)

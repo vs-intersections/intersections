@@ -126,7 +126,7 @@ export default function Home() {
       <LayoutMain nodes={data}>
         <div className="h-screen grid grid-rows-layout lg:grid-rows-layoutLg overflow-x-hidden">
           <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-          <Navigation data={data} />
+          <Navigation data={data} isMobile={IS_MOBILE}/>
           <div className="relative">
             <div className="absolute top-0 bottom-0 left-0 right-0">
               <main className="h-full grid grid-rows-mainContent lg:grid-rows-mainContentLg">

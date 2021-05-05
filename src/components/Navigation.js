@@ -3,7 +3,7 @@ import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
 
-const Navigation = ({ data }) => {
+const Navigation = ({ data, isMobile }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
 
@@ -82,11 +82,12 @@ const Navigation = ({ data }) => {
     <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
         {generateDropdown("artist", artists, "lightGreen")}
+
         {generateDropdown("artwork", artwork, "orange")}
-        {generateDropdown("location", locations, "blue")}
-        {generateDropdown("theme", themes, "pink")}
-        {generateDropdown("medium", mediums, "lightBlue")}
-        {generateDropdown("influence", influences, "yellow")}
+        {!isMobile && generateDropdown("location", locations, "blue")}
+        {!isMobile && generateDropdown("theme", themes, "pink")}
+        {!isMobile && generateDropdown("medium", mediums, "lightBlue")}
+        {!isMobile && generateDropdown("influence", influences, "yellow")}
       </ul>
     </nav>
   )
