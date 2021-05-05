@@ -30,6 +30,7 @@ Wednesday
 - Add links for all metadata in sidebar (ALBERT)
 - Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
 - Alphabetically list items in Navbar dropdowns (ALBERT)
+- Min-height the sidebar images (some of them are rendering too short) (ALBERT)
 
 Thursday
 

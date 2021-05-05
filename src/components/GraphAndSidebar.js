@@ -28,7 +28,7 @@ const GraphAndSidebar = ({ data }) => {
     blue: currentTheme === "location",
     pink: currentTheme === "theme",
     lightBlue: currentTheme === "medium",
-    yellow: currentTheme === "influence",
+    darkGreen: currentTheme === "influence",
   })
 
   return (

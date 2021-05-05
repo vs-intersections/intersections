@@ -215,7 +215,7 @@ export const linkGenerator = (
           artistB.isSelectedParent &&
           selectedFilter.filterType === "influence"
         ) {
-          linkMainNodesDefault(artistA, artistB, "#E7FF57", 5)
+          linkMainNodesDefault(artistA, artistB, "#15A442", 5)
         } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id

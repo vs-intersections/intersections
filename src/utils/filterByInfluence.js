@@ -5,7 +5,7 @@ export const influenceAddParentField = (parentNode, selectedFilter) => {
     if (influence === selectedFilter.filterName) {
       parentNode.isSelectedParent = true
       parentNode.fill = "white"
-      parentNode.linkColor = "#E7FF57"
+      parentNode.linkColor = "#15A442"
     }
   })
 }
