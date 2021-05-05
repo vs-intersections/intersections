@@ -2,21 +2,11 @@ import React from "react"
 import Description from "./Description"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
 
-const SidebarLocation = ({
-  data,
-  locationName,
-  artwork,
-  description,
-  table,
-}) => {
+const SidebarLocation = ({ data }) => {
   return (
     <>
-      <Description
-        table={table}
-        name={locationName}
-        description={description}
-      />
-      <ArtistsAndArtwork artwork={artwork} data={data} />
+      <Description data={data} />
+      <ArtistsAndArtwork data={data} />
     </>
   )
 }

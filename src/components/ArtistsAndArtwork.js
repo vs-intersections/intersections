@@ -1,64 +1,56 @@
 import React from "react"
+import { getMetadataByFilterId, translateIdToName } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 
-// When clicking 'Buffalo Thunder", the Artist field is empty and media and themes are IDs instead of names
-
-const ArtistsAndArtwork = ({ artists, artwork, data }) => {
+const ArtistsAndArtwork = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)
   const { selectedFilter } = useFilterContext()
-  const renderedArtistsAndArtwork = artwork?.map(art => {
-    // vars that will be assigned from destructuring
-    let artist = [],
+
+  let metadata
+
+  if (selectedFilter.filterType) {
+    metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
+  }
+
+  const {
+    Artist: artistMetadata,
+    Artwork: artwork,
+    Primary_Artist__REQUIRED_: primaryArtist,
+    Medium: media,
+    Theme: themes,
+  } = metadata.data
+
+  // if rendering artwork
+  const renderedArtwork = artwork?.map(art => {
+    let artist,
       title,
-      media = [],
-      themes = [],
       artistByName,
+      themes = [],
+      media = [],
+      mediaCopy = [],
       themesCopy = [],
-      mediaCopy = []
+      nodeData = {}
     // look at artwork prop and see if any artworks match
     dataObjCopy.artwork.nodes.forEach(node => {
       if (node.recordId === art) {
-        return ({
-          Primary_Artist__REQUIRED_: artist,
-          Name: title,
-          Medium: media,
-          Theme: themes,
-        } = node.data)
+        nodeData = node.data
+
+        artist = nodeData.Primary_Artist__REQUIRED_[0]
+        title = nodeData.Name
+        media = nodeData.Medium
+        themes = nodeData.Theme
+
+        // convert IDs to names
+        if (artist) artistByName = translateIdToName(data, artist, "artist")
+        if (media) mediaCopy = translateIdToName(data, media, "medium")
+        if (themes) themesCopy = translateIdToName(data, themes, "theme")
       }
-
-      artistByName = artist[0]
-      // converts artist ID to name
-      dataObjCopy.artists.nodes.forEach(node => {
-        if (node.recordId === artistByName) {
-          artistByName = node.data.Name
-        }
-      })
-      // converts returned media array from IDs to names
-      mediaCopy = [] // empty the array before pushing new items to it
-      media.forEach((medium, i) => {
-        dataObjCopy.mediums.nodes.forEach(node => {
-          if (node.recordId === medium) {
-            mediaCopy.push(node.data.Name)
-          }
-        })
-      })
-      // converts returned themes array from IDs to names
-      themesCopy = [] // empty the array before pushing new items to it
-      themes?.forEach((theme, i) => {
-        dataObjCopy.themes.nodes.forEach(node => {
-          if (node.recordId === theme) {
-            themesCopy.push(node.data.Name)
-          }
-        })
-      })
     })
-
-    console.log(themesCopy)
 
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
-        <div className="w-auto h-auto bg-gray-500 color-white">
-          IMAGE GOES HERE
+        <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
+          IMAGE
         </div>
         <div>
           {selectedFilter.filterType !== "artist" && (
@@ -73,26 +65,98 @@ const ArtistsAndArtwork = ({ artists, artwork, data }) => {
           </p>
           <p className="text-lg">
             <span className="font-bold">Media: </span>
-            {mediaCopy.map((item, i) => {
-              return (
-                <span key={item}>
-                  {item}
-                  {mediaCopy.length > i + 1 ? ", " : ""}
-                </span>
-              )
-            })}
+            {mediaCopy.length === 0
+              ? "Media not specified"
+              : mediaCopy.map((item, i) => {
+                  return (
+                    <span key={item}>
+                      {item}
+                      {mediaCopy.length > i + 1 ? ", " : ""}
+                    </span>
+                  )
+                })}
           </p>
           <p className="text-lg">
             <span className="font-bold">Theme: </span>
-            {themesCopy.map((item, i) => {
-              return (
-                <span key={item}>
-                  {item}
-                  {themesCopy.length > i + 1 ? ", " : ""}
-                </span>
-              )
-            })}
+            {themesCopy.length === 0
+              ? "Theme not specified"
+              : themesCopy.map((item, i) => {
+                  return (
+                    <span key={item}>
+                      {item}
+                      {themesCopy.length > i + 1 ? ", " : ""}
+                    </span>
+                  )
+                })}
           </p>
+        </div>
+      </div>
+    )
+  })
+
+  const artistData = primaryArtist || artistMetadata
+
+  // if rendering artist(s)
+  const renderedArtist = artistData?.map(artistId => {
+    let title,
+      artistByName,
+      mediaCopy = [],
+      themesCopy = []
+
+    // convert IDs to names
+    if (artistId) artistByName = translateIdToName(data, artistId, "artist")
+    if (media) mediaCopy = translateIdToName(data, media, "medium")
+    if (themes) themesCopy = translateIdToName(data, themes, "theme")
+
+    return (
+      <div key={artistId} className="grid gap-x-4 grid-cols-artwork mb-6">
+        <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
+          IMAGE
+        </div>
+        <div>
+          {selectedFilter.filterType !== "artist" && (
+            <p className="text-lg">
+              <span className="font-bold">Artist: </span>
+              {artistByName}
+            </p>
+          )}
+          {selectedFilter.filterType !== "artwork" ||
+            (selectedFilter.filterType !== "influence" && (
+              <p className="text-lg">
+                <span className="font-bold">Title: </span>
+                {title}
+              </p>
+            ))}
+          {selectedFilter.filterType !== "influence" && (
+            <p className="text-lg">
+              <span className="font-bold">Media: </span>
+              {mediaCopy.length === 0
+                ? "Media not specified"
+                : mediaCopy.map((item, i) => {
+                    return (
+                      <span key={item}>
+                        {item}
+                        {mediaCopy.length > i + 1 ? ", " : ""}
+                      </span>
+                    )
+                  })}
+            </p>
+          )}
+          {selectedFilter.filterType !== "influence" && (
+            <p className="text-lg">
+              <span className="font-bold">Theme: </span>
+              {themesCopy.length === 0
+                ? "Theme not specified"
+                : themesCopy.map((item, i) => {
+                    return (
+                      <span key={item}>
+                        {item}
+                        {themesCopy.length > i + 1 ? ", " : ""}
+                      </span>
+                    )
+                  })}
+            </p>
+          )}
         </div>
       </div>
     )
@@ -103,7 +167,14 @@ const ArtistsAndArtwork = ({ artists, artwork, data }) => {
       <h3 className="pb-1 text-2xl font-bold mb-3.5">
         {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
       </h3>
-      {renderedArtistsAndArtwork}
+      {selectedFilter.filterType === "artwork" ||
+      selectedFilter.filterType === "influence" ? (
+        renderedArtist
+      ) : !artwork ? (
+        <p className="text-lg">Artwork coming soon</p>
+      ) : (
+        renderedArtwork
+      )}
     </div>
   )
 }

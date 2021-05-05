@@ -87,7 +87,7 @@ const Navigation = ({ data, isMobile }) => {
         {!isMobile && generateDropdown("location", locations, "blue")}
         {!isMobile && generateDropdown("theme", themes, "pink")}
         {!isMobile && generateDropdown("medium", mediums, "lightBlue")}
-        {!isMobile && generateDropdown("influence", influences, "yellow")}
+        {!isMobile && generateDropdown("influence", influences, "darkGreen")}
       </ul>
     </nav>
   )
