@@ -74,25 +74,29 @@ const ArtistsAndArtwork = ({ artwork, primaryArtist, data }) => {
           </p>
           <p className="text-lg">
             <span className="font-bold">Media: </span>
-            {mediaCopy.map((item, i) => {
-              return (
-                <span key={item}>
-                  {item}
-                  {mediaCopy.length > i + 1 ? ", " : ""}
-                </span>
-              )
-            })}
+            {mediaCopy.length === 0
+              ? "Media not specified"
+              : mediaCopy.map((item, i) => {
+                  return (
+                    <span key={item}>
+                      {item}
+                      {mediaCopy.length > i + 1 ? ", " : ""}
+                    </span>
+                  )
+                })}
           </p>
           <p className="text-lg">
             <span className="font-bold">Theme: </span>
-            {themesCopy.map((item, i) => {
-              return (
-                <span key={item}>
-                  {item}
-                  {themesCopy.length > i + 1 ? ", " : ""}
-                </span>
-              )
-            })}
+            {themesCopy.length === 0
+              ? "Theme not specified"
+              : themesCopy.map((item, i) => {
+                  return (
+                    <span key={item}>
+                      {item}
+                      {themesCopy.length > i + 1 ? ", " : ""}
+                    </span>
+                  )
+                })}
           </p>
         </div>
       </div>
@@ -173,7 +177,7 @@ const ArtistsAndArtwork = ({ artwork, primaryArtist, data }) => {
       <h3 className="pb-1 text-2xl font-bold mb-3.5">
         {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
       </h3>
-      {selectedFilter.filterType}
+      {renderedArtwork}
       {/* {selectedFilter.filterType === 'artwork' renderedArtist : renderedArtwork} */}
     </div>
   )
