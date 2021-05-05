@@ -1,7 +1,6 @@
 import React from "react"
-import { getMetadataByFilterId } from "../utils"
+import { getMetadataByFilterId, translateIdToName } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
-import { translateIdToName } from "../utils/translateIdToName"
 
 const Collaborators = ({ data }) => {
   // makes a copy of the data object instead of a reference (fixes a lot of bugs)
@@ -25,7 +24,9 @@ const Collaborators = ({ data }) => {
         <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborators</h3>
       )}
       {collabNames.map(item => (
-        <p className="text-lg">{item}</p>
+        <p key={item} className="text-lg">
+          {item}
+        </p>
       ))}
     </div>
   )

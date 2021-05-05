@@ -1,7 +1,6 @@
 import React from "react"
 import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
-import { translateIdToName } from "../utils/translateIdToName"
 
 const SidebarDescription = ({ data }) => {
   // makes a copy of the data object instead of a reference (fixes a lot of bugs)

@@ -1,7 +1,6 @@
 import React from "react"
-import { getMetadataByFilterId } from "../utils"
+import { getMetadataByFilterId, translateIdToName } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
-import { translateIdToName } from "../utils/translateIdToName"
 
 const ArtistsAndArtwork = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)

@@ -26,8 +26,8 @@ export const translateIdToName = (data, id, table) => {
   // checks to see if the ID is an array of strings
   if (Array.isArray(id)) {
     const namesArray = id.map(item => {
-      const result = data[dataTable].nodes.find(node => node.recordId === item)
-      return result.data.Name
+      const result = data[dataTable]?.nodes.find(node => node.recordId === item)
+      if (result) return result.data.Name
     })
     return namesArray
   }

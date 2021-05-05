@@ -1,7 +1,10 @@
 import React from "react"
-import { getMetadataByFilterId } from "../utils"
+import {
+  getMetadataByFilterId,
+  translateIdToName,
+  getLocations,
+} from "../utils"
 import { useFilterContext } from "./context/FilterContext"
-import { translateIdToName } from "../utils/translateIdToName"
 
 const Location = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)
@@ -11,22 +14,50 @@ const Location = ({ data }) => {
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
-    console.log("METADATA")
-    console.log(metadata)
   }
 
   const {
-    Artwork: artwork,
-    Primary_Artist__REQUIRED_: primaryArtist,
-    Medium: media,
-    Theme: themes,
-  } = metadata.data
+    recordId,
+    data: {
+      Locations: locations,
+      Primary_Artist__REQUIRED_: primaryArtist,
+      Medium: media,
+      Theme: themes,
+    },
+  } = metadata
+
+  let locationIds = []
+  let locationNames = []
+
+  // for Artwork dropdown
+  if (selectedFilter.filterType === "artwork") {
+    if (locations)
+      locationNames = translateIdToName(dataObjCopy, locations, "location")
+  }
+
+  // for Theme dropdown
+  if (
+    selectedFilter.filterType === "theme" ||
+    (selectedFilter.filterType === "medium" && recordId)
+  ) {
+    locationIds = getLocations(dataObjCopy, recordId, selectedFilter.filterType)
+
+    if (locationIds.length)
+      locationNames = translateIdToName(dataObjCopy, locationIds, "location")
+  }
 
   return (
     <div className="mb-16">
       <h3 className="pb-1 text-2xl font-bold mb-3.5">Current Locations</h3>
-      <p className="text-lg">Downtown Santa Fe</p>
-      <p className="text-lg">Railyards</p>
+      {locationNames.length ? (
+        locationNames.map(item => (
+          <p key={item} className="text-lg">
+            {item}
+          </p>
+        ))
+      ) : (
+        <p className="text-lg">Not currently located anywhere</p>
+      )}
     </div>
   )
 }
