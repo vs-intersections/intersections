@@ -14,22 +14,13 @@ const ArtistsAndArtwork = ({ data }) => {
   }
 
   const {
-    table,
-    data: {
-      Collaborators: collabs,
-      Name: filterName,
-      Artwork: artwork,
-      Artist: artists,
-      Description: description,
-      Bio: bio,
-      Influence: influence,
-      Favorites: favorites,
-      Primary_Artist__REQUIRED_: primaryArtist,
-      Medium: media,
-      Theme: themes,
-    },
-  } = metadata
+    Artwork: artwork,
+    Primary_Artist__REQUIRED_: primaryArtist,
+    Medium: media,
+    Theme: themes,
+  } = metadata.data
 
+  // if rendering artwork
   const renderedArtwork = artwork?.map(art => {
     let artist,
       title,
@@ -103,7 +94,8 @@ const ArtistsAndArtwork = ({ data }) => {
     )
   })
 
-  const renderedArtist = primaryArtist.map(artistId => {
+  // if rendering artist
+  const renderedArtist = primaryArtist?.map(artistId => {
     let title,
       artistByName,
       mediaCopy = [],
@@ -168,9 +160,13 @@ const ArtistsAndArtwork = ({ data }) => {
       <h3 className="pb-1 text-2xl font-bold mb-3.5">
         {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
       </h3>
-      {selectedFilter.filterType === "artwork"
-        ? renderedArtist
-        : renderedArtwork}
+      {selectedFilter.filterType === "artwork" ? (
+        renderedArtist
+      ) : !artwork ? (
+        <p className="text-lg">Artwork coming soon</p>
+      ) : (
+        renderedArtwork
+      )}
     </div>
   )
 }

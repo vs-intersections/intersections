@@ -1,29 +1,38 @@
 import React from "react"
+import { getMetadataByFilterId } from "../utils"
+import { useFilterContext } from "./context/FilterContext"
+import { translateIdToName } from "../utils/translateIdToName"
 
-const Influence = ({ data, influence }) => {
+const Influence = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)
+  const { selectedFilter } = useFilterContext()
 
-  let influenceCopy = []
-  if (influence) {
-    influence.map((item, i) => {
-      dataObjCopy.influences.nodes.forEach(node => {
-        if (node.recordId === item) {
-          influenceCopy.push(node.data.Name)
-        }
-      })
-    })
+  let metadata
+
+  if (selectedFilter.filterType) {
+    metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
+
+  const { Influence: influence } = metadata.data
+
+  let influenceNames = []
+  if (influence)
+    influenceNames = translateIdToName(data, influence, "influence")
 
   return (
     <div className="mb-16">
       <h3 className="pb-1 text-2xl font-bold mb-3.5">Influence</h3>
-      {influenceCopy.length === 0 ? (
+      {influenceNames.length === 0 ? (
         <p className="text-lg">
           It doesn't look like this artist has any influences
           <span className="block">How mysterious...</span>
         </p>
       ) : (
-        influenceCopy.map(item => <p className="text-lg">{item}</p>)
+        influenceNames.map(item => (
+          <p key={item} className="text-lg">
+            {item}
+          </p>
+        ))
       )}
     </div>
   )
