@@ -49,6 +49,7 @@ Wednesday
 - On Theme view: click Franklin's in Location, then click Fantasy in Theme - the theme node links are inconsistent
 - Render images in sidebar content (Albert)
 - Add links for all metadata in sidebar (Albert)
+- Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (Albert)
 
 Thursday
 
