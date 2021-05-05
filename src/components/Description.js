@@ -26,6 +26,14 @@ const SidebarDescription = ({ data }) => {
       <p className="text-lg">
         {description || bio || "Description coming soon"}
       </p>
+      {(selectedFilter.filterType !== "location" ||
+        selectedFilter.filterType !== "artist") && (
+        <div className="w-full h-96 bg-gray-500 mt-3">
+          <span className="text-lg flex justify-center items-center h-full">
+            IMAGE
+          </span>
+        </div>
+      )}
     </div>
   )
 }

@@ -51,8 +51,8 @@ const ArtistsAndArtwork = ({ data }) => {
 
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
-        <div className="w-auto h-32 bg-gray-500 color-white">
-          IMAGE GOES HERE
+        <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
+          IMAGE
         </div>
         <div>
           {selectedFilter.filterType !== "artist" && (
@@ -114,8 +114,8 @@ const ArtistsAndArtwork = ({ data }) => {
 
     return (
       <div key={artistId} className="grid gap-x-4 grid-cols-artwork mb-6">
-        <div className="w-auto h-32 bg-gray-500 color-white">
-          IMAGE GOES HERE
+        <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
+          IMAGE
         </div>
         <div>
           {selectedFilter.filterType !== "artist" && (
