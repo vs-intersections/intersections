@@ -10,8 +10,6 @@ const ArtistsAndArtwork = ({ data }) => {
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
-    console.log("METADATA")
-    console.log(metadata)
   }
 
   const {
@@ -109,8 +107,6 @@ const ArtistsAndArtwork = ({ data }) => {
     if (artistId) artistByName = translateIdToName(data, artistId, "artist")
     if (media) mediaCopy = translateIdToName(data, media, "medium")
     if (themes) themesCopy = translateIdToName(data, themes, "theme")
-
-    console.log(artistByName)
 
     return (
       <div key={artistId} className="grid gap-x-4 grid-cols-artwork mb-6">
