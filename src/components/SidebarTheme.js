@@ -3,12 +3,12 @@ import Description from "./Description"
 import Location from "./Location"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
 
-const SidebarTheme = ({ data }) => {
+const SidebarTheme = ({ data, themeName, description, artwork, table }) => {
   return (
     <>
-      <Description />
+      <Description description={description} table={table} name={themeName} />
       <Location />
-      <ArtistsAndArtwork />
+      <ArtistsAndArtwork data={data} artwork={artwork} />
     </>
   )
 }

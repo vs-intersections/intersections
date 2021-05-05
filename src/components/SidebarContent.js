@@ -9,8 +9,10 @@ import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 
 const SidebarContent = ({ data }) => {
+  // makes a copy of the data object instead of a reference (fixes a lot of bugs)
   const dataObjCopy = Object.assign({}, data)
 
+  // for troubleshooting
   console.log("BEFORE")
   if (data) console.log(data.artwork.nodes[7].data.Theme)
 
@@ -37,6 +39,7 @@ const SidebarContent = ({ data }) => {
         data: {
           Name: filterName,
           Artwork: artwork,
+          Artist: artists,
           Description: description,
           Bio: bio,
           Influence: influence,
@@ -65,15 +68,34 @@ const SidebarContent = ({ data }) => {
           table={table}
         />
       ) : selectedFilter.filterType === "medium" ? (
-        <SidebarMedium data={data} />
+        <SidebarMedium
+          data={data}
+          mediumName={filterName}
+          description={description}
+          artwork={artwork}
+          table={table}
+        />
       ) : selectedFilter.filterType === "theme" ? (
-        <SidebarTheme data={data} />
+        <SidebarTheme
+          data={data}
+          themeName={filterName}
+          description={description}
+          artwork={artwork}
+          table={table}
+        />
       ) : (
-        <SidebarInfluence data={data} />
+        <SidebarInfluence
+          data={data}
+          influenceName={filterName}
+          description={description}
+          artists={artists}
+          table={table}
+        />
       )
     }
   }
 
+  // for troubleshooting
   console.log("AFTER")
   if (data) console.log(data.artwork.nodes[7].data.Theme)
 
