@@ -37,11 +37,11 @@ Monday
 Tuesday
 
 - Infinite Scroll mobile navigation (DAVID)
-- Info mobile sidebar expanding/compressing animation (DAVID)
+- ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
 
 Wednesday
 
-- Mobile Sidebar expanding/compressing animation (DAVID)
+- ~~Mobile Sidebar expanding/compressing animation (DAVID)~~
 - Link Artists to collab artists (ALBERT)
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
@@ -60,7 +60,7 @@ Thursday
 
 - ~~Display Link data in sidebar~~
 - Infinite Scroll mobile navigation (DAVID)
-- Info mobile sidebar expanding/compressing animation (DAVID)
+- ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
 - Mobile Sidebar expanding/compressing animation (DAVID)
 - ~~Mobile hamburger menu (DAVID)~~
 - Pages: Video and about (DAVID)
