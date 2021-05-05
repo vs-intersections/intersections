@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React from "react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
@@ -8,7 +8,6 @@ const Navigation = ({ data }) => {
   const { selectedNode, setSelectedNode } = useNodeContext()
 
   const handleSelect = e => {
-    // console.log(e.name)
     setSelectedFilter({
       filterName: e.target.value,
       filterType: e.target.id,

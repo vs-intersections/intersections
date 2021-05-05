@@ -3,9 +3,10 @@ import Description from "./Description"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
 import Location from "./Location"
 
-const SidebarArtwork = () => {
+const SidebarArtwork = ({ data }) => {
   return (
     <>
+      <h1>Yep... gotta do this part</h1>
       <Description />
       <ArtistsAndArtwork />
       <Location />

@@ -12,6 +12,7 @@ export const DEFAULT_DISTANCE = 60
 const MAIN_NODE_DISTANCE = 150
 const CHILD_NODE_DISTANCE = 20
 const PARENT_NODE_COLOR = "#A3F78E"
+const DEFAULT_LINK_COLOR = "#ddd"
 let artists = []
 let artwork = []
 let artistsTempNodes = []
@@ -71,7 +72,7 @@ export const linkGenerator = (
   const linkMainNodesDefault = (
     source,
     target,
-    color = "#c7c7c7",
+    color = DEFAULT_LINK_COLOR,
     strokeWidth = 1
   ) => {
     links.push({
@@ -127,7 +128,12 @@ export const linkGenerator = (
       }
       // calls function to add property when selectedFilter is a specific Artist
       if (parentNode.id === selectedFilter.filterName) {
-        artistAddParentField(artworkArray, parentNode)
+        let tempArr = artistAddParentField(
+          artworkArray,
+          artistsArray,
+          parentNode
+        )
+        artistsArray = [...tempArr]
       }
 
       // calls function to add property when selectedFilter is a specific Artwork

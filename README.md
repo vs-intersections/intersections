@@ -33,19 +33,22 @@ Monday
 
 - ~~Node graph overlay descriptor (ALBERT)~~
 - ~~Mobile hamburger menu (DAVID)~~
-- Link Artists to collab artists (ALBERT)
 
 Tuesday
 
 - Infinite Scroll mobile navigation (DAVID)
 - Info mobile sidebar expanding/compressing animation (DAVID)
-- Navigation filtering selectors (styling and updating node graph) (ALBERT)
 
 Wednesday
 
 - Mobile Sidebar expanding/compressing animation (DAVID)
+- Link Artists to collab artists (ALBERT)
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
+- On Location view, when clicking 'Buffalo Thunder", the Artist field is empty and media and themes are IDs instead of names (ALBERT)
+- On Theme view: click Franklin's in Location, then click Fantasy in Theme - the theme node links are inconsistent
+- Render images in sidebar content (Albert)
+- Add links for all metadata in sidebar (Albert)
 
 Thursday
 
