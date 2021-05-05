@@ -13,19 +13,7 @@ I've been developing with the idea to separate items into their own components a
 Personal To-do:
 
 - Get node graph to render at same VX, VX, X and Y (it currently jumps) - still an issue - maybe not a huge one?
-- Node Haloing - LOL - maybe.... it's wack
-- Node tooltips
 - Graph zooming
-
-Other things:
-
-- First query of data needs to have all meta data
-- Tie this data to its respective node
-- The nodes will also have a 'selected' property with a selector that has been chosen (artist, theme, etc)
-- The 'selected' property will only be populated the selected node(s) (noting here for my own sanity)
-- I need to figure out why the graph repopulates with additional nodes when new nodes/links are created from linkGenerator
-- look at the data before and after
-- there be your answer
 
 SCHEDULE
 
@@ -46,7 +34,7 @@ Wednesday
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
 - On Location view, when clicking 'Buffalo Thunder", the Artist field is empty and media and themes are IDs instead of names (ALBERT)
-- On Theme view: click Franklin's in Location, then click Fantasy in Theme - the theme node links are inconsistent
+- ~~On Theme view: click Franklin's in Location, then click Fantasy in Theme - the theme node links are inconsistent (ALBERT)~~
 - Render images in sidebar content (Albert)
 - Add links for all metadata in sidebar (Albert)
 - Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (Albert)

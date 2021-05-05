@@ -21,8 +21,6 @@ const SidebarContent = ({ data }) => {
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
-    console.log("MetaData:")
-    console.log(metadata)
   }
 
   // working on conditionally rendering props through dynamic naming
@@ -37,6 +35,7 @@ const SidebarContent = ({ data }) => {
       const {
         table,
         data: {
+          Collaborators: collabs,
           Name: filterName,
           Artwork: artwork,
           Artist: artists,
@@ -58,7 +57,7 @@ const SidebarContent = ({ data }) => {
           table={table}
         />
       ) : selectedFilter.filterType === "artwork" ? (
-        <SidebarArtwork data={data} />
+        <SidebarArtwork data={data} artwork={filterName} />
       ) : selectedFilter.filterType === "location" ? (
         <SidebarLocation
           data={data}

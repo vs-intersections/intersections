@@ -82,13 +82,6 @@ const GraphAndSidebar = ({ data }) => {
             <div
               className={`absolute left-3vw w-40vw h-full bg-${tabClass} bg-opacity-10`}
             >
-              {/* <SidebarContent /> */}
-              {/* {JSON.stringify({ selectedNode })} */}
-              {/* {data &&
-                selectedFilter?.filterName &&
-                JSON.stringify(
-                  getMetadataByFilterId(data, selectedFilter?.filterName)
-                )} */}
               {data && <SidebarContent data={data} />}
             </div>
           </div>
