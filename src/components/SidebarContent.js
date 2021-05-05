@@ -57,7 +57,7 @@ const SidebarContent = ({ data }) => {
           table={table}
         />
       ) : selectedFilter.filterType === "artwork" ? (
-        <SidebarArtwork data={data} artwork={filterName} />
+        <SidebarArtwork data={data} />
       ) : selectedFilter.filterType === "location" ? (
         <SidebarLocation
           data={data}

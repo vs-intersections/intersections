@@ -25,8 +25,6 @@ const Influence = ({ data, influence }) => {
       ) : (
         influenceCopy.map(item => <p className="text-lg">{item}</p>)
       )}
-      {/* <p className="text-lg">Paco de Lucia</p>
-      <p className="text-lg">Good food</p> */}
     </div>
   )
 }

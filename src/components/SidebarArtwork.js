@@ -2,6 +2,7 @@ import React from "react"
 import Description from "./Description"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
 import Location from "./Location"
+import Collaborators from "./Collaborators"
 import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 
@@ -30,6 +31,7 @@ const SidebarArtwork = ({ data }) => {
       <Description description={description} table={table} name={filterName} />
       <ArtistsAndArtwork data={data} primaryArtist={primaryArtist} />
       <Location />
+      <Collaborators data={data} />
     </>
   )
 }
