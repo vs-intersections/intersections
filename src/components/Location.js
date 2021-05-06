@@ -51,7 +51,7 @@ const Location = ({ data }) => {
       <h3 className="pb-1 text-2xl font-bold mb-3.5">Current Locations</h3>
       {locationNames.length ? (
         locationNames.map(item => (
-          <p key={item} className="text-lg">
+          <p key={item} className="text-lg underline-blue">
             {item}
           </p>
         ))

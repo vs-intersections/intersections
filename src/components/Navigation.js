@@ -12,7 +12,6 @@ const Navigation = ({ data, isMobile }) => {
       filterName: e.target.value,
       filterType: e.target.id,
     })
-    setSelectedNode(null)
   }
 
   const artists = data?.artists?.nodes.map(el => ({

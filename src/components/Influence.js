@@ -28,7 +28,7 @@ const Influence = ({ data }) => {
         </p>
       ) : (
         influenceNames.map(item => (
-          <p key={item} className="text-lg">
+          <p key={item} className="text-lg underline-darkGreen">
             {item}
           </p>
         ))

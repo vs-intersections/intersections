@@ -10,6 +10,7 @@ const ArtistsAndArtwork = ({ data }) => {
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
+    console.log(metadata)
   }
 
   const {
@@ -56,12 +57,12 @@ const ArtistsAndArtwork = ({ data }) => {
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
               <span className="font-bold">Artist: </span>
-              {artistByName}
+              <span className="underline-lightGreen">{artistByName}</span>
             </p>
           )}
           <p className="text-lg">
             <span className="font-bold">Title: </span>
-            {title}
+            <span className="underline-orange">{title}</span>
           </p>
           <p className="text-lg">
             <span className="font-bold">Media: </span>
@@ -69,7 +70,7 @@ const ArtistsAndArtwork = ({ data }) => {
               ? "Media not specified"
               : mediaCopy.map((item, i) => {
                   return (
-                    <span key={item}>
+                    <span key={item} className="underline-lightBlue">
                       {item}
                       {mediaCopy.length > i + 1 ? ", " : ""}
                     </span>
@@ -82,7 +83,7 @@ const ArtistsAndArtwork = ({ data }) => {
               ? "Theme not specified"
               : themesCopy.map((item, i) => {
                   return (
-                    <span key={item}>
+                    <span key={item} className="underline-pink">
                       {item}
                       {themesCopy.length > i + 1 ? ", " : ""}
                     </span>
@@ -117,16 +118,16 @@ const ArtistsAndArtwork = ({ data }) => {
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
               <span className="font-bold">Artist: </span>
-              {artistByName}
+              <span className="underline-lightGreen">{artistByName}</span>
             </p>
           )}
-          {selectedFilter.filterType !== "artwork" ||
-            (selectedFilter.filterType !== "influence" && (
+          {selectedFilter.filterType !== "artwork" &&
+            selectedFilter.filterType !== "influence" && (
               <p className="text-lg">
                 <span className="font-bold">Title: </span>
-                {title}
+                <span className="underline-orange">{title}</span>
               </p>
-            ))}
+            )}
           {selectedFilter.filterType !== "influence" && (
             <p className="text-lg">
               <span className="font-bold">Media: </span>
@@ -134,7 +135,7 @@ const ArtistsAndArtwork = ({ data }) => {
                 ? "Media not specified"
                 : mediaCopy.map((item, i) => {
                     return (
-                      <span key={item}>
+                      <span key={item} className="underline-lightBlue">
                         {item}
                         {mediaCopy.length > i + 1 ? ", " : ""}
                       </span>
@@ -149,7 +150,7 @@ const ArtistsAndArtwork = ({ data }) => {
                 ? "Theme not specified"
                 : themesCopy.map((item, i) => {
                     return (
-                      <span key={item}>
+                      <span key={item} className="underline-pink">
                         {item}
                         {themesCopy.length > i + 1 ? ", " : ""}
                       </span>
@@ -164,14 +165,20 @@ const ArtistsAndArtwork = ({ data }) => {
 
   return (
     <div className="mb-16">
-      <h3 className="pb-1 text-2xl font-bold mb-3.5">
-        {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
-      </h3>
+      {selectedFilter.filterType !== "artwork" && (
+        <h3 className="pb-1 text-2xl font-bold mb-3.5">
+          {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
+        </h3>
+      )}
       {selectedFilter.filterType === "artwork" ||
-      selectedFilter.filterType === "influence" ? (
+      (selectedFilter.filterType === "influence" && artistData) ? (
         renderedArtist
-      ) : !artwork ? (
+      ) : (selectedFilter.filterType === "theme" && !artwork) ||
+        (selectedFilter.filterType === "artist" && !artwork) ? (
         <p className="text-lg">Artwork coming soon</p>
+      ) : selectedFilter.filterType === "artwork" ||
+        (selectedFilter.filterType === "influence" && !artistData) ? (
+        <p className="text-lg">Artists coming soon</p>
       ) : (
         renderedArtwork
       )}
