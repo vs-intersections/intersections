@@ -197,25 +197,25 @@ export const linkGenerator = (
           artistB.isSelectedParent &&
           selectedFilter.filterType === "location"
         ) {
-          linkMainNodesDefault(artistA, artistB, "#62B4FF", 5)
+          linkMainNodesDefault(artistA, artistB, "#62B4FF", 5) // location
         } else if (
           artistA.isSelectedParent &&
           artistB.isSelectedParent &&
           selectedFilter.filterType === "theme"
         ) {
-          linkMainNodesDefault(artistA, artistB, "#F36AFF", 5)
+          linkMainNodesDefault(artistA, artistB, "#F36AFF", 5) // theme
         } else if (
           artistA.isSelectedParent &&
           artistB.isSelectedParent &&
           selectedFilter.filterType === "medium"
         ) {
-          linkMainNodesDefault(artistA, artistB, "#43F4FF", 5)
+          linkMainNodesDefault(artistA, artistB, "#43F4FF", 5) // medium
         } else if (
           artistA.isSelectedParent &&
           artistB.isSelectedParent &&
           selectedFilter.filterType === "influence"
         ) {
-          linkMainNodesDefault(artistA, artistB, "#15A442", 5)
+          linkMainNodesDefault(artistA, artistB, "#fff128", 5) // influence
         } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id

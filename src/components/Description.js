@@ -1,4 +1,5 @@
 import React from "react"
+import Video from "../components/Video"
 import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 
@@ -15,7 +16,12 @@ const SidebarDescription = ({ data }) => {
 
   const {
     table,
-    data: { Bio: bio, Description: description, Name: name },
+    data: {
+      Bio: bio,
+      Description: description,
+      Name: name,
+      Interview: interview,
+    },
   } = metadata
 
   const desc = description || bio
@@ -30,32 +36,45 @@ const SidebarDescription = ({ data }) => {
   let processedDescription = []
   if (desc) processedDescription = descProcess()
 
-  const renderedDescription = processedDescription.map(item => {
+  const renderedDescription = processedDescription.map((item, i) => {
     return (
-      <p key={item} className="text-lg">
-        {item}
-      </p>
+      <>
+        <p key={item} className="text-lg">
+          {item}
+        </p>
+        {i <= processedDescription.length - 1 && <br />}
+      </>
     )
   })
 
   return (
-    <div className="mb-16">
+    <div className={`${selectedFilter.filterType !== "artwork" && "mb-16"}`}>
       <h3 className="pb-1 text-2xl font-bold">
         {table}: {name}
       </h3>
-      {/* <hr className="text-black" /> */}
-      {desc ? (
-        renderedDescription
-      ) : (
-        <p className="text-lg">Description coming soon</p>
-      )}
-      {(selectedFilter.filterType !== "location" ||
-        selectedFilter.filterType !== "artist") && (
-        <div className="w-full h-96 bg-gray-500 mt-3">
-          <span className="text-lg flex justify-center items-center h-full">
-            IMAGE
-          </span>
-        </div>
+      <hr className="border-gray-400 border-2" />
+      <div className="mt-2">
+        {desc ? (
+          renderedDescription
+        ) : (
+          <p className="text-lg mt-2">Description coming soon</p>
+        )}
+      </div>
+      {selectedFilter.filterType !== "location" ||
+        (selectedFilter.filterType !== "artist" && (
+          <div className="w-full h-96 bg-gray-500 mt-3">
+            <span className="text-lg flex justify-center items-center h-full">
+              IMAGE
+            </span>
+          </div>
+        ))}
+      {selectedFilter.filterType === "artist" && interview && (
+        <>
+          <p className="text-lg mt-3 font-bold mb-2">Interview Video</p>
+          <div className="w-full h-96 bg-gray-500">
+            <Video videoSrcURL={interview} videoTitle="Artist Interview" />
+          </div>
+        </>
       )}
     </div>
   )

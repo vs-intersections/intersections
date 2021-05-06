@@ -2,6 +2,7 @@ const colors = require("tailwindcss/colors")
 
 module.exports = {
   // purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  purge: false,
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
@@ -10,7 +11,7 @@ module.exports = {
       orange: "#FF985F", // ARTWORK
       orangeWhite: "#ffebe0", // THIS MIGHT NOT BE IN USE
       pink: "#F36AFF", // THEME
-      darkGreen: "#15A442", // INFLUENCE
+      yellow: "#fff128", // INFLUENCE
       lightBlue: "#43F4FF", // MEDIUM
       gray: colors.trueGray,
       black: colors.black,

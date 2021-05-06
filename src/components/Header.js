@@ -14,13 +14,13 @@ const Header = ({ setIsOpen, isOpen }) => {
         </Link>
       </div>
       <ul className="hidden space-x-16 lg:flex justify-between uppercase">
-        <li className="hover:text-darkGreen-600 tracking-widest">
+        <li className="hover:text-yellow-600 tracking-widest">
           <Link to="/">Home</Link>
         </li>
-        <li className="hover:text-darkGreen-600 tracking-widest">
+        <li className="hover:text-yellow-600 tracking-widest">
           <Link to="/videos">Videos</Link>
         </li>
-        <li className="hover:text-darkGreen-600 tracking-widest">
+        <li className="hover:text-yellow-600 tracking-widest">
           <Link to="/about">About</Link>
         </li>
       </ul>

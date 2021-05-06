@@ -23,15 +23,13 @@ const Favorites = ({ data }) => {
   })
 
   return (
-    <div>
-      <div className="mb-16">
-        <h3 className="pb-1 text-2xl font-bold mb-3.5">Favorites</h3>
-        {favorites ? (
-          renderedData
-        ) : (
-          <p className="text-lg">Favorites not specified</p>
-        )}
-      </div>
+    <div className="mb-16">
+      <h3 className="pb-1 text-2xl font-bold mb-3.5">Favorites</h3>
+      {favorites ? (
+        renderedData
+      ) : (
+        <p className="text-lg">Favorites not specified</p>
+      )}
     </div>
   )
 }
