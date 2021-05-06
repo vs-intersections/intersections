@@ -52,7 +52,7 @@ const NodeGraph = ({ data }) => {
     aspectW = getAspect(width, height)
     aspectH = getAspect(height, width)
     // set the default zoom of the SVG
-    aspectBase = 625
+    aspectBase = 700
     // set the aspect ratio (to be used in the viewbox)
     aspectRatioWidth = aspectBase * aspectW || 600
     aspectRatioHeight = aspectBase * aspectH || 600
@@ -134,7 +134,7 @@ const NodeGraph = ({ data }) => {
 
       // re-center SVG after window resizing
       centerX = aspectRatioWidth / 2
-      centerY = aspectRatioHeight / 1.75
+      centerY = aspectRatioHeight / 1.8
       simulation.force("center", forceCenter(centerX, centerY))
       // set new values for viewbox, and SVG width and height
       svg.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
