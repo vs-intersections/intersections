@@ -166,15 +166,21 @@ const ArtistsAndArtwork = ({ data }) => {
 
   return (
     <div className="mb-16">
-      <h3 className="pb-1 text-2xl font-bold mb-3.5">
-        {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
-      </h3>
+      {selectedFilter.filterType !== "artwork" && (
+        <h3 className="pb-1 text-2xl font-bold mb-3.5">
+          {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
+        </h3>
+      )}
       {selectedFilter.filterType === "artwork" ||
       (selectedFilter.filterType === "influence" && artistData) ? (
         renderedArtist
-      ) : selectedFilter.filterType === "artwork" && !artwork ? (
+      ) : selectedFilter.filterType === "location" ||
+        selectedFilter.filterType === "theme" ||
+        selectedFilter.filterType === "medium" ||
+        (selectedFilter.filterType === "artist" && !artistData) ? (
         <p className="text-lg">Artwork coming soon</p>
-      ) : !artistData ? (
+      ) : selectedFilter.filterType === "artwork" ||
+        (selectedFilter.filterType === "influence" && !artistData) ? (
         <p className="text-lg">Artists coming soon</p>
       ) : (
         renderedArtwork

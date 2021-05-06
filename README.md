@@ -3,12 +3,9 @@
 ## General Overview
 
 - We have began developing the site for mobile first
-- To view the current changes, view the rendered results at a width of less than 1024px
 - In Figma, use the page DEVELOPMENT for reference
 
 ### Albert's notes
-
-I've been developing with the idea to separate items into their own components and lay them out responsively on the page. I'm not worrying about the content just yet. We need to work on functionality and basic animation of the sidebar, navigation comp, etc
 
 Personal To-do:
 
@@ -24,6 +21,7 @@ Monday
 - Link Artists to collab artists (ALBERT)
 
 Tuesday
+
 - ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
 - ~~Mobile Sidebar expanding/compressing animation (DAVID)~~
 - ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
