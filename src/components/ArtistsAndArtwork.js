@@ -109,8 +109,19 @@ const ArtistsAndArtwork = ({ data }) => {
     if (themes) themesCopy = translateIdToName(data, themes, "theme")
 
     return (
-      <div key={artistId} className="grid gap-x-4 grid-cols-artwork mb-6">
-        <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
+      <div
+        key={artistId}
+        className={`${
+          selectedFilter.filterType === "artwork"
+            ? ""
+            : "grid gap-x-4 grid-cols-artwork"
+        } mb-6`}
+      >
+        <div
+          className={`w-auto bg-gray-500 text-lg flex justify-center items-center ${
+            selectedFilter.filterType === "artwork" ? "h-96" : "h-32"
+          }`}
+        >
           IMAGE
         </div>
         <div>

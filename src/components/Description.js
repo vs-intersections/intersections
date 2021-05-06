@@ -48,7 +48,7 @@ const SidebarDescription = ({ data }) => {
   })
 
   return (
-    <div className="mb-16">
+    <div className={`${selectedFilter.filterType !== "artwork" && "mb-16"}`}>
       <h3 className="pb-1 text-2xl font-bold">
         {table}: {name}
       </h3>
