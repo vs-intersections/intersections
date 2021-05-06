@@ -166,7 +166,7 @@ const NodeGraph = ({ data }) => {
       select(this).on("mouseout", function () {
         select(this)
           .transition()
-          .duration(250)
+          .duration(150)
           .attr("fill", datapoint => (datapoint.color = oldColor))
           .attr("r", datapoint => (datapoint.size = oldSize))
       })
