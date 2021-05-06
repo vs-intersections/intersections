@@ -120,6 +120,7 @@ export default function Home() {
     }
   `)
 
+  console.log(data)
   return (
     <>
       <MobileNav isOpen={isOpen} />

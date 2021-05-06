@@ -3,16 +3,31 @@ import React, { useState } from "react"
 import { css, jsx } from "@emotion/react"
 import SidebarContent from "./SidebarContent"
 import { IoMdArrowDropupCircle } from "react-icons/io"
-
+import { useNodeContext } from "./context/NodeContext"
+import { useFilterContext } from "./context/FilterContext"
+import { useSidebarContext } from "./context/SidebarContext"
 const SidebarMobile = ({ data }) => {
-  const [sideBarMobileIsOpen, setSideBarMobileIsOpen] = useState(false)
-  // the 'top' value will determine the movement of the mobile sidebar
+  const { sideBarMobileIsOpen, setSideBarMobileIsOpen } = useSidebarContext()
+  const { selectedNode } = useNodeContext()
+  const { selectedFilter } = useFilterContext()
+  console.log(selectedFilter, selectedNode)
+  const NO_NODE_OR_FILTER_SELECTED =!selectedNode &&
+  selectedFilter.filterName === "" &&
+  selectedFilter.filterType === ""
   return (
     <div
-      className="pt-4 px-4 bg-gray-100 relative overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300 overflow-x-hidden transform transition-transform"
+      className="pt-4 px-4 bg-gray-100 relative overflow-y-hidden scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300 overflow-x-hidden transform transition-transform"
       css={css`
-        height: ${sideBarMobileIsOpen ? "calc(90vh - 164px)" : "100%"};
-        transform: ${sideBarMobileIsOpen ? "translateY(-90%)" : ""};
+        height: ${sideBarMobileIsOpen
+          ? "calc(100vh - 64px)"
+          : NO_NODE_OR_FILTER_SELECTED
+          ? "40px"
+          : "100%"};
+        transform: ${sideBarMobileIsOpen
+          ? "translateY(-60vh)"
+          : NO_NODE_OR_FILTER_SELECTED
+          ? "translateY(335%)"
+          : ""};
       `}
     >
       <IoMdArrowDropupCircle
