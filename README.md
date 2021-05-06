@@ -17,11 +17,22 @@ Personal To-do:
 
 SCHEDULE
 
+Monday
+
+- ~~Node graph overlay descriptor (ALBERT)~~
+- ~~Mobile hamburger menu (DAVID)~~
+- Link Artists to collab artists (ALBERT)
+
+Tuesday
+- ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
+- ~~Mobile Sidebar expanding/compressing animation (DAVID)~~
+- ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
+- Navigation filtering selectors (styling and updating node graph) (ALBERT)
+
 Wednesday
 
 - Infinite Scroll mobile navigation (DAVID)
-- ~~Mobile Sidebar expanding/compressing animation (DAVID)~~
-- Link Artists to collab artists (ALBERT)
+- Mobile Sidebar expanding/compressing animation (DAVID)
 - Sidebar content and media (ALBERT)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
 - ~~On Location view, when clicking 'Buffalo Thunder", the Artist field is empty and media and themes are IDs instead of names (ALBERT)~~
@@ -43,10 +54,8 @@ Thursday
 ### David's notes
 
 - ~~Display Link data in sidebar~~
-- Infinite Scroll mobile navigation (DAVID)
-- ~~Info mobile sidebar expanding/compressing animation (DAVID)~~
-- Mobile Sidebar expanding/compressing animation (DAVID)
 - ~~Mobile hamburger menu (DAVID)~~
+- Infinite Scroll mobile navigation (DAVID)
 - Pages: Video and about (DAVID)
 
 ---

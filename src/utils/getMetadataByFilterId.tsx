@@ -1,4 +1,4 @@
-export const getMetadataByFilterId = (data, filterId) => {
+export const getMetadataByFilterId = (data, filterId: string) => {
   const flattenedMetaData = [
     ...data?.artists.nodes,
     ...data?.artwork.nodes,
