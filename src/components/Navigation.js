@@ -49,18 +49,21 @@ const Navigation = ({ data, isMobile }) => {
   }))
 
   const generateDropdown = (filterType, arr, color) => {
-    let options = arr.map(el => (
-      <option value={el.id} key={el.id}>
-        {el.name}
-      </option>
-    ))
+    let options = arr.map(el => {
+      return (
+        <option value={el.id} key={el.id}>
+          {el.name}
+        </option>
+      )
+    })
     return (
-      <li className="pb-2">
+      <li className="pb-2 max-w-dropdown">
         <label className="block text-center lg:text-lg">
           {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
+          className="max-w-dropdown"
           id={filterType}
           // Todo fix logic here
           value={

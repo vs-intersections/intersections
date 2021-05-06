@@ -43,6 +43,9 @@ module.exports = {
     fill: theme => ({
       lightgray: theme("colors.gray.400"),
     }),
+    maxWidth: {
+      dropdown: "10.5rem",
+    },
   },
   variants: {
     extend: {},
