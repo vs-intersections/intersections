@@ -10,6 +10,8 @@ const ArtistsAndArtwork = ({ data }) => {
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
+    console.log("METADATA +++++++++++++++++++")
+    console.log(metadata)
   }
 
   const {

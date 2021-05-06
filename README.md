@@ -31,6 +31,8 @@ Wednesday
 - Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
 - Alphabetically list items in Navbar dropdowns (ALBERT)
 - Min-height the sidebar images (some of them are rendering too short) (ALBERT)
+- ~~ Find a way to parse double-spaces as delimiters from Airtable bios and descriptions (ALBERT) ~~
+- Data appears to be rendering multiple times during events like clicking or expanding sidebar
 
 Thursday
 

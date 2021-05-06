@@ -18,14 +18,32 @@ const SidebarDescription = ({ data }) => {
     data: { Bio: bio, Description: description, Name: name },
   } = metadata
 
+  const desc = description || bio
+
+  const descProcess = () => {
+    if (desc) {
+      const splitText = desc.split("\n\n")
+      return splitText
+    }
+  }
+
+  let processedDescription = []
+  if (desc) processedDescription = descProcess()
+
+  const renderedDescription = processedDescription.map(item => {
+    return <p className="text-lg">{item}</p>
+  })
+
   return (
     <div className="mb-16">
       <h3 className="pb-1 text-2xl font-bold">
         {table}: {name}
       </h3>
-      <p className="text-lg">
-        {description || bio || "Description coming soon"}
-      </p>
+      {desc ? (
+        renderedDescription
+      ) : (
+        <p className="text-lg">Description coming soon</p>
+      )}
       {(selectedFilter.filterType !== "location" ||
         selectedFilter.filterType !== "artist") && (
         <div className="w-full h-96 bg-gray-500 mt-3">
