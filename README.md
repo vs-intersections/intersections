@@ -47,6 +47,7 @@ Wednesday
 
 Thursday
 
+- Title in Artwork sidebar content is not populating (ALBERT)
 - Pages: Video and about (DAVID)
 - Node graph zooming (ALBERT - SECONDARY)
 
