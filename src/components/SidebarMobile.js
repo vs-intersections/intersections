@@ -24,7 +24,7 @@ const SidebarMobile = ({ data }) => {
   return (
     <div
       ref={ref}
-      className="pt-4 px-4 bg-gray-100 relative overflow-y-hidden scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300 overflow-x-hidden transform transition-transform"
+      className="pt-4 pl-4 pr-0 bg-gray-100 relative overflow-y-hidden scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300 overflow-x-hidden transform transition-transform"
       css={css`
         height: ${sideBarMobileIsOpen
           ? "calc(100vh - 64px)"
