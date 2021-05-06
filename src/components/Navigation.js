@@ -100,7 +100,7 @@ const Navigation = ({ data, isMobile }) => {
   }
 
   return (
-    <nav className="bg-gray-100 pt-1 flex justify-center items-center relative">
+    <nav className="bg-gray-100 flex justify-center items-center relative">
       <ul className="flex items-center text-xs justify-evenly w-full">
         {generateDropdown("artist", artists, "lightGreen")}
 
@@ -108,7 +108,7 @@ const Navigation = ({ data, isMobile }) => {
         {!isMobile && generateDropdown("location", locations, "blue")}
         {!isMobile && generateDropdown("theme", themes, "pink")}
         {!isMobile && generateDropdown("medium", mediums, "lightBlue")}
-        {!isMobile && generateDropdown("influence", influences, "darkGreen")}
+        {!isMobile && generateDropdown("influence", influences, "yellow")}
       </ul>
     </nav>
   )

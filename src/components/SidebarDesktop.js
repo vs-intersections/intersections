@@ -17,7 +17,7 @@ const SidebarDesktop = () => {
   })
   return (
     <div
-      className={`${connectBannerClass} bg-darkGreen-500 pl-4 lg:pl-32 w-2/5 fixed z-10 bottom-0 relative right-10 overflow-x-visible`}
+      className={`${connectBannerClass} bg-yellow-500 pl-4 lg:pl-32 w-2/5 fixed z-10 bottom-0 relative right-10 overflow-x-visible`}
       id="#connect"
       css={css`
         color: rgba(0, 0, 0, 0.87);
