@@ -38,6 +38,9 @@ const SidebarMobile = ({ data }) => {
           : ""};
       `}
     >
+      <div
+        className={`w-7 h-7 absolute right-2.5 top-2.5 bg-white rounded-full`}
+      ></div>
       <IoMdArrowDropupCircle
         className={`w-7 h-7 absolute right-2.5 top-2.5 fill-lightgray transform transition-rotate ${
           sideBarMobileIsOpen ? "rotate-180" : "rotate-1"
@@ -47,6 +50,7 @@ const SidebarMobile = ({ data }) => {
           setSideBarMobileIsOpen(!sideBarMobileIsOpen)
         }
       />
+
       <SidebarContent data={data} />
     </div>
   )
