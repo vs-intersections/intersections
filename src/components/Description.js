@@ -52,7 +52,7 @@ const SidebarDescription = ({ data }) => {
       <h3 className="pb-1 text-2xl font-bold">
         {table}: {name}
       </h3>
-      <hr className="border-gray-400 border-2" />
+      <hr className="border-gray-400 border-t-2" />
       <div className="mt-2">
         {desc ? (
           renderedDescription
