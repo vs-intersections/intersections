@@ -61,45 +61,6 @@ Thursday
 
   - the layout does not stretch to full screen on various mobile devices (maybe to do with h-screen class?)
 
-- Hooks (all Airtable hooks)
-- Cannot get the hooks to authenticate to Airtable with process.env variables
-- I've been specifying the keys in plain text during dev, removing when pushing to the repo (annoying as hell- lol)
-
 - NodeGraph component
-
-  - Mucho work is needed, too much to list here
-  - Need to correct coloring
-  - Create a parameter that specifies selector color and the selected filter
-  - Node sizing, gravity, distance, etc
-  - Node tooltips
-  - font-sizing
-  - link colors (default and filtered)
-
-- Sidebar component
-
-  - INFO tab needs to stay at the right side of the screen responsively (currently does not)
-  - expand icon needs to stay at the top of the container when scrolling (and expanding)
-
-- ArtistsAndArtwork component
-
-  - This needs to be refactored to take props and render according to our mockup
-  - The idea is that we can use this one component to display a picture (artwork or artist bio pic?) and associated data
-
-- Header component
-
-  - layout/transition of mobile icon / desktop nav elements (about, home, videos)
-  - responsive layout appears to not work - logo is not centered during repositioning
-
-- Navigation component
-
-  - When a node is clicked, the dropdown no longer functions correctly
-
-- Node component
-
-  - layout new components: filter title, zoom
-
-- Create components
-  - Nav items (we need to determine if we're using radio btns)
-  - Footer (for copyright, logos, etc)
-  - Filter Title (lives in desktop view at the top of the Node graph)
-  - Zoom component (lives in desktop view for zooming into Node graph)
+  - zooming
+  - layout new components: zoom
