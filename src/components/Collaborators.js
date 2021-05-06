@@ -24,7 +24,7 @@ const Collaborators = ({ data }) => {
         <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborators</h3>
       )}
       {collabNames.map(item => (
-        <p key={item} className="text-lg">
+        <p key={item} className="text-lg underline-lightGreen">
           {item}
         </p>
       ))}

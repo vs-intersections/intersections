@@ -58,12 +58,12 @@ const ArtistsAndArtwork = ({ data }) => {
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
               <span className="font-bold">Artist: </span>
-              {artistByName}
+              <span className="underline-lightGreen">{artistByName}</span>
             </p>
           )}
           <p className="text-lg">
             <span className="font-bold">Title: </span>
-            {title}
+            <span className="underline-orange">{title}</span>
           </p>
           <p className="text-lg">
             <span className="font-bold">Media: </span>
@@ -71,7 +71,7 @@ const ArtistsAndArtwork = ({ data }) => {
               ? "Media not specified"
               : mediaCopy.map((item, i) => {
                   return (
-                    <span key={item}>
+                    <span key={item} className="underline-lightBlue">
                       {item}
                       {mediaCopy.length > i + 1 ? ", " : ""}
                     </span>
@@ -84,7 +84,7 @@ const ArtistsAndArtwork = ({ data }) => {
               ? "Theme not specified"
               : themesCopy.map((item, i) => {
                   return (
-                    <span key={item}>
+                    <span key={item} className="underline-pink">
                       {item}
                       {themesCopy.length > i + 1 ? ", " : ""}
                     </span>
@@ -119,14 +119,14 @@ const ArtistsAndArtwork = ({ data }) => {
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
               <span className="font-bold">Artist: </span>
-              {artistByName}
+              <span className="underline-lightGreen">{artistByName}</span>
             </p>
           )}
           {selectedFilter.filterType !== "artwork" ||
             (selectedFilter.filterType !== "influence" && (
               <p className="text-lg">
                 <span className="font-bold">Title: </span>
-                {title}
+                <span className="underline-orange">{title}</span>
               </p>
             ))}
           {selectedFilter.filterType !== "influence" && (
@@ -136,7 +136,7 @@ const ArtistsAndArtwork = ({ data }) => {
                 ? "Media not specified"
                 : mediaCopy.map((item, i) => {
                     return (
-                      <span key={item}>
+                      <span key={item} className="underline-lightBlue">
                         {item}
                         {mediaCopy.length > i + 1 ? ", " : ""}
                       </span>
@@ -151,7 +151,7 @@ const ArtistsAndArtwork = ({ data }) => {
                 ? "Theme not specified"
                 : themesCopy.map((item, i) => {
                     return (
-                      <span key={item}>
+                      <span key={item} className="underline-pink">
                         {item}
                         {themesCopy.length > i + 1 ? ", " : ""}
                       </span>
