@@ -19,7 +19,7 @@ const GraphAndSidebar = ({ data }) => {
     setSidebarIsOpened(!sidebarIsOpened)
   }
   const ref = useRef()
-  useOnClickOutside(ref, () => setSidebarIsOpened(false))
+  // useOnClickOutside(ref, () => setSidebarIsOpened(false))
 
   let currentTheme =
     selectedFilter?.filterType?.toLowerCase() ||

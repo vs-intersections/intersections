@@ -10,7 +10,6 @@ const ArtistsAndArtwork = ({ data }) => {
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
-    console.log("METADATA +++++++++++++++++++")
     console.log(metadata)
   }
 
@@ -174,10 +173,8 @@ const ArtistsAndArtwork = ({ data }) => {
       {selectedFilter.filterType === "artwork" ||
       (selectedFilter.filterType === "influence" && artistData) ? (
         renderedArtist
-      ) : selectedFilter.filterType === "location" ||
-        selectedFilter.filterType === "theme" ||
-        selectedFilter.filterType === "medium" ||
-        (selectedFilter.filterType === "artist" && !artistData) ? (
+      ) : (selectedFilter.filterType === "theme" && !artwork) ||
+        (selectedFilter.filterType === "artist" && !artwork) ? (
         <p className="text-lg">Artwork coming soon</p>
       ) : selectedFilter.filterType === "artwork" ||
         (selectedFilter.filterType === "influence" && !artistData) ? (

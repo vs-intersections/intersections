@@ -18,7 +18,7 @@ const NodeGraph = ({ data }) => {
   // this keeps track of the selected filter
   const { selectedFilter, setSelectedFilter } = useFilterContext()
 
-  const { selectedNode, setSelectedNode } = useNodeContext()
+  const { setSelectedNode } = useNodeContext()
 
   // refs to grab the SVG element and SVG element container
   const ref = useRef()
@@ -152,11 +152,16 @@ const NodeGraph = ({ data }) => {
       let oldSize = datapoint.size
       // let oldFill = datapoint.fill
       // select the hovered node and transition its radius and fill over 250ms
+      let themeColor = datapoint.table === "Artist" ? "#A3F78E" : "#FF985F"
+
       select(this)
         .transition()
         .duration(250)
         .attr("r", datapoint => (datapoint.size *= 1.2))
-        .attr("fill", datapoint => (datapoint.color = "dodgerBlue"))
+        .attr(
+          "fill",
+          datapoint => (datapoint.color = datapoint.linkColor || themeColor)
+        )
       // when the selected node is no longer hovered, revert its animated states (fill and radius)
       select(this).on("mouseout", function () {
         select(this)
@@ -167,6 +172,7 @@ const NodeGraph = ({ data }) => {
       })
     }
 
+    // fix the double render bug here
     function nodeClick(e, datapoint) {
       setSelectedNode(datapoint)
       setSelectedFilter({
