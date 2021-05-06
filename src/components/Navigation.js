@@ -57,14 +57,19 @@ const Navigation = ({ data, isMobile }) => {
         </option>
       )
     })
+
     return (
-      <li className="pb-2 max-w-dropdown">
-        <label className="block text-center lg:text-lg">
+      <li
+        className={`p-2 max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
+          selectedFilter.filterType === filterType ? "bg-" + color : ""
+        }`}
+      >
+        <label className={`block flex justify-center items-center lg:text-lg`}>
           {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
-          className="max-w-dropdown"
+          className="w-full"
           id={filterType}
           // Todo fix logic here
           value={
@@ -75,6 +80,7 @@ const Navigation = ({ data, isMobile }) => {
             handleSelect(e)
           }}
         >
+          <option value="">&#8213;</option>
           {options}
         </select>
       </li>
