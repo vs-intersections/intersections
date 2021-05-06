@@ -16,7 +16,7 @@ SCHEDULE
 
 Thursday
 
-- When clicking between dropdowns and the nodes, the title bar eventually displays the wrong info (ALBERT)
+- ~~ When clicking between dropdowns and the nodes, the title bar eventually displays the wrong info (ALBERT) ~~
 - Infinite Scroll mobile navigation (DAVID)
 - Mobile Sidebar expanding/compressing animation (DAVID)
 - Sidebar content and media (ALBERT)

@@ -71,7 +71,7 @@ const GraphAndSidebar = ({ data }) => {
         <NodeGraph data={data} />
       </div>
       {!IS_MOBILE && (
-        <div className="relative flex-1 cursor-pointer">
+        <div className="relative flex-1">
           <div className={`h-full w-45vw absolute left-n3vw`}>
             <div
               className={`bg-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg`}
