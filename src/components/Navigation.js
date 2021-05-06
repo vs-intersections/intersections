@@ -34,20 +34,32 @@ const Navigation = ({ data, isMobile }) => {
       })
   })
 
-  const themes = data?.themes?.nodes.map(el => ({
-    id: el.recordId,
-    name: el.data.Name,
-  }))
+  const themes = []
+  data?.themes?.nodes.map(el => {
+    el.data.Artwork &&
+      themes.push({
+        id: el.recordId,
+        name: el.data.Name,
+      })
+  })
 
-  const mediums = data?.mediums?.nodes.map(el => ({
-    id: el.recordId,
-    name: el.data.Name,
-  }))
+  const mediums = []
+  data?.mediums?.nodes.map(el => {
+    el.data.Artwork &&
+      mediums.push({
+        id: el.recordId,
+        name: el.data.Name,
+      })
+  })
 
-  const influences = data?.influences?.nodes.map(el => ({
-    id: el.recordId,
-    name: el.data.Name,
-  }))
+  const influences = []
+  data?.influences?.nodes.forEach(el => {
+    el.data.Artist &&
+      influences.push({
+        id: el.recordId,
+        name: el.data.Name,
+      })
+  })
 
   const generateDropdown = (filterType, arr, color) => {
     let options = arr.map(el => {

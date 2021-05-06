@@ -31,7 +31,11 @@ const SidebarDescription = ({ data }) => {
   if (desc) processedDescription = descProcess()
 
   const renderedDescription = processedDescription.map(item => {
-    return <p className="text-lg">{item}</p>
+    return (
+      <p key={item} className="text-lg">
+        {item}
+      </p>
+    )
   })
 
   return (
