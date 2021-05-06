@@ -157,7 +157,7 @@ const NodeGraph = ({ data }) => {
       select(this)
         .transition()
         .duration(250)
-        .attr("r", datapoint => (datapoint.size *= 1.2))
+        .attr("r", datapoint => (datapoint.size *= 1.8))
         .attr(
           "fill",
           datapoint => (datapoint.color = datapoint.linkColor || themeColor)
