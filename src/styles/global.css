@@ -21,37 +21,37 @@ html {
 .underline-blue {
   text-decoration: underline;
   text-decoration-color: #62b4ff;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .underline-lightGreen {
   text-decoration: underline;
   text-decoration-color: #a3f78e;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .underline-orange {
   text-decoration: underline;
   text-decoration-color: #ff985f;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .underline-pink {
   text-decoration: underline;
   text-decoration-color: #f36aff;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .underline-darkGreen {
   text-decoration: underline;
   text-decoration-color: #15a442;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .underline-lightBlue {
   text-decoration: underline;
   text-decoration-color: #43f4ff;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 /* .parent {
@@ -64,7 +64,7 @@ html {
 
 @keyframes pulse {
   from {
-    stroke-width: 3px;
+    stroke-width: 2px;
     stroke-opacity: 1;
     transform: scale(0.3);
   }
