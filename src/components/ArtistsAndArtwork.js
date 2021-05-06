@@ -122,13 +122,13 @@ const ArtistsAndArtwork = ({ data }) => {
               <span className="underline-lightGreen">{artistByName}</span>
             </p>
           )}
-          {selectedFilter.filterType !== "artwork" ||
-            (selectedFilter.filterType !== "influence" && (
+          {selectedFilter.filterType !== "artwork" &&
+            selectedFilter.filterType !== "influence" && (
               <p className="text-lg">
                 <span className="font-bold">Title: </span>
                 <span className="underline-orange">{title}</span>
               </p>
-            ))}
+            )}
           {selectedFilter.filterType !== "influence" && (
             <p className="text-lg">
               <span className="font-bold">Media: </span>
@@ -170,10 +170,12 @@ const ArtistsAndArtwork = ({ data }) => {
         {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
       </h3>
       {selectedFilter.filterType === "artwork" ||
-      selectedFilter.filterType === "influence" ? (
+      (selectedFilter.filterType === "influence" && artistData) ? (
         renderedArtist
-      ) : !artwork ? (
+      ) : selectedFilter.filterType === "artwork" && !artwork ? (
         <p className="text-lg">Artwork coming soon</p>
+      ) : !artistData ? (
+        <p className="text-lg">Artists coming soon</p>
       ) : (
         renderedArtwork
       )}
