@@ -5,10 +5,13 @@ import SidebarLocation from "./SidebarLocation"
 import SidebarMedium from "./SidebarMedium"
 import SidebarTheme from "./SidebarTheme"
 import SidebarInfluence from "./SidebarInfluence"
+import { useWindowSize } from "../hooks"
 import { useFilterContext } from "./context/FilterContext"
 
 const SidebarContent = ({ data }) => {
   const { selectedFilter } = useFilterContext()
+  const { width } = useWindowSize()
+  const IS_MOBILE = width <= 1024
 
   // for troubleshooting
   // console.log("BEFORE")
@@ -44,7 +47,11 @@ const SidebarContent = ({ data }) => {
   // if (data) console.log(data.artwork.nodes[7].data.Theme)
 
   return (
-    <div className="h-full pt-4 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300">
+    <div
+      className={`h-full ${
+        IS_MOBILE ? "pl-0" : "pl-4"
+      } pt-4 pr-6 py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300`}
+    >
       {renderedComponent()}
     </div>
   )

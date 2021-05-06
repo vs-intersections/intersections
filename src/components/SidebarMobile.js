@@ -24,7 +24,7 @@ const SidebarMobile = ({ data }) => {
   return (
     <div
       ref={ref}
-      className="pt-4 px-4 bg-gray-100 relative overflow-y-hidden scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300 overflow-x-hidden transform transition-transform"
+      className="pt-4 pl-4 pr-0 bg-gray-100 relative overflow-y-hidden scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300 overflow-x-hidden transform transition-transform"
       css={css`
         height: ${sideBarMobileIsOpen
           ? "calc(100vh - 64px)"
@@ -38,6 +38,9 @@ const SidebarMobile = ({ data }) => {
           : ""};
       `}
     >
+      <div
+        className={`w-7 h-7 absolute right-2.5 top-2.5 bg-white rounded-full`}
+      ></div>
       <IoMdArrowDropupCircle
         className={`w-7 h-7 absolute right-2.5 top-2.5 fill-lightgray transform transition-rotate ${
           sideBarMobileIsOpen ? "rotate-180" : "rotate-1"
@@ -47,6 +50,7 @@ const SidebarMobile = ({ data }) => {
           setSideBarMobileIsOpen(!sideBarMobileIsOpen)
         }
       />
+
       <SidebarContent data={data} />
     </div>
   )

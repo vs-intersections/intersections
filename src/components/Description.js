@@ -39,6 +39,7 @@ const SidebarDescription = ({ data }) => {
       <h3 className="pb-1 text-2xl font-bold">
         {table}: {name}
       </h3>
+      {/* <hr className="text-black" /> */}
       {desc ? (
         renderedDescription
       ) : (

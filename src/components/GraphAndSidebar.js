@@ -46,21 +46,19 @@ const GraphAndSidebar = ({ data }) => {
             } h-20 absolute flex justify-center items-center`}
           >
             <div
-              className={`w-80 h-12 border-2 rounded border-${tabClass} bg-white flex`}
+              className={`w-80 h-12 text-gray-500 border-2 rounded border-${tabClass} bg-white flex cursor-pointer hover:bg-${tabClass} hover:text-gray-900 transition-colors duration-500`}
+              onClick={toggleSidebar}
             >
               <div
                 ref={ref}
-                className="w-10/12 text-center text-gray-500 flex justify-center items-center cursor-pointer"
+                className="w-10/12 text-center text-current flex justify-center items-center"
               >
                 {selectedNode?.name ||
                   getMetadataByFilterId(data, selectedFilter?.filterName)?.data
                     ?.Name}
               </div>
-              <div
-                className="w-2/12 flex justify-center items-center"
-                onClick={toggleSidebar}
-              >
-                <BsInfoCircle className="w-full h-full p-2 fill-current text-gray-500" />
+              <div className="w-2/12 flex justify-center items-center">
+                <BsInfoCircle className="w-full h-full p-2 fill-current text-current" />
               </div>
             </div>
           </div>
@@ -73,7 +71,7 @@ const GraphAndSidebar = ({ data }) => {
         <NodeGraph data={data} />
       </div>
       {!IS_MOBILE && (
-        <div className="relative flex-1 cursor-pointer">
+        <div className="relative flex-1">
           <div className={`h-full w-45vw absolute left-n3vw`}>
             <div
               className={`bg-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg`}

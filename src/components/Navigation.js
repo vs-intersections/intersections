@@ -8,6 +8,7 @@ const Navigation = ({ data, isMobile }) => {
   const { selectedNode, setSelectedNode } = useNodeContext()
 
   const handleSelect = e => {
+    setSelectedNode(e.target.id)
     setSelectedFilter({
       filterName: e.target.value,
       filterType: e.target.id,
@@ -49,18 +50,26 @@ const Navigation = ({ data, isMobile }) => {
   }))
 
   const generateDropdown = (filterType, arr, color) => {
-    let options = arr.map(el => (
-      <option value={el.id} key={el.id}>
-        {el.name}
-      </option>
-    ))
+    let options = arr.map(el => {
+      return (
+        <option value={el.id} key={el.id}>
+          {el.name}
+        </option>
+      )
+    })
+
     return (
-      <li className="pb-2">
-        <label className="block text-center lg:text-lg">
+      <li
+        className={`p-2 max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
+          selectedFilter.filterType === filterType ? "bg-" + color : ""
+        }`}
+      >
+        <label className={`block flex justify-center items-center lg:text-lg`}>
           {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
+          className="w-full"
           id={filterType}
           // Todo fix logic here
           value={
@@ -71,6 +80,7 @@ const Navigation = ({ data, isMobile }) => {
             handleSelect(e)
           }}
         >
+          <option value="">&#8213;</option>
           {options}
         </select>
       </li>
