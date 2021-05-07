@@ -11,7 +11,7 @@ module.exports = {
       resolve: `gatsby-source-airtable`,
       options: {
         apiKey: process.env.GATSBY_AIRTABLE_API_KEY, // may instead specify via env, see below
-        concurrency: 5, // default, see using markdown and attachments for more information
+        concurrency: 7, // default, see using markdown and attachments for more information
         tables: [
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
@@ -20,7 +20,7 @@ module.exports = {
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Artwork`,
-            mapping: { Image_or_Audio: "fileNode" },
+            mapping: { Image: "fileNode", Audio: "fileNode" },
           },
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,

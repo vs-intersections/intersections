@@ -12,7 +12,7 @@ const SidebarDescription = ({ data }) => {
         nodes {
           data {
             Name
-            Image_or_Audio {
+            Image {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
@@ -143,14 +143,8 @@ const SidebarDescription = ({ data }) => {
       id => id.recordId === selectedFilter?.filterName
     ))
 
-  let descriptionImage = {}
-
-  selectedFilter?.filterType === "artwork"
-    ? (descriptionImage =
-        result.data?.Image_or_Audio?.localFiles[0].childImageSharp
-          ?.gatsbyImageData)
-    : (descriptionImage =
-        result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData)
+  let descriptionImage =
+    result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
 
   // TROUBLESHOOTING
   // console.log(

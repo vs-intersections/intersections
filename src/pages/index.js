@@ -41,17 +41,11 @@ export default function Home() {
         nodes {
           table
           data {
-            Image {
-              id
-            }
             Name
             Primary_Artist__REQUIRED_
             Collaborators
             Locations
             Description
-            Image_or_Audio {
-              id
-            }
             Video
             Medium
             Theme
@@ -63,9 +57,6 @@ export default function Home() {
         nodes {
           table
           data {
-            Image {
-              id
-            }
             Name
             Address
             Artwork
@@ -82,9 +73,6 @@ export default function Home() {
             Name
             Artwork
             Description
-            Image {
-              id
-            }
           }
           recordId
         }
@@ -96,9 +84,6 @@ export default function Home() {
             Name
             Artwork
             Description
-            Image {
-              id
-            }
           }
           recordId
         }
@@ -110,9 +95,6 @@ export default function Home() {
             Name
             Artist
             Description
-            Image {
-              id
-            }
           }
           recordId
         }

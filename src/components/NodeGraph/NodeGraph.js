@@ -174,7 +174,6 @@ const NodeGraph = ({ data }) => {
 
     // fix the double render bug here
     function nodeClick(e, datapoint) {
-      console.log(datapoint)
       if (selectedFilter.filterName === datapoint.id) {
         return
       }
