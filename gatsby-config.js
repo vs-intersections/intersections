@@ -20,22 +20,27 @@ module.exports = {
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Artwork`,
+            mapping: { Image_or_Audio: "fileNode" },
           },
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Location`,
+            mapping: { Image: "fileNode" },
           },
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Theme`,
+            mapping: { Image: "fileNode" },
           },
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Medium`,
+            mapping: { Image: "fileNode" },
           },
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
             tableName: `Influence`,
+            mapping: { Image: "fileNode" },
           },
         ],
       },
@@ -50,5 +55,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-postcss`,
     },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
   ],
 }
