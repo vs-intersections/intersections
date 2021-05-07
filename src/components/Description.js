@@ -2,15 +2,165 @@ import React from "react"
 import Video from "../components/Video"
 import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
+import { graphql, useStaticQuery } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const SidebarDescription = ({ data }) => {
+  const sidebarData = useStaticQuery(graphql`
+    {
+      artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
+        nodes {
+          data {
+            Name
+            Image_or_Audio {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
+          }
+          recordId
+        }
+      }
+      themes: allAirtable(filter: { table: { eq: "Theme" } }) {
+        nodes {
+          data {
+            Name
+            Image {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
+          }
+          recordId
+        }
+      }
+      influence: allAirtable(filter: { table: { eq: "Influence" } }) {
+        nodes {
+          data {
+            Name
+            Image {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
+          }
+          recordId
+        }
+      }
+      medium: allAirtable(filter: { table: { eq: "Medium" } }) {
+        nodes {
+          data {
+            Name
+            Image {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
+          }
+          recordId
+        }
+      }
+      locations: allAirtable(filter: { table: { eq: "Location" } }) {
+        nodes {
+          data {
+            Name
+            Image {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
+          }
+          recordId
+        }
+      }
+    }
+  `)
+
   // makes a copy of the data object instead of a reference (fixes a lot of bugs)
   const dataObjCopy = Object.assign({}, data)
 
   const { selectedFilter } = useFilterContext()
+
+  let result = {}
+
+  selectedFilter?.filterType === "location" &&
+    (result = sidebarData.locations.nodes.find(
+      id => id.recordId === selectedFilter?.filterName
+    ))
+
+  selectedFilter?.filterType === "theme" &&
+    (result = sidebarData.themes.nodes.find(
+      id => id.recordId === selectedFilter?.filterName
+    ))
+
+  selectedFilter?.filterType === "medium" &&
+    (result = sidebarData.medium.nodes.find(
+      id => id.recordId === selectedFilter?.filterName
+    ))
+
+  selectedFilter?.filterType === "influence" &&
+    (result = sidebarData.influence.nodes.find(
+      id => id.recordId === selectedFilter?.filterName
+    ))
+
+  selectedFilter?.filterType === "artwork" &&
+    (result = sidebarData.artwork.nodes.find(
+      id => id.recordId === selectedFilter?.filterName
+    ))
+
+  let descriptionImage = {}
+
+  selectedFilter?.filterType === "artwork"
+    ? (descriptionImage =
+        result.data?.Image_or_Audio?.localFiles[0].childImageSharp
+          ?.gatsbyImageData)
+    : (descriptionImage =
+        result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData)
+
+  // TROUBLESHOOTING
+  // console.log(
+  //   sidebarData.artwork.nodes[4].data.Image_or_Audio.localFiles[0]
+  //     .childImageSharp.gatsbyImageData
+  // )
+
   let metadata
 
-  if (selectedFilter.filterType) {
+  if (selectedFilter?.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
 
@@ -60,14 +210,11 @@ const SidebarDescription = ({ data }) => {
           <p className="text-lg mt-2">Description coming soon</p>
         )}
       </div>
-      {selectedFilter.filterType !== "location" ||
-        (selectedFilter.filterType !== "artist" && (
-          <div className="w-full h-96 bg-gray-500 mt-3">
-            <span className="text-lg flex justify-center items-center h-full">
-              IMAGE
-            </span>
-          </div>
-        ))}
+      {selectedFilter.filterType !== "artist" && (
+        <div className="w-full h-auto mt-3">
+          {descriptionImage && <GatsbyImage image={descriptionImage} />}
+        </div>
+      )}
       {selectedFilter.filterType === "artist" && interview && (
         <>
           <p className="text-lg mt-3 font-bold mb-2">Interview Video</p>

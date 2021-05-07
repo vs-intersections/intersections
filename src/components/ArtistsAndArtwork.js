@@ -113,17 +113,15 @@ const ArtistsAndArtwork = ({ data }) => {
         key={artistId}
         className={`${
           selectedFilter.filterType === "artwork"
-            ? ""
+            ? "mt-2"
             : "grid gap-x-4 grid-cols-artwork"
         } mb-6`}
       >
-        <div
-          className={`w-auto bg-gray-500 text-lg flex justify-center items-center ${
-            selectedFilter.filterType === "artwork" ? "h-96" : "h-32"
-          }`}
-        >
-          IMAGE
-        </div>
+        {selectedFilter.filterType !== "artwork" && (
+          <div className="w-auto bg-gray-500 text-lg flex justify-center items-center h-32">
+            IMAGE
+          </div>
+        )}
         <div>
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">

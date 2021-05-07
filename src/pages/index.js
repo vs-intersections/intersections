@@ -32,7 +32,7 @@ export default function Home() {
             Email
             Website
             Interview
-            Favorites
+            Affiliations
           }
           recordId
         }
