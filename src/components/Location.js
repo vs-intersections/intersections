@@ -56,7 +56,7 @@ const Location = ({ data }) => {
           </p>
         ))
       ) : (
-        <p className="text-lg">Not currently located anywhere</p>
+        <p className="text-lg">Not on exhibition</p>
       )}
     </div>
   )

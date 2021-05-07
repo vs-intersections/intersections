@@ -113,7 +113,7 @@ const ArtistsAndArtwork = ({ data }) => {
         key={artistId}
         className={`${
           selectedFilter.filterType === "artwork"
-            ? ""
+            ? "mt-2"
             : "grid gap-x-4 grid-cols-artwork"
         } mb-6`}
       >

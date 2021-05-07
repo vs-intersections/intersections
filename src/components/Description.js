@@ -15,13 +15,17 @@ const SidebarDescription = ({ data }) => {
             Image_or_Audio {
               localFiles {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
                 }
               }
             }
           }
           recordId
-          table
         }
       }
       themes: allAirtable(filter: { table: { eq: "Theme" } }) {
@@ -31,13 +35,17 @@ const SidebarDescription = ({ data }) => {
             Image {
               localFiles {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
                 }
               }
             }
           }
           recordId
-          table
         }
       }
       influence: allAirtable(filter: { table: { eq: "Influence" } }) {
@@ -47,13 +55,17 @@ const SidebarDescription = ({ data }) => {
             Image {
               localFiles {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
                 }
               }
             }
           }
           recordId
-          table
         }
       }
       medium: allAirtable(filter: { table: { eq: "Medium" } }) {
@@ -63,13 +75,17 @@ const SidebarDescription = ({ data }) => {
             Image {
               localFiles {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
                 }
               }
             }
           }
           recordId
-          table
         }
       }
       locations: allAirtable(filter: { table: { eq: "Location" } }) {
@@ -79,13 +95,17 @@ const SidebarDescription = ({ data }) => {
             Image {
               localFiles {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
                 }
               }
             }
           }
           recordId
-          table
         }
       }
     }
@@ -131,6 +151,12 @@ const SidebarDescription = ({ data }) => {
           ?.gatsbyImageData)
     : (descriptionImage =
         result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData)
+
+  // TROUBLESHOOTING
+  // console.log(
+  //   sidebarData.artwork.nodes[4].data.Image_or_Audio.localFiles[0]
+  //     .childImageSharp.gatsbyImageData
+  // )
 
   let metadata
 
@@ -185,7 +211,7 @@ const SidebarDescription = ({ data }) => {
         )}
       </div>
       {selectedFilter.filterType !== "artist" && (
-        <div className="w-full h-96 bg-gray-500 mt-3">
+        <div className="w-full h-auto mt-3">
           {descriptionImage && <GatsbyImage image={descriptionImage} />}
         </div>
       )}
