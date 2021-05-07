@@ -1,6 +1,9 @@
 import React from "react"
 import { getMetadataByFilterId, translateIdToName } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
+import Video from "../components/Video"
+import Audio from "../components/Audio"
+import ArtworkImage from "../components/ArtworkImage"
 
 const ArtistsAndArtwork = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)
@@ -13,12 +16,15 @@ const ArtistsAndArtwork = ({ data }) => {
   }
 
   const {
-    Artist: artistMetadata,
-    Artwork: artwork,
-    Primary_Artist__REQUIRED_: primaryArtist,
-    Medium: media,
-    Theme: themes,
-  } = metadata.data
+    recordId,
+    data: {
+      Artist: artistMetadata,
+      Artwork: artwork,
+      Primary_Artist__REQUIRED_: primaryArtist,
+      Medium: media,
+      Theme: themes,
+    },
+  } = metadata
 
   // if rendering artwork
   const renderedArtwork = artwork?.map(art => {
@@ -49,9 +55,15 @@ const ArtistsAndArtwork = ({ data }) => {
 
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
-        <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
-          IMAGE
-        </div>
+        {selectedFilter?.filterType !== "artwork" ? (
+          <div className="w-full h-auto text-lg flex justify-center items-center">
+            <ArtworkImage id={primaryArtist} title={title} />
+          </div>
+        ) : (
+          <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
+            IMAGE
+          </div>
+        )}
         <div>
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
@@ -118,8 +130,13 @@ const ArtistsAndArtwork = ({ data }) => {
         } mb-6`}
       >
         {selectedFilter.filterType !== "artwork" && (
-          <div className="w-auto bg-gray-500 text-lg flex justify-center items-center h-32">
-            IMAGE
+          <div className="w-full h-32 text-lg flex justify-center items-center">
+            <ArtworkImage
+              id={recordId}
+              primaryArtist={artistId}
+              title={title}
+              filterType={selectedFilter.filterType}
+            />
           </div>
         )}
         <div>
