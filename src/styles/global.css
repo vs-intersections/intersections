@@ -23,9 +23,9 @@ html {
 } */
 
 /* gives us the illusion of a "centered" slide */
-/* .carousel__slider {
-  padding-right: 66%;
-} */
+.carousel__slider {
+  padding-left: 5%;
+}
 
 /* gives us the illusion of spaces between the slides */
 /* .carousel__inner-slide {

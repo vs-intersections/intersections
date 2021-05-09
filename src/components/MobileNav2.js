@@ -7,6 +7,9 @@ import {
   ButtonNext,
 } from "pure-react-carousel"
 import "pure-react-carousel/dist/react-carousel.es.css"
+import ArrowRight from "../../static/next.svg"
+import ArrowLeft from "../../static/previous.svg"
+
 function MobileNav2({
   artwork,
   artists,
@@ -17,7 +20,7 @@ function MobileNav2({
   generateDropdown,
 }) {
   return (
-    <div className="mx-4">
+    <div className="mx-4 relative">
       <CarouselProvider
         infinite={true}
         touchEnabled={true}
@@ -45,6 +48,8 @@ function MobileNav2({
             {generateDropdown("medium", mediums, "lightBlue")}
           </Slide>
         </Slider>
+        <ButtonBack className="absolute top-8 -left-2"><img src={ArrowLeft}/></ButtonBack>
+        <ButtonNext className="absolute top-8 -right-3"><img src={ArrowRight}/></ButtonNext>
       </CarouselProvider>
     </div>
   )
