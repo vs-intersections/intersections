@@ -17,33 +17,36 @@ function MobileNav2({
   generateDropdown,
 }) {
   return (
-    <CarouselProvider
-      naturalSlideWidth={100}
-      naturalSlideHeight={125}
-      totalSlides={6}
-    >
-      <Slider>
-        <Slide index={0}>
-          {" "}
-          {generateDropdown("artist", artists, "lightGreen")}
-        </Slide>
-        <Slide index={1}>
-          {" "}
-          {generateDropdown("artwork", artwork, "orange")}
-        </Slide>
-        <Slide index={2}>
-          {generateDropdown("location", locations, "blue")}
-        </Slide>
-        <Slide index={3}>{generateDropdown("theme", themes, "pink")}</Slide>
-        <Slide index={4}>
-          {generateDropdown("influence", influences, "yellow")}
-        </Slide>
-        <Slide>
-        {generateDropdown("medium", mediums, "lightBlue")}
-
-        </Slide>
-      </Slider>
-    </CarouselProvider>
+    <div className="mx-4">
+      <CarouselProvider
+        infinite={true}
+        touchEnabled={true}
+        visibleSlides={2}
+        naturalSlideWidth={100}
+        naturalSlideHeight={100}
+        totalSlides={6}
+      >
+        <Slider>
+          <Slide index={0} className="text-center">
+            {generateDropdown("artist", artists, "lightGreen")}
+          </Slide>
+          <Slide index={1}>
+            {" "}
+            {generateDropdown("artwork", artwork, "orange")}
+          </Slide>
+          <Slide index={2}>
+            {generateDropdown("location", locations, "blue")}
+          </Slide>
+          <Slide index={3}>{generateDropdown("theme", themes, "pink")}</Slide>
+          <Slide index={4}>
+            {generateDropdown("influence", influences, "yellow")}
+          </Slide>
+          <Slide index={5}>
+            {generateDropdown("medium", mediums, "lightBlue")}
+          </Slide>
+        </Slider>
+      </CarouselProvider>
+    </div>
   )
 }
 
