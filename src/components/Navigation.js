@@ -1,4 +1,6 @@
+/** @jsx jsx */
 import React from "react"
+import { css, jsx } from "@emotion/react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
@@ -14,6 +16,13 @@ const Navigation = ({ data, isMobile }) => {
       filterName: e.target.value,
       filterType: e.target.id,
     })
+  }
+
+  const showDropdown = element => {
+  console.log('hay')
+    var event = document?.createEvent("MouseEvents")
+    event.initMouseEvent("mousedown", true, true, window)
+    element.dispatchEvent(event)
   }
 
   const artists = data?.artists?.nodes.map(el => ({
@@ -90,6 +99,9 @@ const Navigation = ({ data, isMobile }) => {
           }
           onChange={e => {
             handleSelect(e)
+          }}
+          onClick={e => {
+            showDropdown(document.getElementById(e.target.id))
           }}
         >
           <option value="">&#8213;</option>

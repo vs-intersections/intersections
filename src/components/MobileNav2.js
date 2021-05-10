@@ -1,3 +1,4 @@
+
 import React from "react"
 import {
   CarouselProvider,
@@ -23,6 +24,7 @@ function MobileNav2({
     <div className="mx-4 relative">
       <CarouselProvider
         infinite={true}
+        currentSlide={4}
         touchEnabled={true}
         visibleSlides={2}
         naturalSlideWidth={100}
