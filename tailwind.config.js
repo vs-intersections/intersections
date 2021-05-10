@@ -27,6 +27,7 @@ module.exports = {
         layoutLg: "2.5rem 4.5rem auto",
         mainContent: "auto 10.75rem 3.25rem",
         mainContentLg: "auto 1.5rem",
+        videosContentLg: "2.5rem auto 1.5rem",
       },
       gridTemplateColumns: {
         artwork: "1fr 2fr",
