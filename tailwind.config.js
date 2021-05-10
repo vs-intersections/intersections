@@ -23,7 +23,7 @@ module.exports = {
     },
     extend: {
       gridTemplateRows: {
-        layout: "4rem 4rem auto",
+        layout: "4rem 5rem auto",
         layoutLg: "2.5rem 4.5rem auto",
         mainContent: "auto 10.75rem 3.25rem",
         mainContentLg: "auto 1.5rem",
@@ -46,6 +46,7 @@ module.exports = {
     }),
     maxWidth: {
       dropdown: "10.5rem",
+      dropdownXS: "8rem",
     },
   },
   variants: {

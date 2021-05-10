@@ -23,8 +23,12 @@ html {
 } */
 
 /* gives us the illusion of a "centered" slide */
-.carousel__slider {
+/* .carousel__slider {
   padding-left: 5%;
+} */
+
+.carousel {
+  height: 100%;
 }
 
 /* gives us the illusion of spaces between the slides */

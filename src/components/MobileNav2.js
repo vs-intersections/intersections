@@ -1,4 +1,3 @@
-
 import React from "react"
 import {
   CarouselProvider,
@@ -21,7 +20,7 @@ function MobileNav2({
   generateDropdown,
 }) {
   return (
-    <div className="mx-4 relative">
+    <div className="px-4 relative bg-gray-200">
       <CarouselProvider
         infinite={true}
         currentSlide={4}
@@ -50,8 +49,12 @@ function MobileNav2({
             {generateDropdown("medium", mediums, "lightBlue")}
           </Slide>
         </Slider>
-        <ButtonBack className="absolute top-8 -left-2"><img src={ArrowLeft}/></ButtonBack>
-        <ButtonNext className="absolute top-8 -right-3"><img src={ArrowRight}/></ButtonNext>
+        <ButtonBack className="absolute top-6 left-3">
+          <img src={ArrowLeft} />
+        </ButtonBack>
+        <ButtonNext className="absolute top-6 right-3">
+          <img src={ArrowRight} />
+        </ButtonNext>
       </CarouselProvider>
     </div>
   )

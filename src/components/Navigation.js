@@ -6,7 +6,8 @@ import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
 import DesktopNav from "./DesktopNav"
 import MobileNav2 from "./MobileNav2"
-const Navigation = ({ data, isMobile }) => {
+const Navigation = ({ data, isMobile, IsMobileXS }) => {
+  console.log(IsMobileXS)
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
 
@@ -19,7 +20,7 @@ const Navigation = ({ data, isMobile }) => {
   }
 
   const showDropdown = element => {
-  console.log('hay')
+    console.log("hay")
     var event = document?.createEvent("MouseEvents")
     event.initMouseEvent("mousedown", true, true, window)
     element.dispatchEvent(event)
@@ -81,7 +82,9 @@ const Navigation = ({ data, isMobile }) => {
     })
     return (
       <li
-        className={`p-2 max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
+        className={`p-2 mx-auto ${
+          IsMobileXS ? "max-w-dropdownXS" : "max-w-dropdown"
+        } transition-colors duration-500 bg-opacity-40 ${
           selectedFilter.filterType === filterType ? "bg-" + color : ""
         }`}
       >
