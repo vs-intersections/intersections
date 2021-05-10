@@ -2,7 +2,8 @@ import React from "react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
-
+import DesktopNav from "./DesktopNav"
+import MobileNav2 from "./MobileNav2"
 const Navigation = ({ data, isMobile }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
@@ -69,7 +70,6 @@ const Navigation = ({ data, isMobile }) => {
         </option>
       )
     })
-
     return (
       <li
         className={`p-2 max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
@@ -99,18 +99,26 @@ const Navigation = ({ data, isMobile }) => {
     )
   }
 
-  return (
-    <nav className="bg-gray-100 flex justify-center items-center relative">
-      <ul className="flex items-center text-xs justify-evenly w-full">
-        {generateDropdown("artist", artists, "lightGreen")}
-
-        {generateDropdown("artwork", artwork, "orange")}
-        {!isMobile && generateDropdown("location", locations, "blue")}
-        {!isMobile && generateDropdown("theme", themes, "pink")}
-        {!isMobile && generateDropdown("medium", mediums, "lightBlue")}
-        {!isMobile && generateDropdown("influence", influences, "yellow")}
-      </ul>
-    </nav>
+  return isMobile ? (
+    <MobileNav2
+      generateDropdown={generateDropdown}
+      artists={artists}
+      artwork={artwork}
+      influences={influences}
+      themes={themes}
+      mediums={mediums}
+      locations={locations}
+    />
+  ) : (
+    <DesktopNav
+      generateDropdown={generateDropdown}
+      artists={artists}
+      artwork={artwork}
+      influences={influences}
+      themes={themes}
+      mediums={mediums}
+      locations={locations}
+    />
   )
 }
 
