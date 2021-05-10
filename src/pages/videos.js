@@ -52,12 +52,13 @@ const Videos = () => {
   const interviewVideos = data?.artists?.nodes
     .filter(el => el.data.Interview)
     .map(el => (
-      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-8 px-4 h-96">
+      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96">
         <Video
           key={el.recordId}
           videoSrcURL={el.data.Interview}
           videoTitle={el?.data?.Name || "Artist Interview"}
         />
+        <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
       </div>
     ))
 
@@ -70,10 +71,11 @@ const Videos = () => {
           videoSrcURL={el.data.Video}
           videoTitle={el?.data?.Name || "Artwork Video"}
         />
+        <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
       </div>
     ))
 
-    const locationVideos = data?.locations?.nodes
+  const locationVideos = data?.locations?.nodes
     .filter(el => el.data.Video)
     .map(el => (
       <div className="mx-auto md:mx-0 w-screen md:w-1/3 md:mb-8 md:px-4 h-96">
@@ -82,6 +84,7 @@ const Videos = () => {
           videoSrcURL={el.data.Video}
           videoTitle={el?.data?.Name || "Location Video"}
         />
+        <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
       </div>
     ))
   return (
@@ -89,15 +92,15 @@ const Videos = () => {
       <MobileNav isOpen={isOpen} />
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="container mx-auto">
-        <h1 className="ml-4 mt-4 mb-2 text-5xl">Interviews</h1>
+        <h1 className="ml-4 mt-4 mb-4 text-5xl">Interviews</h1>
         <div className="flex flex-col md:flex-row flex-wrap">
           {interviewVideos}
         </div>
-        <h1 className="ml-4 mt-4 mb-2 text-5xl">Artwork Videos</h1>
+        <h1 className="ml-4 mt-4 mb-4 text-5xl">Artwork Videos</h1>
         <div className="flex flex-col md:flex-row flex-wrap">
           {artworkVideos}
         </div>
-        <h1 className="ml-4 mt-4 mb-2 text-5xl">Locations</h1>
+        <h1 className="ml-4 mt-4 mb-4 text-5xl">Locations</h1>
         <div className="flex flex-col md:flex-row flex-wrap">
           {locationVideos}
         </div>
