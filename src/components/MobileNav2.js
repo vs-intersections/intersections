@@ -1,5 +1,5 @@
 import React from "react"
-import Carousel from "@brainhubeu/react-carousel"
+import Carousel, { arrowsPlugin } from "@brainhubeu/react-carousel"
 import "@brainhubeu/react-carousel/lib/style.css"
 import ArrowRight from "../../static/next.svg"
 import ArrowLeft from "../../static/previous.svg"
