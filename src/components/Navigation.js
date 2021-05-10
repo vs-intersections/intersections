@@ -82,9 +82,7 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
     })
     return (
       <li
-        className={`p-2 mx-auto ${
-          IsMobileXS ? "max-w-dropdownXS" : "max-w-dropdown"
-        } transition-colors duration-500 bg-opacity-40 ${
+        className={`p-2 mx-auto max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
           selectedFilter.filterType === filterType ? "bg-" + color : ""
         }`}
       >
