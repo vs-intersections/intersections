@@ -15,6 +15,7 @@ import GraphAndSidebar from "../components/GraphAndSidebar"
 export default function Home() {
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024
+  const IS_MOBILE_XS = width <= 450
   const [isOpen, setIsOpen] = useState(false)
 
   const data = useStaticQuery(graphql`
@@ -108,7 +109,11 @@ export default function Home() {
       <LayoutMain nodes={data}>
         <div className="h-screen grid grid-rows-layout lg:grid-rows-layoutLg overflow-hidden">
           <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-          <Navigation data={data} isMobile={IS_MOBILE} />
+          <Navigation
+            data={data}
+            isMobile={IS_MOBILE}
+            IsMobileXS={IS_MOBILE_XS}
+          />
           <div className="relative">
             <div className="absolute top-0 bottom-0 left-0 right-0">
               <main className="h-full grid grid-rows-mainContent lg:grid-rows-mainContentLg">

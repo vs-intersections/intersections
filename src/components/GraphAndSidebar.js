@@ -46,7 +46,7 @@ const GraphAndSidebar = ({ data }) => {
             } h-20 absolute flex justify-center items-center`}
           >
             <div
-              className={`w-80 h-12 text-gray-500 border-2 rounded border-${tabClass} bg-white flex cursor-pointer hover:bg-${tabClass} hover:text-gray-900 transition-colors duration-500`}
+              className={`w-80 h-12 text-gray-500 border-2 rounded border-${tabClass} bg-white flex cursor-pointer hover:bg-${tabClass} hover:text-gray-900 transition-colors duration-500 z-10`}
               onClick={toggleSidebar}
             >
               <div

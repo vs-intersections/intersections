@@ -6,6 +6,10 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+select {
+  background: white;
+}
+
 .bannerIsOpen {
   transition-duration: 0.5s;
   transition-delay: 0s;
@@ -23,8 +27,20 @@ html {
 } */
 
 /* gives us the illusion of a "centered" slide */
-.carousel__slider {
+/* .carousel__slider {
   padding-left: 5%;
+} */
+
+/* .carousel {
+  height: 100%;
+} */
+
+.BrainhubCarousel__arrows {
+  background-color: rgba(229, 229, 229, var(--tw-bg-opacity)) !important;
+}
+
+.BrainhubCarousel__arrows span {
+  border-color: rgb(58, 58, 58) !important;
 }
 
 /* gives us the illusion of spaces between the slides */

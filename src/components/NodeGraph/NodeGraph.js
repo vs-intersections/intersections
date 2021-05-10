@@ -73,18 +73,21 @@ const NodeGraph = ({ data }) => {
     let nodes = graphData.nodes
     let links = graphData.links
 
-    // console.log(nodes)
-
     // svg specific variables
     // set the D3 container to a certain aspect ratio
-    const svg = select(ref.current)
+    const svgWrapper = select(ref.current)
       .attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
       .attr("width", width)
       .attr("height", height)
-    svg.selectAll("line").remove()
-    svg.selectAll("g").remove()
-    svg.selectAll("circle").remove()
-    svg.selectAll("text").remove()
+
+    svgWrapper.selectAll("g").remove()
+    const svg = svgWrapper.append("g")
+    svg.attr("transform", "none")
+
+    // svg.selectAll("line").remove()
+    // svg.selectAll("g").remove()
+    // svg.selectAll("circle").remove()
+    // svg.selectAll("text").remove()
 
     let centerX = width / 2
     let centerY = height / 1.75
@@ -137,13 +140,29 @@ const NodeGraph = ({ data }) => {
       centerY = aspectRatioHeight / 1.8
       simulation.force("center", forceCenter(centerX, centerY))
       // set new values for viewbox, and SVG width and height
-      svg.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
-      svg.attr("width", width).attr("height", height)
+      svgWrapper.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
+      svgWrapper.attr("width", width).attr("height", height)
     }
 
     // run the resize function to center the SVG, then listen for more resizing
     resize()
     select(window).on("resize", resize)
+
+    // ZOOM function - IT WORKS!!! Except it resets weird
+    // svgWrapper.call(
+    //   zoom()
+    //     .extent([
+    //       [0, 0],
+    //       [width, height],
+    //     ])
+    //     .scaleExtent([1, 8])
+    //     .on("zoom", zoomed)
+    // )
+
+    // function zoomed({ transform }) {
+    //   svg.attr("transform", transform)
+    //   resize()
+    // }
 
     // highlight nodes on mouse hover
     function highlight(e, datapoint) {
@@ -270,7 +289,7 @@ const NodeGraph = ({ data }) => {
   }
 
   return (
-    <div ref={containerRef} className="w-full h-full">
+    <div ref={containerRef} className="w-full h-full overflow-hidden">
       <svg ref={ref} className="w-full" version="1.1"></svg>
     </div>
   )
