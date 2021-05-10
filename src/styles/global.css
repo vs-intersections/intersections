@@ -18,6 +18,21 @@ html {
   left: 94vw;
 }
 
+/* .carousel__container {
+  margin: auto;
+} */
+
+/* gives us the illusion of a "centered" slide */
+.carousel__slider {
+  padding-left: 5%;
+}
+
+/* gives us the illusion of spaces between the slides */
+/* .carousel__inner-slide {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+} */
+
 /* .underline-blue {
   text-decoration: underline;
   text-decoration-color: #62b4ff;

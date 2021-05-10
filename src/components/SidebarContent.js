@@ -13,17 +13,6 @@ const SidebarContent = ({ data }) => {
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024
 
-  // for troubleshooting
-  // console.log("BEFORE")
-  // if (data) console.log(data.artwork.nodes[7].data.Theme)
-
-  // working on conditionally rendering props through dynamic naming
-  // const tempName = selectedFilter?.filterType
-  // const capitalizedFilterType =
-  //   tempName.charAt(0).toUpperCase() + tempName.slice(1)
-  // console.log(capitalizedFilterType)
-  // const Monkey = {`Sidebar${capitalizedFilterType}`}
-
   const renderedComponent = () => {
     if (selectedFilter.filterType) {
       return selectedFilter.filterType === "artist" ? (
@@ -41,10 +30,6 @@ const SidebarContent = ({ data }) => {
       )
     }
   }
-
-  // for troubleshooting
-  // console.log("AFTER")
-  // if (data) console.log(data.artwork.nodes[7].data.Theme)
 
   return (
     <div
