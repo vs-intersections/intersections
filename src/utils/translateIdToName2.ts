@@ -3,7 +3,7 @@
 // then determines if the passed in ID was a string or array
 // then returns the ID(s) as names
 
-export const translateIdToName2 = (data, id, table) => {
+export const translateIdToName2 = (data, id: string | [], table: string) => {
   const tableToFilter = table !== "artwork" ? `${table}s` : "artwork"
   // checks to see if the ID is a string
   if (typeof id === "string") {
@@ -15,7 +15,6 @@ export const translateIdToName2 = (data, id, table) => {
     }
   }
   // checks to see if the ID is an array of strings
-  if (Array.isArray(id)) {
     const namesArray = id.map(item => {
       const result = data[tableToFilter]?.nodes.find(
         node => node.recordId === item
@@ -29,4 +28,3 @@ export const translateIdToName2 = (data, id, table) => {
     })
     return namesArray
   }
-}
