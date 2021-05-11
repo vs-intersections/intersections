@@ -1,10 +1,10 @@
 import React from "react"
-import { getMetadataByFilterId, translateIdToName } from "../utils"
+import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 
 const Influence = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)
-  const { selectedFilter } = useFilterContext()
+  const { selectedFilter, setSelectedFilter } = useFilterContext()
 
   let metadata
 
@@ -16,7 +16,7 @@ const Influence = ({ data }) => {
 
   let influenceNames = []
   if (influence)
-    influenceNames = translateIdToName(data, influence, "influence")
+    influenceNames = translateIdToName2(data, influence, "influence")
 
   return (
     <div className="mb-16">
@@ -28,8 +28,17 @@ const Influence = ({ data }) => {
         </p>
       ) : (
         influenceNames.map(item => (
-          <p key={item} className="text-lg underline-yellow">
-            {item}
+          <p
+            key={item}
+            className="text-lg underline-yellow"
+            onClick={() => {
+              setSelectedFilter({
+                filterName: item.id,
+                filterType: item.table,
+              })
+            }}
+          >
+            {item.name}
           </p>
         ))
       )}
