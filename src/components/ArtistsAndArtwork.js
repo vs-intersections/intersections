@@ -177,15 +177,15 @@ const ArtistsAndArtwork = ({ data }) => {
                 <span className="underline-orange">{title}</span>
               </p>
             )}
-          {selectedFilter.filterType !== "influence" && (
+          {selectedFilter.filterType === "artwork" && (
             <p className="text-lg">
               <span className="font-bold">Media: </span>
               {mediaCopy.length === 0
                 ? "Media not specified"
                 : mediaCopy.map((item, i) => {
                     return (
-                      <span key={item.id} className="underline-lightBlue">
-                        {item.name}
+                      <span key={item.id} className="underline-lightBlue" onClick={() => console.log(item)}>
+                        {item}
                         {mediaCopy.length > i + 1 ? ", " : ""}
                       </span>
                     )
