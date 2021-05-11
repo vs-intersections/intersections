@@ -8,6 +8,26 @@ import { GatsbyImage } from "gatsby-plugin-image"
 const SidebarDescription = ({ data }) => {
   const sidebarData = useStaticQuery(graphql`
     {
+      artists: allAirtable(filter: { table: { eq: "Artist" } }) {
+        nodes {
+          data {
+            Name
+            Bio_Image {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.5
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
+          }
+          recordId
+        }
+      }
       artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
         nodes {
           data {
@@ -37,6 +57,7 @@ const SidebarDescription = ({ data }) => {
                 childImageSharp {
                   gatsbyImageData(
                     aspectRatio: 1.5
+                    layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
                   )
@@ -116,6 +137,11 @@ const SidebarDescription = ({ data }) => {
 
   let result = {}
 
+  selectedFilter?.filterType === "artist" &&
+    (result = sidebarData.artists.nodes.find(
+      id => id.recordId === selectedFilter?.filterName
+    ))
+
   selectedFilter?.filterType === "location" &&
     (result = sidebarData.locations.nodes.find(
       id => id.recordId === selectedFilter?.filterName
@@ -141,14 +167,15 @@ const SidebarDescription = ({ data }) => {
       id => id.recordId === selectedFilter?.filterName
     ))
 
-  let descriptionImage =
-    result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
+  let descriptionImage = {}
 
-  // TROUBLESHOOTING
-  // console.log(
-  //   sidebarData.artwork.nodes[4].data.Image_or_Audio.localFiles[0]
-  //     .childImageSharp.gatsbyImageData
-  // )
+  if (selectedFilter?.filterType !== "artist") {
+    descriptionImage =
+      result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
+  } else {
+    descriptionImage =
+      result.data?.Bio_Image?.localFiles[0].childImageSharp.gatsbyImageData
+  }
 
   let metadata
 
@@ -163,6 +190,7 @@ const SidebarDescription = ({ data }) => {
       Description: description,
       Name: name,
       Interview: interview,
+      // Bio_Image: bioImage
     },
   } = metadata
 
@@ -195,6 +223,11 @@ const SidebarDescription = ({ data }) => {
         {table}: {name}
       </h3>
       <hr className="border-gray-400 border-t-2" />
+      {selectedFilter.filterType === "artist" && (
+        <div className="w-1/2 h-auto mt-3 mx-auto">
+          {descriptionImage && <GatsbyImage image={descriptionImage} />}
+        </div>
+      )}
       <div className="mt-2">
         {desc ? (
           renderedDescription
@@ -203,7 +236,7 @@ const SidebarDescription = ({ data }) => {
         )}
       </div>
       {selectedFilter.filterType !== "artist" && (
-        <div className="w-full h-auto mt-3">
+        <div className="w-full h-auto mt-3 mx-auto">
           {descriptionImage && <GatsbyImage image={descriptionImage} />}
         </div>
       )}

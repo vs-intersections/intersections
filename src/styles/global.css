@@ -49,86 +49,48 @@ select {
   height: calc(100% - 20px);
 } */
 
-.underline-blue {
-  background-image: linear-gradient(120deg, #62b4ff 0%, #62b4ff 100%);
+.underline-blue,
+.underline-lightGreen,
+.underline-orange,
+.underline-pink,
+.underline-yellow,
+.underline-lightBlue {
   background-repeat: no-repeat;
   width: min-content;
   background-size: 100% 0.1em;
   background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
+  transition: background-size 0.25s ease-out;
   cursor: pointer;
 }
-.underline-blue:hover {
-  background-size: 100% 88%;
+
+.underline-blue {
+  background-image: linear-gradient(120deg, #62b4ff 0%, #62b4ff 100%);
 }
 .underline-lightGreen {
   background-image: linear-gradient(120deg, #a3f78e 0%, #a3f78e 100%);
-  background-repeat: no-repeat;
-  width: min-content;
-  background-size: 100% 0.1em;
-  background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
-  cursor: pointer;
-}
-.underline-lightGreen:hover {
-  background-size: 100% 88%;
 }
 .underline-orange {
-  /* text-decoration: underline;
-  text-decoration-color: #ff985f;
-  text-decoration-thickness: 2px; */
   background-image: linear-gradient(120deg, #ff985f 0%, #ff985f 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 0.1em;
-  background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
-  cursor: pointer;
 }
-.underline-orange:hover {
-  background-size: 100% 88%;
-}
-
 .underline-pink {
-  /* text-decoration: underline;
-  text-decoration-color: #f36aff;
-  text-decoration-thickness: 2px; */
   background-image: linear-gradient(120deg, #f36aff 0%, #f36aff 100%);
-  background-repeat: no-repeat;
-  width: min-content;
-  background-size: 100% 0.1em;
-  background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
-  cursor: pointer;
-}
-.underline-pink:hover {
-  background-size: 100% 88%;
 }
 .underline-yellow {
-  /* text-decoration: underline;
-  text-decoration-color: #fff128;
-  text-decoration-thickness: 2px; */
   background-image: linear-gradient(120deg, #fff128 0%, #fff128 100%);
-  background-repeat: no-repeat;
-  width: min-content;
-  background-size: 100% 0.1em;
-  background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
-  cursor: pointer;
-}
-.underline-yellow:hover {
-  background-size: 100% 88%;
 }
 .underline-lightBlue {
   background-image: linear-gradient(120deg, #43f4ff 0%, #43f4ff 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 0.1em;
-  background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
-  cursor: pointer;
 }
+
+.underline-blue:hover,
+.underline-lightGreen:hover,
+.underline-orange:hover,
+.underline-pink:hover,
+.underline-yellow:hover,
 .underline-lightBlue:hover {
   background-size: 100% 88%;
 }
+
 /* .parent {
   fill-opacity: 0;
 

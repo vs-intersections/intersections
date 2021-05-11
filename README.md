@@ -18,6 +18,7 @@ Friday
 - Add links for all metadata in sidebar (ALBERT)
 - Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
 - Alphabetically list items in Navbar dropdowns (ALBERT)
+- ~~ Min-height the sidebar images (some of them are rendering too short) (ALBERT) ~~
 - Link Artists to collab artists (ALBERT)
 - Navigation filtering selectors (styling and updating node graph) (ALBERT)
 - Pages: Video and about (DAVID)
@@ -59,15 +60,14 @@ To-do items (so far)
 - Zooming will work on both desktop and mobile
 - Mobile layout will work for most devices
 - Filter dropdowns in mobile will be functional
-- Filters will list items alphabetically
+- ~~ Filters will list items alphabetically (DAVID) ~~
 - When a node is clicked or filter selected, the sidebar will snap to the top of the scrollable area
 
 - Zoom function
 - Highlight
-- Airtable bio images for artists
-  - layout - image first
-- Tip this artist
-- Change Hometown field - birthplace
+- ~~ Airtable bio images for artists - layout - image first (ALBERT) ~~
+- ~~ Tip this artist (ALBERT) ~~
+- ~~ Change Hometown field - birthplace (ALBERT) ~~
 
 - videos are squares on desktop
 - lightboxes for still images

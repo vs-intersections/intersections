@@ -37,6 +37,7 @@ export default function Home() {
             Website
             Interview
             Affiliations
+            Tip
           }
           recordId
         }
