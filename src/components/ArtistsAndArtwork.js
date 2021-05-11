@@ -57,9 +57,9 @@ const ArtistsAndArtwork = ({ data }) => {
         themes = nodeData.Theme
 
         // convert IDs to names
-        if (artist) artistByName = translateIdToName(data, artist, "artist")
+        if (artist) artistByName = translateIdToName2(data, artist, "artist")
         if (media) mediaCopy = translateIdToName2(data, media, "medium")
-        if (themes) themesCopy = translateIdToName(data, themes, "theme")
+        if (themes) themesCopy = translateIdToName2(data, themes, "theme")
       }
     })
 
@@ -78,7 +78,7 @@ const ArtistsAndArtwork = ({ data }) => {
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
               <span className="font-bold">Artist: </span>
-              <span className="underline-lightGreen">{artistByName}</span>
+              <span className="underline-lightGreen" onClick={() => handleFilterLinkClick(artistByName)}>{artistByName.name}</span>
             </p>
           )}
           <p className="text-lg">
@@ -118,8 +118,12 @@ const ArtistsAndArtwork = ({ data }) => {
               ? "Theme not specified"
               : themesCopy.map((item, i) => {
                   return (
-                    <span key={item} className="underline-pink">
-                      {item}
+                    <span
+                      key={item.id}
+                      className="underline-pink"
+                      onClick={() => handleFilterLinkClick(item)}
+                    >
+                      {item.name}
                       {themesCopy.length > i + 1 ? ", " : ""}
                     </span>
                   )
@@ -140,9 +144,9 @@ const ArtistsAndArtwork = ({ data }) => {
       themesCopy = []
 
     // convert IDs to names
-    if (artistId) artistByName = translateIdToName(data, artistId, "artist")
-    if (media) mediaCopy = translateIdToName(data, media, "medium")
-    if (themes) themesCopy = translateIdToName(data, themes, "theme")
+    if (artistId) artistByName = translateIdToName2(data, artistId, "artist")
+    if (media) mediaCopy = translateIdToName2(data, media, "medium")
+    if (themes) themesCopy = translateIdToName2(data, themes, "theme")
 
     return (
       <div
@@ -167,7 +171,7 @@ const ArtistsAndArtwork = ({ data }) => {
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
               <span className="font-bold">Artist: </span>
-              <span className="underline-lightGreen">{artistByName}</span>
+              <span className="underline-lightGreen" onClick={() => handleFilterLinkClick(artistByName)}>{artistByName.name}</span>
             </p>
           )}
           {selectedFilter.filterType !== "artwork" &&
@@ -184,8 +188,12 @@ const ArtistsAndArtwork = ({ data }) => {
                 ? "Media not specified"
                 : mediaCopy.map((item, i) => {
                     return (
-                      <span key={item.id} className="underline-lightBlue" onClick={() => console.log(item)}>
-                        {item}
+                      <span
+                        key={item.id}
+                        className="underline-lightBlue"
+                        onClick={() => handleFilterLinkClick(item)}
+                      >
+                        {item.name}
                         {mediaCopy.length > i + 1 ? ", " : ""}
                       </span>
                     )
@@ -199,8 +207,12 @@ const ArtistsAndArtwork = ({ data }) => {
                 ? "Theme not specified"
                 : themesCopy.map((item, i) => {
                     return (
-                      <span key={item} className="underline-pink">
-                        {item}
+                      <span
+                        key={item.id}
+                        className="underline-pink"
+                        onClick={() => handleFilterLinkClick(item)}
+                      >
+                        {item.name}
                         {themesCopy.length > i + 1 ? ", " : ""}
                       </span>
                     )

@@ -50,17 +50,29 @@ select {
 } */
 
 .underline-blue {
-  text-decoration: underline;
-  text-decoration-color: #62b4ff;
-  text-decoration-thickness: 2px;
+  background-image: linear-gradient(120deg, #62b4ff 0%, #62b4ff 100%);
+  background-repeat: no-repeat;
+  width: min-content;
+  background-size: 100% 0.1em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+  cursor: pointer;
 }
-
+.underline-blue:hover {
+  background-size: 100% 88%;
+}
 .underline-lightGreen {
-  text-decoration: underline;
-  text-decoration-color: #a3f78e;
-  text-decoration-thickness: 2px;
+  background-image: linear-gradient(120deg, #a3f78e 0%, #a3f78e 100%);
+  background-repeat: no-repeat;
+  width: min-content;
+  background-size: 100% 0.1em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+  cursor: pointer;
 }
-
+.underline-lightGreen:hover {
+  background-size: 100% 88%;
+}
 .underline-orange {
   /* text-decoration: underline;
   text-decoration-color: #ff985f;
@@ -77,11 +89,20 @@ select {
 }
 
 .underline-pink {
-  text-decoration: underline;
+  /* text-decoration: underline;
   text-decoration-color: #f36aff;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 2px; */
+  background-image: linear-gradient(120deg, #f36aff 0%, #f36aff 100%);
+  background-repeat: no-repeat;
+  width: min-content;
+  background-size: 100% 0.1em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+  cursor: pointer;
 }
-
+.underline-pink:hover {
+  background-size: 100% 88%;
+}
 .underline-yellow {
   /* text-decoration: underline;
   text-decoration-color: #fff128;
@@ -92,6 +113,7 @@ select {
   background-size: 100% 0.1em;
   background-position: 0 88%;
   transition: background-size 0.25s ease-in;
+  cursor: pointer;
 }
 .underline-yellow:hover {
   background-size: 100% 88%;
