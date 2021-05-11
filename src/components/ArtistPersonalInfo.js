@@ -12,14 +12,14 @@ const ArtistPersonalInfo = ({ data }) => {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
 
-  const { Hometown: hometown, Email: email, Website: site } = metadata.data
+  const { Birthplace: birthplace, Email: email, Website: site } = metadata.data
 
   return (
     <div className="mb-16">
       <h3 className="pb-1 text-2xl font-bold mb-3.5">More Info</h3>
-      {hometown && (
+      {birthplace && (
         <p className="text-lg">
-          <span className="font-bold">Hometown:</span> {hometown}
+          <span className="font-bold">Birthplace:</span> {birthplace}
         </p>
       )}
       {site && (

@@ -49,7 +49,7 @@ select {
   height: calc(100% - 20px);
 } */
 
-/* .underline-blue {
+ .underline-blue {
   text-decoration: underline;
   text-decoration-color: #62b4ff;
   text-decoration-thickness: 2px;
@@ -74,17 +74,29 @@ select {
 }
 
 .underline-yellow {
-  text-decoration: underline;
+  /* text-decoration: underline;
   text-decoration-color: #fff128;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 2px; */
+  background-image: linear-gradient(120deg, #fff128 0%, #fff128 100%);
+  background-repeat: no-repeat;
+  width: min-content;
+  background-size: 100% 0.1em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
 }
-
+.underline-yellow:hover {
+  background-size: 100% 88%;
+}
 .underline-lightBlue {
-  text-decoration: underline;
-  text-decoration-color: #43f4ff;
-  text-decoration-thickness: 2px;
-} */
-
+  background-image: linear-gradient(120deg, #43f4ff 0%, #43f4ff 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.1em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+} 
+.underline-lightBlue:hover {
+  background-size: 100% 88%;
+}
 /* .parent {
   fill-opacity: 0;
 
