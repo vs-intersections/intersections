@@ -19,8 +19,8 @@ function MobileNav2({
       {generateDropdown("artwork", artwork, "orange")}
       {generateDropdown("location", locations, "blue")}
       {generateDropdown("theme", themes, "pink")}
-      {generateDropdown("influence", influences, "yellow")}
       {generateDropdown("medium", mediums, "lightBlue")}
+      {generateDropdown("influence", influences, "yellow")}
     </Carousel>
   )
 }

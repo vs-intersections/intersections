@@ -34,7 +34,9 @@ function MobileNav({ isOpen }) {
       <li className="py-8 hover:underline tracking-widest text-center">
         <Link to="/about">About</Link>
       </li>
-      <li className="py-8 hover:underline tracking-widest text-center">Help</li>
+      <li className="py-8 hover:underline tracking-widest text-center">
+        <Link to="/help">Help</Link>
+      </li>
     </ul>
   )
 }

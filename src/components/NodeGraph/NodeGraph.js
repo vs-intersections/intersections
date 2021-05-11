@@ -81,6 +81,7 @@ const NodeGraph = ({ data }) => {
       .attr("height", height)
 
     svgWrapper.selectAll("g").remove()
+
     const svg = svgWrapper.append("g")
     svg.attr("transform", "none")
 
@@ -149,20 +150,20 @@ const NodeGraph = ({ data }) => {
     select(window).on("resize", resize)
 
     // ZOOM function - IT WORKS!!! Except it resets weird
-    // svgWrapper.call(
-    //   zoom()
-    //     .extent([
-    //       [0, 0],
-    //       [width, height],
-    //     ])
-    //     .scaleExtent([1, 8])
-    //     .on("zoom", zoomed)
-    // )
+    svgWrapper.call(
+      zoom()
+        .extent([
+          [0, 0],
+          [width, height],
+        ])
+        .scaleExtent([1, 8])
+        .on("zoom", zoomed)
+    )
 
-    // function zoomed({ transform }) {
-    //   svg.attr("transform", transform)
-    //   resize()
-    // }
+    function zoomed({ transform }) {
+      svg.attr("transform", transform)
+      // resize()
+    }
 
     // highlight nodes on mouse hover
     function highlight(e, datapoint) {

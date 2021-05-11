@@ -49,7 +49,7 @@ select {
   height: calc(100% - 20px);
 } */
 
- .underline-blue {
+.underline-blue {
   text-decoration: underline;
   text-decoration-color: #62b4ff;
   text-decoration-thickness: 2px;
@@ -71,7 +71,7 @@ select {
   background-position: 0 88%;
   transition: background-size 0.25s ease-in;
   cursor: pointer;
-} 
+}
 .underline-orange:hover {
   background-size: 100% 88%;
 }
@@ -92,7 +92,6 @@ select {
   background-size: 100% 0.1em;
   background-position: 0 88%;
   transition: background-size 0.25s ease-in;
-  
 }
 .underline-yellow:hover {
   background-size: 100% 88%;
@@ -104,7 +103,7 @@ select {
   background-position: 0 88%;
   transition: background-size 0.25s ease-in;
   cursor: pointer;
-} 
+}
 .underline-lightBlue:hover {
   background-size: 100% 88%;
 }
