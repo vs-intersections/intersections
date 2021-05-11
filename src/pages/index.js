@@ -20,7 +20,7 @@ export default function Home() {
 
   const data = useStaticQuery(graphql`
   {
-    artists: allAirtable(filter: { table: { eq: "Artist" } }) {
+    artists: allAirtable(filter: { table: { eq: "Artist" } } sort: { fields:data___Name}) {
       nodes {
         table
         data {
@@ -38,7 +38,7 @@ export default function Home() {
         recordId
       }
     }
-    artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
+    artwork: allAirtable(filter: { table: { eq: "Artwork" } } sort: { fields:data___Name}) {
       nodes {
         table
         data {
@@ -54,7 +54,7 @@ export default function Home() {
         recordId
       }
     }
-    locations: allAirtable(filter: { table: { eq: "Location" } }) {
+    locations: allAirtable(filter: { table: { eq: "Location" } } sort: { fields:data___Name}) {
       nodes {
         table
         data {
@@ -67,7 +67,7 @@ export default function Home() {
         recordId
       }
     }
-    themes: allAirtable(filter: { table: { eq: "Theme" } }) {
+    themes: allAirtable(filter: { table: { eq: "Theme" } } sort: { fields:data___Name}) {
       nodes {
         table
         data {
@@ -78,7 +78,7 @@ export default function Home() {
         recordId
       }
     }
-    mediums: allAirtable(filter: { table: { eq: "Medium" } }) {
+    mediums: allAirtable(filter: { table: { eq: "Medium" } } sort: { fields:data___Name}) {
       nodes {
         table
         data {
@@ -89,7 +89,7 @@ export default function Home() {
         recordId
       }
     }
-    influences: allAirtable(filter: { table: { eq: "Influence" } }) {
+    influences: allAirtable(filter: { table: { eq: "Influence" } } sort: { fields:data___Name}) {
       nodes {
         table
         data {
