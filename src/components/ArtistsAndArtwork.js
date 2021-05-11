@@ -78,7 +78,7 @@ const ArtistsAndArtwork = ({ data }) => {
           {selectedFilter.filterType !== "artist" && (
             <p className="text-lg">
               <span className="font-bold">Artist: </span>
-              <span className="underline-lightGreen" onClick={() => console.log(artistByName.id)}>{artistByName.name}</span>
+              <span className="underline-lightGreen" onClick={() => handleFilterLinkClick(artistByName)}>{artistByName.name}</span>
             </p>
           )}
           <p className="text-lg">
