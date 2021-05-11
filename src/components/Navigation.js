@@ -19,13 +19,6 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
     })
   }
 
-  const showDropdown = element => {
-    console.log("hay")
-    var event = document?.createEvent("MouseEvents")
-    event.initMouseEvent("mousedown", true, true, window)
-    element.dispatchEvent(event)
-  }
-
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,
@@ -100,9 +93,6 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
           }
           onChange={e => {
             handleSelect(e)
-          }}
-          onClick={e => {
-            showDropdown(document.getElementById(e.target.id))
           }}
         >
           <option value="">&#8213;</option>

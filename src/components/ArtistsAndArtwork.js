@@ -1,5 +1,9 @@
 import React from "react"
-import { getMetadataByFilterId, translateIdToName } from "../utils"
+import {
+  getMetadataByFilterId,
+  translateIdToName,
+  translateIdToName2,
+} from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 import Video from "../components/Video"
 import Audio from "../components/Audio"
@@ -7,7 +11,7 @@ import ArtworkImage from "../components/ArtworkImage"
 
 const ArtistsAndArtwork = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)
-  const { selectedFilter } = useFilterContext()
+  const { selectedFilter, setSelectedFilter } = useFilterContext()
 
   let metadata
 
@@ -48,10 +52,15 @@ const ArtistsAndArtwork = ({ data }) => {
 
         // convert IDs to names
         if (artist) artistByName = translateIdToName(data, artist, "artist")
-        if (media) mediaCopy = translateIdToName(data, media, "medium")
+        if (media) mediaCopy = translateIdToName2(data, media, "medium")
         if (themes) themesCopy = translateIdToName(data, themes, "theme")
       }
     })
+    const handleFilterLinkClick = (item) =>
+      setSelectedFilter({
+        filterName: item.id,
+        filterType: item.name,
+      })
 
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
@@ -81,8 +90,12 @@ const ArtistsAndArtwork = ({ data }) => {
               ? "Media not specified"
               : mediaCopy.map((item, i) => {
                   return (
-                    <span key={item} className="underline-lightBlue">
-                      {item}
+                    <span
+                      onClick={handleFilterLinkClick(item)}
+                      key={item.id}
+                      className="underline-lightBlue"
+                    >
+                      {item.name}
                       {mediaCopy.length > i + 1 ? ", " : ""}
                     </span>
                   )
@@ -160,8 +173,8 @@ const ArtistsAndArtwork = ({ data }) => {
                 ? "Media not specified"
                 : mediaCopy.map((item, i) => {
                     return (
-                      <span key={item} className="underline-lightBlue">
-                        {item}
+                      <span key={item.id} className="underline-lightBlue">
+                        {item.name}
                         {mediaCopy.length > i + 1 ? ", " : ""}
                       </span>
                     )
