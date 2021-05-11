@@ -28,7 +28,7 @@ const Influence = ({ data }) => {
         </p>
       ) : (
         influenceNames.map(item => (
-          <p
+          <span
             key={item}
             className="text-lg underline-yellow"
             onClick={() => {
@@ -39,7 +39,7 @@ const Influence = ({ data }) => {
             }}
           >
             {item.name}
-          </p>
+          </span>
         ))
       )}
     </div>
