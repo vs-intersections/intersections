@@ -62,9 +62,18 @@ select {
 }
 
 .underline-orange {
-  text-decoration: underline;
+  /* text-decoration: underline;
   text-decoration-color: #ff985f;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 2px; */
+  background-image: linear-gradient(120deg, #ff985f 0%, #ff985f 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.1em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+  cursor: pointer;
+} 
+.underline-orange:hover {
+  background-size: 100% 88%;
 }
 
 .underline-pink {

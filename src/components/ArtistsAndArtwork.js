@@ -19,6 +19,13 @@ const ArtistsAndArtwork = ({ data }) => {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
 
+  const handleFilterLinkClick = item => {
+    setSelectedFilter({
+      filterName: item.id,
+      filterType: item.table,
+    })
+  }
+
   const {
     recordId,
     data: {
@@ -44,7 +51,6 @@ const ArtistsAndArtwork = ({ data }) => {
     dataObjCopy.artwork.nodes.forEach(node => {
       if (node.recordId === art) {
         nodeData = node.data
-
         artist = nodeData.Primary_Artist__REQUIRED_[0]
         title = nodeData.Name
         media = nodeData.Medium
@@ -56,6 +62,7 @@ const ArtistsAndArtwork = ({ data }) => {
         if (themes) themesCopy = translateIdToName(data, themes, "theme")
       }
     })
+
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
         {selectedFilter?.filterType !== "artwork" ? (
@@ -76,7 +83,17 @@ const ArtistsAndArtwork = ({ data }) => {
           )}
           <p className="text-lg">
             <span className="font-bold">Title: </span>
-            <span className="underline-orange">{title}</span>
+            <span
+              className="underline-orange cursor"
+              onClick={() =>
+                setSelectedFilter({
+                  filterName: art,
+                  filterType: "artwork",
+                })
+              }
+            >
+              {title}
+            </span>
           </p>
           <p className="text-lg">
             <span className="font-bold">Media: </span>
@@ -85,12 +102,7 @@ const ArtistsAndArtwork = ({ data }) => {
               : mediaCopy.map((item, i) => {
                   return (
                     <span
-                      onClick={() =>
-                        setSelectedFilter({
-                          filterName: item.id,
-                          filterType: item.table,
-                        })
-                      }
+                      onClick={() => handleFilterLinkClick(item)}
                       key={item.id}
                       className="underline-lightBlue"
                     >
