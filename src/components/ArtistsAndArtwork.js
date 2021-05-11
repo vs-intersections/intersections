@@ -56,12 +56,6 @@ const ArtistsAndArtwork = ({ data }) => {
         if (themes) themesCopy = translateIdToName(data, themes, "theme")
       }
     })
-    const handleFilterLinkClick = (item) =>
-      setSelectedFilter({
-        filterName: item.id,
-        filterType: item.name,
-      })
-
     return (
       <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
         {selectedFilter?.filterType !== "artwork" ? (
@@ -91,7 +85,12 @@ const ArtistsAndArtwork = ({ data }) => {
               : mediaCopy.map((item, i) => {
                   return (
                     <span
-                      onClick={handleFilterLinkClick(item)}
+                      onClick={() =>
+                        setSelectedFilter({
+                          filterName: item.id,
+                          filterType: item.table,
+                        })
+                      }
                       key={item.id}
                       className="underline-lightBlue"
                     >
