@@ -20,10 +20,7 @@ export default function Home() {
 
   const data = useStaticQuery(graphql`
   {
-    artists: allAirtable(
-      filter: {table: {eq: "Artist"}}
-      sort: {fields: data___Name}
-    ) {
+    artists: allAirtable(filter: { table: { eq: "Artist" } }) {
       nodes {
         table
         data {
@@ -37,97 +34,62 @@ export default function Home() {
           Website
           Interview
           Affiliations
-          Primary_Artist__REQUIRED_
         }
         recordId
       }
     }
-    artwork: allAirtable(
-      filter: {table: {eq: "Artwork"}}
-      sort: {fields: data___Name}
-    ) {
+    artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
+      nodes {
+        table
+        data {
+          Name
+          Primary_Artist__REQUIRED_
+          Collaborators
+          Locations
+          Description
+          Video
+          Medium
+          Theme
+        }
+        recordId
+      }
+    }
+    locations: allAirtable(filter: { table: { eq: "Location" } }) {
+      nodes {
+        table
+        data {
+          Name
+          Address
+          Artwork
+          Description
+          Video
+        }
+        recordId
+      }
+    }
+    themes: allAirtable(filter: { table: { eq: "Theme" } }) {
       nodes {
         table
         data {
           Name
           Artwork
-          Influence
-          Collaborated_On
-          Bio
-          Birthplace
-          Email
-          Website
-          Interview
-          Affiliations
-          Primary_Artist__REQUIRED_
+          Description
         }
         recordId
       }
     }
-    locations: allAirtable(
-      filter: {table: {eq: "Location"}}
-      sort: {fields: data___Name}
-    ) {
+    mediums: allAirtable(filter: { table: { eq: "Medium" } }) {
       nodes {
         table
         data {
           Name
           Artwork
-          Influence
-          Collaborated_On
-          Bio
-          Birthplace
-          Email
-          Website
-          Interview
-          Affiliations
-          Primary_Artist__REQUIRED_
+          Description
         }
         recordId
       }
     }
-    themes: allAirtable(filter: {table: {eq: "Theme"}}, sort: {fields: data___Name}) {
-      nodes {
-        table
-        data {
-          Name
-          Artwork
-          Influence
-          Collaborated_On
-          Bio
-          Birthplace
-          Email
-          Website
-          Interview
-          Affiliations
-          Primary_Artist__REQUIRED_
-        }
-        recordId
-      }
-    }
-    mediums: allAirtable(
-      filter: {table: {eq: "Medium"}}
-      sort: {fields: data___Name}
-    ) {
-      nodes {
-        table
-        data {
-          Name
-          Artwork
-          Influence
-          Collaborated_On
-          Bio
-          Birthplace
-          Email
-          Website
-          Interview
-          Affiliations
-          Primary_Artist__REQUIRED_
-        }
-        recordId
-      }
-    }
-    influences: allAirtable(filter: {table: {eq: "Influence"}} sort: {fields: data___Name}) {
+    influences: allAirtable(filter: { table: { eq: "Influence" } }) {
       nodes {
         table
         data {
