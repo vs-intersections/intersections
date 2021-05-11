@@ -8,10 +8,19 @@ const Collaborators = ({ data }) => {
 
   const { selectedFilter } = useFilterContext()
   let metadata
+  let artistCollaborators
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
+
+  // Working on getting collabs to show up in Artist sidebar
+  // if (selectedFilter.filterType === "artist") {
+  //   artistCollaborators = data.artists
+  // }
+
+  // console.log(data)
+  // console.log(metadata)
 
   const { Collaborators: collabs } = metadata.data
 
@@ -24,9 +33,12 @@ const Collaborators = ({ data }) => {
         <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborators</h3>
       )}
       {collabNames.map(item => (
-        <p key={item} className="text-lg underline-lightGreen">
-          {item}
-        </p>
+        <>
+          <span key={item} className="text-lg underline-lightGreen">
+            {item}
+          </span>
+          <br />
+        </>
       ))}
     </div>
   )

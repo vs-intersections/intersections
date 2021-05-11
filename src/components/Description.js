@@ -190,7 +190,6 @@ const SidebarDescription = ({ data }) => {
       Description: description,
       Name: name,
       Interview: interview,
-      // Bio_Image: bioImage
     },
   } = metadata
 
@@ -224,7 +223,7 @@ const SidebarDescription = ({ data }) => {
       </h3>
       <hr className="border-gray-400 border-t-2" />
       {selectedFilter.filterType === "artist" && (
-        <div className="w-1/2 h-auto mt-3 mx-auto">
+        <div className="w-3/4 h-auto mt-3 mx-auto">
           {descriptionImage && <GatsbyImage image={descriptionImage} />}
         </div>
       )}
