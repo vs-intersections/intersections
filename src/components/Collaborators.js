@@ -1,12 +1,12 @@
 import React from "react"
-import { getMetadataByFilterId, translateIdToName } from "../utils"
+import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 
 const Collaborators = ({ data }) => {
   // makes a copy of the data object instead of a reference (fixes a lot of bugs)
   const dataObjCopy = Object.assign({}, data)
 
-  const { selectedFilter } = useFilterContext()
+  const { selectedFilter, setSelectedFilter } = useFilterContext()
   let metadata
   let artistCollaborators
 
@@ -25,7 +25,7 @@ const Collaborators = ({ data }) => {
   const { Collaborators: collabs } = metadata.data
 
   let collabNames = []
-  if (collabs) collabNames = translateIdToName(data, collabs, "artist")
+  if (collabs) collabNames = translateIdToName2(data, collabs, "artist")
 
   return (
     <div className="mb-16">
@@ -34,8 +34,11 @@ const Collaborators = ({ data }) => {
       )}
       {collabNames.map(item => (
         <>
-          <span key={item} className="text-lg underline-lightGreen">
-            {item}
+          <span key={item.id} onClick={() => setSelectedFilter({
+            filterName: item.id,
+            filterType: item.table
+          })} className="text-lg underline-lightGreen">
+            {item.name}
           </span>
           <br />
         </>
