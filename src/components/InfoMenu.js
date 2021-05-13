@@ -2,18 +2,26 @@
 import React, { useState } from "react"
 import { css, jsx } from "@emotion/react"
 import { BsInfoCircleFill } from "react-icons/bs"
-const InfoMenu = () => {
+const InfoMenu = ({ changeInfobar }) => {
   const [infoMenuIsOpen, setInfoMenuIsOpen] = useState(false)
+
+  const handleClick = () => {
+    changeInfobar()
+    setInfoMenuIsOpen(!infoMenuIsOpen)
+  }
+
   return (
     <div
-      className="bg-gray-200 h-10 w-full absolute bottom-0 z-50 flex justify-center items-center transition-transform"
+      className={`bg-gray-200 bottom-0 w-full absolute ${
+        infoMenuIsOpen ? "h-full" : "h-10"
+      } z-50 flex justify-center items-center transition-height ease-in-out`}
       // css={css`
       //   height: ${infoMenuIsOpen ? "calc(100vh - 108px)" : "100%"};
       //   transform: ${infoMenuIsOpen ? "translateY(-100%)" : ""};
       // `}
     >
       <BsInfoCircleFill
-        onClick={() => setInfoMenuIsOpen(!infoMenuIsOpen)}
+        onClick={handleClick}
         className="w-6 h-6 cursor-pointer"
       />
     </div>

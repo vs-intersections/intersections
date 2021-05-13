@@ -21,6 +21,11 @@ export default function Home() {
   const IS_MOBILE = width <= 1024
   const IS_MOBILE_XS = width <= 450
   const [isOpen, setIsOpen] = useState(false)
+  const [infobarIsOpen, setInfobarIsOpen] = useState(false)
+
+  const changeInfobar = () => {
+    setInfobarIsOpen(!infobarIsOpen)
+  }
 
   const data = useStaticQuery(graphql`
     {
@@ -132,7 +137,7 @@ export default function Home() {
       <LayoutMain nodes={data}>
         <div className="h-full overflow-hidden flex flex-col">
           <Header
-            className="h-10 flex-auto"
+            className="h-10 flex-auto relative"
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
@@ -147,8 +152,15 @@ export default function Home() {
                 <GraphAndSidebar data={data} />
                 {IS_MOBILE && <SidebarMobile data={data} />}
               </div>
-              {IS_MOBILE ? <InfoMenu /> : <Footer />}
+              {!IS_MOBILE && <Footer />}
             </main>
+          </div>
+          <div
+            className={`absolute ${
+              infobarIsOpen ? "top-16" : "top-full"
+            } bottom-0 w-full`}
+          >
+            {IS_MOBILE && <InfoMenu changeInfobar={changeInfobar} />}
           </div>
         </div>
       </LayoutMain>
