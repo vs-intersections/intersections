@@ -74,7 +74,12 @@ const GraphAndSidebar = ({ data }) => {
         <div className="relative flex-1">
           <div className={`h-full w-45vw absolute left-n3vw`}>
             <div
-              className={`bg-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
+              className={`bg-${tabClass} ${
+                !sidebarIsOpened && "animate-pulse-background"
+              } border-2 border-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
+            ></div>
+            <div
+              className={`border-2 border-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
               onClick={toggleSidebar}
             >
               <span className="transform -rotate-90 origin-center translate-y-24 block text-xl">

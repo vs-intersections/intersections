@@ -16,7 +16,9 @@ const ArtistPersonalInfo = ({ data }) => {
 
   return (
     <div className="mb-16">
-      <h3 className="pb-1 text-2xl font-bold mb-3.5">More Info</h3>
+      {birthplace && email && site && (
+        <h3 className="pb-1 text-2xl font-bold mb-3.5">More Info</h3>
+      )}
       {birthplace && (
         <p className="text-lg">
           <span className="font-bold">Birthplace:</span> {birthplace}

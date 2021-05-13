@@ -22,6 +22,19 @@ module.exports = {
       jaldi: ["Jaldi", "sans-serif"],
     },
     extend: {
+      animation: {
+        "pulse-background": "pulseBackgroundColor 2s infinite",
+      },
+      keyframes: {
+        pulseBackgroundColor: {
+          "0%, 100%": {
+            opacity: "1",
+          },
+          "5%": {
+            opacity: "0",
+          },
+        },
+      },
       transitionProperty: {
         height: "height",
         position: "top, bottom, left, right",
