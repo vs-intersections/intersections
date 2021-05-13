@@ -138,7 +138,7 @@ const NodeGraph = ({ data }) => {
 
       // re-center SVG after window resizing
       centerX = aspectRatioWidth / 2
-      centerY = aspectRatioHeight / 1.8
+      centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
       simulation.force("center", forceCenter(centerX, centerY))
       // set new values for viewbox, and SVG width and height
       svgWrapper.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
