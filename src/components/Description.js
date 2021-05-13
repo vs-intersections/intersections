@@ -97,6 +97,7 @@ const SidebarDescription = ({ data }) => {
                 childImageSharp {
                   gatsbyImageData(
                     aspectRatio: 1.5
+                    layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
                   )
