@@ -14,10 +14,10 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
   const handleSelect = e => {
     setSelectedNode(e.target.id)
     setSelectedFilter({
-      filterName: e.target.value,
-      filterType: e.target.id,
-    })
-  }
+        filterName: e.target.value,
+        filterType: e.target.id,
+      })
+    }
 
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
@@ -73,6 +73,7 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
         </option>
       )
     })
+    const filterTitle = filterType.slice(0, 1).toUpperCase() + filterType.slice(1)
     return (
       <li
         className={`p-2 mx-auto max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
@@ -80,7 +81,7 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
         }`}
       >
         <label className={`block flex justify-center items-center lg:text-lg`}>
-          {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+          {filterTitle}
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
@@ -95,7 +96,7 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
             handleSelect(e)
           }}
         >
-          <option value="">&#8213;</option>
+          <option>&#8213;</option>
           {options}
         </select>
       </li>
