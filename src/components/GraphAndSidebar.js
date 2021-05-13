@@ -82,7 +82,7 @@ const GraphAndSidebar = ({ data }) => {
               className={`border-2 border-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
               onClick={toggleSidebar}
             >
-              <span className="transform -rotate-90 origin-center translate-y-24 block text-xl">
+              <span className="transform -rotate-90 origin-center translate-y-24 block text-xl no-select">
                 {titleCase(selectedFilter?.filterType) ||
                   titleCase(selectedNode?.table)}
               </span>

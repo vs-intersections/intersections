@@ -22,6 +22,14 @@ select {
   left: 94vw;
 }
 
+svg circle {
+  cursor: pointer;
+}
+
+.no-select {
+  user-select: none;
+}
+
 /* .carousel__container {
   margin: auto;
 } */
