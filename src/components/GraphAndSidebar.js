@@ -34,7 +34,7 @@ const GraphAndSidebar = ({ data }) => {
   })
 
   return (
-    <div className="w-full flex relative">
+    <div className="w-full h-full flex-grow flex relative">
       {/* Only show the info box if there viewport is not mobile 
       AND there is a selected Node name
        OR data AND selectedFilter FilterName  */}

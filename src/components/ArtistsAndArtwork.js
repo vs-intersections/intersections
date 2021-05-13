@@ -1,12 +1,6 @@
 import React from "react"
-import {
-  getMetadataByFilterId,
-  translateIdToName,
-  translateIdToName2,
-} from "../utils"
+import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
-import Video from "../components/Video"
-import Audio from "../components/Audio"
 import ArtworkImage from "../components/ArtworkImage"
 
 const ArtistsAndArtwork = ({ data }) => {

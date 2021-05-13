@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useRef } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import { css, jsx } from "@emotion/react"
 import SidebarContent from "./SidebarContent"
 import { IoMdArrowDropupCircle } from "react-icons/io"
@@ -11,10 +11,15 @@ const SidebarMobile = ({ data }) => {
   const { sideBarMobileIsOpen, setSideBarMobileIsOpen } = useSidebarContext()
   const { selectedNode } = useNodeContext()
   const { selectedFilter } = useFilterContext()
-  console.log(selectedFilter, selectedNode)
 
   const ref = useRef()
   useOnClickOutside(ref, () => setSideBarMobileIsOpen(false))
+
+  const [elemHeight, setElemHeight] = useState(0)
+
+  useEffect(() => {
+    setElemHeight(ref.current.getBoundingClientRect().height)
+  })
 
   const NO_NODE_OR_FILTER_SELECTED =
     !selectedNode &&
@@ -24,21 +29,25 @@ const SidebarMobile = ({ data }) => {
   return (
     <div
       ref={ref}
-      className="pl-4 pr-0 bg-gray-100 relative overflow-y-hidden scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300 overflow-x-hidden transform transition-transform"
-      css={css`
-        height: ${sideBarMobileIsOpen
-          ? "calc(100vh - 64px)"
-          : "100%"};
-        transform: ${sideBarMobileIsOpen
-          ? "translateY(-60vh)"
-          : "translateY(17vh)"};
-      `}
+      className={`z-50 pl-4 pr-0 bg-gray-100 relative overflow-hidden transition-position transition-height ${
+        sideBarMobileIsOpen
+          ? "bottom-10 -top-full h-full"
+          : "bottom-10 -top-14 h-14"
+      }`}
+      // css={css`
+      //   height: ${sideBarMobileIsOpen
+      //     ? "calc(100vh - 64px)"
+      //     : "100%"};
+      //   transform: ${sideBarMobileIsOpen
+      //     ? "translateY(-60vh)"
+      //     : "translateY(17vh)"};
+      // `}
     >
       <div
-        className={`w-7 h-7 absolute right-2.5 top-2.5 bg-white rounded-full`}
+        className={`w-7 h-7 absolute right-2.5 top-1.5 bg-white rounded-full`}
       ></div>
       <IoMdArrowDropupCircle
-        className={`w-7 h-7 absolute right-2.5 top-2.5 fill-lightgray transform transition-rotate ${
+        className={`w-7 h-7 absolute right-2.5 top-1.5 fill-lightgray transform transition-rotate ${
           sideBarMobileIsOpen ? "rotate-180" : "rotate-1"
         }`}
         onClick={() =>
@@ -47,7 +56,7 @@ const SidebarMobile = ({ data }) => {
         }
       />
 
-      <SidebarContent data={data} />
+      <SidebarContent data={data} elemHeight={elemHeight} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef, useEffect } from "react"
 import SidebarArtist from "./SidebarArtist"
 import SidebarArtwork from "./SidebarArtwork"
 import SidebarLocation from "./SidebarLocation"
@@ -8,10 +8,16 @@ import SidebarInfluence from "./SidebarInfluence"
 import { useWindowSize } from "../hooks"
 import { useFilterContext } from "./context/FilterContext"
 
-const SidebarContent = ({ data }) => {
+const SidebarContent = ({ data, elemHeight }) => {
   const { selectedFilter } = useFilterContext()
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024
+
+  const ref = useRef(null)
+
+  useEffect(() => {
+    elemHeight < 100 && ref.current.scrollTo(0, 0)
+  }, [elemHeight])
 
   const renderedComponent = () => {
     if (selectedFilter.filterType) {
@@ -33,9 +39,10 @@ const SidebarContent = ({ data }) => {
 
   return (
     <div
-      className={`h-full ${
-        IS_MOBILE ? "pl-0" : "pl-4"
-      } pt-4 pr-6 py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300`}
+      ref={ref}
+      className={`h-full ${IS_MOBILE ? "pl-0" : "pl-4"} pt-4 pr-6 py-4 ${
+        elemHeight < 100 ? "overflow-y-hidden" : "overflow-y-auto"
+      } scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300`}
     >
       {renderedComponent()}
     </div>

@@ -6,13 +6,16 @@ const InfoMenu = () => {
   const [infoMenuIsOpen, setInfoMenuIsOpen] = useState(false)
   return (
     <div
-      className="bg-gray-200 h-screen z-50 flex justify-center transition-transform"
-      css={css`
-      height: ${infoMenuIsOpen ? "calc(100vh - 108px)" : "100%"};
-      transform: ${infoMenuIsOpen ? "translateY(-100%)" : ""};
-      `}
+      className="bg-gray-200 h-10 w-full absolute bottom-0 z-50 flex justify-center items-center transition-transform"
+      // css={css`
+      //   height: ${infoMenuIsOpen ? "calc(100vh - 108px)" : "100%"};
+      //   transform: ${infoMenuIsOpen ? "translateY(-100%)" : ""};
+      // `}
     >
-      <BsInfoCircleFill onClick={() => setInfoMenuIsOpen(!infoMenuIsOpen)} className="w-6 h-6 cursor-pointer mt-3" />
+      <BsInfoCircleFill
+        onClick={() => setInfoMenuIsOpen(!infoMenuIsOpen)}
+        className="w-6 h-6 cursor-pointer"
+      />
     </div>
   )
 }

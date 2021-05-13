@@ -25,7 +25,7 @@ const MobileNav2 = ({
 
   return (
     <Carousel
-      className="bg-gray-200"
+      className="bg-gray-200 h-18 flex-grow"
       plugins={[
         "arrows",
         "infinite",
@@ -37,21 +37,42 @@ const MobileNav2 = ({
         },
       ]}
     >
-      {/* <select name="testing" id="testing">
-        <option value="one">One</option>
-        <option value="two">Two</option>
-        <option value="three">Three</option>
-      </select>
-      <select name="testing2" id="testing2">
-        <option value="one">Animal</option>
-        <option value="two">Hooman</option>
-        <option value="three">Tree</option>
-      </select>
-      <select name="testing3" id="testing3">
-        <option value="one">Chess</option>
-        <option value="two">Monopoly</option>
-        <option value="three">Checkers</option>
-      </select> */}
+      {/* <div>
+        <select
+          name="testing"
+          id="testing"
+          onClick={console.log("clicked")}
+          className="z-50"
+        >
+          <option value="one">One</option>
+          <option value="two">Two</option>
+          <option value="three">Three</option>
+        </select>
+      </div>
+      <div>
+        <select
+          name="testing"
+          id="testing"
+          onClick={console.log("clicked")}
+          className="z-50"
+        >
+          <option value="one">One</option>
+          <option value="two">Two</option>
+          <option value="three">Three</option>
+        </select>
+      </div>
+      <div>
+        <select
+          name="testing"
+          id="testing"
+          onClick={console.log("clicked")}
+          className="z-50"
+        >
+          <option value="one">One</option>
+          <option value="two">Two</option>
+          <option value="three">Three</option>
+        </select>
+      </div> */}
       {generateDropdown("artist", artists, "lightGreen")}
       {generateDropdown("artwork", artwork, "orange")}
       {generateDropdown("location", locations, "blue")}

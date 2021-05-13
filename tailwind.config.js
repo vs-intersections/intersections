@@ -22,11 +22,15 @@ module.exports = {
       jaldi: ["Jaldi", "sans-serif"],
     },
     extend: {
+      transitionProperty: {
+        height: "height",
+        position: "top, bottom, left, right",
+      },
       gridTemplateRows: {
-        layout: "4rem 5rem auto",
-        layoutLg: "2.5rem 4.5rem auto",
-        mainContent: "auto 10.75rem 3.25rem",
-        mainContentLg: "auto 1.5rem",
+        // layout: "4rem 5rem auto",
+        // layoutLg: "2.5rem 4.5rem auto",
+        // mainContent: "auto 10.75rem 3.25rem",
+        // mainContentLg: "auto 1.5rem",
         videosPageLg: "2.5rem auto 1.5rem",
         videosPageMobile: "4rem auto 4rem",
       },

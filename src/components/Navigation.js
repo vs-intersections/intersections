@@ -6,18 +6,17 @@ import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
 import DesktopNav from "./DesktopNav"
 import MobileNav2 from "./MobileNav2"
-const Navigation = ({ data, isMobile, IsMobileXS }) => {
-  console.log(IsMobileXS)
+const Navigation = ({ data, isMobile }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
 
   const handleSelect = e => {
     setSelectedNode(e.target.id)
     setSelectedFilter({
-        filterName: e.target.value,
-        filterType: e.target.id,
-      })
-    }
+      filterName: e.target.value,
+      filterType: e.target.id,
+    })
+  }
 
   const artists = data?.artists?.nodes.map(el => ({
     id: el.recordId,
@@ -73,7 +72,8 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
         </option>
       )
     })
-    const filterTitle = filterType.slice(0, 1).toUpperCase() + filterType.slice(1)
+    const filterTitle =
+      filterType.slice(0, 1).toUpperCase() + filterType.slice(1)
     return (
       <li
         className={`p-2 mx-auto max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
@@ -115,6 +115,7 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
     />
   ) : (
     <DesktopNav
+      className="h-18 flex-auto"
       generateDropdown={generateDropdown}
       artists={artists}
       artwork={artwork}

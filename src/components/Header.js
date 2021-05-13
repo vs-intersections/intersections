@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import menu from "../../static/menu-icon.svg"
 const Header = ({ setIsOpen, isOpen }) => {

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { css, jsx } from "@emotion/react"
 import LayoutMain from "../components/LayoutMain"
 import MobileNav from "../components/MobileNav"
@@ -13,6 +13,10 @@ import { graphql, useStaticQuery } from "gatsby"
 import GraphAndSidebar from "../components/GraphAndSidebar"
 
 export default function Home() {
+  useEffect(() => {
+    document.body.style.height = "100vh"
+  }, [])
+
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024
   const IS_MOBILE_XS = width <= 450
@@ -126,21 +130,25 @@ export default function Home() {
     <>
       <MobileNav isOpen={isOpen} />
       <LayoutMain nodes={data}>
-        <div className="h-screen grid grid-rows-layout lg:grid-rows-layoutLg overflow-hidden">
-          <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-          <Navigation
-            data={data}
-            isMobile={IS_MOBILE}
-            IsMobileXS={IS_MOBILE_XS}
+        <div className="h-full overflow-hidden flex flex-col">
+          <Header
+            className="h-10 flex-auto"
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
           />
-          <div className="relative">
-            <div className="absolute top-0 bottom-0 left-0 right-0">
-              <main className="h-full grid grid-rows-mainContent lg:grid-rows-mainContentLg">
+          <Navigation data={data} isMobile={IS_MOBILE} />
+          <div className="flex-auto">
+            <main className="h-full relative">
+              <div
+                className={`absolute top-0 ${
+                  IS_MOBILE ? "bottom-10" : "bottom-8"
+                }`}
+              >
                 <GraphAndSidebar data={data} />
                 {IS_MOBILE && <SidebarMobile data={data} />}
-                {IS_MOBILE ? <InfoMenu /> : <Footer />}
-              </main>
-            </div>
+              </div>
+              {IS_MOBILE ? <InfoMenu /> : <Footer />}
+            </main>
           </div>
         </div>
       </LayoutMain>

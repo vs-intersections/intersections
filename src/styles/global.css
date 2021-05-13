@@ -35,6 +35,11 @@ select {
   height: 100%;
 } */
 
+.BrainhubCarousel__container {
+  height: 4.5rem;
+  overflow: visible !important;
+}
+
 .BrainhubCarousel__arrows {
   background-color: rgba(229, 229, 229, var(--tw-bg-opacity)) !important;
 }
