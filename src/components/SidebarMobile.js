@@ -43,18 +43,22 @@ const SidebarMobile = ({ data }) => {
       //     : "translateY(17vh)"};
       // `}
     >
-      <div
-        className={`w-7 h-7 absolute right-2.5 top-1.5 bg-white rounded-full`}
-      ></div>
-      <IoMdArrowDropupCircle
-        className={`w-7 h-7 absolute right-2.5 top-1.5 fill-lightgray transform transition-rotate ${
-          sideBarMobileIsOpen ? "rotate-180" : "rotate-1"
-        }`}
-        onClick={() =>
-          !NO_NODE_OR_FILTER_SELECTED &&
-          setSideBarMobileIsOpen(!sideBarMobileIsOpen)
-        }
-      />
+      {!NO_NODE_OR_FILTER_SELECTED && (
+        <div>
+          <div
+            className={`w-7 h-7 absolute right-2.5 top-1.5 bg-white rounded-full`}
+          ></div>
+          <IoMdArrowDropupCircle
+            className={`w-7 h-7 absolute right-2.5 top-1.5 fill-lightgray transform transition-rotate ${
+              sideBarMobileIsOpen ? "rotate-180" : "rotate-1"
+            }`}
+            onClick={() =>
+              !NO_NODE_OR_FILTER_SELECTED &&
+              setSideBarMobileIsOpen(!sideBarMobileIsOpen)
+            }
+          />
+        </div>
+      )}
 
       <SidebarContent data={data} elemHeight={elemHeight} />
     </div>
