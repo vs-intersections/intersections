@@ -169,12 +169,14 @@ const SidebarDescription = ({ data }) => {
 
   let descriptionImage = {}
 
-  if (selectedFilter?.filterType !== "artist") {
+  if (selectedFilter?.filterType !== "artist" && result) {
     descriptionImage =
       result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
-  } else {
+  } else if (result) {
     descriptionImage =
       result.data?.Bio_Image?.localFiles[0].childImageSharp.gatsbyImageData
+  } else {
+    descriptionImage = ""
   }
 
   let metadata

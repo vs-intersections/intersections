@@ -11,6 +11,9 @@ const Navigation = ({ data, isMobile }) => {
   const { selectedNode, setSelectedNode } = useNodeContext()
 
   const handleSelect = e => {
+    if (e.target.value === "―") {
+      return
+    }
     setSelectedNode(e.target.id)
     setSelectedFilter({
       filterName: e.target.value,
@@ -96,7 +99,8 @@ const Navigation = ({ data, isMobile }) => {
             handleSelect(e)
           }}
         >
-          <option>&#8213;</option>
+          {/* <option>&#8213;</option> */}
+          <option>―</option>
           {options}
         </select>
       </li>

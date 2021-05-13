@@ -91,7 +91,7 @@ const NodeGraph = ({ data }) => {
     // svg.selectAll("text").remove()
 
     let centerX = width / 2
-    let centerY = height / 1.75
+    let centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
 
     // simulation force settings
     const simulation = forceSimulation(nodes)
