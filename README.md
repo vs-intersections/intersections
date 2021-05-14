@@ -24,6 +24,7 @@
 - Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
 - Link Artists to collab artists (ALBERT)
 - Filter dropdowns in mobile are not functional (DAVID)
+- About page - footer does not stick to bottom of page when scrolled (ALBERT)
 
 ### Secondary Items
 
