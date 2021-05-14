@@ -21,15 +21,7 @@ const MobileNav2 = ({
   const { width } = useWindowSize()
   const IS_MOBILE_MD = width <= 770
   const IS_MOBILE_XS = width <= 450
-  let numSlides = IS_MOBILE_XS ? 1 : IS_MOBILE_MD ? 2 : 3
-  const handleClick = e => {
-    console.log("derp")
-  }
-  const { selectedFilter, setSelectedFilter } = useFilterContext()
-
-  const toggle = () => {
-    setOpen(!open)
-  }
+  // let numSlides = IS_MOBILE_XS ? 1 : IS_MOBILE_MD ? 2 : 3
 
   return (
     <nav className="bg-gray-100 relative h-48">

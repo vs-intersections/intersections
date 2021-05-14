@@ -110,20 +110,15 @@ const Navigation = ({ data, isMobile }) => {
     )
   }
 
-  let mobileData = {
-    artist: artists,
-    artwork,
-    influence: influences,
-    theme: themes,
-    medium: mediums,
-    location: locations
-  }
-
-
   return isMobile ? (
     <MobileNav2
       generateDropdown={generateDropdown}
-      mobileData={mobileData}
+      artists={artists}
+      artwork={artwork}
+      influences={influences}
+      themes={themes}
+      mediums={mediums}
+      locations={locations}
     />
   ) : (
     <DesktopNav
@@ -138,6 +133,5 @@ const Navigation = ({ data, isMobile }) => {
     />
   )
 }
-
 
 export default Navigation
