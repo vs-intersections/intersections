@@ -76,10 +76,12 @@ const GraphAndSidebar = ({ data }) => {
             <div
               className={`bg-${tabClass} ${
                 !sidebarIsOpened && "animate-pulse-background"
-              } border-2 border-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
+              } absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
             ></div>
             <div
-              className={`border-2 border-${tabClass} absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
+              className={`${
+                selectedFilter?.filterType && `border-2 border-${tabClass}`
+              } absolute top-10 left-0 w-3vw h-48 rounded-tl-lg rounded-bl-lg cursor-pointer`}
               onClick={toggleSidebar}
             >
               <span className="transform -rotate-90 origin-center translate-y-24 block text-xl no-select">

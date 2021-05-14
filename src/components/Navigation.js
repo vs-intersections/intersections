@@ -79,7 +79,9 @@ const Navigation = ({ data, isMobile }) => {
       filterType.slice(0, 1).toUpperCase() + filterType.slice(1)
     return (
       <li
-        className={`p-2 mx-auto max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
+        className={`p-2 mx-auto ${
+          isMobile ? "w-32" : "max-w-dropdown"
+        } inline-block transition-colors duration-500 bg-opacity-40 ${
           selectedFilter.filterType === filterType ? "bg-" + color : ""
         }`}
       >

@@ -137,9 +137,10 @@ export default function Home() {
       <LayoutMain nodes={data}>
         <div className="h-full overflow-hidden flex flex-col">
           <Header
-            className="h-10 flex-auto relative"
+            className={`${IS_MOBILE ? "h-8" : "h-10"} flex-auto relative`}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            isMobile={IS_MOBILE}
           />
           <Navigation data={data} isMobile={IS_MOBILE} />
           <div className="flex-auto">
@@ -157,7 +158,7 @@ export default function Home() {
           </div>
           <div
             className={`absolute ${
-              infobarIsOpen ? "top-16" : "top-full"
+              infobarIsOpen ? "top-12" : "top-full"
             } bottom-0 w-full`}
           >
             {IS_MOBILE && <InfoMenu changeInfobar={changeInfobar} />}

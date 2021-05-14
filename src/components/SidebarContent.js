@@ -16,8 +16,8 @@ const SidebarContent = ({ data, elemHeight }) => {
   const ref = useRef(null)
 
   useEffect(() => {
-    elemHeight < 100 && ref.current.scrollTo(0, 0)
-  }, [elemHeight])
+    ref.current.scrollTo(0, 0)
+  }, [elemHeight, selectedFilter])
 
   const renderedComponent = () => {
     if (selectedFilter.filterType) {

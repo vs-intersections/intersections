@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Carousel, {
   arrowsPlugin,
   slidesToShowPlugin,
@@ -17,69 +17,34 @@ const MobileNav2 = ({
   influences,
   generateDropdown,
 }) => {
+  const [open, setOpen] = useState(false)
   const { width } = useWindowSize()
   const IS_MOBILE_MD = width <= 770
   const IS_MOBILE_XS = width <= 450
 
   let numSlides = IS_MOBILE_XS ? 1 : IS_MOBILE_MD ? 2 : 3
 
+  const toggle = () => {
+    setOpen(!open)
+  }
+
   return (
-    <Carousel
-      className="bg-gray-200 h-18 flex-grow"
-      plugins={[
-        "arrows",
-        "infinite",
-        {
-          resolve: slidesToShowPlugin,
-          options: {
-            numberOfSlides: numSlides,
-          },
-        },
-      ]}
-    >
-      {/* <div>
-        <select
-          name="testing"
-          id="testing"
-          onClick={console.log("clicked")}
-          className="z-50"
-        >
-          <option value="one">One</option>
-          <option value="two">Two</option>
-          <option value="three">Three</option>
-        </select>
-      </div>
-      <div>
-        <select
-          name="testing"
-          id="testing"
-          onClick={console.log("clicked")}
-          className="z-50"
-        >
-          <option value="one">One</option>
-          <option value="two">Two</option>
-          <option value="three">Three</option>
-        </select>
-      </div>
-      <div>
-        <select
-          name="testing"
-          id="testing"
-          onClick={console.log("clicked")}
-          className="z-50"
-        >
-          <option value="one">One</option>
-          <option value="two">Two</option>
-          <option value="three">Three</option>
-        </select>
-      </div> */}
-      {generateDropdown("artist", artists, "lightGreen")}
-      {generateDropdown("artwork", artwork, "orange")}
-      {generateDropdown("location", locations, "blue")}
-      {generateDropdown("theme", themes, "pink")}
-      {generateDropdown("medium", mediums, "lightBlue")}
-      {generateDropdown("influence", influences, "yellow")}
-    </Carousel>
+    <nav className="bg-gray-100 relative h-48">
+      <ul className="text-xs w-full">
+        <div className="w-full h-16 flex space-between">
+          {generateDropdown("artist", artists, "lightGreen")}
+          {generateDropdown("artwork", artwork, "orange")}
+        </div>
+        <div className="w-full h-16 flex space-between">
+          {generateDropdown("location", locations, "blue")}
+          {generateDropdown("theme", themes, "pink")}
+        </div>
+        <div className="w-full h-16 flex space-between">
+          {generateDropdown("medium", mediums, "lightBlue")}
+          {generateDropdown("influence", influences, "yellow")}
+        </div>
+      </ul>
+    </nav>
   )
 }
 

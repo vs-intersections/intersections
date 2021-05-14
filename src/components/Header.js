@@ -1,9 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
 import menu from "../../static/menu-icon.svg"
-const Header = ({ setIsOpen, isOpen }) => {
+const Header = ({ setIsOpen, isOpen, isMobile }) => {
   return (
-    <header className="px-2 md:px-6 lg:px-16 py-4 flex flex-row items-center justify-between z-50">
+    <header
+      className={`px-2 md:px-6 lg:px-16 lg:py-4 py-2 flex flex-row items-center justify-between z-50`}
+    >
       <div className="flex items-center justify-self-center">
         <img src="/vital-spaces-logo.svg" width={35} height={35} />
         <Link to="/">
