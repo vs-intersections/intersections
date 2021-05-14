@@ -8,7 +8,6 @@ import Carousel, {
 import "@brainhubeu/react-carousel/lib/style.css"
 import { useWindowSize } from "../hooks"
 import Popup from "reactjs-popup"
-import DropDownArrow from "../../static/dropdown-arrow.svg"
 import { useFilterContext } from "./context/FilterContext"
 const MobileNav2 = ({ mobileData }) => {
   const { width } = useWindowSize()
@@ -73,7 +72,7 @@ const MobileNav2 = ({ mobileData }) => {
       <Modal title="location" arr={mobileData.location} color="blue" />
       <Modal title="theme" arr={mobileData.theme} color="pink" />
       <Modal title="medium" arr={mobileData.medium} color="lightBlue" />
-      <Modal title="influence" arr={mobileData.influence} color="lightGreen" />
+      <Modal title="influence" arr={mobileData.influence} color="yellow" />
 
     </Carousel>
   )
