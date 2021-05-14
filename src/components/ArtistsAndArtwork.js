@@ -58,7 +58,7 @@ const ArtistsAndArtwork = ({ data }) => {
     })
 
     return (
-      <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
+      <div className="grid gap-x-4 grid-cols-artwork mb-6">
         {selectedFilter?.filterType !== "artwork" ? (
           <div className="w-full h-auto text-lg flex justify-center items-center">
             <ArtworkImage id={primaryArtist} title={title} />
