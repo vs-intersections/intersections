@@ -31,7 +31,7 @@ module.exports = {
             opacity: "1",
           },
           "5%": {
-            opacity: "0",
+            opacity: "0.2",
           },
         },
       },
