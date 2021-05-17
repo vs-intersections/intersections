@@ -65,11 +65,14 @@ const SidebarMobile = ({ data }) => {
             className={`w-7 h-7 absolute right-2.5 top-1.5 fill-lightgray transform transition-rotate ${
               sideBarMobileIsOpen ? "rotate-180" : "rotate-1"
             }`}
+          />
+          <div
+            className={`w-full h-14 absolute`}
             onClick={() =>
               !NO_NODE_OR_FILTER_SELECTED &&
               setSideBarMobileIsOpen(!sideBarMobileIsOpen)
             }
-          />
+          ></div>
         </div>
       )}
       <SidebarContent data={data} elemHeight={elemHeight} bgColor={tabClass} />

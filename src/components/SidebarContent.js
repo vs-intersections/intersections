@@ -34,6 +34,8 @@ const SidebarContent = ({ data, elemHeight, bgColor }) => {
       ) : (
         <SidebarInfluence data={data} />
       )
+    } else {
+      return <p className="text-center">Choose a filter or click a node</p>
     }
   }
 

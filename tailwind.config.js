@@ -63,7 +63,7 @@ module.exports = {
       },
     },
     fill: theme => ({
-      lightgray: theme("colors.gray.400"),
+      lightgray: theme("colors.gray.500"),
     }),
     maxWidth: {
       dropdown: "10.5rem",
