@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 function MobileNav({ isOpen }) {
   return (
     <ul
-      className={`mt-10 bg-white justify-center divide-y-2 align-middle items-center transition-all text-3xl font-extrabold absolute overflow-y-hidden l-0 w-full z-50 transition-height ${
+      className={`mt-12 border-t bg-white justify-center divide-y-2 align-middle items-center transition-all text-3xl font-extrabold absolute overflow-y-hidden l-0 w-full z-50 transition-height ${
         isOpen ? "h-full" : "h-0"
       }`}
       // css={css`
