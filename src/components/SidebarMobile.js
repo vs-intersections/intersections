@@ -45,7 +45,7 @@ const SidebarMobile = ({ data }) => {
       className={`z-40 pr-0 relative bg-gray-100 overflow-hidden transition-position transition-height ${
         sideBarMobileIsOpen
           ? "bottom-10 -top-full h-full"
-          : "bottom-10 -top-14 h-14"
+          : "bottom-10 -top-24 h-24"
       }`}
       // css={css`
       //   height: ${sideBarMobileIsOpen
