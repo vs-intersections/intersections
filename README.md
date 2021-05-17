@@ -26,6 +26,9 @@
 - Filter dropdowns in mobile are not functional (DAVID)
 - About page - footer does not stick to bottom of page when scrolled (ALBERT)
 
+- Header page links should change bg color when hovered
+- Fix ham menu (displays wonky when opened)
+
 ### Secondary Items
 
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)

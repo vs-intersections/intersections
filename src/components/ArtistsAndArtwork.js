@@ -68,70 +68,72 @@ const ArtistsAndArtwork = ({ data }) => {
             IMAGE
           </div>
         )}
-        <div>
-          {selectedFilter.filterType !== "artist" && (
+        <div className="flex items-center">
+          <div>
+            {selectedFilter.filterType !== "artist" && (
+              <p className="text-lg">
+                <span className="font-bold">Artist: </span>
+                <span
+                  className="underline-lightGreen"
+                  onClick={() => handleFilterLinkClick(artistByName)}
+                >
+                  {artistByName.name}
+                </span>
+              </p>
+            )}
             <p className="text-lg">
-              <span className="font-bold">Artist: </span>
+              <span className="font-bold">Title: </span>
               <span
-                className="underline-lightGreen"
-                onClick={() => handleFilterLinkClick(artistByName)}
+                className="underline-orange cursor"
+                onClick={() =>
+                  setSelectedFilter({
+                    filterName: art,
+                    filterType: "artwork",
+                  })
+                }
               >
-                {artistByName.name}
+                {title}
               </span>
             </p>
-          )}
-          <p className="text-lg">
-            <span className="font-bold">Title: </span>
-            <span
-              className="underline-orange cursor"
-              onClick={() =>
-                setSelectedFilter({
-                  filterName: art,
-                  filterType: "artwork",
-                })
-              }
-            >
-              {title}
-            </span>
-          </p>
-          <p className="text-lg">
-            <span className="font-bold">Media: </span>
-            {mediaCopy.length === 0
-              ? "Media not specified"
-              : mediaCopy.map((item, i) => {
-                  return (
-                    <>
-                      <span
-                        onClick={() => handleFilterLinkClick(item)}
-                        key={item.id}
-                        className="underline-lightBlue"
-                      >
-                        {item.name}
-                      </span>
-                      {mediaCopy.length > i + 1 ? ", " : ""}
-                    </>
-                  )
-                })}
-          </p>
-          <p className="text-lg">
-            <span className="font-bold">Theme: </span>
-            {themesCopy.length === 0
-              ? "Theme not specified"
-              : themesCopy.map((item, i) => {
-                  return (
-                    <>
-                      <span
-                        key={item.id}
-                        className="underline-pink"
-                        onClick={() => handleFilterLinkClick(item)}
-                      >
-                        {item.name}
-                      </span>
-                      {themesCopy.length > i + 1 ? ", " : ""}
-                    </>
-                  )
-                })}
-          </p>
+            <p className="text-lg">
+              <span className="font-bold">Media: </span>
+              {mediaCopy.length === 0
+                ? "Media not specified"
+                : mediaCopy.map((item, i) => {
+                    return (
+                      <>
+                        <span
+                          onClick={() => handleFilterLinkClick(item)}
+                          key={item.id}
+                          className="underline-lightBlue"
+                        >
+                          {item.name}
+                        </span>
+                        {mediaCopy.length > i + 1 ? ", " : ""}
+                      </>
+                    )
+                  })}
+            </p>
+            <p className="text-lg">
+              <span className="font-bold">Theme: </span>
+              {themesCopy.length === 0
+                ? "Theme not specified"
+                : themesCopy.map((item, i) => {
+                    return (
+                      <>
+                        <span
+                          key={item.id}
+                          className="underline-pink"
+                          onClick={() => handleFilterLinkClick(item)}
+                        >
+                          {item.name}
+                        </span>
+                        {themesCopy.length > i + 1 ? ", " : ""}
+                      </>
+                    )
+                  })}
+            </p>
+          </div>
         </div>
       </div>
     )
@@ -170,67 +172,69 @@ const ArtistsAndArtwork = ({ data }) => {
             />
           </div>
         )}
-        <div>
-          {selectedFilter.filterType !== "artist" && (
-            <p className="text-lg">
-              <span className="font-bold">Artist: </span>
-              <span
-                className="underline-lightGreen"
-                onClick={() => handleFilterLinkClick(artistByName)}
-              >
-                {artistByName.name}
-              </span>
-            </p>
-          )}
-          {selectedFilter.filterType !== "artwork" &&
-            selectedFilter.filterType !== "influence" && (
+        <div className="flex items-center">
+          <div>
+            {selectedFilter.filterType !== "artist" && (
               <p className="text-lg">
-                <span className="font-bold">Title: </span>
-                <span className="underline-orange">{title}</span>
+                <span className="font-bold">Artist: </span>
+                <span
+                  className="underline-lightGreen"
+                  onClick={() => handleFilterLinkClick(artistByName)}
+                >
+                  {artistByName.name}
+                </span>
               </p>
             )}
-          {selectedFilter.filterType === "artwork" && (
-            <p className="text-lg">
-              <span className="font-bold">Media: </span>
-              {mediaCopy.length === 0
-                ? "Media not specified"
-                : mediaCopy.map((item, i) => {
-                    return (
-                      <>
-                        <span
-                          key={item.id}
-                          className="underline-lightBlue"
-                          onClick={() => handleFilterLinkClick(item)}
-                        >
-                          {item.name}
-                        </span>
-                        {mediaCopy.length > i + 1 ? ", " : ""}
-                      </>
-                    )
-                  })}
-            </p>
-          )}
-          {selectedFilter.filterType !== "influence" && (
-            <p className="text-lg">
-              <span className="font-bold">Theme: </span>
-              {themesCopy.length === 0
-                ? "Theme not specified"
-                : themesCopy.map((item, i) => {
-                    return (
-                      <>
-                        <span
-                          key={item.id}
-                          className="underline-pink"
-                          onClick={() => handleFilterLinkClick(item)}
-                        >
-                          {item.name}
-                        </span>
-                        {themesCopy.length > i + 1 ? ", " : ""}
-                      </>
-                    )
-                  })}
-            </p>
-          )}
+            {selectedFilter.filterType !== "artwork" &&
+              selectedFilter.filterType !== "influence" && (
+                <p className="text-lg">
+                  <span className="font-bold">Title: </span>
+                  <span className="underline-orange">{title}</span>
+                </p>
+              )}
+            {selectedFilter.filterType === "artwork" && (
+              <p className="text-lg">
+                <span className="font-bold">Media: </span>
+                {mediaCopy.length === 0
+                  ? "Media not specified"
+                  : mediaCopy.map((item, i) => {
+                      return (
+                        <>
+                          <span
+                            key={item.id}
+                            className="underline-lightBlue"
+                            onClick={() => handleFilterLinkClick(item)}
+                          >
+                            {item.name}
+                          </span>
+                          {mediaCopy.length > i + 1 ? ", " : ""}
+                        </>
+                      )
+                    })}
+              </p>
+            )}
+            {selectedFilter.filterType !== "influence" && (
+              <p className="text-lg">
+                <span className="font-bold">Theme: </span>
+                {themesCopy.length === 0
+                  ? "Theme not specified"
+                  : themesCopy.map((item, i) => {
+                      return (
+                        <>
+                          <span
+                            key={item.id}
+                            className="underline-pink"
+                            onClick={() => handleFilterLinkClick(item)}
+                          >
+                            {item.name}
+                          </span>
+                          {themesCopy.length > i + 1 ? ", " : ""}
+                        </>
+                      )
+                    })}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     )

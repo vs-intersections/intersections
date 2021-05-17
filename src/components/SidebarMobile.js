@@ -29,7 +29,7 @@ const SidebarMobile = ({ data }) => {
   return (
     <div
       ref={ref}
-      className={`z-50 pl-4 pr-0 bg-gray-100 relative overflow-hidden transition-position transition-height ${
+      className={`z-40 pl-4 pr-0 bg-gray-100 relative overflow-hidden transition-position transition-height ${
         sideBarMobileIsOpen
           ? "bottom-10 -top-full h-full"
           : "bottom-10 -top-14 h-14"
