@@ -10,8 +10,10 @@ const Header = ({ setIsOpen, isOpen, isMobile }) => {
         <img src="/vital-spaces-logo.svg" width={35} height={35} />
         <Link to="/">
           <span className="mx-3 uppercase tracking-wider flex">
-            <span className="font-jaldi font-bold">Vital Spaces </span>:
-            Intersections
+            <span className="font-jaldi font-bold text-sm sm:text-base">
+              Vital Spaces{" "}
+            </span>
+            <span className="text-sm sm:text-base">: Intersections</span>
           </span>
         </Link>
       </div>
