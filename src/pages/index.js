@@ -14,7 +14,13 @@ import GraphAndSidebar from "../components/GraphAndSidebar"
 
 export default function Home() {
   useEffect(() => {
-    document.querySelector("html").style.height = "100vh"
+    const html = document.querySelector("html")
+    html.style.height = "100vh"
+    html.style.position = "absolute"
+    html.style.top = 0
+    html.style.bottom = 0
+    html.style.right = 0
+    html.style.left = 0
   }, [])
 
   const { width } = useWindowSize()
