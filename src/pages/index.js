@@ -14,6 +14,8 @@ import GraphAndSidebar from "../components/GraphAndSidebar"
 
 export default function Home() {
   useEffect(() => {
+    // sizes the height of mobile browsers to display the actual full height instead of the initial height
+    // https://developers.google.com/web/updates/2016/12/url-bar-resizing
     const html = document.querySelector("html")
     html.style.height = "100vh"
     html.style.position = "absolute"
