@@ -16,7 +16,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -36,7 +36,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -56,7 +56,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -76,7 +76,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -96,7 +96,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -116,7 +116,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
