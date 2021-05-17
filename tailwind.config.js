@@ -38,6 +38,8 @@ module.exports = {
       transitionProperty: {
         height: "height",
         position: "top, bottom, left, right",
+        borderAndPosition:
+          "border-radius, border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius, top, bottom, left, right",
       },
       gridTemplateRows: {
         // layout: "4rem 5rem auto",

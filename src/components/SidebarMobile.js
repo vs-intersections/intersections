@@ -7,13 +7,26 @@ import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
 import { useSidebarContext } from "./context/SidebarContext"
 import { useOnClickOutside } from "../hooks/useOnClickOutside"
+import classNames from "classnames"
 const SidebarMobile = ({ data }) => {
   const { sideBarMobileIsOpen, setSideBarMobileIsOpen } = useSidebarContext()
   const { selectedNode } = useNodeContext()
   const { selectedFilter } = useFilterContext()
 
   const ref = useRef()
-  useOnClickOutside(ref, () => setSideBarMobileIsOpen(false))
+  // useOnClickOutside(ref, () => setSideBarMobileIsOpen(false))
+
+  let currentTheme =
+    selectedFilter?.filterType?.toLowerCase() ||
+    selectedNode?.table?.toLowerCase()
+  let tabClass = classNames({
+    orange: currentTheme === "artwork",
+    lightGreen: currentTheme === "artist",
+    blue: currentTheme === "location",
+    pink: currentTheme === "theme",
+    lightBlue: currentTheme === "medium",
+    yellow: currentTheme === "influence",
+  })
 
   const [elemHeight, setElemHeight] = useState(0)
 
@@ -29,7 +42,7 @@ const SidebarMobile = ({ data }) => {
   return (
     <div
       ref={ref}
-      className={`z-40 pl-4 pr-0 bg-gray-100 relative overflow-hidden transition-position transition-height ${
+      className={`z-40 pr-0 relative bg-gray-100 overflow-hidden transition-position transition-height ${
         sideBarMobileIsOpen
           ? "bottom-10 -top-full h-full"
           : "bottom-10 -top-14 h-14"
@@ -59,8 +72,7 @@ const SidebarMobile = ({ data }) => {
           />
         </div>
       )}
-
-      <SidebarContent data={data} elemHeight={elemHeight} />
+      <SidebarContent data={data} elemHeight={elemHeight} bgColor={tabClass} />
     </div>
   )
 }

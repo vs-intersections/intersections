@@ -15,7 +15,7 @@ const Help = () => {
       <div className="grid grid-rows-videosPageMobile lg:grid-rows-videosPageLg">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="w-full border-t border-gray-300">
-          <h1>Help Page</h1>
+          <h1>How To Page</h1>
         </div>
         <Footer />
       </div>

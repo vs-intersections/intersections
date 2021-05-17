@@ -155,7 +155,7 @@ export default function Home() {
             <main className="h-full relative">
               <div
                 className={`absolute top-0 ${
-                  IS_MOBILE ? "bottom-10" : "bottom-8"
+                  IS_MOBILE ? "bottom-0" : "bottom-8"
                 }`}
               >
                 <GraphAndSidebar data={data} />
@@ -164,13 +164,13 @@ export default function Home() {
               {!IS_MOBILE && <Footer />}
             </main>
           </div>
-          <div
+          {/* <div
             className={`absolute ${
               infobarIsOpen ? "top-12" : "top-full"
             } bottom-0 w-full`}
           >
             {IS_MOBILE && <InfoMenu changeInfobar={changeInfobar} />}
-          </div>
+          </div> */}
         </div>
       </LayoutMain>
     </>

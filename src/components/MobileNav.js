@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 function MobileNav({ isOpen }) {
   return (
     <ul
-      className={`mt-0 sm:mt-12 border-t bg-white justify-center divide-y-2 flex align-middle items-center transition-all absolute overflow-y-hidden l-0 w-full z-50 transition-height ${
+      className={`mt-0 sm:mt-12 bg-white justify-center divide-y-2 flex align-middle items-center transition-all absolute overflow-y-hidden l-0 w-full z-50 transition-height ${
         isOpen ? "h-full" : "h-0"
       }`}
       // css={css`
@@ -38,7 +38,7 @@ function MobileNav({ isOpen }) {
           <Link to="/about">About</Link>
         </li>
         <li className="py-8 hover:underline tracking-widest text-center">
-          <Link to="/help">Help</Link>
+          <Link to="/help">How-To</Link>
         </li>
       </div>
     </ul>
