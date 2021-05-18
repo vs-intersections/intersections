@@ -12,9 +12,9 @@ const About = () => {
   return (
     <div>
       <MobileNav isOpen={isOpen} />
-      <div className="grid grid-rows-videosPageMobile lg:grid-rows-videosPageLg">
+      <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className="w-full border-t border-gray-300">
+        <div className="w-full">
           <div
             className={`flex flex-col justify-center item-center w-2/3 mx-auto mb-16 pt-8`}
           >

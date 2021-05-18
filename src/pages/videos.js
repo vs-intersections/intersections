@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import MobileNav from "../components/MobileNav"
 import Header from "../components/Header"
@@ -10,6 +10,19 @@ const Videos = () => {
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    // sizes the height of mobile browsers to display the actual full height instead of the initial height
+    // https://developers.google.com/web/updates/2016/12/url-bar-resizing
+    const html = document.querySelector("html")
+    html.style.height = "100vh"
+    html.style.width = "100vw"
+    html.style.position = "absolute"
+    html.style.top = 0
+    html.style.bottom = 0
+    html.style.right = 0
+    html.style.left = 0
+  }, [])
 
   const data = useStaticQuery(graphql`
     {
@@ -91,9 +104,9 @@ const Videos = () => {
   return (
     <>
       <MobileNav isOpen={isOpen} />
-      <div className="grid grid-rows-videosPageMobile lg:grid-rows-videosPageLg">
+      <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className="w-full border-t border-gray-300 pt-8 overflow-x-hidden">
+        <div className="w-full pt-8 overflow-x-hidden">
           <div className="container mx-auto">
             <div className="mb-12">
               <h1 className="ml-4 mt-4 mb-6 text-5xl">Interviews</h1>

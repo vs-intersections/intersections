@@ -27,10 +27,10 @@ module.exports = {
       },
       keyframes: {
         pulseBackgroundColor: {
-          "0%, 100%": {
+          "0%": {
             opacity: "1",
           },
-          "5%": {
+          "100%": {
             opacity: "0.2",
           },
         },
