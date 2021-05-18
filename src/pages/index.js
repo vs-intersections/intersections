@@ -18,6 +18,7 @@ export default function Home() {
     // https://developers.google.com/web/updates/2016/12/url-bar-resizing
     const html = document.querySelector("html")
     html.style.height = "100vh"
+    html.style.width = "100vw"
     html.style.position = "absolute"
     html.style.top = 0
     html.style.bottom = 0

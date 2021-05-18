@@ -26,6 +26,7 @@ const NodeGraph = ({ data }) => {
 
   // declare vars here to be used through out this component
   const DEFAULT_LINK_COLOR = "#ddd"
+  const MAX_TEXT_LENGTH = 25
   let IS_MOBILE = 0,
     width,
     height,
@@ -274,7 +275,11 @@ const NodeGraph = ({ data }) => {
       .attr("font-size", node => node.size * 0.4)
       .attr("alignment-baseline", "middle")
       .style("pointer-events", "none")
-      .text(node => node.name)
+      .text(node =>
+        node.name.length > MAX_TEXT_LENGTH
+          ? node.name.slice(0, MAX_TEXT_LENGTH) + "..."
+          : node.name
+      )
 
     // simulation rendering function
     simulation.on("tick", () => {

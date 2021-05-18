@@ -33,6 +33,10 @@ const GraphAndSidebar = ({ data }) => {
     yellow: currentTheme === "influence",
   })
 
+  let shortenedName =
+    selectedNode?.name ||
+    getMetadataByFilterId(data, selectedFilter?.filterName)?.data?.Name
+
   return (
     <div className="w-full h-full flex-grow flex relative">
       {/* Only show the info box if there viewport is not mobile 
@@ -43,19 +47,19 @@ const GraphAndSidebar = ({ data }) => {
           <div
             className={`transition-all duration-500 ${
               sidebarIsOpened ? "w-60vw" : "w-100vw"
-            } h-20 absolute flex justify-center items-center`}
+            } h-20 max-h-40 absolute flex justify-center items-center`}
           >
             <div
-              className={`w-80 h-12 text-gray-500 border-2 rounded border-${tabClass} bg-white flex cursor-pointer hover:bg-${tabClass} hover:text-gray-900 transition-colors duration-500 z-10`}
+              className={`w-80 max-h-48 text-gray-500 border-2 rounded border-${tabClass} bg-white flex cursor-pointer hover:bg-${tabClass} hover:text-gray-900 transition-colors duration-500 z-10`}
               onClick={toggleSidebar}
             >
               <div
                 ref={ref}
                 className="w-10/12 text-center text-current flex justify-center items-center"
               >
-                {selectedNode?.name ||
-                  getMetadataByFilterId(data, selectedFilter?.filterName)?.data
-                    ?.Name}
+                {shortenedName && shortenedName.length > 80
+                  ? shortenedName.slice(0, 80) + "..."
+                  : shortenedName}
               </div>
               <div className="w-2/12 flex justify-center items-center">
                 <BsInfoCircle className="w-full h-full p-2 fill-current text-current" />

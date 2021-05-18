@@ -69,9 +69,15 @@ const Navigation = ({ data, isMobile }) => {
 
   const generateDropdown = (filterType, arr, color) => {
     let options = arr.map(el => {
+      let shortenedName = el.name
+      shortenedName =
+        shortenedName.length > 30
+          ? shortenedName.slice(0, 30) + "..."
+          : shortenedName
+      console.log(shortenedName)
       return (
         <option value={el.id} key={el.id}>
-          {el.name}
+          {shortenedName}
         </option>
       )
     })
