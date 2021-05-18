@@ -26,6 +26,7 @@ const NodeGraph = ({ data }) => {
 
   // declare vars here to be used through out this component
   const DEFAULT_LINK_COLOR = "#ddd"
+  const MAX_TEXT_LENGTH = 25
   let IS_MOBILE = 0,
     width,
     height,
@@ -81,6 +82,7 @@ const NodeGraph = ({ data }) => {
       .attr("height", height)
 
     svgWrapper.selectAll("g").remove()
+
     const svg = svgWrapper.append("g")
     svg.attr("transform", "none")
 
@@ -90,7 +92,7 @@ const NodeGraph = ({ data }) => {
     // svg.selectAll("text").remove()
 
     let centerX = width / 2
-    let centerY = height / 1.75
+    let centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
 
     // simulation force settings
     const simulation = forceSimulation(nodes)
@@ -137,7 +139,7 @@ const NodeGraph = ({ data }) => {
 
       // re-center SVG after window resizing
       centerX = aspectRatioWidth / 2
-      centerY = aspectRatioHeight / 1.8
+      centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
       simulation.force("center", forceCenter(centerX, centerY))
       // set new values for viewbox, and SVG width and height
       svgWrapper.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
@@ -149,20 +151,20 @@ const NodeGraph = ({ data }) => {
     select(window).on("resize", resize)
 
     // ZOOM function - IT WORKS!!! Except it resets weird
-    // svgWrapper.call(
-    //   zoom()
-    //     .extent([
-    //       [0, 0],
-    //       [width, height],
-    //     ])
-    //     .scaleExtent([1, 8])
-    //     .on("zoom", zoomed)
-    // )
+    svgWrapper.call(
+      zoom()
+        .extent([
+          [0, 0],
+          [width, height],
+        ])
+        .scaleExtent([1, 8])
+        .on("zoom", zoomed)
+    )
 
-    // function zoomed({ transform }) {
-    //   svg.attr("transform", transform)
-    //   resize()
-    // }
+    function zoomed({ transform }) {
+      svg.attr("transform", transform)
+      // resize()
+    }
 
     // highlight nodes on mouse hover
     function highlight(e, datapoint) {
@@ -273,7 +275,11 @@ const NodeGraph = ({ data }) => {
       .attr("font-size", node => node.size * 0.4)
       .attr("alignment-baseline", "middle")
       .style("pointer-events", "none")
-      .text(node => node.name)
+      .text(node =>
+        node.name.length > MAX_TEXT_LENGTH
+          ? node.name.slice(0, MAX_TEXT_LENGTH) + "..."
+          : node.name
+      )
 
     // simulation rendering function
     simulation.on("tick", () => {

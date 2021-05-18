@@ -7,46 +7,41 @@
 
 ### Albert's notes
 
-SCHEDULE
-
-Friday
-
-- ~~ When clicking between dropdowns and the nodes, the title bar eventually displays the wrong info (ALBERT) ~~
-- Infinite Scroll mobile navigation (DAVID)
-- Mobile Sidebar expanding/compressing animation (DAVID)
-- Render sidebar content and media (ALBERT)
-- Sidebar title centering (it is not currently centered within the tab) (ALBERT)
-- Add links for all metadata in sidebar (ALBERT)
-- Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
-- Alphabetically list items in Navbar dropdowns (ALBERT)
-- ~~ Min-height the sidebar images (some of them are rendering too short) (ALBERT) ~~
-- Link Artists to collab artists (ALBERT)
-- Navigation filtering selectors (styling and updating node graph) (ALBERT)
-- Pages: Video and about (DAVID)
-- Node graph zooming (ALBERT - SECONDARY)
-- Lightbox for viewing images when clicked (ALBERT - SECONDARY)
-
 ### David's notes
-
-- ~~Display Link data in sidebar~~
-- ~~Mobile hamburger menu (DAVID)~~
-- Infinite Scroll mobile navigation (DAVID)
-- Pages: Video and about (DAVID)
 
 ---
 
-## To-do items
+## From VS Meeting: 5-10-2021 - Prototype Review
 
-- TESTING
-
-  - AT tables / required fields breaks all the things
-
-- index.js page
-
-  - the layout does not stretch to full screen on various mobile devices (maybe to do with h-screen class?)
+### Priority Items
 
 - NodeGraph component
 
-  - zooming
-  - layout new components: zoom
-  - Data appears to be rendering multiple times when clicking a node
+  - Graph zooming
+  - Data appears to be rendering multiple times when clicking a node (may no longer be an issue)
+
+- Add links for all metadata in sidebar - collabs not showing up on Artist (ALBERT)
+- Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
+- Link Artists to collab artists (ALBERT)
+- Filter dropdowns in mobile are not functional (DAVID)
+- About page - footer does not stick to bottom of page when scrolled (ALBERT)
+
+- Header page links should change bg color when hovered
+- Fix ham menu (displays wonky when opened)
+
+### Secondary Items
+
+- Sidebar title centering (it is not currently centered within the tab) (ALBERT)
+- When a node is clicked or filter selected, the sidebar will snap to the top of the scrollable area (works in mobile - have to work on desktop) (ALBERT)
+- videos are squares on desktop (not exactly sure what this means)
+- help page / link on desktop
+
+### Tertiary Items - not a priority
+
+- Lightbox for viewing images when clicked (ALBERT - SECONDARY)
+
+### Things that are dependant on input from Hannah and Raashan
+
+- help modal - maybe - will wait to hear back from R and H
+- warehouse 21 and other partners -
+  - Hannah is waiting on a logo from David

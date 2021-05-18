@@ -1,18 +1,23 @@
 import React from "react"
-import { getMetadataByFilterId, translateIdToName } from "../utils"
+import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
-import Video from "../components/Video"
-import Audio from "../components/Audio"
 import ArtworkImage from "../components/ArtworkImage"
 
 const ArtistsAndArtwork = ({ data }) => {
   const dataObjCopy = Object.assign({}, data)
-  const { selectedFilter } = useFilterContext()
+  const { selectedFilter, setSelectedFilter } = useFilterContext()
 
   let metadata
 
   if (selectedFilter.filterType) {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
+  }
+
+  const handleFilterLinkClick = item => {
+    setSelectedFilter({
+      filterName: item.id,
+      filterType: item.table,
+    })
   }
 
   const {
@@ -40,21 +45,20 @@ const ArtistsAndArtwork = ({ data }) => {
     dataObjCopy.artwork.nodes.forEach(node => {
       if (node.recordId === art) {
         nodeData = node.data
-
         artist = nodeData.Primary_Artist__REQUIRED_[0]
         title = nodeData.Name
         media = nodeData.Medium
         themes = nodeData.Theme
 
         // convert IDs to names
-        if (artist) artistByName = translateIdToName(data, artist, "artist")
-        if (media) mediaCopy = translateIdToName(data, media, "medium")
-        if (themes) themesCopy = translateIdToName(data, themes, "theme")
+        if (artist) artistByName = translateIdToName2(data, artist, "artist")
+        if (media) mediaCopy = translateIdToName2(data, media, "medium")
+        if (themes) themesCopy = translateIdToName2(data, themes, "theme")
       }
     })
 
     return (
-      <div key={art} className="grid gap-x-4 grid-cols-artwork mb-6">
+      <div className="grid gap-x-4 grid-cols-artwork mb-6">
         {selectedFilter?.filterType !== "artwork" ? (
           <div className="w-full h-auto text-lg flex justify-center items-center">
             <ArtworkImage id={primaryArtist} title={title} />
@@ -64,43 +68,72 @@ const ArtistsAndArtwork = ({ data }) => {
             IMAGE
           </div>
         )}
-        <div>
-          {selectedFilter.filterType !== "artist" && (
+        <div className="flex items-center">
+          <div>
+            {selectedFilter.filterType !== "artist" && (
+              <p className="text-lg">
+                <span className="font-bold">Artist: </span>
+                <span
+                  className="underline-lightGreen"
+                  onClick={() => handleFilterLinkClick(artistByName)}
+                >
+                  {artistByName.name}
+                </span>
+              </p>
+            )}
             <p className="text-lg">
-              <span className="font-bold">Artist: </span>
-              <span className="underline-lightGreen">{artistByName}</span>
+              <span className="font-bold">Title: </span>
+              <span
+                className="underline-orange cursor"
+                onClick={() =>
+                  setSelectedFilter({
+                    filterName: art,
+                    filterType: "artwork",
+                  })
+                }
+              >
+                {title}
+              </span>
             </p>
-          )}
-          <p className="text-lg">
-            <span className="font-bold">Title: </span>
-            <span className="underline-orange">{title}</span>
-          </p>
-          <p className="text-lg">
-            <span className="font-bold">Media: </span>
-            {mediaCopy.length === 0
-              ? "Media not specified"
-              : mediaCopy.map((item, i) => {
-                  return (
-                    <span key={item} className="underline-lightBlue">
-                      {item}
-                      {mediaCopy.length > i + 1 ? ", " : ""}
-                    </span>
-                  )
-                })}
-          </p>
-          <p className="text-lg">
-            <span className="font-bold">Theme: </span>
-            {themesCopy.length === 0
-              ? "Theme not specified"
-              : themesCopy.map((item, i) => {
-                  return (
-                    <span key={item} className="underline-pink">
-                      {item}
-                      {themesCopy.length > i + 1 ? ", " : ""}
-                    </span>
-                  )
-                })}
-          </p>
+            <p className="text-lg">
+              <span className="font-bold">Media: </span>
+              {mediaCopy.length === 0
+                ? "Media not specified"
+                : mediaCopy.map((item, i) => {
+                    return (
+                      <>
+                        <span
+                          onClick={() => handleFilterLinkClick(item)}
+                          key={item.id}
+                          className="underline-lightBlue"
+                        >
+                          {item.name}
+                        </span>
+                        {mediaCopy.length > i + 1 ? ", " : ""}
+                      </>
+                    )
+                  })}
+            </p>
+            <p className="text-lg">
+              <span className="font-bold">Theme: </span>
+              {themesCopy.length === 0
+                ? "Theme not specified"
+                : themesCopy.map((item, i) => {
+                    return (
+                      <>
+                        <span
+                          key={item.id}
+                          className="underline-pink"
+                          onClick={() => handleFilterLinkClick(item)}
+                        >
+                          {item.name}
+                        </span>
+                        {themesCopy.length > i + 1 ? ", " : ""}
+                      </>
+                    )
+                  })}
+            </p>
+          </div>
         </div>
       </div>
     )
@@ -116,9 +149,9 @@ const ArtistsAndArtwork = ({ data }) => {
       themesCopy = []
 
     // convert IDs to names
-    if (artistId) artistByName = translateIdToName(data, artistId, "artist")
-    if (media) mediaCopy = translateIdToName(data, media, "medium")
-    if (themes) themesCopy = translateIdToName(data, themes, "theme")
+    if (artistId) artistByName = translateIdToName2(data, artistId, "artist")
+    if (media) mediaCopy = translateIdToName2(data, media, "medium")
+    if (themes) themesCopy = translateIdToName2(data, themes, "theme")
 
     return (
       <div
@@ -139,50 +172,69 @@ const ArtistsAndArtwork = ({ data }) => {
             />
           </div>
         )}
-        <div>
-          {selectedFilter.filterType !== "artist" && (
-            <p className="text-lg">
-              <span className="font-bold">Artist: </span>
-              <span className="underline-lightGreen">{artistByName}</span>
-            </p>
-          )}
-          {selectedFilter.filterType !== "artwork" &&
-            selectedFilter.filterType !== "influence" && (
+        <div className="flex items-center">
+          <div>
+            {selectedFilter.filterType !== "artist" && (
               <p className="text-lg">
-                <span className="font-bold">Title: </span>
-                <span className="underline-orange">{title}</span>
+                <span className="font-bold">Artist: </span>
+                <span
+                  className="underline-lightGreen"
+                  onClick={() => handleFilterLinkClick(artistByName)}
+                >
+                  {artistByName.name}
+                </span>
               </p>
             )}
-          {selectedFilter.filterType !== "influence" && (
-            <p className="text-lg">
-              <span className="font-bold">Media: </span>
-              {mediaCopy.length === 0
-                ? "Media not specified"
-                : mediaCopy.map((item, i) => {
-                    return (
-                      <span key={item} className="underline-lightBlue">
-                        {item}
-                        {mediaCopy.length > i + 1 ? ", " : ""}
-                      </span>
-                    )
-                  })}
-            </p>
-          )}
-          {selectedFilter.filterType !== "influence" && (
-            <p className="text-lg">
-              <span className="font-bold">Theme: </span>
-              {themesCopy.length === 0
-                ? "Theme not specified"
-                : themesCopy.map((item, i) => {
-                    return (
-                      <span key={item} className="underline-pink">
-                        {item}
-                        {themesCopy.length > i + 1 ? ", " : ""}
-                      </span>
-                    )
-                  })}
-            </p>
-          )}
+            {selectedFilter.filterType !== "artwork" &&
+              selectedFilter.filterType !== "influence" && (
+                <p className="text-lg">
+                  <span className="font-bold">Title: </span>
+                  <span className="underline-orange">{title}</span>
+                </p>
+              )}
+            {selectedFilter.filterType === "artwork" && (
+              <p className="text-lg">
+                <span className="font-bold">Media: </span>
+                {mediaCopy.length === 0
+                  ? "Media not specified"
+                  : mediaCopy.map((item, i) => {
+                      return (
+                        <>
+                          <span
+                            key={item.id}
+                            className="underline-lightBlue"
+                            onClick={() => handleFilterLinkClick(item)}
+                          >
+                            {item.name}
+                          </span>
+                          {mediaCopy.length > i + 1 ? ", " : ""}
+                        </>
+                      )
+                    })}
+              </p>
+            )}
+            {selectedFilter.filterType !== "influence" && (
+              <p className="text-lg">
+                <span className="font-bold">Theme: </span>
+                {themesCopy.length === 0
+                  ? "Theme not specified"
+                  : themesCopy.map((item, i) => {
+                      return (
+                        <>
+                          <span
+                            key={item.id}
+                            className="underline-pink"
+                            onClick={() => handleFilterLinkClick(item)}
+                          >
+                            {item.name}
+                          </span>
+                          {themesCopy.length > i + 1 ? ", " : ""}
+                        </>
+                      )
+                    })}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     )

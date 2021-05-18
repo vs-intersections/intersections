@@ -11,8 +11,6 @@ export function useOnClickOutside(ref, handler) {
           }
           handler(event);
         };
-
-        console.log('test')
         document.addEventListener("mousedown", listener);
         document.addEventListener("touchstart", listener);
         return () => {

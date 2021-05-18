@@ -8,6 +8,26 @@ import { GatsbyImage } from "gatsby-plugin-image"
 const SidebarDescription = ({ data }) => {
   const sidebarData = useStaticQuery(graphql`
     {
+      artists: allAirtable(filter: { table: { eq: "Artist" } }) {
+        nodes {
+          data {
+            Name
+            Bio_Image {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.4
+                    layout: FULL_WIDTH
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
+          }
+          recordId
+        }
+      }
       artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
         nodes {
           data {
@@ -16,7 +36,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -36,7 +56,8 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
+                    layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
                   )
@@ -55,7 +76,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -75,7 +96,8 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
+                    layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
                   )
@@ -94,7 +116,7 @@ const SidebarDescription = ({ data }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     layout: FULL_WIDTH
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
@@ -115,6 +137,11 @@ const SidebarDescription = ({ data }) => {
   const { selectedFilter } = useFilterContext()
 
   let result = {}
+
+  selectedFilter?.filterType === "artist" &&
+    (result = sidebarData.artists.nodes.find(
+      id => id.recordId === selectedFilter?.filterName
+    ))
 
   selectedFilter?.filterType === "location" &&
     (result = sidebarData.locations.nodes.find(
@@ -141,14 +168,17 @@ const SidebarDescription = ({ data }) => {
       id => id.recordId === selectedFilter?.filterName
     ))
 
-  let descriptionImage =
-    result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
+  let descriptionImage = {}
 
-  // TROUBLESHOOTING
-  // console.log(
-  //   sidebarData.artwork.nodes[4].data.Image_or_Audio.localFiles[0]
-  //     .childImageSharp.gatsbyImageData
-  // )
+  if (selectedFilter?.filterType !== "artist" && result) {
+    descriptionImage =
+      result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
+  } else if (result) {
+    descriptionImage =
+      result.data?.Bio_Image?.localFiles[0].childImageSharp.gatsbyImageData
+  } else {
+    descriptionImage = ""
+  }
 
   let metadata
 
@@ -191,10 +221,15 @@ const SidebarDescription = ({ data }) => {
 
   return (
     <div className={`${selectedFilter.filterType !== "artwork" && "mb-16"}`}>
-      <h3 className="pb-1 text-2xl font-bold">
+      <h3 className="pb-1 text-2xl font-bold text-center">
         {table}: {name}
       </h3>
       <hr className="border-gray-400 border-t-2" />
+      {selectedFilter.filterType === "artist" && (
+        <div className="w-3/4 h-auto mt-3 mx-auto">
+          {descriptionImage && <GatsbyImage image={descriptionImage} />}
+        </div>
+      )}
       <div className="mt-2">
         {desc ? (
           renderedDescription
@@ -203,7 +238,7 @@ const SidebarDescription = ({ data }) => {
         )}
       </div>
       {selectedFilter.filterType !== "artist" && (
-        <div className="w-full h-auto mt-3">
+        <div className="w-full h-auto mt-3 mx-auto">
           {descriptionImage && <GatsbyImage image={descriptionImage} />}
         </div>
       )}

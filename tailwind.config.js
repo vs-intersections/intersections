@@ -22,11 +22,32 @@ module.exports = {
       jaldi: ["Jaldi", "sans-serif"],
     },
     extend: {
+      animation: {
+        "pulse-background": "pulseBackgroundColor 2s infinite",
+      },
+      keyframes: {
+        pulseBackgroundColor: {
+          "0%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "0.2",
+          },
+        },
+      },
+      transitionProperty: {
+        height: "height",
+        position: "top, bottom, left, right",
+        borderAndPosition:
+          "border-radius, border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius, top, bottom, left, right",
+      },
       gridTemplateRows: {
-        layout: "4rem 5rem auto",
-        layoutLg: "2.5rem 4.5rem auto",
-        mainContent: "auto 10.75rem 3.25rem",
-        mainContentLg: "auto 1.5rem",
+        // layout: "4rem 5rem auto",
+        // layoutLg: "2.5rem 4.5rem auto",
+        // mainContent: "auto 10.75rem 3.25rem",
+        // mainContentLg: "auto 1.5rem",
+        videosPageLg: "2.5rem auto 1.5rem",
+        videosPageMobile: "4rem auto 4rem",
       },
       gridTemplateColumns: {
         artwork: "1fr 2fr",
@@ -42,7 +63,7 @@ module.exports = {
       },
     },
     fill: theme => ({
-      lightgray: theme("colors.gray.400"),
+      lightgray: theme("colors.gray.500"),
     }),
     maxWidth: {
       dropdown: "10.5rem",

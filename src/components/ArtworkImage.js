@@ -13,7 +13,7 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
               localFiles {
                 childImageSharp {
                   gatsbyImageData(
-                    aspectRatio: 1.5
+                    aspectRatio: 1.4
                     transformOptions: { fit: CONTAIN }
                     backgroundColor: "transparent"
                   )

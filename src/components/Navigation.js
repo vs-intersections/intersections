@@ -6,24 +6,19 @@ import { useNodeContext } from "./context/NodeContext"
 import { getMetadataByFilterId } from "../utils"
 import DesktopNav from "./DesktopNav"
 import MobileNav2 from "./MobileNav2"
-const Navigation = ({ data, isMobile, IsMobileXS }) => {
-  console.log(IsMobileXS)
+const Navigation = ({ data, isMobile }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
 
   const handleSelect = e => {
+    if (e.target.value === "―") {
+      return
+    }
     setSelectedNode(e.target.id)
     setSelectedFilter({
       filterName: e.target.value,
       filterType: e.target.id,
     })
-  }
-
-  const showDropdown = element => {
-    console.log("hay")
-    var event = document?.createEvent("MouseEvents")
-    event.initMouseEvent("mousedown", true, true, window)
-    element.dispatchEvent(event)
   }
 
   const artists = data?.artists?.nodes.map(el => ({
@@ -74,26 +69,37 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
 
   const generateDropdown = (filterType, arr, color) => {
     let options = arr.map(el => {
+      let shortenedName = el.name
+      shortenedName =
+        shortenedName.length > 30
+          ? shortenedName.slice(0, 30) + "..."
+          : shortenedName
+      console.log(shortenedName)
       return (
         <option value={el.id} key={el.id}>
-          {el.name}
+          {shortenedName}
         </option>
       )
     })
+    const filterTitle =
+      filterType.slice(0, 1).toUpperCase() + filterType.slice(1)
     return (
       <li
-        className={`p-2 mx-auto max-w-dropdown transition-colors duration-500 bg-opacity-40 ${
+        className={`p-2 mx-auto ${
+          isMobile ? "w-32" : "max-w-dropdown"
+        } inline-block transition-colors duration-500 bg-opacity-40 ${
           selectedFilter.filterType === filterType ? "bg-" + color : ""
         }`}
       >
         <label className={`block flex justify-center items-center lg:text-lg`}>
-          {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+          {filterTitle}
         </label>
         <div className={`mb-2 border-b-2 border-${color}`}></div>
         <select
           className="w-full"
           id={filterType}
           // Todo fix logic here
+
           value={
             // selectedNode?.id ||
             selectedFilter?.filterName
@@ -101,11 +107,9 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
           onChange={e => {
             handleSelect(e)
           }}
-          onClick={e => {
-            showDropdown(document.getElementById(e.target.id))
-          }}
         >
-          <option value="">&#8213;</option>
+          {/* <option>&#8213;</option> */}
+          <option>―</option>
           {options}
         </select>
       </li>
@@ -124,6 +128,7 @@ const Navigation = ({ data, isMobile, IsMobileXS }) => {
     />
   ) : (
     <DesktopNav
+      className="h-18 flex-auto"
       generateDropdown={generateDropdown}
       artists={artists}
       artwork={artwork}
