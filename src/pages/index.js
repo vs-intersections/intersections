@@ -142,7 +142,7 @@ export default function Home() {
 
   return (
     <>
-      <MobileNav isOpen={isOpen} />
+      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
       <LayoutMain nodes={data}>
         <div className="h-full overflow-hidden flex flex-col">
           <Header

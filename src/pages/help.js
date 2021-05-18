@@ -11,10 +11,10 @@ const Help = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <div>
-      <MobileNav isOpen={isOpen} />
-      <div className="grid grid-rows-videosPageMobile lg:grid-rows-videosPageLg">
+      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
+      <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className="w-full border-t border-gray-300">
+        <div className="w-full">
           <h1>How To Page</h1>
         </div>
         <Footer />

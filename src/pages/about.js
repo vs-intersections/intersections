@@ -11,7 +11,7 @@ const About = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <div>
-      <MobileNav isOpen={isOpen} />
+      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
       <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="w-full">
