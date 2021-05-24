@@ -74,7 +74,6 @@ const Navigation = ({ data, isMobile }) => {
         shortenedName.length > 30
           ? shortenedName.slice(0, 30) + "..."
           : shortenedName
-      console.log(shortenedName)
       return (
         <option value={el.id} key={el.id}>
           {shortenedName}

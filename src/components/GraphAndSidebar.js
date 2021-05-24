@@ -33,7 +33,7 @@ const GraphAndSidebar = ({ data }) => {
     yellow: currentTheme === "influence",
   })
 
-  let shortenedName =
+  let titleBarName =
     selectedNode?.name ||
     getMetadataByFilterId(data, selectedFilter?.filterName)?.data?.Name
 
@@ -55,14 +55,12 @@ const GraphAndSidebar = ({ data }) => {
             >
               <div
                 ref={ref}
-                className="w-10/12 text-center text-current flex justify-center items-center"
+                className="w-10/12 text-center text-current truncate pl-4 py-4"
               >
-                {shortenedName && shortenedName.length > 80
-                  ? shortenedName.slice(0, 80) + "..."
-                  : shortenedName}
+                {titleBarName}
               </div>
               <div className="w-2/12 flex justify-center items-center">
-                <BsInfoCircle className="w-full h-full p-2 fill-current text-current" />
+                <BsInfoCircle className="w-full h-full p-2 pr-3 fill-current text-current" />
               </div>
             </div>
           </div>
