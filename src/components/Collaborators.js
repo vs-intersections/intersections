@@ -34,10 +34,16 @@ const Collaborators = ({ data }) => {
       )}
       {collabNames.map(item => (
         <>
-          <span key={item.id} onClick={() => setSelectedFilter({
-            filterName: item.id,
-            filterType: item.table
-          })} className="text-lg underline-lightGreen">
+          <span
+            key={item.id}
+            onClick={() =>
+              setSelectedFilter({
+                filterName: item.id,
+                filterType: item.table,
+              })
+            }
+            className="text-lg underline-lightGreen"
+          >
             {item.name}
           </span>
           <br />

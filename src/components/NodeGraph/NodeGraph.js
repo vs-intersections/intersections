@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { useFilterContext } from "../context/FilterContext"
 import { useNodeContext } from "../context/NodeContext"
 import { linkGenerator } from "../../utils"
+import { useWindowSize } from "../../hooks"
 import {
   forceSimulation,
   forceManyBody,
@@ -17,8 +18,9 @@ import {
 const NodeGraph = ({ data }) => {
   // this keeps track of the selected filter
   const { selectedFilter, setSelectedFilter } = useFilterContext()
-
   const { setSelectedNode } = useNodeContext()
+  const { width: windowWidth } = useWindowSize()
+  let IS_MOBILE = windowWidth <= 1024
 
   // refs to grab the SVG element and SVG element container
   const ref = useRef()
@@ -27,8 +29,7 @@ const NodeGraph = ({ data }) => {
   // declare vars here to be used through out this component
   const DEFAULT_LINK_COLOR = "#ddd"
   const MAX_TEXT_LENGTH = 25
-  let IS_MOBILE = 0,
-    width,
+  let width,
     height,
     aspectBase,
     aspectW,
@@ -47,8 +48,6 @@ const NodeGraph = ({ data }) => {
     // grab svg container width and height
     width = containerRef.current.clientWidth
     height = containerRef.current.clientHeight
-    // determine if the current view is on mobile
-    IS_MOBILE = width <= 1024
     // determine the aspect values through the Maths (see function)
     aspectW = getAspect(width, height)
     aspectH = getAspect(height, width)
