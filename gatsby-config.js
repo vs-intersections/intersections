@@ -60,4 +60,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
   ],
+  flags: {
+    FAST_DEV: true,
+  },
 }
