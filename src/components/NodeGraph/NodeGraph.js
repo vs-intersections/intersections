@@ -29,13 +29,9 @@ const NodeGraph = ({ data }) => {
   // declare vars here to be used through out this component
   const DEFAULT_LINK_COLOR = "#ddd"
   const MAX_TEXT_LENGTH = 25
-  let width,
-    height,
-    aspectBase,
-    aspectW,
-    aspectH,
-    aspectRatioWidth,
-    aspectRatioHeight
+  // the default zoom of the SVG (lower the number to zoom in)
+  const ASPECT_BASE = 850
+  let width, height, aspectW, aspectH, aspectRatioWidth, aspectRatioHeight
 
   // determine aspect ratio of value inputs
   // this only determines one of the values, depending on if you want the width or height aspect ratio
@@ -51,11 +47,9 @@ const NodeGraph = ({ data }) => {
     // determine the aspect values through the Maths (see function)
     aspectW = getAspect(width, height)
     aspectH = getAspect(height, width)
-    // set the default zoom of the SVG
-    aspectBase = 700
     // set the aspect ratio (to be used in the viewbox)
-    aspectRatioWidth = aspectBase * aspectW || 600
-    aspectRatioHeight = aspectBase * aspectH || 600
+    aspectRatioWidth = ASPECT_BASE * aspectW || 600
+    aspectRatioHeight = ASPECT_BASE * aspectH || 600
   }
 
   useEffect(() => {

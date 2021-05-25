@@ -271,6 +271,7 @@ export const linkGenerator = (
     artists.forEach(artist => {
       artist.data.isSelectedParent = false
       artist.data.isSelectedChildMain = false
+      artist.isSelectedChild = false
     })
     artwork.push(...data.artwork.nodes)
     // setting the isSelectedChild property to false to fix numerous rendering issues

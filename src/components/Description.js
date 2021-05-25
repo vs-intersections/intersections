@@ -44,6 +44,7 @@ const SidebarDescription = ({ data }) => {
                 }
               }
             }
+            Video
           }
           recordId
         }
@@ -170,10 +171,14 @@ const SidebarDescription = ({ data }) => {
 
   let descriptionImage = {}
 
-  if (selectedFilter?.filterType !== "artist" && result) {
+  if (
+    selectedFilter?.filterType !== "artist" &&
+    result &&
+    !result.data?.Video
+  ) {
     descriptionImage =
       result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
-  } else if (result) {
+  } else if (result && result.data?.Bio_Image) {
     descriptionImage =
       result.data?.Bio_Image?.localFiles[0].childImageSharp.gatsbyImageData
   } else {
@@ -193,10 +198,18 @@ const SidebarDescription = ({ data }) => {
       Description: description,
       Name: name,
       Interview: interview,
+      Video: video,
     },
   } = metadata
 
   const desc = description || bio
+  let videoLink
+  if (video) {
+    let tempLink = video.split("https://vimeo.com/")
+    tempLink[1]
+      ? (videoLink = "https://player.vimeo.com/video/" + tempLink[1])
+      : (videoLink = video)
+  }
 
   const descProcess = () => {
     if (desc) {
@@ -220,16 +233,15 @@ const SidebarDescription = ({ data }) => {
   })
 
   return (
-    <div className={`${selectedFilter.filterType !== "artwork" && "mb-16"}`}>
+    <div className="mb-16">
       <h3 className="pb-1 text-2xl font-bold text-center">
         {table}: {name}
       </h3>
       <hr className="border-gray-400 border-t-2" />
-      {selectedFilter.filterType === "artist" && (
-        <div className="w-3/4 h-auto mt-3 mx-auto">
-          {descriptionImage && <GatsbyImage image={descriptionImage} />}
-        </div>
-      )}
+      <div className="w-3/4 h-auto mt-3 mx-auto">
+        {descriptionImage && <GatsbyImage image={descriptionImage} />}
+        {video && <Video videoSrcURL={videoLink} videoTitle="Artwork Video" />}
+      </div>
       <div className="mt-2">
         {desc ? (
           renderedDescription
@@ -237,11 +249,6 @@ const SidebarDescription = ({ data }) => {
           <p className="text-lg mt-2">Description coming soon</p>
         )}
       </div>
-      {selectedFilter.filterType !== "artist" && (
-        <div className="w-full h-auto mt-3 mx-auto">
-          {descriptionImage && <GatsbyImage image={descriptionImage} />}
-        </div>
-      )}
       {selectedFilter.filterType === "artist" && interview && (
         <>
           <p className="text-lg mt-3 font-bold mb-2">Interview Video</p>
