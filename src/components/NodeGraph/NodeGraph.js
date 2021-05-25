@@ -79,11 +79,6 @@ const NodeGraph = ({ data }) => {
     const svg = svgWrapper.append("g")
     svg.attr("transform", "none")
 
-    // svg.selectAll("line").remove()
-    // svg.selectAll("g").remove()
-    // svg.selectAll("circle").remove()
-    // svg.selectAll("text").remove()
-
     let centerX = width / 2
     let centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
 
@@ -156,7 +151,6 @@ const NodeGraph = ({ data }) => {
 
     function zoomed({ transform }) {
       svg.attr("transform", transform)
-      // resize()
     }
 
     // highlight nodes on mouse hover

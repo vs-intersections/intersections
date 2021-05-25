@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react"
-import { useWindowSize, useOnClickOutside } from "../hooks"
 import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
 import { useSidebarContext } from "./context/SidebarContext"
@@ -9,9 +8,7 @@ import { BsInfoCircle } from "react-icons/bs"
 import NodeGraph from "./NodeGraph/NodeGraph"
 import classNames from "classnames"
 import SidebarContent from "./SidebarContent"
-const GraphAndSidebar = ({ data }) => {
-  const { width } = useWindowSize()
-  const IS_MOBILE = width <= 1024
+const GraphAndSidebar = ({ data, isMobile }) => {
   const { selectedNode } = useNodeContext()
   const { selectedFilter } = useFilterContext()
   const { sidebarIsOpened, setSidebarIsOpened } = useSidebarContext()
@@ -42,7 +39,7 @@ const GraphAndSidebar = ({ data }) => {
       {/* Only show the info box if there viewport is not mobile 
       AND there is a selected Node name
        OR data AND selectedFilter FilterName  */}
-      {!IS_MOBILE &&
+      {!isMobile &&
         (selectedNode?.name || (data && selectedFilter?.filterName)) && (
           <div
             className={`transition-all duration-500 ${
@@ -72,7 +69,7 @@ const GraphAndSidebar = ({ data }) => {
       >
         <NodeGraph data={data} />
       </div>
-      {!IS_MOBILE && (
+      {!isMobile && (
         <div className="relative flex-1">
           <div className={`h-full w-45vw absolute left-n3vw`}>
             <div

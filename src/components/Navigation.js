@@ -3,7 +3,6 @@ import React from "react"
 import { css, jsx } from "@emotion/react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
-import { getMetadataByFilterId } from "../utils"
 import DesktopNav from "./DesktopNav"
 import MobileNav2 from "./MobileNav2"
 const Navigation = ({ data, isMobile }) => {
@@ -107,7 +106,6 @@ const Navigation = ({ data, isMobile }) => {
             handleSelect(e)
           }}
         >
-          {/* <option>&#8213;</option> */}
           <option>―</option>
           {options}
         </select>

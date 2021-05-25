@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import menu from "../../static/menu-icon.svg"
-const Header = ({ setIsOpen, isOpen, isMobile }) => {
+const Header = ({ setIsOpen, isOpen }) => {
   return (
     <header
       className={`px-2 md:px-6 lg:px-16 lg:py-4 py-2 flex flex-row items-center justify-between z-50 bg-white border-b`}
