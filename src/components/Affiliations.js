@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
+import { DataContext } from "./context/DataContext"
 
-const Affiliations = ({ data }) => {
+const Affiliations = () => {
+  const [data] = useContext(DataContext)
   const dataObjCopy = Object.assign({}, data)
   const { selectedFilter } = useFilterContext()
 

@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
+import { DataContext } from "./context/DataContext"
 
-const ArtistPersonalInfo = ({ data }) => {
+const ArtistPersonalInfo = () => {
+  const [data] = useContext(DataContext)
   const dataObjCopy = Object.assign({}, data)
 
   const { selectedFilter } = useFilterContext()
@@ -27,7 +29,7 @@ const ArtistPersonalInfo = ({ data }) => {
       {site && (
         <p className="text-lg">
           <span className="font-bold">Website:</span>{" "}
-          <a className="underline" target="_blank" href={site}>
+          <a className="underline" target="_blank" rel="noreferrer" href={site}>
             {site}
           </a>
         </p>

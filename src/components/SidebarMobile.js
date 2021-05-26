@@ -1,14 +1,16 @@
 /** @jsx jsx */
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect, useState, useContext } from "react"
 import { css, jsx } from "@emotion/react"
 import SidebarContent from "./SidebarContent"
 import { IoMdArrowDropupCircle } from "react-icons/io"
 import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
 import { useSidebarContext } from "./context/SidebarContext"
+import { DataContext } from "./context/DataContext"
 import { useOnClickOutside } from "../hooks/useOnClickOutside"
 import classNames from "classnames"
-const SidebarMobile = ({ data }) => {
+const SidebarMobile = () => {
+  const [data] = useContext(DataContext)
   const { sideBarMobileIsOpen, setSideBarMobileIsOpen } = useSidebarContext()
   const { selectedNode } = useNodeContext()
   const { selectedFilter } = useFilterContext()

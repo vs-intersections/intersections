@@ -1,17 +1,17 @@
-import React, { useState, useRef } from "react"
-import { useWindowSize, useOnClickOutside } from "../hooks"
+import React, { useState, useRef, useContext } from "react"
 import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
 import { useSidebarContext } from "./context/SidebarContext"
+import { DataContext } from "./context/DataContext"
 import { titleCase } from "../utils"
 import { getMetadataByFilterId } from "../utils"
 import { BsInfoCircle } from "react-icons/bs"
 import NodeGraph from "./NodeGraph/NodeGraph"
 import classNames from "classnames"
 import SidebarContent from "./SidebarContent"
-const GraphAndSidebar = ({ data }) => {
-  const { width } = useWindowSize()
-  const IS_MOBILE = width <= 1024
+const GraphAndSidebar = ({ isMobile }) => {
+  const [data] = useContext(DataContext)
+
   const { selectedNode } = useNodeContext()
   const { selectedFilter } = useFilterContext()
   const { sidebarIsOpened, setSidebarIsOpened } = useSidebarContext()
@@ -42,7 +42,7 @@ const GraphAndSidebar = ({ data }) => {
       {/* Only show the info box if there viewport is not mobile 
       AND there is a selected Node name
        OR data AND selectedFilter FilterName  */}
-      {!IS_MOBILE &&
+      {!isMobile &&
         (selectedNode?.name || (data && selectedFilter?.filterName)) && (
           <div
             className={`transition-all duration-500 ${
@@ -70,9 +70,9 @@ const GraphAndSidebar = ({ data }) => {
           sidebarIsOpened ? "w-60vw" : "w-100vw"
         }`}
       >
-        <NodeGraph data={data} />
+        <NodeGraph />
       </div>
-      {!IS_MOBILE && (
+      {!isMobile && (
         <div className="relative flex-1">
           <div className={`h-full w-45vw absolute left-n3vw`}>
             <div
@@ -94,7 +94,7 @@ const GraphAndSidebar = ({ data }) => {
             <div
               className={`absolute left-3vw w-40vw h-full bg-${tabClass} bg-opacity-10`}
             >
-              {data && <SidebarContent data={data} />}
+              {data && <SidebarContent />}
             </div>
           </div>
         </div>

@@ -1,27 +1,16 @@
-// a failed attempt at creating context for data gathered form the GraphQL query
+import React, { createContext, useState } from "react"
+import { useAirtableData } from "../../hooks/"
 
-import React, { createContext, useContext, useState } from "react"
-export const DataContext = createContext(null)
+export const DataContext = createContext()
 
-export const DataContextProvider = ({ children }) => {
-  const [data, setData] = useState({})
+export const DataProvider = ({ children }) => {
+  const airtableData = useAirtableData()
+
+  const [data, setData] = useState(airtableData)
+
   return (
-    <DataContext.Provider
-      value={{
-        data,
-        setData,
-      }}
-    >
+    <DataContext.Provider value={[data, setData]}>
       {children}
     </DataContext.Provider>
   )
-}
-
-export const useDataContext = () => {
-  const { data, setData } = useContext(DataContext)
-
-  return {
-    data,
-    setData,
-  }
 }

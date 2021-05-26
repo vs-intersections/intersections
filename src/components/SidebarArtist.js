@@ -7,15 +7,15 @@ import Affiliations from "./Affiliations"
 import ArtistPersonalInfo from "./ArtistPersonalInfo"
 // import { data } from "autoprefixer"
 
-const SidebarArtist = ({ data }) => {
+const SidebarArtist = () => {
   return (
     <>
-      <Description data={data} />
-      <ArtistsAndArtwork data={data} />
-      <Influence data={data} />
-      <Collaborators data={data} />
-      <Affiliations data={data} />
-      <ArtistPersonalInfo data={data} />
+      <Description />
+      <ArtistsAndArtwork />
+      <Influence />
+      <Collaborators />
+      <Affiliations />
+      <ArtistPersonalInfo />
     </>
   )
 }

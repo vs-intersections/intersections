@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 import ArtworkImage from "../components/ArtworkImage"
+import { DataContext } from "./context/DataContext"
 
-const ArtistsAndArtwork = ({ data }) => {
+const ArtistsAndArtwork = () => {
+  const [data] = useContext(DataContext)
   const dataObjCopy = Object.assign({}, data)
   const { selectedFilter, setSelectedFilter } = useFilterContext()
 
@@ -242,23 +244,22 @@ const ArtistsAndArtwork = ({ data }) => {
 
   return (
     <div className="mb-16">
+      {/* render artist without artwork here  */}
       {selectedFilter.filterType !== "artwork" && (
         <h3 className="pb-1 text-2xl font-bold mb-3.5">
           {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
         </h3>
       )}
       {selectedFilter.filterType === "artwork" ||
-      (selectedFilter.filterType === "influence" && artistData) ? (
-        renderedArtist
-      ) : (selectedFilter.filterType === "theme" && !artwork) ||
-        (selectedFilter.filterType === "artist" && !artwork) ? (
-        <p className="text-lg">Artwork coming soon</p>
-      ) : selectedFilter.filterType === "artwork" ||
-        (selectedFilter.filterType === "influence" && !artistData) ? (
-        <p className="text-lg">Artists coming soon</p>
-      ) : (
-        renderedArtwork
-      )}
+      (selectedFilter.filterType === "influence" && artistData)
+        ? renderedArtist
+        : // ) : (selectedFilter.filterType === "theme" && !artwork) ||
+          //   (selectedFilter.filterType === "artist" && !artwork) ? (
+          //   <p className="text-lg">Artwork coming soon</p>
+          // ) : selectedFilter.filterType === "artwork" ||
+          //   (selectedFilter.filterType === "influence" && !artistData) ? (
+          //   <p className="text-lg">Artists coming soon</p>
+          renderedArtwork}
     </div>
   )
 }

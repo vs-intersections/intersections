@@ -90,16 +90,24 @@ export const linkGenerator = (
       // if artistB.id equals the current filter name AND current artwork primary artist equals the filter name
       // AND the current artwork collaborators is not empty
       if (
-        artistB.id === selectedFilter.filterName &&
+        (artistB.id === selectedFilter.filterName ||
+          artistA.id === selectedFilter.filterName) &&
         artwork[x].data.Primary_Artist__REQUIRED_[0] ===
           selectedFilter.filterName &&
         artwork[x].data.Collaborators !== null
       ) {
         artwork[x].data.isSelectedParent = true
-        for (let y = 0; y < artwork[x].data.Collaborators.length; y++) {
-          if (artwork[x].data.Collaborators[y] === artistA.id) {
-            hasBeenInvoked = true
-            return linkMainNodesDefault(artistA, artistB, PARENT_NODE_COLOR, 5)
+        if (artwork[x].data.Collaborators) {
+          for (let y = 0; y < artwork[x].data.Collaborators.length; y++) {
+            if (artwork[x].data.Collaborators[y] === artistB.id) {
+              hasBeenInvoked = true
+              return linkMainNodesDefault(
+                artistA,
+                artistB,
+                PARENT_NODE_COLOR,
+                5
+              )
+            }
           }
         }
       }
@@ -266,13 +274,14 @@ export const linkGenerator = (
 
   const populateArrays = () => {
     // spreading the array to concatenate the data (else, array of arrays)
-    artists.push(...data.artists.nodes)
+    artists = [...data.artists.nodes]
     // setting the isSelectedParent property to false to fix numerous rendering issues
     artists.forEach(artist => {
       artist.data.isSelectedParent = false
       artist.data.isSelectedChildMain = false
+      artist.data.isSelectedChild = false
     })
-    artwork.push(...data.artwork.nodes)
+    artwork = [...data.artwork.nodes]
     // setting the isSelectedChild property to false to fix numerous rendering issues
     artwork.forEach(art => {
       art.data.isSelectedParent = false

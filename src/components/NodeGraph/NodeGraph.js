@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useContext } from "react"
 import { useFilterContext } from "../context/FilterContext"
 import { useNodeContext } from "../context/NodeContext"
+import { DataContext } from "../context/DataContext"
 import { linkGenerator } from "../../utils"
 import { useWindowSize } from "../../hooks"
 import {
@@ -15,7 +16,8 @@ import {
   selectAll,
 } from "d3"
 
-const NodeGraph = ({ data }) => {
+const NodeGraph = () => {
+  const [data] = useContext(DataContext)
   // this keeps track of the selected filter
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { setSelectedNode } = useNodeContext()
@@ -29,13 +31,9 @@ const NodeGraph = ({ data }) => {
   // declare vars here to be used through out this component
   const DEFAULT_LINK_COLOR = "#ddd"
   const MAX_TEXT_LENGTH = 25
-  let width,
-    height,
-    aspectBase,
-    aspectW,
-    aspectH,
-    aspectRatioWidth,
-    aspectRatioHeight
+  // the default zoom of the SVG (lower the number to zoom in)
+  const ASPECT_BASE = 850
+  let width, height, aspectW, aspectH, aspectRatioWidth, aspectRatioHeight
 
   // determine aspect ratio of value inputs
   // this only determines one of the values, depending on if you want the width or height aspect ratio
@@ -51,18 +49,18 @@ const NodeGraph = ({ data }) => {
     // determine the aspect values through the Maths (see function)
     aspectW = getAspect(width, height)
     aspectH = getAspect(height, width)
-    // set the default zoom of the SVG
-    aspectBase = 700
     // set the aspect ratio (to be used in the viewbox)
-    aspectRatioWidth = aspectBase * aspectW || 600
-    aspectRatioHeight = aspectBase * aspectH || 600
+    aspectRatioWidth = ASPECT_BASE * aspectW || 600
+    aspectRatioHeight = ASPECT_BASE * aspectH || 600
   }
+
+  const dataCopy = Object.assign({}, data)
 
   useEffect(() => {
     // set values for viewbox, and SVG width and height
     setAspectRatio()
     // after the page has loaded, grab Airtable data from linkGenerator
-    const results = linkGenerator(data, selectedFilter)
+    const results = linkGenerator(dataCopy, selectedFilter)
     // begin the data viz
     main(results)
     // re-run useEffect if a new filter has been chosen
@@ -84,11 +82,6 @@ const NodeGraph = ({ data }) => {
 
     const svg = svgWrapper.append("g")
     svg.attr("transform", "none")
-
-    // svg.selectAll("line").remove()
-    // svg.selectAll("g").remove()
-    // svg.selectAll("circle").remove()
-    // svg.selectAll("text").remove()
 
     let centerX = width / 2
     let centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
@@ -162,7 +155,6 @@ const NodeGraph = ({ data }) => {
 
     function zoomed({ transform }) {
       svg.attr("transform", transform)
-      // resize()
     }
 
     // highlight nodes on mouse hover
@@ -253,6 +245,9 @@ const NodeGraph = ({ data }) => {
           : node.size
       )
       .classed("parent-halo", node => node.isSelectedParent)
+
+    // console.log(graphData.nodes)
+    // console.log(graphData.links)
 
     const circles = circleGroups
       .append("circle")

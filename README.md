@@ -11,37 +11,39 @@
 
 ---
 
-## From VS Meeting: 5-10-2021 - Prototype Review
-
 ### Priority Items
-
-- NodeGraph component
-
-  - Graph zooming
-  - Data appears to be rendering multiple times when clicking a node (may no longer be an issue)
 
 - Add links for all metadata in sidebar - collabs not showing up on Artist (ALBERT)
 - Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
 - Link Artists to collab artists (ALBERT)
-- Filter dropdowns in mobile are not functional (DAVID)
-- About page - footer does not stick to bottom of page when scrolled (ALBERT)
+- When selecting Influence - History, rendered artwork images are overlapping (ALBERT)
+- Lightbox for viewing images when clicked (DAVID)
+- Complete the How-To page (DAVID)
+- Images sometimes do not render (see Influence desc images, might only be an issue in development) (ALBERT)
 
-- Header page links should change bg color when hovered
-- Fix ham menu (displays wonky when opened)
+#### from VS meeting 5-25-2021
+
+- ~~ artist nodes not linking by collaborators (ALBERT) ~~
+- Collaborators: not showing up on artists (known bug) (ALBERT)
+- display collaborators on the artist node info (ALBERT)
+- change display logic for artists that are only collaborators (ALBERT
+- ~~ make sure videos from vimeo will work (ALBERT) ~~
+- ~~ move image above description (artwork node) (ALBERT) ~~
+- Title Line (Vital Spaces: Intersections) => Remove Logo Intersections (in bold) Vital Spaces, Maida, Warehouse 21 (W21) (ALBERT)
+- keep the favicon (ALBERT)
 
 ### Secondary Items
 
+- can we add url params to select nodes? (most likely not)
 - Sidebar title centering (it is not currently centered within the tab) (ALBERT)
-- When a node is clicked or filter selected, the sidebar will snap to the top of the scrollable area (works in mobile - have to work on desktop) (ALBERT)
 - videos are squares on desktop (not exactly sure what this means)
 - help page / link on desktop
-
-### Tertiary Items - not a priority
-
-- Lightbox for viewing images when clicked (ALBERT - SECONDARY)
+- NodeGraph component - Graph zooming (ALBERT)
 
 ### Things that are dependant on input from Hannah and Raashan
 
 - help modal - maybe - will wait to hear back from R and H
-- warehouse 21 and other partners -
-  - Hannah is waiting on a logo from David
+
+### TIME DEPENDENT ISSUES
+
+- domain name - intersections.vitalspaces.org (to occur 6/21)

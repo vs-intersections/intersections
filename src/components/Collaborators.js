@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
+import { DataContext } from "./context/DataContext"
 
-const Collaborators = ({ data }) => {
-  // makes a copy of the data object instead of a reference (fixes a lot of bugs)
+const Collaborators = () => {
+  const [data] = useContext(DataContext)
   const dataObjCopy = Object.assign({}, data)
 
   const { selectedFilter, setSelectedFilter } = useFilterContext()
@@ -25,30 +26,40 @@ const Collaborators = ({ data }) => {
   const { Collaborators: collabs } = metadata.data
 
   let collabNames = []
-  if (collabs) collabNames = translateIdToName2(data, collabs, "artist")
+
+  if (selectedFilter.filterType === "artist") {
+    dataObjCopy.artists.nodes.forEach(node => {
+      if (node.isSelectedChild) {
+        collabNames.push(node)
+      }
+    })
+  } else if (collabs)
+    collabNames = translateIdToName2(dataObjCopy, collabs, "artist")
+
+  const renderedData = collabNames.map(item => (
+    <>
+      <span
+        key={item.id || item.recordId}
+        onClick={() =>
+          setSelectedFilter({
+            filterName: item.id || item.recordId,
+            filterType: item.table,
+          })
+        }
+        className="text-lg underline-lightGreen"
+      >
+        {item.name || item.data.Name}
+      </span>
+      <br />
+    </>
+  ))
 
   return (
     <div className="mb-16">
       {collabNames.length !== 0 && (
         <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborators</h3>
       )}
-      {collabNames.map(item => (
-        <>
-          <span
-            key={item.id}
-            onClick={() =>
-              setSelectedFilter({
-                filterName: item.id,
-                filterType: item.table,
-              })
-            }
-            className="text-lg underline-lightGreen"
-          >
-            {item.name}
-          </span>
-          <br />
-        </>
-      ))}
+      {renderedData}
     </div>
   )
 }

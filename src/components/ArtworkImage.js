@@ -49,7 +49,7 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
 
   result &&
     (artworkImage =
-      result.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData)
+      result.data?.Image?.localFiles[0]?.childImageSharp?.gatsbyImageData)
 
   return result?.data?.Image ? (
     <GatsbyImage image={artworkImage} />

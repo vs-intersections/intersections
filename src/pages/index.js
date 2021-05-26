@@ -6,13 +6,14 @@ import MobileNav from "../components/MobileNav"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import SidebarMobile from "../components/SidebarMobile"
-import InfoMenu from "../components/InfoMenu"
 import Footer from "../components/Footer"
 import { useWindowSize } from "../hooks"
-import { graphql, useStaticQuery } from "gatsby"
 import GraphAndSidebar from "../components/GraphAndSidebar"
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
   useEffect(() => {
     // sizes the height of mobile browsers to display the actual full height instead of the initial height
     // https://developers.google.com/web/updates/2016/12/url-bar-resizing
@@ -24,154 +25,34 @@ export default function Home() {
     html.style.bottom = 0
     html.style.right = 0
     html.style.left = 0
+
+    window.innerWidth <= 1024 && setIsMobile(true)
   }, [])
-
-  const { width } = useWindowSize()
-  const IS_MOBILE = width <= 1024
-  const IS_MOBILE_XS = width <= 450
-  const [isOpen, setIsOpen] = useState(false)
-  const [infobarIsOpen, setInfobarIsOpen] = useState(false)
-
-  const changeInfobar = () => {
-    setInfobarIsOpen(!infobarIsOpen)
-  }
-
-  const data = useStaticQuery(graphql`
-    {
-      artists: allAirtable(
-        filter: { table: { eq: "Artist" } }
-        sort: { fields: data___Name }
-      ) {
-        nodes {
-          table
-          data {
-            Name
-            Artwork
-            Influence
-            Collaborated_On
-            Bio
-            Birthplace
-            Email
-            Website
-            Interview
-            Affiliations
-            Tip
-          }
-          recordId
-        }
-      }
-      artwork: allAirtable(
-        filter: { table: { eq: "Artwork" } }
-        sort: { fields: data___Name }
-      ) {
-        nodes {
-          table
-          data {
-            Name
-            Primary_Artist__REQUIRED_
-            Collaborators
-            Locations
-            Description
-            Video
-            Medium
-            Theme
-          }
-          recordId
-        }
-      }
-      locations: allAirtable(
-        filter: { table: { eq: "Location" } }
-        sort: { fields: data___Name }
-      ) {
-        nodes {
-          table
-          data {
-            Name
-            Address
-            Artwork
-            Description
-            Video
-          }
-          recordId
-        }
-      }
-      themes: allAirtable(
-        filter: { table: { eq: "Theme" } }
-        sort: { fields: data___Name }
-      ) {
-        nodes {
-          table
-          data {
-            Name
-            Artwork
-            Description
-          }
-          recordId
-        }
-      }
-      mediums: allAirtable(
-        filter: { table: { eq: "Medium" } }
-        sort: { fields: data___Name }
-      ) {
-        nodes {
-          table
-          data {
-            Name
-            Artwork
-            Description
-          }
-          recordId
-        }
-      }
-      influences: allAirtable(
-        filter: { table: { eq: "Influence" } }
-        sort: { fields: data___Name }
-      ) {
-        nodes {
-          table
-          data {
-            Name
-            Artist
-            Description
-          }
-          recordId
-        }
-      }
-    }
-  `)
 
   return (
     <>
-      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
-      <LayoutMain nodes={data}>
+      {isMobile && <MobileNav isOpen={isOpen} />}
+      <LayoutMain>
         <div className="h-full overflow-hidden flex flex-col">
           <Header
-            className={`${IS_MOBILE ? "h-8" : "h-10"} flex-auto relative`}
+            className={`${isMobile ? "h-8" : "h-10"} flex-auto relative`}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            isMobile={IS_MOBILE}
           />
-          <Navigation data={data} isMobile={IS_MOBILE} />
+          <Navigation isMobile={isMobile} />
           <div className="flex-auto">
             <main className="h-full relative">
               <div
                 className={`absolute top-0 ${
-                  IS_MOBILE ? "bottom-0" : "bottom-8"
+                  isMobile ? "bottom-0" : "bottom-8"
                 }`}
               >
-                <GraphAndSidebar data={data} />
-                {IS_MOBILE && <SidebarMobile data={data} />}
+                <GraphAndSidebar isMobile={isMobile} />
+                {isMobile && <SidebarMobile />}
               </div>
-              {!IS_MOBILE && <Footer />}
+              {!isMobile && <Footer />}
             </main>
           </div>
-          {/* <div
-            className={`absolute ${
-              infobarIsOpen ? "top-12" : "top-full"
-            } bottom-0 w-full`}
-          >
-            {IS_MOBILE && <InfoMenu changeInfobar={changeInfobar} />}
-          </div> */}
         </div>
       </LayoutMain>
     </>
