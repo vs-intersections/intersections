@@ -8,8 +8,6 @@ export const DataProvider = ({ children }) => {
 
   const [data, setData] = useState(airtableData)
 
-  console.log(data)
-
   return (
     <DataContext.Provider value={[data, setData]}>
       {children}

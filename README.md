@@ -23,6 +23,7 @@
 
 #### from VS meeting 5-25-2021
 
+- ~~ artist nodes not linking by collaborators (ALBERT) ~~
 - Collaborators: not showing up on artists (known bug) (ALBERT)
 - display collaborators on the artist node info (ALBERT)
 - change display logic for artists that are only collaborators (ALBERT
