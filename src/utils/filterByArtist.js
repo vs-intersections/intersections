@@ -17,10 +17,9 @@ export const artistAddParentField = (
       artwork.data.Collaborators?.forEach(collab => {
         artistsArray.forEach(artist => {
           if (artist.recordId === collab) {
-            artist.isSelectedChild = true
+            artist.data.isSelectedChild = true
           }
         })
-        return artistsArray
       })
     }
   })

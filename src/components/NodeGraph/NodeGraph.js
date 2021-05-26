@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useContext } from "react"
 import { useFilterContext } from "../context/FilterContext"
 import { useNodeContext } from "../context/NodeContext"
+import { DataContext } from "../context/DataContext"
 import { linkGenerator } from "../../utils"
 import { useWindowSize } from "../../hooks"
 import {
@@ -15,7 +16,8 @@ import {
   selectAll,
 } from "d3"
 
-const NodeGraph = ({ data }) => {
+const NodeGraph = () => {
+  const [data] = useContext(DataContext)
   // this keeps track of the selected filter
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { setSelectedNode } = useNodeContext()
@@ -52,11 +54,13 @@ const NodeGraph = ({ data }) => {
     aspectRatioHeight = ASPECT_BASE * aspectH || 600
   }
 
+  const dataCopy = Object.assign({}, data)
+
   useEffect(() => {
     // set values for viewbox, and SVG width and height
     setAspectRatio()
     // after the page has loaded, grab Airtable data from linkGenerator
-    const results = linkGenerator(data, selectedFilter)
+    const results = linkGenerator(dataCopy, selectedFilter)
     // begin the data viz
     main(results)
     // re-run useEffect if a new filter has been chosen
@@ -241,6 +245,9 @@ const NodeGraph = ({ data }) => {
           : node.size
       )
       .classed("parent-halo", node => node.isSelectedParent)
+
+    // console.log(graphData.nodes)
+    // console.log(graphData.links)
 
     const circles = circleGroups
       .append("circle")

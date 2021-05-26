@@ -1,14 +1,17 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useContext } from "react"
 import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
 import { useSidebarContext } from "./context/SidebarContext"
+import { DataContext } from "./context/DataContext"
 import { titleCase } from "../utils"
 import { getMetadataByFilterId } from "../utils"
 import { BsInfoCircle } from "react-icons/bs"
 import NodeGraph from "./NodeGraph/NodeGraph"
 import classNames from "classnames"
 import SidebarContent from "./SidebarContent"
-const GraphAndSidebar = ({ data, isMobile }) => {
+const GraphAndSidebar = ({ isMobile }) => {
+  const [data] = useContext(DataContext)
+
   const { selectedNode } = useNodeContext()
   const { selectedFilter } = useFilterContext()
   const { sidebarIsOpened, setSidebarIsOpened } = useSidebarContext()
@@ -67,7 +70,7 @@ const GraphAndSidebar = ({ data, isMobile }) => {
           sidebarIsOpened ? "w-60vw" : "w-100vw"
         }`}
       >
-        <NodeGraph data={data} />
+        <NodeGraph />
       </div>
       {!isMobile && (
         <div className="relative flex-1">
@@ -91,7 +94,7 @@ const GraphAndSidebar = ({ data, isMobile }) => {
             <div
               className={`absolute left-3vw w-40vw h-full bg-${tabClass} bg-opacity-10`}
             >
-              {data && <SidebarContent data={data} />}
+              {data && <SidebarContent />}
             </div>
           </div>
         </div>

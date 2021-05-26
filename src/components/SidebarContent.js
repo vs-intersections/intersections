@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useContext } from "react"
 import SidebarArtist from "./SidebarArtist"
 import SidebarArtwork from "./SidebarArtwork"
 import SidebarLocation from "./SidebarLocation"
@@ -7,8 +7,10 @@ import SidebarTheme from "./SidebarTheme"
 import SidebarInfluence from "./SidebarInfluence"
 import { useWindowSize } from "../hooks"
 import { useFilterContext } from "./context/FilterContext"
+import { DataContext } from "./context/DataContext"
 
-const SidebarContent = ({ data, elemHeight, bgColor }) => {
+const SidebarContent = ({ elemHeight, bgColor }) => {
+  const [data] = useContext(DataContext)
   const { selectedFilter } = useFilterContext()
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024

@@ -1,11 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import Video from "../components/Video"
 import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { DataContext } from "./context/DataContext"
 
-const SidebarDescription = ({ data }) => {
+const SidebarDescription = () => {
+  const [data] = useContext(DataContext)
+
   const sidebarData = useStaticQuery(graphql`
     {
       artists: allAirtable(filter: { table: { eq: "Artist" } }) {

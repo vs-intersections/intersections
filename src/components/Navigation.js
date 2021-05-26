@@ -1,13 +1,18 @@
 /** @jsx jsx */
-import React from "react"
+import React, { useContext } from "react"
 import { css, jsx } from "@emotion/react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
+import { DataContext } from "./context/DataContext"
 import DesktopNav from "./DesktopNav"
 import MobileNav2 from "./MobileNav2"
-const Navigation = ({ data, isMobile }) => {
+
+const Navigation = ({ isMobile }) => {
+  const [data] = useContext(DataContext)
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
+
+  const dataCopy = Object.assign({}, data)
 
   const handleSelect = e => {
     if (e.target.value === "―") {
@@ -20,18 +25,18 @@ const Navigation = ({ data, isMobile }) => {
     })
   }
 
-  const artists = data?.artists?.nodes.map(el => ({
+  const artists = dataCopy?.artists?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,
   }))
 
-  const artwork = data?.artwork?.nodes.map(el => ({
+  const artwork = dataCopy?.artwork?.nodes.map(el => ({
     id: el.recordId,
     name: el.data.Name,
   }))
 
   const locations = []
-  data?.locations?.nodes.forEach(el => {
+  dataCopy?.locations?.nodes.forEach(el => {
     el.data.Artwork &&
       locations.push({
         id: el.recordId,
@@ -40,7 +45,7 @@ const Navigation = ({ data, isMobile }) => {
   })
 
   const themes = []
-  data?.themes?.nodes.map(el => {
+  dataCopy?.themes?.nodes.map(el => {
     el.data.Artwork &&
       themes.push({
         id: el.recordId,
@@ -49,7 +54,7 @@ const Navigation = ({ data, isMobile }) => {
   })
 
   const mediums = []
-  data?.mediums?.nodes.map(el => {
+  dataCopy?.mediums?.nodes.map(el => {
     el.data.Artwork &&
       mediums.push({
         id: el.recordId,
@@ -58,7 +63,7 @@ const Navigation = ({ data, isMobile }) => {
   })
 
   const influences = []
-  data?.influences?.nodes.forEach(el => {
+  dataCopy?.influences?.nodes.forEach(el => {
     el.data.Artist &&
       influences.push({
         id: el.recordId,

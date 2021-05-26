@@ -11,8 +11,6 @@
 
 ---
 
-## From VS Meeting: 5-10-2021 - Prototype Review
-
 ### Priority Items
 
 - Add links for all metadata in sidebar - collabs not showing up on Artist (ALBERT)

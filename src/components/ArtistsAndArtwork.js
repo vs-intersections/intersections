@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 import ArtworkImage from "../components/ArtworkImage"
+import { DataContext } from "./context/DataContext"
 
-const ArtistsAndArtwork = ({ data }) => {
+const ArtistsAndArtwork = () => {
+  const [data] = useContext(DataContext)
   const dataObjCopy = Object.assign({}, data)
   const { selectedFilter, setSelectedFilter } = useFilterContext()
 
