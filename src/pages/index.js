@@ -47,7 +47,7 @@ export default function Home() {
                   isMobile ? "bottom-0" : "bottom-8"
                 }`}
               >
-                <GraphAndSidebar />
+                <GraphAndSidebar isMobile={isMobile} />
                 {isMobile && <SidebarMobile />}
               </div>
               {!isMobile && <Footer />}
