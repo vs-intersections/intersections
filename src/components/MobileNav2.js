@@ -11,6 +11,7 @@ const MobileNav2 = ({
   themes,
   mediums,
   influences,
+  affiliations,
   generateDropdown,
 }) => {
   const [filterBarIsopen, setFilterBarIsopen] = useState(false)
@@ -37,7 +38,7 @@ const MobileNav2 = ({
           </div>
           <div className="w-full h-16 flex space-between">
             {generateDropdown("medium", mediums, "lightBlue")}
-            {generateDropdown("influence", influences, "yellow")}
+            {generateDropdown("affiliation", affiliations, "yellow")}
           </div>
         </ul>
       </nav>

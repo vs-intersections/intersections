@@ -35,7 +35,7 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
   `)
 
   const generateResult = () => {
-    if (filterType === "influence" && primaryArtist) {
+    if (filterType === "affiliation" && primaryArtist) {
       return sidebarData.artwork.nodes.find(
         item => item.data.Primary_Artist__REQUIRED_[0] === primaryArtist
       )

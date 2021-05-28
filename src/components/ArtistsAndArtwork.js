@@ -188,7 +188,7 @@ const ArtistsAndArtwork = () => {
               </p>
             )}
             {selectedFilter.filterType !== "artwork" &&
-              selectedFilter.filterType !== "influence" && (
+              selectedFilter.filterType !== "affiliation" && (
                 <p className="text-lg">
                   <span className="font-bold">Title: </span>
                   <span className="underline-orange">{title}</span>
@@ -215,7 +215,7 @@ const ArtistsAndArtwork = () => {
                     })}
               </p>
             )}
-            {selectedFilter.filterType !== "influence" && (
+            {selectedFilter.filterType !== "affiliation" && (
               <p className="text-lg">
                 <span className="font-bold">Theme: </span>
                 {themesCopy.length === 0
@@ -247,17 +247,17 @@ const ArtistsAndArtwork = () => {
       {/* render artist without artwork here  */}
       {selectedFilter.filterType !== "artwork" && (
         <h3 className="pb-1 text-2xl font-bold mb-3.5">
-          {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
+          {selectedFilter.filterType === "affiliation" ? "Artists" : "Artwork"}
         </h3>
       )}
       {selectedFilter.filterType === "artwork" ||
-      (selectedFilter.filterType === "influence" && artistData)
+      (selectedFilter.filterType === "affiliation" && artistData)
         ? renderedArtist
         : // ) : (selectedFilter.filterType === "theme" && !artwork) ||
           //   (selectedFilter.filterType === "artist" && !artwork) ? (
           //   <p className="text-lg">Artwork coming soon</p>
           // ) : selectedFilter.filterType === "artwork" ||
-          //   (selectedFilter.filterType === "influence" && !artistData) ? (
+          //   (selectedFilter.filterType === "affiliation" && !artistData) ? (
           //   <p className="text-lg">Artists coming soon</p>
           renderedArtwork}
     </div>

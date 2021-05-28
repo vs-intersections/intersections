@@ -1,7 +1,7 @@
 import React from "react"
 import Description from "./Description"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
-import Influence from "./Influence"
+import Affiliation from "./Affiliation"
 import Collaborators from "./Collaborators"
 import Affiliations from "./Affiliations"
 import ArtistPersonalInfo from "./ArtistPersonalInfo"
@@ -12,7 +12,7 @@ const SidebarArtist = () => {
     <>
       <Description />
       <ArtistsAndArtwork />
-      <Influence />
+      <Affiliation />
       <Collaborators />
       <Affiliations />
       <ArtistPersonalInfo />

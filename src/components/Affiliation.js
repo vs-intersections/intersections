@@ -3,7 +3,7 @@ import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 import { DataContext } from "./context/DataContext"
 
-const Influence = () => {
+const Affiliation = () => {
   const [data] = useContext(DataContext)
   const dataObjCopy = Object.assign({}, data)
   const { selectedFilter, setSelectedFilter } = useFilterContext()
@@ -14,22 +14,22 @@ const Influence = () => {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
 
-  const { Influence: influence } = metadata.data
+  const { Affiliation: affiliation } = metadata.data
 
-  let influenceNames = []
-  if (influence)
-    influenceNames = translateIdToName2(data, influence, "influence")
+  let affiliationNames = []
+  if (affiliation)
+    affiliationNames = translateIdToName2(data, affiliation, "affiliation")
 
   return (
     <div className="mb-16">
-      <h3 className="pb-1 text-2xl font-bold mb-3.5">Influence</h3>
-      {influenceNames.length === 0 ? (
+      <h3 className="pb-1 text-2xl font-bold mb-3.5">Affiliation</h3>
+      {affiliationNames.length === 0 ? (
         <p className="text-lg">
-          It doesn't look like this artist has any influences
+          It doesn't look like this artist has any affiliations
           <span className="block">How mysterious...</span>
         </p>
       ) : (
-        influenceNames.map(item => (
+        affiliationNames.map(item => (
           <span
             key={item}
             className="text-lg underline-yellow"
@@ -48,4 +48,4 @@ const Influence = () => {
   )
 }
 
-export default Influence
+export default Affiliation

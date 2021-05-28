@@ -13,6 +13,10 @@
 
 ### Priority Items
 
+- Create link to node graph in mobile ham menu
+- Vimeo videos on Videos page will not load (ALBERT)
+- Video page will not scroll down past a certain point in mobile (ALBERT)
+- Add clickable links for images (ALBERT)
 - Add links for all metadata in sidebar - collabs not showing up on Artist (ALBERT)
 - Graph aspect ratio is fucky: click any dropdown and select something, open sidebar and select something else from dropdown (keep sidebar open), then collapse sidebar (ALBERT)
 - Link Artists to collab artists (ALBERT)

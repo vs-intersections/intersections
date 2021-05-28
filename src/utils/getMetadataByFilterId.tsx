@@ -5,7 +5,7 @@ export const getMetadataByFilterId = (data, filterId: string) => {
     ...data?.locations.nodes,
     ...data?.themes.nodes,
     ...data?.mediums.nodes,
-    ...data?.influences.nodes,
+    ...data?.affiliations.nodes,
   ]
   return flattenedMetaData.find(el => el.recordId === filterId)
 }

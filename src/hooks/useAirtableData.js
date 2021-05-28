@@ -21,6 +21,7 @@ export const useAirtableData = () => {
             Website
             Interview
             Affiliations
+            Affiliation
             Tip
           }
           recordId
@@ -91,6 +92,20 @@ export const useAirtableData = () => {
       }
       influences: allAirtable(
         filter: { table: { eq: "Influence" } }
+        sort: { fields: data___Name }
+      ) {
+        nodes {
+          table
+          data {
+            Name
+            Artist
+            Description
+          }
+          recordId
+        }
+      }
+      affiliations: allAirtable(
+        filter: { table: { eq: "Affiliation" } }
         sort: { fields: data___Name }
       ) {
         nodes {
