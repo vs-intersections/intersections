@@ -253,13 +253,7 @@ const ArtistsAndArtwork = () => {
       {selectedFilter.filterType === "artwork" ||
       (selectedFilter.filterType === "affiliation" && artistData)
         ? renderedArtist
-        : // ) : (selectedFilter.filterType === "theme" && !artwork) ||
-          //   (selectedFilter.filterType === "artist" && !artwork) ? (
-          //   <p className="text-lg">Artwork coming soon</p>
-          // ) : selectedFilter.filterType === "artwork" ||
-          //   (selectedFilter.filterType === "affiliation" && !artistData) ? (
-          //   <p className="text-lg">Artists coming soon</p>
-          renderedArtwork}
+        : renderedArtwork}
     </div>
   )
 }

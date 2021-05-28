@@ -73,27 +73,6 @@ const SidebarDescription = () => {
         }
       }
 
-      influence: allAirtable(filter: { table: { eq: "Influence" } }) {
-        nodes {
-          data {
-            Name
-            Image {
-              localFiles {
-                childImageSharp {
-                  gatsbyImageData(
-                    aspectRatio: 1.4
-                    layout: FULL_WIDTH
-                    transformOptions: { fit: CONTAIN }
-                    backgroundColor: "transparent"
-                  )
-                }
-              }
-            }
-          }
-          recordId
-        }
-      }
-
       affiliation: allAirtable(filter: { table: { eq: "Affiliation" } }) {
         nodes {
           data {
@@ -187,11 +166,6 @@ const SidebarDescription = () => {
 
   selectedFilter?.filterType === "affiliation" &&
     (result = sidebarData.affiliation.nodes.find(
-      id => id.recordId === selectedFilter?.filterName
-    ))
-
-  selectedFilter?.filterType === "influence" &&
-    (result = sidebarData.influence.nodes.find(
       id => id.recordId === selectedFilter?.filterName
     ))
 

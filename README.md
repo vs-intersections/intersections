@@ -24,13 +24,14 @@
 - Lightbox for viewing images when clicked (DAVID)
 - Complete the How-To page (DAVID)
 - Images sometimes do not render (see Influence desc images, might only be an issue in development) (ALBERT)
+- Correct the influence of gravity on artwork nodes (there is too much as of now) (ALBERT)
 
 #### from VS meeting 5-25-2021
 
 - ~~ artist nodes not linking by collaborators (ALBERT) ~~
 - Collaborators: not showing up on artists (known bug) (ALBERT)
 - display collaborators on the artist node info (ALBERT)
-- change display logic for artists that are only collaborators (ALBERT
+- change display logic for artists that are only collaborators (ALBERT)
 - ~~ make sure videos from vimeo will work (ALBERT) ~~
 - ~~ move image above description (artwork node) (ALBERT) ~~
 - Title Line (Vital Spaces: Intersections) => Remove Logo Intersections (in bold) Vital Spaces, Maida, Warehouse 21 (W21) (ALBERT)

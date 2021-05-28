@@ -20,13 +20,14 @@ export const useAirtableData = () => {
             Email
             Website
             Interview
-            Affiliations
             Affiliation
+            Influence
             Tip
           }
           recordId
         }
       }
+
       artwork: allAirtable(
         filter: { table: { eq: "Artwork" } }
         sort: { fields: data___Name }
@@ -46,6 +47,7 @@ export const useAirtableData = () => {
           recordId
         }
       }
+
       locations: allAirtable(
         filter: { table: { eq: "Location" } }
         sort: { fields: data___Name }
@@ -62,6 +64,7 @@ export const useAirtableData = () => {
           recordId
         }
       }
+
       themes: allAirtable(
         filter: { table: { eq: "Theme" } }
         sort: { fields: data___Name }
@@ -76,6 +79,7 @@ export const useAirtableData = () => {
           recordId
         }
       }
+
       mediums: allAirtable(
         filter: { table: { eq: "Medium" } }
         sort: { fields: data___Name }
@@ -90,20 +94,7 @@ export const useAirtableData = () => {
           recordId
         }
       }
-      influences: allAirtable(
-        filter: { table: { eq: "Influence" } }
-        sort: { fields: data___Name }
-      ) {
-        nodes {
-          table
-          data {
-            Name
-            Artist
-            Description
-          }
-          recordId
-        }
-      }
+
       affiliations: allAirtable(
         filter: { table: { eq: "Affiliation" } }
         sort: { fields: data___Name }

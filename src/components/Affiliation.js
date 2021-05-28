@@ -22,7 +22,7 @@ const Affiliation = () => {
 
   return (
     <div className="mb-16">
-      <h3 className="pb-1 text-2xl font-bold mb-3.5">Affiliation</h3>
+      <h3 className="pb-1 text-2xl font-bold mb-3.5">Affiliations</h3>
       {affiliationNames.length === 0 ? (
         <p className="text-lg">
           It doesn't look like this artist has any affiliations
@@ -30,18 +30,20 @@ const Affiliation = () => {
         </p>
       ) : (
         affiliationNames.map(item => (
-          <span
-            key={item}
-            className="text-lg underline-yellow"
-            onClick={() => {
-              setSelectedFilter({
-                filterName: item.id,
-                filterType: item.table,
-              })
-            }}
-          >
-            {item.name}
-          </span>
+          <div>
+            <span
+              key={item}
+              className="text-lg underline-yellow"
+              onClick={() => {
+                setSelectedFilter({
+                  filterName: item.id,
+                  filterType: item.table,
+                })
+              }}
+            >
+              {item.name}
+            </span>
+          </div>
         ))
       )}
     </div>

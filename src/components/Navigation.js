@@ -62,15 +62,6 @@ const Navigation = ({ isMobile }) => {
       })
   })
 
-  // const influences = []
-  // dataCopy?.influences?.nodes.forEach(el => {
-  //   el.data.Artist &&
-  //     influences.push({
-  //       id: el.recordId,
-  //       name: el.data.Name,
-  //     })
-  // })
-
   const affiliations = []
   dataCopy?.affiliations?.nodes.forEach(el => {
     el.data.Artist &&

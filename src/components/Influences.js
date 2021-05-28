@@ -3,7 +3,7 @@ import { getMetadataByFilterId } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 import { DataContext } from "./context/DataContext"
 
-const Affiliations = () => {
+const Influences = () => {
   const [data] = useContext(DataContext)
   const dataObjCopy = Object.assign({}, data)
   const { selectedFilter } = useFilterContext()
@@ -14,26 +14,18 @@ const Affiliations = () => {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
 
-  const { Affiliations: affiliations } = metadata.data
-
-  const renderedData = affiliations?.map(item => {
-    return (
-      <p key={item} className="text-lg">
-        {item}
-      </p>
-    )
-  })
+  const { Influence: influence } = metadata.data
 
   return (
     <div className="mb-16">
-      <h3 className="pb-1 text-2xl font-bold mb-3.5">Affiliations</h3>
-      {affiliations ? (
-        renderedData
+      <h3 className="pb-1 text-2xl font-bold mb-3.5">Influences</h3>
+      {influence ? (
+        <p className="text-lg">{influence}</p>
       ) : (
-        <p className="text-lg">Affiliations not specified</p>
+        <p className="text-lg">Influences not specified</p>
       )}
     </div>
   )
 }
 
-export default Affiliations
+export default Influences
