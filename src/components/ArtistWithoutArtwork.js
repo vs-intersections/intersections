@@ -16,16 +16,9 @@ const ArtistWithoutArtwork = () => {
 
   const { Collaborated_On: collaboratedOn, Name: name } = metadata.data
 
-  console.log(metadata)
-  console.log(collaboratedOn)
-  console.log(dataObjCopy)
-
   const parsedArtists = []
 
   collaboratedOn.forEach(artPiece => {
-    // console.log(artPiece)
-    // dataObjCopy.artwork.nodes.forEach(artwork => console.log(artwork.recordId))
-
     const result = dataObjCopy.artwork.nodes.find(
       artwork => artwork.recordId === artPiece
     )
@@ -41,8 +34,6 @@ const ArtistWithoutArtwork = () => {
       artPieceId: artPiece,
     })
   })
-
-  console.log(parsedArtists)
 
   return (
     <div className="mb-16">

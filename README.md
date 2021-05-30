@@ -26,6 +26,8 @@
 - Images sometimes do not render (see Influence desc images, might only be an issue in development) (ALBERT)
 - Correct the influence of gravity on artwork nodes (there is too much as of now) (ALBERT)
 - Images are overlapping in Affiliations sidebar (ALBERT)
+- Collaborators should be listed in artistsandartworks component, in artist sidebar if there are collaborators (ALBERT)
+- Artwork image links: images should zoom in slightly when hovered, or some animation to signify hover (ALBERT)
 
 #### from VS meeting 5-25-2021
 
