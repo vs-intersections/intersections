@@ -25,6 +25,7 @@
 - Complete the How-To page (DAVID)
 - Images sometimes do not render (see Influence desc images, might only be an issue in development) (ALBERT)
 - Correct the influence of gravity on artwork nodes (there is too much as of now) (ALBERT)
+- Images are overlapping in Affiliations sidebar (ALBERT)
 
 #### from VS meeting 5-25-2021
 

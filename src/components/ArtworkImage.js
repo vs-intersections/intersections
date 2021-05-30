@@ -54,7 +54,7 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
   return result?.data?.Image ? (
     <GatsbyImage image={artworkImage} />
   ) : (
-    <div className="w-full h-32 bg-gray-500 text-lg flex justify-center items-center">
+    <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
       NO IMAGE
     </div>
   )
