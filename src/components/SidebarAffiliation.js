@@ -2,7 +2,7 @@ import React from "react"
 import Description from "./Description"
 import ArtistsAndArtwork from "./ArtistsAndArtwork"
 
-const SidebarInfluence = ({ data }) => {
+const SidebarAffiliation = ({ data }) => {
   return (
     <>
       <Description data={data} />
@@ -11,4 +11,4 @@ const SidebarInfluence = ({ data }) => {
   )
 }
 
-export default SidebarInfluence
+export default SidebarAffiliation

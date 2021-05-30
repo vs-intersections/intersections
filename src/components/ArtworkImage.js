@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { useFilterContext } from "./context/FilterContext"
 
 const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
   const sidebarData = useStaticQuery(graphql`
@@ -29,13 +30,23 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
             Video
           }
           recordId
+          table
         }
       }
     }
   `)
 
+  const { setSelectedFilter } = useFilterContext()
+
+  const handleFilterLinkClick = item => {
+    setSelectedFilter({
+      filterName: item.recordId,
+      filterType: "artwork",
+    })
+  }
+
   const generateResult = () => {
-    if (filterType === "influence" && primaryArtist) {
+    if (filterType === "affiliation" && primaryArtist) {
       return sidebarData.artwork.nodes.find(
         item => item.data.Primary_Artist__REQUIRED_[0] === primaryArtist
       )
@@ -52,9 +63,14 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
       result.data?.Image?.localFiles[0]?.childImageSharp?.gatsbyImageData)
 
   return result?.data?.Image ? (
-    <GatsbyImage image={artworkImage} />
+    <span
+      className="cursor-pointer"
+      onClick={() => handleFilterLinkClick(result)}
+    >
+      <GatsbyImage image={artworkImage} />
+    </span>
   ) : (
-    <div className="w-full h-32 bg-gray-500 text-lg flex justify-center items-center">
+    <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
       NO IMAGE
     </div>
   )

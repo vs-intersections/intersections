@@ -30,7 +30,7 @@ const GraphAndSidebar = ({ isMobile }) => {
     blue: currentTheme === "location",
     pink: currentTheme === "theme",
     lightBlue: currentTheme === "medium",
-    yellow: currentTheme === "influence",
+    yellow: currentTheme === "affiliation",
   })
 
   let titleBarName =

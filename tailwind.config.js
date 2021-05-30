@@ -11,7 +11,7 @@ module.exports = {
       orange: "#FF985F", // ARTWORK
       orangeWhite: "#ffebe0", // THIS MIGHT NOT BE IN USE
       pink: "#F36AFF", // THEME
-      yellow: "#fff128", // INFLUENCE
+      yellow: "#fff128", // AFFILIATION
       lightBlue: "#43F4FF", // MEDIUM
       gray: colors.trueGray,
       black: colors.black,

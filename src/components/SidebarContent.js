@@ -4,7 +4,7 @@ import SidebarArtwork from "./SidebarArtwork"
 import SidebarLocation from "./SidebarLocation"
 import SidebarMedium from "./SidebarMedium"
 import SidebarTheme from "./SidebarTheme"
-import SidebarInfluence from "./SidebarInfluence"
+import SidebarAffiliation from "./SidebarAffiliation"
 import { useWindowSize } from "../hooks"
 import { useFilterContext } from "./context/FilterContext"
 import { DataContext } from "./context/DataContext"
@@ -34,7 +34,7 @@ const SidebarContent = ({ elemHeight, bgColor }) => {
       ) : selectedFilter.filterType === "theme" ? (
         <SidebarTheme data={data} />
       ) : (
-        <SidebarInfluence data={data} />
+        <SidebarAffiliation data={data} />
       )
     } else {
       return <p className="text-center">Choose a filter or click a node</p>

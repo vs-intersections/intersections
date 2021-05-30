@@ -72,7 +72,8 @@ const SidebarDescription = () => {
           recordId
         }
       }
-      influence: allAirtable(filter: { table: { eq: "Influence" } }) {
+
+      affiliation: allAirtable(filter: { table: { eq: "Affiliation" } }) {
         nodes {
           data {
             Name
@@ -92,6 +93,7 @@ const SidebarDescription = () => {
           recordId
         }
       }
+
       medium: allAirtable(filter: { table: { eq: "Medium" } }) {
         nodes {
           data {
@@ -162,8 +164,8 @@ const SidebarDescription = () => {
       id => id.recordId === selectedFilter?.filterName
     ))
 
-  selectedFilter?.filterType === "influence" &&
-    (result = sidebarData.influence.nodes.find(
+  selectedFilter?.filterType === "affiliation" &&
+    (result = sidebarData.affiliation.nodes.find(
       id => id.recordId === selectedFilter?.filterName
     ))
 

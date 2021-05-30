@@ -62,15 +62,17 @@ const ArtistsAndArtwork = () => {
     return (
       <div className="grid gap-x-4 grid-cols-artwork mb-6">
         {selectedFilter?.filterType !== "artwork" ? (
-          <div className="w-full h-auto text-lg flex justify-center items-center">
+          <div className="w-full h-36 md:h-48 text-lg flex justify-center items-center">
             <ArtworkImage id={primaryArtist} title={title} />
           </div>
         ) : (
-          <div className="w-auto h-32 bg-gray-500 text-lg flex justify-center items-center">
+          <div className="w-auto h-36 md:h-48 bg-gray-500 text-lg flex justify-center items-center">
             IMAGE
           </div>
         )}
         <div className="flex items-center">
+          {" "}
+          {/* get rid of the height of the above div */}
           <div>
             {selectedFilter.filterType !== "artist" && (
               <p className="text-lg">
@@ -165,7 +167,7 @@ const ArtistsAndArtwork = () => {
         } mb-6`}
       >
         {selectedFilter.filterType !== "artwork" && (
-          <div className="w-full h-32 text-lg flex justify-center items-center">
+          <div className="w-full h-36 md:h-48 text-lg flex justify-center items-center">
             <ArtworkImage
               id={recordId}
               primaryArtist={artistId}
@@ -188,7 +190,7 @@ const ArtistsAndArtwork = () => {
               </p>
             )}
             {selectedFilter.filterType !== "artwork" &&
-              selectedFilter.filterType !== "influence" && (
+              selectedFilter.filterType !== "affiliation" && (
                 <p className="text-lg">
                   <span className="font-bold">Title: </span>
                   <span className="underline-orange">{title}</span>
@@ -215,7 +217,7 @@ const ArtistsAndArtwork = () => {
                     })}
               </p>
             )}
-            {selectedFilter.filterType !== "influence" && (
+            {selectedFilter.filterType !== "affiliation" && (
               <p className="text-lg">
                 <span className="font-bold">Theme: </span>
                 {themesCopy.length === 0
@@ -247,19 +249,13 @@ const ArtistsAndArtwork = () => {
       {/* render artist without artwork here  */}
       {selectedFilter.filterType !== "artwork" && (
         <h3 className="pb-1 text-2xl font-bold mb-3.5">
-          {selectedFilter.filterType === "influence" ? "Artists" : "Artwork"}
+          {selectedFilter.filterType === "affiliation" ? "Artists" : "Artwork"}
         </h3>
       )}
       {selectedFilter.filterType === "artwork" ||
-      (selectedFilter.filterType === "influence" && artistData)
+      (selectedFilter.filterType === "affiliation" && artistData)
         ? renderedArtist
-        : // ) : (selectedFilter.filterType === "theme" && !artwork) ||
-          //   (selectedFilter.filterType === "artist" && !artwork) ? (
-          //   <p className="text-lg">Artwork coming soon</p>
-          // ) : selectedFilter.filterType === "artwork" ||
-          //   (selectedFilter.filterType === "influence" && !artistData) ? (
-          //   <p className="text-lg">Artists coming soon</p>
-          renderedArtwork}
+        : renderedArtwork}
     </div>
   )
 }

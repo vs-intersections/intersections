@@ -1,10 +1,10 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-export const useInfluences = () => {
+export const useAffiliations = () => {
   const data = useStaticQuery(graphql`
-    query InfluenceQuery {
-      influences: allAirtable(filter: { table: { eq: "Influence" } }) {
+    query AffiliationQuery {
+      affiliations: allAirtable(filter: { table: { eq: "Affiliation" } }) {
         totalCount
         nodes {
           table
@@ -18,8 +18,8 @@ export const useInfluences = () => {
       }
     }
   `)
-  const influences = data?.influences?.nodes
+  const affiliations = data?.affiliations?.nodes
   return {
-    influences,
+    affiliations,
   }
 }

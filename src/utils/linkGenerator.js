@@ -4,7 +4,7 @@ import { artworkAddParentField } from "./filterByArtwork"
 import { locationAddParentField } from "./filterByLocation"
 import { themeAddParentField } from "./filterByTheme"
 import { mediumAddParentField } from "./filterByMedium"
-import { influenceAddParentField } from "./filterByInfluence"
+import { affiliationAddParentField } from "./filterByAffiliation"
 
 const MAIN_NODE_SIZE = 15
 export const CHILD_NODE_SIZE = 15
@@ -131,7 +131,7 @@ export const linkGenerator = (
       const parentNode = {
         id: artist.recordId,
         name: artist.data.Name,
-        influence: artist.data.Influence,
+        affiliation: artist.data.Affiliation,
         table: artist.table,
       }
       // calls function to add property when selectedFilter is a specific Artist
@@ -184,9 +184,9 @@ export const linkGenerator = (
         artworkArray = [...tempArr]
       }
 
-      // // calls function to add property when selectedFilter is a specific Influence
-      if (selectedFilter.filterType === "influence") {
-        influenceAddParentField(parentNode, selectedFilter)
+      // // calls function to add property when selectedFilter is a specific Affiliation
+      if (selectedFilter.filterType === "affiliation") {
+        affiliationAddParentField(parentNode, selectedFilter)
       }
 
       addMainNode(parentNode)
@@ -221,9 +221,9 @@ export const linkGenerator = (
         } else if (
           artistA.isSelectedParent &&
           artistB.isSelectedParent &&
-          selectedFilter.filterType === "influence"
+          selectedFilter.filterType === "affiliation"
         ) {
-          linkMainNodesDefault(artistA, artistB, "#fff128", 5) // influence
+          linkMainNodesDefault(artistA, artistB, "#fff128", 5) // affiliation
         } else if (
           selectedFilter.filterName === artistA.id ||
           selectedFilter.filterName === artistB.id

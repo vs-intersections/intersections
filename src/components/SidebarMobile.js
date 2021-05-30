@@ -27,7 +27,7 @@ const SidebarMobile = () => {
     blue: currentTheme === "location",
     pink: currentTheme === "theme",
     lightBlue: currentTheme === "medium",
-    yellow: currentTheme === "influence",
+    yellow: currentTheme === "affiliation",
   })
 
   const [elemHeight, setElemHeight] = useState(0)

@@ -45,7 +45,7 @@ const Navigation = ({ isMobile }) => {
   })
 
   const themes = []
-  dataCopy?.themes?.nodes.map(el => {
+  dataCopy?.themes?.nodes.forEach(el => {
     el.data.Artwork &&
       themes.push({
         id: el.recordId,
@@ -54,7 +54,7 @@ const Navigation = ({ isMobile }) => {
   })
 
   const mediums = []
-  dataCopy?.mediums?.nodes.map(el => {
+  dataCopy?.mediums?.nodes.forEach(el => {
     el.data.Artwork &&
       mediums.push({
         id: el.recordId,
@@ -62,10 +62,10 @@ const Navigation = ({ isMobile }) => {
       })
   })
 
-  const influences = []
-  dataCopy?.influences?.nodes.forEach(el => {
+  const affiliations = []
+  dataCopy?.affiliations?.nodes.forEach(el => {
     el.data.Artist &&
-      influences.push({
+      affiliations.push({
         id: el.recordId,
         name: el.data.Name,
       })
@@ -123,10 +123,10 @@ const Navigation = ({ isMobile }) => {
       generateDropdown={generateDropdown}
       artists={artists}
       artwork={artwork}
-      influences={influences}
       themes={themes}
       mediums={mediums}
       locations={locations}
+      affiliations={affiliations}
     />
   ) : (
     <DesktopNav
@@ -134,10 +134,10 @@ const Navigation = ({ isMobile }) => {
       generateDropdown={generateDropdown}
       artists={artists}
       artwork={artwork}
-      influences={influences}
       themes={themes}
       mediums={mediums}
       locations={locations}
+      affiliations={affiliations}
     />
   )
 }
