@@ -243,7 +243,7 @@ const SidebarDescription = () => {
         {table}: {name}
       </h3>
       <hr className="border-gray-400 border-t-2" />
-      <div className="w-3/4 h-auto mt-3 mx-auto">
+      <div className={`w-3/4 mt-3 mx-auto ${video ? "h-96" : "h-auto"}`}>
         {descriptionImage && <GatsbyImage image={descriptionImage} />}
         {video && <Video videoSrcURL={videoLink} videoTitle="Artwork Video" />}
       </div>

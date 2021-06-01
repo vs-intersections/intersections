@@ -35,11 +35,30 @@ const ArtistWithoutArtwork = () => {
     })
   })
 
+  const renderedArtwork = parsedArtists.map((artwork, i) => {
+    return (
+      <div>
+        <span
+          key={parsedArtists[i].artPieceId}
+          className="text-lg underline-orange"
+          onClick={() => {
+            setSelectedFilter({
+              filterName: parsedArtists[i].artPieceId,
+              filterType: "Artwork",
+            })
+          }}
+        >
+          {parsedArtists[i].artPieceName}
+        </span>
+      </div>
+    )
+  })
+
   return (
     <div className="mb-16">
       <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborations</h3>
       <p className="text-lg">
-        Collaborations with{" "}
+        This artist has collaborated with{" "}
         <span
           key={parsedArtists[0].artistId}
           className="text-lg underline-lightGreen"
@@ -51,22 +70,10 @@ const ArtistWithoutArtwork = () => {
           }}
         >
           {parsedArtists[0].artistName}
-        </span>
+        </span>{" "}
+        on
       </p>
-      <div>
-        <span
-          key={parsedArtists[0].artPieceId}
-          className="text-lg underline-orange"
-          onClick={() => {
-            setSelectedFilter({
-              filterName: parsedArtists[0].artPieceId,
-              filterType: "Artwork",
-            })
-          }}
-        >
-          {parsedArtists[0].artPieceName}
-        </span>
-      </div>
+      <div>{renderedArtwork}</div>
     </div>
     // <div>
     //   <h1>This artist has collaborated with ARTIST on the following ARTWORK</h1>

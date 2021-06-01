@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+import Video from "../components/Video"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { useFilterContext } from "./context/FilterContext"
@@ -62,18 +63,39 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
     (artworkImage =
       result.data?.Image?.localFiles[0]?.childImageSharp?.gatsbyImageData)
 
-  return result?.data?.Image ? (
-    <span
-      className="cursor-pointer"
-      onClick={() => handleFilterLinkClick(result)}
-    >
-      <GatsbyImage image={artworkImage} />
-    </span>
-  ) : (
-    <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
-      NO IMAGE
-    </div>
-  )
+  const renderedData = () => {
+    return result?.data?.Image ? (
+      <span
+        className="cursor-pointer"
+        onClick={() => handleFilterLinkClick(result)}
+      >
+        <GatsbyImage image={artworkImage} />
+      </span>
+    ) : result?.data?.Video ? (
+      <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
+        <span
+          className="cursor-pointer w-full h-full"
+          onClick={() => handleFilterLinkClick(result)}
+        >
+          <Video
+            videoSrcURL={result?.data?.Video}
+            videoTitle={title}
+            onlyShowThumb={true}
+            videoFilterLinkData={result.recordId}
+          />
+        </span>
+      </div>
+    ) : (
+      <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
+        <div>
+          <div>NO IMAGE</div>
+          <div>AVAILABLE</div>
+        </div>
+      </div>
+    )
+  }
+
+  return <>{renderedData()}</>
 }
 
 export default ArtworkImage
