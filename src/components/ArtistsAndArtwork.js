@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { getMetadataByFilterId, translateIdToName2 } from "../utils"
 import { useFilterContext } from "./context/FilterContext"
 import ArtworkImage from "../components/ArtworkImage"
+import Video from "../components/Video"
 import { DataContext } from "./context/DataContext"
 
 const ArtistsAndArtwork = () => {
@@ -42,7 +43,8 @@ const ArtistsAndArtwork = () => {
       media = [],
       mediaCopy = [],
       themesCopy = [],
-      nodeData = {}
+      nodeData = {},
+      videoFilterLinkData = { table: "artwork" }
     // look at artwork prop and see if any artworks match
     dataObjCopy.artwork.nodes.forEach(node => {
       if (node.recordId === art) {
@@ -51,6 +53,7 @@ const ArtistsAndArtwork = () => {
         title = nodeData.Name
         media = nodeData.Medium
         themes = nodeData.Theme
+        videoFilterLinkData.recordId = node.recordId
 
         // convert IDs to names
         if (artist) artistByName = translateIdToName2(data, artist, "artist")
@@ -63,7 +66,18 @@ const ArtistsAndArtwork = () => {
       <div className="grid gap-x-4 grid-cols-artwork mb-6">
         {selectedFilter?.filterType !== "artwork" ? (
           <div className="w-full h-36 md:h-48 text-lg flex justify-center items-center">
-            <ArtworkImage id={primaryArtist} title={title} />
+            {nodeData.Image ? (
+              <ArtworkImage id={primaryArtist} title={title} />
+            ) : nodeData.Video ? (
+              <Video
+                videoSrcURL={nodeData.Video}
+                videoTitle={title}
+                onlyShowThumb={true}
+                videoFilterLinkData={videoFilterLinkData}
+              />
+            ) : (
+              <ArtworkImage id={primaryArtist} title={title} />
+            )}
           </div>
         ) : (
           <div className="w-auto h-36 md:h-48 bg-gray-500 text-lg flex justify-center items-center">
@@ -72,7 +86,6 @@ const ArtistsAndArtwork = () => {
         )}
         <div className="flex items-center">
           {" "}
-          {/* get rid of the height of the above div */}
           <div>
             {selectedFilter.filterType !== "artist" && (
               <p className="text-lg">

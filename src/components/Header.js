@@ -7,15 +7,14 @@ const Header = ({ setIsOpen, isOpen }) => {
       className={`px-2 md:px-6 lg:px-16 lg:py-4 py-2 flex flex-row items-center justify-between z-50 bg-white border-b`}
     >
       <div className="flex items-center justify-self-center">
-        <div className="w-8 h-8">
-          <img src="/vital-spaces-logo.svg" width={35} height={35} />
-        </div>
         <Link to="/">
-          <span className="mx-3 uppercase tracking-wider flex">
-            <span className="font-jaldi font-bold text-sm sm:text-base">
-              Vital Spaces{" "}
-            </span>
-            <span className="text-sm sm:text-base">: Intersections</span>
+          <span className="mx-3 uppercase tracking-wider flex items-center">
+            <div className="font-bold text-sm sm:text-base inline-block">
+              Intersections:{" "}
+            </div>
+            <div className="text-sm sm:text-base inline-block ml-2">
+              Vital Spaces, Maida, Warehouse 21
+            </div>
           </span>
         </Link>
       </div>

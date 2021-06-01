@@ -36,6 +36,17 @@ export const useAirtableData = () => {
           table
           data {
             Name
+            Image {
+              localFiles {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 1.4
+                    transformOptions: { fit: CONTAIN }
+                    backgroundColor: "transparent"
+                  )
+                }
+              }
+            }
             Primary_Artist__REQUIRED_
             Collaborators
             Locations
