@@ -38,6 +38,7 @@ export default function Home() {
             className={`${isMobile ? "h-8" : "h-10"} flex-auto relative`}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            isMobile={isMobile}
           />
           <Navigation isMobile={isMobile} />
           <div className="flex-auto">
