@@ -14,7 +14,12 @@ const ArtistPersonalInfo = () => {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
 
-  const { Birthplace: birthplace, Email: email, Website: site } = metadata.data
+  const {
+    Birthplace: birthplace,
+    Email: email,
+    Website: site,
+    Other_Link: otherLink,
+  } = metadata.data
 
   return (
     <div className="mb-16">
@@ -39,6 +44,19 @@ const ArtistPersonalInfo = () => {
           <span className="font-bold">Email:</span>{" "}
           <a className="underline" href={`mailto: ${email}`}>
             {email}
+          </a>
+        </p>
+      )}
+      {otherLink && (
+        <p className="text-lg">
+          <span className="font-bold">Additional Link:</span>{" "}
+          <a
+            className="underline"
+            target="_blank"
+            rel="noreferrer"
+            href={otherLink}
+          >
+            {otherLink}
           </a>
         </p>
       )}

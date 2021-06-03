@@ -53,7 +53,7 @@ const Videos = () => {
   const artworkVideos = data?.artwork?.nodes
     .filter(el => el.data.Video)
     .map(el => (
-      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 pb-4">
+      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
         <Video
           key={el.recordId}
           videoSrcURL={el.data.Video}
@@ -66,7 +66,7 @@ const Videos = () => {
   const interviewVideos = data?.artists?.nodes
     .filter(el => el.data.Interview)
     .map(el => (
-      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 pb-4">
+      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
         <Video
           key={el.recordId}
           videoSrcURL={el.data.Interview}
@@ -79,7 +79,7 @@ const Videos = () => {
   const locationVideos = data?.locations?.nodes
     .filter(el => el.data.Video)
     .map(el => (
-      <div className="mx-auto md:mx-0 w-screen md:w-1/3 md:mb-8 px-4 h-96 pb-4">
+      <div className="mx-auto md:mx-0 w-screen md:w-1/3 md:mb-8 px-4 h-96 md:h-48 lg:h-80 pb-4">
         <Video
           key={el.recordId}
           videoSrcURL={el.data.Video}

@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import { useWindowSize } from "../hooks"
-import ArrowRight from "../../static/next.svg"
-import ArrowLeft from "../../static/previous.svg"
 import { IoMdArrowDropupCircle } from "react-icons/io"
 
 const MobileNav2 = ({
