@@ -50,8 +50,6 @@ const Videos = () => {
     }
   `)
 
-  console.log(data)
-
   const artworkVideos = data?.artwork?.nodes
     .filter(el => el.data.Video)
     .map(el => (
