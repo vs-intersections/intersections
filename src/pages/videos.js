@@ -50,18 +50,7 @@ const Videos = () => {
     }
   `)
 
-  const interviewVideos = data?.artists?.nodes
-    .filter(el => el.data.Interview)
-    .map(el => (
-      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 pb-4">
-        <Video
-          key={el.recordId}
-          videoSrcURL={el.data.Interview}
-          videoTitle={el?.data?.Name || "Artist Interview"}
-        />
-        <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
-      </div>
-    ))
+  console.log(data)
 
   const artworkVideos = data?.artwork?.nodes
     .filter(el => el.data.Video)
@@ -71,6 +60,19 @@ const Videos = () => {
           key={el.recordId}
           videoSrcURL={el.data.Video}
           videoTitle={el?.data?.Name || "Artwork Video"}
+        />
+        <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
+      </div>
+    ))
+
+  const interviewVideos = data?.artists?.nodes
+    .filter(el => el.data.Interview)
+    .map(el => (
+      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 pb-4">
+        <Video
+          key={el.recordId}
+          videoSrcURL={el.data.Interview}
+          videoTitle={el?.data?.Name || "Artist Interview"}
         />
         <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
       </div>
@@ -96,15 +98,15 @@ const Videos = () => {
         <div className="w-full pt-8 overflow-x-hidden">
           <div className="container mx-auto">
             <div className="mb-12">
-              <h1 className="ml-4 mt-4 mb-6 text-5xl">Interviews</h1>
-              <div className="flex flex-col md:flex-row flex-wrap">
-                {interviewVideos}
-              </div>
-            </div>
-            <div className="mb-12">
               <h1 className="ml-4 mt-4 mb-6 text-5xl">Artwork Videos</h1>
               <div className="flex flex-col md:flex-row flex-wrap">
                 {artworkVideos}
+              </div>
+            </div>
+            <div className="mb-12">
+              <h1 className="ml-4 mt-4 mb-6 text-5xl">Interviews</h1>
+              <div className="flex flex-col md:flex-row flex-wrap">
+                {interviewVideos}
               </div>
             </div>
             <div className="mb-12">
