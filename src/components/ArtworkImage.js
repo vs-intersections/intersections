@@ -22,11 +22,6 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
                 }
               }
             }
-            Audio {
-              raw {
-                url
-              }
-            }
             Primary_Artist__REQUIRED_
             Video
           }

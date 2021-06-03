@@ -30,38 +30,6 @@ svg circle {
   user-select: none;
 }
 
-/* .carousel__container {
-  margin: auto;
-} */
-
-/* gives us the illusion of a "centered" slide */
-/* .carousel__slider {
-  padding-left: 5%;
-} */
-
-/* .carousel {
-  height: 100%;
-} */
-
-/* gives us the illusion of spaces between the slides */
-/* .carousel__inner-slide {
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
-} */
-
-.BrainhubCarousel__container {
-  height: 4.5rem;
-  overflow: visible !important;
-}
-
-.BrainhubCarousel__arrows {
-  background-color: rgba(229, 229, 229, var(--tw-bg-opacity)) !important;
-}
-
-.BrainhubCarousel__arrows span {
-  border-color: rgb(58, 58, 58) !important;
-}
-
 .underline-blue,
 .underline-lightGreen,
 .underline-orange,

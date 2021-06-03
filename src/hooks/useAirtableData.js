@@ -1,4 +1,3 @@
-import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 export const useAirtableData = () => {
@@ -23,6 +22,7 @@ export const useAirtableData = () => {
             Affiliation
             Influence
             Tip
+            Other_Link
           }
           recordId
         }

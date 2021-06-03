@@ -8,16 +8,6 @@ function MobileNav({ isOpen }) {
       className={`mt-0 sm:mt-12 bg-white justify-center divide-y-2 flex align-middle items-center transition-all absolute overflow-y-hidden l-0 w-full z-50 transition-height ${
         isOpen ? "h-full" : "h-0"
       }`}
-      // css={css`
-      //   height: ${isOpen ? "calc(100vh - 64px)" : "0px"};
-      //   position: absolute;
-      //   bottom: ${isOpen ? "0" : "-100vh"};
-      //   overflow-y: hidden;
-      //   left: 0;
-      //   width: 100%;
-      //   z-index: 49;
-      //   transition-timing-function: ease-in-out;
-      // `}
     >
       <div className="divide-y-2 text-2xl font-extrabold">
         <li className="py-8 hover:underline tracking-widest">
