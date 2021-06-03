@@ -4,7 +4,6 @@ import MobileNav from "../components/MobileNav"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Video from "../components/Video"
-import { translateIdToName } from "../utils"
 import { useWindowSize } from "../hooks"
 
 const Videos = () => {
