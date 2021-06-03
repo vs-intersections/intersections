@@ -4,8 +4,6 @@ import { useFilterContext } from "./context/FilterContext"
 const VideoLink = ({ videoFilterLinkData }) => {
   const { selectedFilter, setSelectedFilter } = useFilterContext()
 
-  selectedFilter && console.log(selectedFilter)
-
   const handleFilterLinkClick = item => {
     setSelectedFilter({
       filterName: item.recordId,

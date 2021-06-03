@@ -4,6 +4,7 @@ import MobileNav from "../components/MobileNav"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Video from "../components/Video"
+import { translateIdToName } from "../utils"
 import { useWindowSize } from "../hooks"
 
 const Videos = () => {
@@ -33,6 +34,7 @@ const Videos = () => {
             Primary_Artist__REQUIRED_
             Collaborators
             Video
+            Theme
           }
           recordId
         }
@@ -47,11 +49,49 @@ const Videos = () => {
           recordId
         }
       }
+      themes: allAirtable(filter: { table: { eq: "Theme" } }) {
+        nodes {
+          data {
+            Name
+          }
+          recordId
+        }
+      }
     }
   `)
 
+  const intersectionsVideos = data?.artwork?.nodes
+    .filter(
+      el =>
+        el.data.Video &&
+        el.data.Primary_Artist__REQUIRED_[0] === "rec6GjpkqIFLImQsm" // Ditch The Box Studios
+    )
+    .map(el => {
+      let intersectionTheme = ""
+      data.themes.nodes.forEach(theme => {
+        if (theme.recordId === el.data?.Theme[0]) {
+          intersectionTheme = theme.data.Name
+        }
+      })
+
+      return (
+        <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
+          <Video
+            key={el.recordId}
+            videoSrcURL={el.data.Video}
+            videoTitle={el?.data?.Name || "Artwork Video"}
+          />
+          <h3 className="text-center text-2xl mt-3">{intersectionTheme}</h3>
+        </div>
+      )
+    })
+
   const artworkVideos = data?.artwork?.nodes
-    .filter(el => el.data.Video)
+    .filter(
+      el =>
+        el.data.Video &&
+        el.data.Primary_Artist__REQUIRED_[0] !== "rec6GjpkqIFLImQsm"
+    )
     .map(el => (
       <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
         <Video
@@ -95,6 +135,12 @@ const Videos = () => {
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="w-full pt-8 overflow-x-hidden">
           <div className="container mx-auto">
+            <div className="mb-12">
+              <h1 className="ml-4 mt-4 mb-6 text-5xl">Intersections</h1>
+              <div className="flex flex-col md:flex-row flex-wrap">
+                {intersectionsVideos}
+              </div>
+            </div>
             <div className="mb-12">
               <h1 className="ml-4 mt-4 mb-6 text-5xl">Artwork Videos</h1>
               <div className="flex flex-col md:flex-row flex-wrap">
