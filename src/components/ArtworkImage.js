@@ -55,13 +55,11 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
 
   const { setSelectedFilter } = useFilterContext()
 
-  const handleFilterLinkClick = item => {
-    console.log(item)
+  const handleFilterLinkClick = item =>
     setSelectedFilter({
       filterName: item.recordId,
       filterType: item.table || "artwork",
     })
-  }
 
   const generateResult = () => {
     if (filterType === "affiliation" && primaryArtist) {

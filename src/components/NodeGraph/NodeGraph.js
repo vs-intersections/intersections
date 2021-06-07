@@ -246,9 +246,6 @@ const NodeGraph = () => {
       )
       .classed("parent-halo", node => node.isSelectedParent)
 
-    // console.log(graphData.nodes)
-    // console.log(graphData.links)
-
     const circles = circleGroups
       .append("circle")
       .attr("fill", node => node.color)

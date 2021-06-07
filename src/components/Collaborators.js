@@ -37,9 +37,10 @@ const Collaborators = () => {
           })
       }
     })
-    collabArtists = [...new Set(artistCollaborators)]
+    artistCollaborators.length !== 0
+      ? (collabArtists = [...new Set(artistCollaborators)])
+      : (collabArtists = null)
   }
-  console.log(collabArtists)
 
   const { Collaborators: collabs } = metadata.data
 
@@ -54,19 +55,16 @@ const Collaborators = () => {
   } else if (collabs)
     collabNames = translateIdToName2(dataObjCopy, collabs, "artist")
 
-  console.log(collabNames)
-
   const renderedData = collabNames?.map(item => (
     <>
       <span
         key={item.id || item.recordId}
-        onClick={() => {
-          console.log(item)
+        onClick={() =>
           setSelectedFilter({
             filterName: item.id || item.recordId,
             filterType: item.table,
           })
-        }}
+        }
         className="text-lg underline-lightGreen"
       >
         {item.name || item.data.Name}
@@ -80,13 +78,12 @@ const Collaborators = () => {
       <>
         <span
           key={item.id || item.recordId}
-          onClick={() => {
-            console.log(item)
+          onClick={() =>
             setSelectedFilter({
               filterName: item.id || item.recordId,
               filterType: "artist",
             })
-          }}
+          }
           className="text-lg underline-lightGreen"
         >
           {item.name || item.data.Name}
@@ -98,7 +95,7 @@ const Collaborators = () => {
 
   return (
     <div className="mb-16">
-      {(collabNames?.length !== 0 || collabArtists?.length !== 0) && (
+      {(collabs || collabArtists) && (
         <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborators</h3>
       )}
       {collabNames?.length !== 0 && renderedData}

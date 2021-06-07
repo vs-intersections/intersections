@@ -21,8 +21,8 @@
 - ~~ Issue: click 'Maida Branch' node, then click 'Untitled' - the nodes are not haloing correctly - this happens across many artists without artwork (ALBERT) ~~
 - ~~ Create link to node graph in mobile ham menu ~~
 - ~~ Video page will not scroll down past a certain point in mobile (ALBERT) ~~
-- Add links for all metadata in sidebar - collabs not showing up on Artist (ALBERT)
-- Any collaborators should be listed in artist sidebar (ALBERT)
+- ~~ Add links for all metadata in sidebar - collabs not showing up on Artist (ALBERT) ~~
+- ~~ Any collaborators should be listed in artist sidebar (ALBERT) ~~
 - iPhone's cannot open the site (ALBERT)
 
 - Lightbox for viewing images when clicked (DAVID)

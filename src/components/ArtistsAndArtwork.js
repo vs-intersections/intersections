@@ -16,13 +16,11 @@ const ArtistsAndArtwork = () => {
     metadata = getMetadataByFilterId(dataObjCopy, selectedFilter?.filterName)
   }
 
-  const handleFilterLinkClick = item => {
-    console.log(item)
+  const handleFilterLinkClick = item =>
     setSelectedFilter({
       filterName: item.id,
       filterType: item.table,
     })
-  }
 
   const {
     recordId,
