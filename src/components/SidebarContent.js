@@ -17,6 +17,8 @@ const SidebarContent = ({ elemHeight, bgColor }) => {
 
   const ref = useRef(null)
 
+  console.log(selectedFilter)
+
   useEffect(() => {
     ref.current.scrollTo(0, 0)
   }, [elemHeight, selectedFilter])

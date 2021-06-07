@@ -11,6 +11,7 @@ const Videos = () => {
   const IS_MOBILE = width <= 1024
   const [isOpen, setIsOpen] = useState(false)
 
+  // REMOVED "Interview" from Artist query
   const data = useStaticQuery(graphql`
     {
       artists: allAirtable(filter: { table: { eq: "Artist" } }) {
@@ -20,7 +21,6 @@ const Videos = () => {
             Name
             Email
             Website
-            Interview
           }
           recordId
         }

@@ -17,6 +17,7 @@ const ArtistsAndArtwork = () => {
   }
 
   const handleFilterLinkClick = item => {
+    console.log(item)
     setSelectedFilter({
       filterName: item.id,
       filterType: item.table,
