@@ -114,7 +114,7 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
         />
       </span>
     </div>
-  ) : artistImage.length !== 0 ? (
+  ) : artistImage.length !== 0 && artistImageData.image !== undefined ? (
     <span
       className="cursor-pointer"
       onClick={() => handleFilterLinkClick(artistImageData)}
