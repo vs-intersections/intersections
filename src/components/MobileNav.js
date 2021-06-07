@@ -10,6 +10,9 @@ function MobileNav({ isOpen }) {
       }`}
     >
       <div className="divide-y-2 text-2xl font-extrabold">
+        <li className="py-8 hover:underline tracking-widest text-center">
+          <Link to="/">Home</Link>
+        </li>
         <li className="py-8 hover:underline tracking-widest">
           <a
             href="https://www.vitalspaces.org/"

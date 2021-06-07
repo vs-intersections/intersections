@@ -152,7 +152,7 @@ const Videos = () => {
                 {interviewVideos}
               </div>
             </div>
-            <div className="mb-12">
+            <div className="mb-12 pb-8">
               <h1 className="ml-4 mt-4 mb-6 text-5xl">Locations</h1>
               <div className="flex flex-col md:flex-row flex-wrap">
                 {locationVideos}
