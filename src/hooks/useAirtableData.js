@@ -1,6 +1,7 @@
 import { useStaticQuery, graphql } from "gatsby"
 
 export const useAirtableData = () => {
+  // REMOVED "Interview" from Artist query
   const airtableData = useStaticQuery(graphql`
     {
       artists: allAirtable(
@@ -18,7 +19,6 @@ export const useAirtableData = () => {
             Birthplace
             Email
             Website
-            Interview
             Affiliation
             Influence
             Tip

@@ -24,9 +24,14 @@ const SidebarArtist = () => {
   return (
     <>
       <Description />
-      {metadata.data.Artwork ? (
+      {metadata.data.Artwork && metadata.data.Collaborated_On ? (
+        <>
+          <ArtistsAndArtwork />
+          <ArtistWithoutArtwork />
+        </>
+      ) : metadata.data.Artwork && !metadata.data.Collaborated_On ? (
         <ArtistsAndArtwork />
-      ) : metadata.data.Collaborated_On ? (
+      ) : !metadata.data.Artwork && metadata.data.Collaborated_On ? (
         <ArtistWithoutArtwork />
       ) : (
         ""

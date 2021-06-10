@@ -18,7 +18,7 @@ const ArtistWithoutArtwork = () => {
 
   const parsedArtists = []
 
-  collaboratedOn.forEach(artPiece => {
+  collaboratedOn?.forEach(artPiece => {
     const result = dataObjCopy.artwork.nodes.find(
       artwork => artwork.recordId === artPiece
     )
@@ -35,20 +35,20 @@ const ArtistWithoutArtwork = () => {
     })
   })
 
-  const renderedArtwork = parsedArtists.map((artwork, i) => {
+  const renderedArtwork = parsedArtists.map(artwork => {
     return (
       <div>
         <span
-          key={parsedArtists[i].artPieceId}
+          key={artwork.artPieceId}
           className="text-lg underline-orange"
           onClick={() => {
             setSelectedFilter({
-              filterName: parsedArtists[i].artPieceId,
-              filterType: "Artwork",
+              filterName: artwork.artPieceId,
+              filterType: "artwork",
             })
           }}
         >
-          {parsedArtists[i].artPieceName}
+          {artwork.artPieceName}
         </span>
       </div>
     )
@@ -56,28 +56,29 @@ const ArtistWithoutArtwork = () => {
 
   return (
     <div className="mb-16">
-      <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborations</h3>
-      <p className="text-lg">
-        This artist has collaborated with{" "}
-        <span
-          key={parsedArtists[0].artistId}
-          className="text-lg underline-lightGreen"
-          onClick={() => {
-            setSelectedFilter({
-              filterName: parsedArtists[0].artistId,
-              filterType: "Artist",
-            })
-          }}
-        >
-          {parsedArtists[0].artistName}
-        </span>{" "}
-        on
-      </p>
-      <div>{renderedArtwork}</div>
+      {/* {parsedArtists.length !== 0 && ( */}
+      <>
+        <h3 className="pb-1 text-2xl font-bold mb-3.5">Collaborations</h3>
+        <p className="text-lg">
+          {name} has collaborated with{" "}
+          <span
+            key={parsedArtists[0]?.artistId}
+            className="text-lg underline-lightGreen"
+            onClick={() => {
+              setSelectedFilter({
+                filterName: parsedArtists[0]?.artistId,
+                filterType: "artist",
+              })
+            }}
+          >
+            {parsedArtists[0]?.artistName}
+          </span>{" "}
+          on the following artwork(s):
+        </p>
+        <div>{renderedArtwork}</div>
+      </>
+      {/* )} */}
     </div>
-    // <div>
-    //   <h1>This artist has collaborated with ARTIST on the following ARTWORK</h1>
-    // </div>
   )
 }
 

@@ -11,6 +11,7 @@ const Videos = () => {
   const IS_MOBILE = width <= 1024
   const [isOpen, setIsOpen] = useState(false)
 
+  // REMOVED "Interview" from Artist query
   const data = useStaticQuery(graphql`
     {
       artists: allAirtable(filter: { table: { eq: "Artist" } }) {
@@ -20,7 +21,6 @@ const Videos = () => {
             Name
             Email
             Website
-            Interview
           }
           recordId
         }
@@ -152,7 +152,7 @@ const Videos = () => {
                 {interviewVideos}
               </div>
             </div>
-            <div className="mb-12">
+            <div className="mb-12 pb-8">
               <h1 className="ml-4 mt-4 mb-6 text-5xl">Locations</h1>
               <div className="flex flex-col md:flex-row flex-wrap">
                 {locationVideos}
