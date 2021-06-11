@@ -19,8 +19,7 @@
 
 ### Issues
 
-- From Affiliation: La Montanita... - click on Lara M's image, then see how some of her sidebar data is missing
-- It's the same for artists that are clicked from 'Location' as well
+- artist filter, morgan barnard: video links extending out of container in 1024 x 576
 
 ### Secondary Items
 
