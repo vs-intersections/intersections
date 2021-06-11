@@ -58,7 +58,7 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
   const handleFilterLinkClick = item =>
     setSelectedFilter({
       filterName: item.recordId,
-      filterType: item.table || "artwork",
+      filterType: item.table.toLowerCase() || "artwork",
     })
 
   const generateResult = () => {

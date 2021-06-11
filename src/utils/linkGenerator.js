@@ -99,7 +99,10 @@ export const linkGenerator = (
         artwork[x].data.isSelectedParent = true
         if (artwork[x].data.Collaborators) {
           for (let y = 0; y < artwork[x].data.Collaborators.length; y++) {
-            if (artwork[x].data.Collaborators[y] === artistB.id) {
+            if (
+              artwork[x].data.Collaborators[y] === artistB.id ||
+              artwork[x].data.Collaborators[y] === artistA.id
+            ) {
               hasBeenInvoked = true
               return linkMainNodesDefault(
                 artistA,
