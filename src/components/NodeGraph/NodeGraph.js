@@ -196,24 +196,25 @@ const NodeGraph = () => {
       })
     }
 
-    const selectedLinks = links
-    .filter(el => el.target.isSelectedChild
-      || el.target.isSelectedParent
-      || el.target.linkColor
-      )
+    const selectedLinks = links.filter(
+      el =>
+        el.target.isSelectedChild ||
+        el.target.isSelectedParent ||
+        el.target.linkColor
+    )
 
-    const grayLinks = links
-    .filter(el => !el.target.isSelectedChild
-       || !el.target.isSelectedParent
-       || !el.target.linkColor
-       )
-       console.log({selectedLinks}, { grayLinks})
+    const grayLinks = links.filter(
+      el =>
+        !el.target.isSelectedChild ||
+        !el.target.isSelectedParent ||
+        !el.target.linkColor
+    )
 
     const newLinks = [...grayLinks, ...selectedLinks]
     // svg elements
     const lines = svg
       .selectAll("line")
-    // IMPORTANT: switch this back to links if this breaks anything!
+      // IMPORTANT: switch this back to links if this breaks anything!
       .data(newLinks)
       .enter()
       .append("line")

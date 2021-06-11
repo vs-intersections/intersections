@@ -19,6 +19,7 @@ const ArtistPersonalInfo = () => {
     Email: email,
     Website: site,
     Other_Link: otherLink,
+    Tip: tip,
   } = metadata.data
 
   return (
@@ -45,6 +46,11 @@ const ArtistPersonalInfo = () => {
           <a className="underline" href={`mailto: ${email}`}>
             {email}
           </a>
+        </p>
+      )}
+      {tip && (
+        <p className="text-lg">
+          <span className="font-bold">Tip this artist:</span> <span>{tip}</span>
         </p>
       )}
       {otherLink && (
