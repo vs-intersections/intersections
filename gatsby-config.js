@@ -4,9 +4,12 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Intersections`,
+    title: `Intersections: Vital Spaces, Maida, Warehouse 21`,
+    description: `Sustaining & enhancing Santa Fe's cultural vibrancy by creating 
+    affordable spaces for artists working in all media to create, present, connect, & teach`,
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-airtable`,
       options: {
