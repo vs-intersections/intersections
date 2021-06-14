@@ -28,9 +28,9 @@ const Lightbox = () => {
       }`}
     >
       <div className="absolute w-full h-full bg-gray-500 opacity-75"></div>
-      <div className="w-4/5 h-4/5 bg-black relative">
+      <div className="md:w-4/5 md:h-4/5 bg-black relative">
         <div
-          className="absolute -right-16 top-0 w-16 h-16 bg-black text-white text-5xl flex items-center justify-center cursor-pointer"
+          className="absolute md:-right-16 md:top-0 right-0 -top-16 w-16 h-16 bg-black text-white text-5xl flex items-center justify-center cursor-pointer"
           onClick={() => setLightboxIsOpen(false)}
         >
           &#10006;
