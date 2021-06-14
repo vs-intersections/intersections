@@ -8,7 +8,7 @@
 ### Albert's notes
 
 ### David's notes
-
+ADD SEO FOR ABOUT AND VIDEO PAGES
 ---
 
 ### Priority Items
