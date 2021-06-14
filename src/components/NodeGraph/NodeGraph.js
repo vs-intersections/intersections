@@ -303,7 +303,7 @@ const NodeGraph = () => {
 
   return (
     <div ref={containerRef} className="w-full h-full overflow-hidden">
-      <svg ref={ref} className="w-full" version="1.1"></svg>
+      <svg ref={ref} className="w-full h-full" version="1.1"></svg>
     </div>
   )
 }

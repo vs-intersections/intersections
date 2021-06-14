@@ -70,7 +70,6 @@ const ArtistsAndArtwork = () => {
             ) : nodeData.Video ? (
               <Video
                 videoSrcURL={nodeData.Video}
-                videoTitle={title}
                 onlyShowThumb={true}
                 videoFilterLinkData={videoFilterLinkData}
               />

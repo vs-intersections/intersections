@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React, { useState, useEffect } from "react"
-import { css, jsx } from "@emotion/react"
 import LayoutMain from "../components/LayoutMain"
 import MobileNav from "../components/MobileNav"
 import Header from "../components/Header"
@@ -10,10 +8,13 @@ import Footer from "../components/Footer"
 import { useSiteMetadata } from "../hooks"
 import GraphAndSidebar from "../components/GraphAndSidebar"
 import { Helmet } from "react-helmet"
+import Lightbox from "../components/Lightbox"
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const { siteMetadata: { description, title } } = useSiteMetadata()
+  const {
+    siteMetadata: { description, title },
+  } = useSiteMetadata()
   useEffect(() => {
     // sizes the height of mobile browsers to display the actual full height instead of the initial height
     // https://developers.google.com/web/updates/2016/12/url-bar-resizing
@@ -32,12 +33,13 @@ export default function Home() {
   return (
     <>
       <Helmet title={title}>
-      <meta property="og:title" content={title} />
-      <meta name="description" content={description} />
-      <meta property="og:description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta name="description" content={description} />
+        <meta property="og:description" content={description} />
       </Helmet>
       {isMobile && <MobileNav isOpen={isOpen} />}
       <LayoutMain>
+        <Lightbox />
         <div className="h-full overflow-hidden flex flex-col">
           <Header
             className={`${isMobile ? "h-8" : "h-10"} flex-auto relative`}

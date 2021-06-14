@@ -5,9 +5,11 @@ import { useFilterContext } from "./context/FilterContext"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { DataContext } from "./context/DataContext"
+import { LightboxContext } from "./context/LightboxContext"
 
 const SidebarDescription = () => {
   const [data] = useContext(DataContext)
+  const [lightboxIsOpen, setLightboxIsOpen] = useContext(LightboxContext)
 
   const sidebarData = useStaticQuery(graphql`
     {
@@ -237,6 +239,10 @@ const SidebarDescription = () => {
     )
   })
 
+  const handleArtworkClick = () => {
+    selectedFilter?.filterType === "artwork" && setLightboxIsOpen(true)
+  }
+
   return (
     <div className="mb-16">
       <h3 className="pb-1 text-2xl font-bold text-center">
@@ -244,7 +250,15 @@ const SidebarDescription = () => {
       </h3>
       <hr className="border-gray-400 border-t-2" />
       <div className={`w-3/4 mt-3 mx-auto ${video ? "h-96" : "h-auto"}`}>
-        {descriptionImage && <GatsbyImage image={descriptionImage} />}
+        {descriptionImage && (
+          <GatsbyImage
+            className={
+              selectedFilter?.filterType === "artwork" && "cursor-pointer"
+            }
+            image={descriptionImage}
+            onClick={handleArtworkClick}
+          />
+        )}
         {video && selectedFilter?.filterType !== "location" && (
           <Video videoSrcURL={videoLink} videoTitle="Artwork Video" />
         )}
