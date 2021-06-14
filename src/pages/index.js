@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React, { useState, useEffect } from "react"
-import { css, jsx } from "@emotion/react"
 import LayoutMain from "../components/LayoutMain"
 import MobileNav from "../components/MobileNav"
 import Header from "../components/Header"

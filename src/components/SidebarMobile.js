@@ -1,14 +1,12 @@
-/** @jsx jsx */
 import React, { useRef, useEffect, useState, useContext } from "react"
-import { css, jsx } from "@emotion/react"
 import SidebarContent from "./SidebarContent"
 import { IoMdArrowDropupCircle } from "react-icons/io"
 import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
 import { useSidebarContext } from "./context/SidebarContext"
 import { DataContext } from "./context/DataContext"
-import { useOnClickOutside } from "../hooks/useOnClickOutside"
 import classNames from "classnames"
+
 const SidebarMobile = () => {
   const [data] = useContext(DataContext)
   const { sideBarMobileIsOpen, setSideBarMobileIsOpen } = useSidebarContext()
@@ -16,7 +14,6 @@ const SidebarMobile = () => {
   const { selectedFilter } = useFilterContext()
 
   const ref = useRef()
-  // useOnClickOutside(ref, () => setSideBarMobileIsOpen(false))
 
   let currentTheme =
     selectedFilter?.filterType?.toLowerCase() ||
@@ -49,14 +46,6 @@ const SidebarMobile = () => {
           ? "bottom-10 -top-full h-full"
           : "bottom-10 -top-24 h-24"
       }`}
-      // css={css`
-      //   height: ${sideBarMobileIsOpen
-      //     ? "calc(100vh - 64px)"
-      //     : "100%"};
-      //   transform: ${sideBarMobileIsOpen
-      //     ? "translateY(-60vh)"
-      //     : "translateY(17vh)"};
-      // `}
     >
       {!NO_NODE_OR_FILTER_SELECTED && (
         <div>

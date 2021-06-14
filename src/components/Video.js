@@ -28,9 +28,9 @@ const Video = ({
         allowFullScreen
       />
     ) : (
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full flex items-center bg-black">
         <iframe
-          className="absolute w-full h-full align-baseline"
+          className="absolute w-full 2xl:h-full lg:h-24 align-baseline"
           src={videoLink}
           title={videoTitle}
           frameBorder="0"
