@@ -7,8 +7,8 @@ import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import SidebarMobile from "../components/SidebarMobile"
 import Footer from "../components/Footer"
-import { useWindowSize } from "../hooks"
 import GraphAndSidebar from "../components/GraphAndSidebar"
+import Lightbox from "../components/Lightbox"
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false)
@@ -33,6 +33,7 @@ export default function Home() {
     <>
       {isMobile && <MobileNav isOpen={isOpen} />}
       <LayoutMain>
+        <Lightbox />
         <div className="h-full overflow-hidden flex flex-col">
           <Header
             className={`${isMobile ? "h-8" : "h-10"} flex-auto relative`}
