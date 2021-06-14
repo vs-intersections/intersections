@@ -23,15 +23,15 @@ const Lightbox = () => {
 
   return (
     <div
-      className={`absolute w-screen h-screen flex items-center justify-center z-50 ${
+      className={`absolute w-screen h-screen flex items-center justify-center z-60 ${
         !lightboxIsOpen && "hidden"
       }`}
     >
       <div
-        className="absolute w-full h-full bg-gray-500 opacity-75 z-40"
+        className="absolute w-full h-full bg-gray-500 opacity-75"
         onClick={() => setLightboxIsOpen(false)}
       ></div>
-      <div className="md:w-4/5 md:h-4/5 bg-black relative">
+      <div className="md:w-4/5 md:h-4/5 bg-black relative z-70">
         <div
           className="absolute md:-right-16 md:top-0 right-0 -top-16 w-16 h-16 bg-black text-white text-5xl flex items-center justify-center cursor-pointer"
           onClick={() => setLightboxIsOpen(false)}
