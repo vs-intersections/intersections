@@ -66,7 +66,7 @@ const Location = ({ data }) => {
           </div>
         ))
       ) : (
-        <p className="text-lg">Not on exhibition</p>
+        <p className="text-lg">Not on display.</p>
       )}
     </div>
   )

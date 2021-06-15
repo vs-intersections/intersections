@@ -5,6 +5,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Video from "../components/Video"
 import { useWindowSize } from "../hooks"
+import { translateIdToName } from "../utils"
 
 const Videos = () => {
   const { width } = useWindowSize()
@@ -80,7 +81,7 @@ const Videos = () => {
             videoSrcURL={el.data.Video}
             videoTitle={el?.data?.Name || "Artwork Video"}
           />
-          <h3 className="text-center text-2xl mt-3">{intersectionTheme}</h3>
+          <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
         </div>
       )
     })
@@ -89,7 +90,7 @@ const Videos = () => {
     .filter(
       el =>
         el.data.Video &&
-        el.data.Primary_Artist__REQUIRED_[0] !== "rec6GjpkqIFLImQsm"
+        el.data.Primary_Artist__REQUIRED_[0] !== "rec6GjpkqIFLImQsm" // Ditch The Box Studios
     )
     .map(el => (
       <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
@@ -98,7 +99,13 @@ const Videos = () => {
           videoSrcURL={el.data.Video}
           videoTitle={el?.data?.Name || "Artwork Video"}
         />
-        <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
+        <h3 className="text-center text-2xl mt-3">
+          {translateIdToName(
+            data,
+            el.data.Primary_Artist__REQUIRED_[0],
+            "artist"
+          )}
+        </h3>
       </div>
     ))
 
