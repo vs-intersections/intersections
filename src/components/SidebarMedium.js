@@ -7,8 +7,8 @@ const SidebarMedium = ({ data }) => {
   return (
     <>
       <Description data={data} />
-      <Location data={data} />
       <ArtistsAndArtwork data={data} />
+      <Location data={data} />
     </>
   )
 }

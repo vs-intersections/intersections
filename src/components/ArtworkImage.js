@@ -53,7 +53,7 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
     }
   `)
 
-  const { setSelectedFilter } = useFilterContext()
+  const { selectedFilter, setSelectedFilter } = useFilterContext()
 
   const handleFilterLinkClick = item =>
     setSelectedFilter({
@@ -93,42 +93,53 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
     }
   }
 
-  const renderedData = result?.data?.Image ? (
-    <span
-      className="cursor-pointer"
-      onClick={() => handleFilterLinkClick(result)}
-    >
-      <GatsbyImage image={artworkImage} />
-    </span>
-  ) : result?.data?.Video ? (
-    <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
+  console.log(artistImage[0]?.data?.Bio_Image)
+
+  const renderedData =
+    result?.data?.Image && selectedFilter.filterType !== "affiliation" ? (
       <span
-        className="cursor-pointer w-full h-full"
+        className="cursor-pointer"
         onClick={() => handleFilterLinkClick(result)}
       >
-        <Video
-          videoSrcURL={result?.data?.Video}
-          videoTitle={title}
-          onlyShowThumb={true}
-          videoFilterLinkData={result.recordId}
-        />
+        <GatsbyImage image={artworkImage} />
+        {/* <GatsbyImage image={artistImageData.image} /> */}
       </span>
-    </div>
-  ) : artistImage.length !== 0 && artistImageData.image !== undefined ? (
-    <span
-      className="cursor-pointer"
-      onClick={() => handleFilterLinkClick(artistImageData)}
-    >
-      <GatsbyImage image={artistImageData.image} />
-    </span>
-  ) : (
-    <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
-      <div>
-        <div>NO IMAGE</div>
-        <div>AVAILABLE</div>
+    ) : result?.data?.Video && selectedFilter.filterType !== "affiliation" ? (
+      <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
+        <span
+          className="cursor-pointer w-full h-full"
+          onClick={() => handleFilterLinkClick(result)}
+        >
+          <Video
+            videoSrcURL={result?.data?.Video}
+            videoTitle={title}
+            onlyShowThumb={true}
+            videoFilterLinkData={result.recordId}
+          />
+        </span>
       </div>
-    </div>
-  )
+    ) : artistImage.length !== 0 && artistImageData.image !== undefined ? (
+      <span
+        className="cursor-pointer"
+        onClick={() => handleFilterLinkClick(artistImageData)}
+      >
+        <GatsbyImage image={artistImageData.image} />
+      </span>
+    ) : selectedFilter.filterType === "affiliation" ? (
+      <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
+        <div className="text-center">
+          <div>NO ARTIST</div>
+          <div>PHOTO</div>
+        </div>
+      </div>
+    ) : (
+      <div className="w-full h-full bg-gray-500 text-lg flex justify-center items-center">
+        <div>
+          <div>NO IMAGE</div>
+          <div>AVAILABLE</div>
+        </div>
+      </div>
+    )
 
   return <>{renderedData}</>
 }

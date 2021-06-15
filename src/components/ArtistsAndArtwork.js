@@ -230,7 +230,9 @@ const ArtistsAndArtwork = () => {
             )}
             {selectedFilter.filterType !== "affiliation" && (
               <p className="text-lg">
-                <span className="font-bold">Theme: </span>
+                <span className="font-bold">
+                  Theme{selectedFilter.filterType === "artwork" && "s"}:{" "}
+                </span>
                 {themesCopy.length === 0
                   ? "Theme not specified"
                   : themesCopy.map((item, i) => {
@@ -260,7 +262,11 @@ const ArtistsAndArtwork = () => {
       {/* render artist without artwork here  */}
       {selectedFilter.filterType !== "artwork" && (
         <h3 className="pb-1 text-2xl font-bold mb-3.5">
-          {selectedFilter.filterType === "affiliation" ? "Artists" : "Artwork"}
+          {selectedFilter.filterType === "affiliation"
+            ? "Artists"
+            : selectedFilter.filterType === "artist"
+            ? "Artworks"
+            : "Artwork"}
         </h3>
       )}
       {selectedFilter.filterType === "artwork" ||
