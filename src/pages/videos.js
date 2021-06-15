@@ -86,8 +86,6 @@ const Videos = () => {
       )
     })
 
-  console.log(data?.artwork?.nodes)
-
   const artworkVideos = data?.artwork?.nodes
     .filter(
       el =>

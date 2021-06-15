@@ -93,8 +93,6 @@ const ArtworkImage = ({ id, title, filterType, primaryArtist }) => {
     }
   }
 
-  console.log(artistImage[0]?.data?.Bio_Image)
-
   const renderedData =
     result?.data?.Image && selectedFilter.filterType !== "affiliation" ? (
       <span

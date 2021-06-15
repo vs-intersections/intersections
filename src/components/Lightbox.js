@@ -21,8 +21,6 @@ const Lightbox = () => {
   const artworkImage =
     metadata?.data?.Image?.localFiles[0].childImageSharp.gatsbyImageData
 
-  console.log(metadata?.data?.Image?.localFiles[0].childImageSharp)
-
   return (
     <div
       className={`absolute w-screen h-screen flex items-center justify-center z-60 ${
