@@ -6,6 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Intersections`,
   },
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     {
       resolve: `gatsby-source-airtable`,
