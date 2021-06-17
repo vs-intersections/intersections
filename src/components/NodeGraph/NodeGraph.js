@@ -44,8 +44,8 @@ const NodeGraph = () => {
 
   const setAspectRatio = () => {
     // grab svg container width and height
-    width = containerRef.current.clientWidth
-    height = containerRef.current.clientHeight
+    width = containerRef?.current?.clientWidth
+    height = containerRef?.current?.clientHeight
     // determine the aspect values through the Maths (see function)
     aspectW = getAspect(width, height)
     aspectH = getAspect(height, width)

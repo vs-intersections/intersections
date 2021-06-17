@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React from "react"
-import { css, jsx } from "@emotion/react"
 import { Link } from "gatsby"
 function MobileNav({ isOpen }) {
   return (

@@ -8,6 +8,7 @@ module.exports = {
     description: `Sustaining & enhancing Santa Fe's cultural vibrancy by creating 
     affordable spaces for artists working in all media to create, present, connect, & teach`,
   },
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {

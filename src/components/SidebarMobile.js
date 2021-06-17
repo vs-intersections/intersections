@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState, useContext } from "react"
 import SidebarContent from "./SidebarContent"
-import { IoMdArrowDropupCircle } from "react-icons/io"
 import { useNodeContext } from "./context/NodeContext"
 import { useFilterContext } from "./context/FilterContext"
 import { useSidebarContext } from "./context/SidebarContext"
@@ -41,24 +40,12 @@ const SidebarMobile = () => {
   return (
     <div
       ref={ref}
-      className={`z-40 pr-0 relative bg-gray-100 overflow-hidden transition-position transition-height ${
-        sideBarMobileIsOpen
-          ? "bottom-10 -top-full h-full"
-          : "bottom-10 -top-24 h-24"
-      }`}
+      className={`z-30 pr-0 relative bg-gray-100 overflow-hidden transition-position transition-height bottom-10 -top-full h-full`}
     >
       {!NO_NODE_OR_FILTER_SELECTED && (
         <div>
           <div
-            className={`w-7 h-7 absolute right-2.5 top-1.5 bg-white rounded-full`}
-          ></div>
-          <IoMdArrowDropupCircle
-            className={`w-7 h-7 absolute right-2.5 top-1.5 fill-lightgray transform transition-rotate ${
-              sideBarMobileIsOpen ? "rotate-180" : "rotate-1"
-            }`}
-          />
-          <div
-            className={`w-full h-14 absolute`}
+            className={`w-full h-8 absolute`}
             onClick={() =>
               !NO_NODE_OR_FILTER_SELECTED &&
               setSideBarMobileIsOpen(!sideBarMobileIsOpen)

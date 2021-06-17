@@ -50,7 +50,10 @@ const ArtistPersonalInfo = () => {
       )}
       {tip && (
         <p className="text-lg">
-          <span className="font-bold">Tip this artist:</span> <span>{tip}</span>
+          <span className="font-bold">Tip this artist:</span>{" "}
+          <a className="underline" target="_blank" rel="noreferrer" href={tip}>
+            {tip}
+          </a>
         </p>
       )}
       {otherLink && (

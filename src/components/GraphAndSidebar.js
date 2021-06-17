@@ -70,7 +70,7 @@ const GraphAndSidebar = ({ isMobile }) => {
           sidebarIsOpened ? "w-60vw" : "w-100vw"
         }`}
       >
-        <NodeGraph />
+        {!isMobile && <NodeGraph />}
       </div>
       {!isMobile && (
         <div className="relative flex-1">
@@ -94,7 +94,7 @@ const GraphAndSidebar = ({ isMobile }) => {
             <div
               className={`absolute left-3vw w-40vw h-full bg-${tabClass} bg-opacity-10`}
             >
-              {data && <SidebarContent />}
+              {data && <SidebarContent bgColor={tabClass} />}
             </div>
           </div>
         </div>
