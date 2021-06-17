@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React, { useContext } from "react"
-import { css, jsx } from "@emotion/react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
 import { DataContext } from "./context/DataContext"

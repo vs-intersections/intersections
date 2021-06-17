@@ -7,9 +7,12 @@ import SidebarMobile from "../components/SidebarMobile"
 import Footer from "../components/Footer"
 import GraphAndSidebar from "../components/GraphAndSidebar"
 import Lightbox from "../components/Lightbox"
+import { useWindowSize } from "../hooks"
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false)
+  const { width } = useWindowSize()
+  const IS_MOBILE = width <= 1024
+
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -23,33 +26,31 @@ export default function Home() {
     html.style.bottom = 0
     html.style.right = 0
     html.style.left = 0
-
-    window.innerWidth <= 1024 && setIsMobile(true)
   }, [])
 
   return (
     <>
-      {isMobile && <MobileNav isOpen={isOpen} />}
+      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
       <LayoutMain>
         <Lightbox />
         <div className="h-full overflow-hidden flex flex-col">
           <Header
-            className={`${isMobile ? "h-8" : "h-10"} flex-auto relative`}
+            className={`${IS_MOBILE ? "h-8" : "h-10"} flex-auto relative`}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
-          <Navigation isMobile={isMobile} />
+          <Navigation isMobile={IS_MOBILE} />
           <div className="flex-auto">
             <main className="h-full relative">
               <div
                 className={`absolute top-0 ${
-                  isMobile ? "bottom-0" : "bottom-8"
+                  IS_MOBILE ? "bottom-0" : "bottom-8"
                 }`}
               >
-                <GraphAndSidebar isMobile={isMobile} />
-                {isMobile && <SidebarMobile />}
+                <GraphAndSidebar isMobile={IS_MOBILE} />
+                {IS_MOBILE && <SidebarMobile />}
               </div>
-              {!isMobile && <Footer />}
+              {!IS_MOBILE && <Footer />}
             </main>
           </div>
         </div>

@@ -259,9 +259,7 @@ const SidebarDescription = () => {
             onClick={handleArtworkClick}
           />
         )}
-        {video && selectedFilter?.filterType !== "location" && (
-          <Video videoSrcURL={videoLink} videoTitle="Artwork Video" />
-        )}
+        {video && <Video videoSrcURL={videoLink} videoTitle="Artwork Video" />}
       </div>
       <div className="mt-2">
         {desc ? (
