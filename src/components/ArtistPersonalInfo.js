@@ -29,12 +29,12 @@ const ArtistPersonalInfo = () => {
       )}
       {birthplace && (
         <p className="text-lg">
-          <span className="font-bold">Birthplace:</span> {birthplace}
+          <span className="font-bold pr-2">Birthplace:</span> {birthplace}
         </p>
       )}
       {site && (
         <p className="text-lg">
-          <span className="font-bold">Website:</span>{" "}
+          <span className="font-bold pr-2">Website:</span>{" "}
           <a className="underline" target="_blank" rel="noreferrer" href={site}>
             {site}
           </a>
@@ -42,7 +42,7 @@ const ArtistPersonalInfo = () => {
       )}
       {email && (
         <p className="text-lg">
-          <span className="font-bold">Email:</span>{" "}
+          <span className="font-bold pr-2">Email:</span>{" "}
           <a className="underline" href={`mailto: ${email}`}>
             {email}
           </a>
@@ -50,7 +50,7 @@ const ArtistPersonalInfo = () => {
       )}
       {tip && (
         <p className="text-lg">
-          <span className="font-bold">Tip this artist:</span>{" "}
+          <span className="font-bold pr-2">Tip this artist:</span>{" "}
           <a className="underline" target="_blank" rel="noreferrer" href={tip}>
             {tip}
           </a>
@@ -58,7 +58,7 @@ const ArtistPersonalInfo = () => {
       )}
       {otherLink && (
         <p className="text-lg">
-          <span className="font-bold">Additional Link:</span>{" "}
+          <span className="font-bold pr-2">Additional Link:</span>{" "}
           <a
             className="underline"
             target="_blank"

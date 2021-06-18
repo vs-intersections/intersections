@@ -51,7 +51,7 @@ const SidebarContent = ({ elemHeight, bgColor }) => {
       ref={ref}
       className={`h-full ${
         IS_MOBILE && "bg-opacity-10 bg-" + bgColor
-      } pl-4 pt-12 pr-6 py-4 ${
+      } pl-4 pt-12 lg:pt-4 pr-6 py-4 ${
         elemHeight < 100 ? "overflow-y-hidden" : "overflow-y-auto"
       } scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-300`}
     >

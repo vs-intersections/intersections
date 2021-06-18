@@ -87,7 +87,7 @@ const ArtistsAndArtwork = () => {
           <div>
             {selectedFilter.filterType !== "artist" && (
               <p className="text-lg">
-                <span className="font-bold">Artist: </span>
+                <span className="font-bold pr-2">Artist: </span>
                 <span
                   className="underline-lightGreen"
                   onClick={() => handleFilterLinkClick(artistByName)}
@@ -97,7 +97,7 @@ const ArtistsAndArtwork = () => {
               </p>
             )}
             <p className="text-lg">
-              <span className="font-bold">Title: </span>
+              <span className="font-bold pr-2">Title: </span>
               <span
                 className="underline-orange cursor"
                 onClick={() =>
@@ -111,7 +111,7 @@ const ArtistsAndArtwork = () => {
               </span>
             </p>
             <p className="text-lg">
-              <span className="font-bold">Media: </span>
+              <span className="font-bold pr-2">Media: </span>
               {mediaCopy.length === 0
                 ? "Media not specified"
                 : mediaCopy.map((item, i) => {
@@ -130,7 +130,7 @@ const ArtistsAndArtwork = () => {
                   })}
             </p>
             <p className="text-lg">
-              <span className="font-bold">Theme: </span>
+              <span className="font-bold pr-2">Theme: </span>
               {themesCopy.length === 0
                 ? "Theme not specified"
                 : themesCopy.map((item, i) => {
@@ -191,7 +191,7 @@ const ArtistsAndArtwork = () => {
           <div>
             {selectedFilter.filterType !== "artist" && (
               <p className="text-lg">
-                <span className="font-bold">Artist: </span>
+                <span className="font-bold pr-2">Artist: </span>
                 <span
                   className="underline-lightGreen"
                   onClick={() => handleFilterLinkClick(artistByName)}
@@ -203,13 +203,13 @@ const ArtistsAndArtwork = () => {
             {selectedFilter.filterType !== "artwork" &&
               selectedFilter.filterType !== "affiliation" && (
                 <p className="text-lg">
-                  <span className="font-bold">Title: </span>
+                  <span className="font-bold pr-2">Title: </span>
                   <span className="underline-orange">{title}</span>
                 </p>
               )}
             {selectedFilter.filterType === "artwork" && (
               <p className="text-lg">
-                <span className="font-bold">Media: </span>
+                <span className="font-bold pr-2">Media: </span>
                 {mediaCopy.length === 0
                   ? "Media not specified"
                   : mediaCopy.map((item, i) => {
@@ -230,7 +230,7 @@ const ArtistsAndArtwork = () => {
             )}
             {selectedFilter.filterType !== "affiliation" && (
               <p className="text-lg">
-                <span className="font-bold">
+                <span className="font-bold pr-2">
                   Theme{selectedFilter.filterType === "artwork" && "s"}:{" "}
                 </span>
                 {themesCopy.length === 0

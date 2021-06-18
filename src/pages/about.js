@@ -14,7 +14,7 @@ const About = () => {
       {IS_MOBILE && <MobileNav isOpen={isOpen} />}
       <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className="w-full">
+        <div className="w-full lg:pt-4 pb-8 lg:pb-12">
           <div
             className={`flex flex-col justify-center item-center w-2/3 mx-auto mb-16 pt-8`}
           >
