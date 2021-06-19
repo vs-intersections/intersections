@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import Joyride from "react-joyride"
+import Lightbox from "../components/Lightbox"
 import LayoutMain from "../components/LayoutMain"
 import MobileNav from "../components/MobileNav"
 import Header from "../components/Header"
@@ -8,14 +10,68 @@ import Footer from "../components/Footer"
 import { useSiteMetadata } from "../hooks"
 import GraphAndSidebar from "../components/GraphAndSidebar"
 import { Helmet } from "react-helmet"
-import Lightbox from "../components/Lightbox"
 import { useWindowSize } from "../hooks"
 
 export default function Home() {
   const { width } = useWindowSize()
   const IS_MOBILE = width <= 1024
-
+  const desktopSteps = [
+    {
+      target: `node-area`,
+      content:
+      `Welcome to Intersections, a citywide group of art exhibitions taking place 
+      in public spaces across Santa Fe and on this interactive website! 
+      Organized by Vital Spaces, MAIDA and Warehouse 21.`,
+    },
+  ]
+  const initialSteps = [
+    {
+      target: `nav`,
+      content:
+      `Welcome to Intersections, a citywide group of art exhibitions taking place 
+      in public spaces across Santa Fe and on this interactive website! 
+      Organized by Vital Spaces, MAIDA and Warehouse 21.`,
+    },
+    {
+      target: `.artist-dropdown`,
+      content:
+      `Use the Artist filter to see find featured artists`,
+    },
+    {
+      target: `.artwork-dropdown`,
+      content:
+      `Use the Artwork filter to see find featured artwork`,
+    },
+    {
+      target: `.location-dropdown`,
+      content:
+      `Use the Location filter to explore locations throughout Santa Fe that have featured A`,
+    },
+    {
+      target: `.theme-dropdown`,
+      content:
+      `Use the Theme filter to explore how artwork intersects by various themes.`,
+    },
+    {
+      target: `.medium-dropdown`,
+      content:
+      `Use the Medium filter to explore how artwork intersects by various mediums.`,
+    },
+    {
+      target: `.affiliation-dropdown`,
+      content:
+      `Use the Affiliation filter to explore how artwork intersects by various mediums.`,
+    },
+    {
+      target: `.node-area`,
+      content:
+      `If you are viewing this website on a desktop, you can clickt the Artist
+       or Artwork nodes to explore artists and artwork featured in this exhibition.`,
+    },
+    // !IS_MOBILE ? {...desktopSteps} : {}
+  ]
   const [isOpen, setIsOpen] = useState(false)
+  const [steps, setSteps] = useState(initialSteps)
   const {
     siteMetadata: { description, title },
   } = useSiteMetadata()
@@ -41,14 +97,15 @@ export default function Home() {
       </Helmet>
       {IS_MOBILE && <MobileNav isOpen={isOpen} />}
       <LayoutMain>
-        <Lightbox />
         <div className="h-full overflow-hidden flex flex-col">
+          <Joyride steps={steps} continuous={true} showProgress={true} showSkipButton={true} />
+          <Lightbox />
           <Header
             className={`${IS_MOBILE ? "h-8" : "h-10"} flex-auto relative`}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
-          <Navigation isMobile={IS_MOBILE} />
+          <Navigation className="navigation" isMobile={IS_MOBILE} />
           <div className="flex-auto">
             <main className="h-full relative">
               <div

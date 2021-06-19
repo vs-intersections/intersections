@@ -55,7 +55,7 @@ const GraphAndSidebar = ({ isMobile }) => {
             >
               <div
                 ref={ref}
-                className="w-10/12 text-center text-current truncate pl-4 py-4"
+                className="w-10/12 text-center text-current truncate pl-4 py-4 infobar"
               >
                 {titleBarName}
               </div>

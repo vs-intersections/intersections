@@ -11,7 +11,7 @@ const DesktopNav = ({
   generateDropdown,
 }) => {
   return (
-    <nav className="bg-gray-100 flex justify-center items-center relative">
+    <nav className="bg-gray-100 flex justify-center items-center relative desktop-nav">
       <ul className="flex items-center text-xs justify-evenly w-full">
         {generateDropdown("artist", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}
