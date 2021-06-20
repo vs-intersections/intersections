@@ -20,7 +20,8 @@ export default function Home() {
       target: `nav`,
       content:
       `Welcome to Intersections, a citywide group of art exhibitions taking place 
-      in public spaces across Santa Fe and on this interactive website! 
+      in public spaces across Santa Fe and on this interactive website! If you are viewing this website on
+      a mobile device, we highly encourage you to check out the desktop version which includes a data visualization.
       Organized by Vital Spaces, MAIDA and Warehouse 21.`,
     },
     {
