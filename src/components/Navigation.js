@@ -90,7 +90,7 @@ const Navigation = ({ isMobile }) => {
           isMobile ? "w-32" : "max-w-dropdown"
         } inline-block transition-colors duration-500 bg-opacity-40 ${
           selectedFilter.filterType === filterType ? "bg-" + color : ""
-        }`}
+        } ${filterType}-dropdown`}
       >
         <label className={`block flex justify-center items-center lg:text-lg`}>
           {filterTitle}

@@ -15,7 +15,7 @@ const MobileNav2 = ({
   return (
     <div className="relative">
       <nav
-        className={`bg-gray-100 relative overflow-hidden border-b border-orange ${
+        className={`bg-gray-100 relative overflow-hidden border-b border-orange mobile-nav ${
           filterBarIsopen ? "h-48" : "h-0"
         } transition-height`}
       >
