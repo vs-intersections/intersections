@@ -208,6 +208,20 @@ const SidebarDescription = () => {
     )
   })
 
+  const renderedAddress = (
+    <div className="mt-2 text-lg">
+      <span className="font-bold">Address:</span>{" "}
+      <a
+        className="transition-all underline-blue"
+        href={`https://maps.google.com/?q=${address}`}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        {address}
+      </a>
+    </div>
+  )
+
   const handleArtworkClick = () => {
     selectedFilter?.filterType === "artwork" && setLightboxIsOpen(true)
   }
@@ -237,17 +251,7 @@ const SidebarDescription = () => {
           <p className="text-lg mt-2">Description coming soon</p>
         )}
       </div>
-      <div className="mt-2 text-lg">
-        <span className="font-bold">Address:</span>{" "}
-        <a
-          className="transition-all underline-blue"
-          href={`https://maps.google.com/?q=${address}`}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          {address}
-        </a>
-      </div>
+      {selectedFilter?.filterType === "location" && renderedAddress}
       {selectedFilter.filterType === "artist" && interview && (
         <>
           <p className="text-lg mt-3 font-bold mb-2">Interview Video</p>
