@@ -87,6 +87,7 @@ const SidebarDescription = () => {
         nodes {
           data {
             Name
+            Address
             Image {
               localFiles {
                 childImageSharp {
@@ -173,8 +174,11 @@ const SidebarDescription = () => {
       Name: name,
       Interview: interview,
       Video: video,
+      Address: address,
     },
   } = metadata
+
+  console.log(metadata)
 
   const desc = description || bio
   let videoLink
@@ -234,6 +238,17 @@ const SidebarDescription = () => {
         ) : (
           <p className="text-lg mt-2">Description coming soon</p>
         )}
+      </div>
+      <div className="mt-2 text-lg">
+        <span className="font-bold">Address:</span>{" "}
+        <a
+          className="transition-all underline-blue"
+          href={`https://maps.google.com/?q=${address}`}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {address}
+        </a>
       </div>
       {selectedFilter.filterType === "artist" && interview && (
         <>
