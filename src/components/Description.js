@@ -6,10 +6,13 @@ import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { DataContext } from "./context/DataContext"
 import { LightboxContext } from "./context/LightboxContext"
+import { useWindowSize } from "../hooks"
 
 const SidebarDescription = () => {
   const [data] = useContext(DataContext)
   const [lightboxIsOpen, setLightboxIsOpen] = useContext(LightboxContext)
+  const { width } = useWindowSize()
+  const IS_MOBILE = width <= 1024
 
   const sidebarData = useStaticQuery(graphql`
     {
@@ -197,7 +200,9 @@ const SidebarDescription = () => {
   let processedDescription = []
   if (desc) processedDescription = descProcess()
 
-  const renderedDescription = processedDescription.map((item, i) => {
+  // There are cases when a particular affiliation needs to be specially formatted
+  // The following 2 functions format the paragraphs
+  const renderedDescriptionNormal = processedDescription.map((item, i) => {
     return (
       <>
         <p key={item} className="text-lg">
@@ -207,6 +212,78 @@ const SidebarDescription = () => {
       </>
     )
   })
+  // Formats the paragraph for specific affiliations
+  const renderedDescriptionSpecial = processedDescription.map((item, i) => {
+    const normalParagraph = (
+      <p key={item} className="text-lg">
+        {item}
+      </p>
+    )
+
+    const modifiedParagraph = (
+      <p
+        key={item}
+        className={`text-lg block text-center ${
+          IS_MOBILE && i === 0 ? "mt-8" : ""
+        }`}
+      >
+        <span className="font-bold">{item}</span>
+      </p>
+    )
+    // determines if the first paragraph should be bolded and end with an <hr />
+    // This REQUIRES that the Airtable field be formatted like this:
+    // TITLE
+    // double return
+    // CONTENT
+    // double return
+    // CONTENT (this is usually a list of artists)
+    // double return... (and repeat)
+    return (
+      <>
+        {i % 3 === 0 && i !== 0 && <hr className="mb-6 w-4/5 mx-auto" />}
+        {i % 3 === 0 ? modifiedParagraph : normalParagraph}
+        {i <= processedDescription.length - 1 && <br />}
+      </>
+    )
+  })
+  // list of specially formatted affiliations (MUST MATCH IN AIRTABLE)
+  const speciallyFormattedAffiliations = [
+    "Artist Collectives",
+    "Artist Residencies",
+    "Food and Agriculture",
+    "Galleries",
+    "Literary Groups",
+    "Museums, Art Centers, and Festivals",
+    "Organizations centered on Indigenous peoples",
+    "Organizations focused on social and/or environmental justice",
+    "Performance Groups and Spaces",
+    "Schools and Educational Organizations",
+  ]
+
+  let renderedDescription = []
+  // sets renderedDescription to a normal or specially-formatted set of paragraphs
+  for (let item of speciallyFormattedAffiliations) {
+    if (name === item) {
+      renderedDescription = renderedDescriptionSpecial
+      break
+    } else {
+      renderedDescription = renderedDescriptionNormal
+    }
+  }
+
+  const renderedAddress = (
+    <div className="mt-2 text-lg">
+      <span className="font-bold">Address:</span>{" "}
+      <a
+        className="transition-all underline-blue"
+        href={`https://maps.google.com/?q=${address}`}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        {address}
+      </a>
+    </div>
+  )
 
   const handleArtworkClick = () => {
     selectedFilter?.filterType === "artwork" && setLightboxIsOpen(true)
@@ -237,17 +314,7 @@ const SidebarDescription = () => {
           <p className="text-lg mt-2">Description coming soon</p>
         )}
       </div>
-      <div className="mt-2 text-lg">
-        <span className="font-bold">Address:</span>{" "}
-        <a
-          className="transition-all underline-blue"
-          href={`https://maps.google.com/?q=${address}`}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          {address}
-        </a>
-      </div>
+      {selectedFilter?.filterType === "location" && renderedAddress}
       {selectedFilter.filterType === "artist" && interview && (
         <>
           <p className="text-lg mt-3 font-bold mb-2">Interview Video</p>
