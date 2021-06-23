@@ -6,10 +6,13 @@ import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { DataContext } from "./context/DataContext"
 import { LightboxContext } from "./context/LightboxContext"
+import { useWindowSize } from "../hooks"
 
 const SidebarDescription = () => {
   const [data] = useContext(DataContext)
   const [lightboxIsOpen, setLightboxIsOpen] = useContext(LightboxContext)
+  const { width } = useWindowSize()
+  const IS_MOBILE = width <= 1024
 
   const sidebarData = useStaticQuery(graphql`
     {
@@ -218,7 +221,12 @@ const SidebarDescription = () => {
     )
 
     const modifiedParagraph = (
-      <p key={item} className="text-lg">
+      <p
+        key={item}
+        className={`text-lg block text-center ${
+          IS_MOBILE && i === 0 ? "mt-8" : ""
+        }`}
+      >
         <span className="font-bold">{item}</span>
       </p>
     )
@@ -232,7 +240,6 @@ const SidebarDescription = () => {
     // double return... (and repeat)
     return (
       <>
-        {" "}
         {i % 3 === 0 && i !== 0 && <hr className="mb-6 w-4/5 mx-auto" />}
         {i % 3 === 0 ? modifiedParagraph : normalParagraph}
         {i <= processedDescription.length - 1 && <br />}
