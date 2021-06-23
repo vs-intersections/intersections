@@ -197,6 +197,8 @@ const SidebarDescription = () => {
   let processedDescription = []
   if (desc) processedDescription = descProcess()
 
+  // There are cases when a particular affiliation needs to be specially formatted
+  // The following 2 functions format the paragraphs
   const renderedDescriptionNormal = processedDescription.map((item, i) => {
     return (
       <>
@@ -207,36 +209,53 @@ const SidebarDescription = () => {
       </>
     )
   })
+  // Formats the paragraph for specific affiliations
+  const renderedDescriptionSpecial = processedDescription.map((item, i) => {
+    const normalParagraph = (
+      <p key={item} className="text-lg">
+        {item}
+      </p>
+    )
 
-  const renderedDescriptionArtistCollectives = processedDescription.map(
-    (item, i) => {
-      const normalParagraph = (
-        <p key={item} className="text-lg">
-          {item}
-        </p>
-      )
+    const modifiedParagraph = (
+      <p key={item} className="text-lg">
+        <span className="font-bold">{item}</span>
+      </p>
+    )
+    // determines if the first paragraph should be bolded and end with an <hr />
+    return (
+      <>
+        {" "}
+        {i % 3 === 0 && i !== 0 && <hr className="mb-6 w-4/5 mx-auto" />}
+        {i % 3 === 0 ? modifiedParagraph : normalParagraph}
+        {i <= processedDescription.length - 1 && <br />}
+      </>
+    )
+  })
 
-      const modifiedParagraph = (
-        <p key={item} className="text-lg">
-          <span className="font-bold">{item}</span>
-        </p>
-      )
+  const speciallyFormattedAffiliations = [
+    "Artist Collectives",
+    "Artist Residencies",
+    "Food and Agriculture",
+    "Galleries",
+    "Literary Groups",
+    "Museums, Art Centers, and Festivals",
+    "Organizations centered on Indigenous peoples",
+    "Organizations focused on social and/or environmental justice",
+    "Performance Groups and Spaces",
+    "Schools and Educational Organizations",
+  ]
 
-      return (
-        <>
-          {" "}
-          {i % 3 === 0 && i !== 0 && <hr className="mb-6 w-4/5 mx-auto" />}
-          {i % 3 === 0 ? modifiedParagraph : normalParagraph}
-          {i <= processedDescription.length - 1 && <br />}
-        </>
-      )
+  let renderedDescription = []
+
+  for (let item of speciallyFormattedAffiliations) {
+    if (name === item) {
+      renderedDescription = renderedDescriptionSpecial
+      break
+    } else {
+      renderedDescription = renderedDescriptionNormal
     }
-  )
-
-  const renderedDescription =
-    name === "Artist Collectives"
-      ? renderedDescriptionArtistCollectives
-      : renderedDescriptionNormal
+  }
 
   const renderedAddress = (
     <div className="mt-2 text-lg">
