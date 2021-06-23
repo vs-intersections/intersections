@@ -197,7 +197,7 @@ const SidebarDescription = () => {
   let processedDescription = []
   if (desc) processedDescription = descProcess()
 
-  const renderedDescription = processedDescription.map((item, i) => {
+  const renderedDescriptionNormal = processedDescription.map((item, i) => {
     return (
       <>
         <p key={item} className="text-lg">
@@ -207,6 +207,36 @@ const SidebarDescription = () => {
       </>
     )
   })
+
+  const renderedDescriptionArtistCollectives = processedDescription.map(
+    (item, i) => {
+      const normalParagraph = (
+        <p key={item} className="text-lg">
+          {item}
+        </p>
+      )
+
+      const modifiedParagraph = (
+        <p key={item} className="text-lg">
+          <span className="font-bold">{item}</span>
+        </p>
+      )
+
+      return (
+        <>
+          {" "}
+          {i % 3 === 0 && i !== 0 && <hr className="mb-6 w-4/5 mx-auto" />}
+          {i % 3 === 0 ? modifiedParagraph : normalParagraph}
+          {i <= processedDescription.length - 1 && <br />}
+        </>
+      )
+    }
+  )
+
+  const renderedDescription =
+    name === "Artist Collectives"
+      ? renderedDescriptionArtistCollectives
+      : renderedDescriptionNormal
 
   const renderedAddress = (
     <div className="mt-2 text-lg">

@@ -8,7 +8,7 @@
 ### Priority Items
 
 - Troubleshoot tutorial layout on mobile (the filter list compresses and throws off the layout of the tut, and the tut pulse icon is visible through the mobile nav menu) (DAVID)
-- Format Affiliations per Hannah's specification: Would it be possible now to make the title of each org bold? and add lines after the artists too (ALBERT)
+- ~~ Format Affiliations per Hannah's specification: Would it be possible now to make the title of each org bold? and add lines after the artists too (ALBERT) ~~
 
 ### Secondary Items
 
