@@ -33,6 +33,7 @@ const SidebarDescription = () => {
           recordId
         }
       }
+
       artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
         nodes {
           data {
@@ -54,22 +55,11 @@ const SidebarDescription = () => {
           recordId
         }
       }
+
       themes: allAirtable(filter: { table: { eq: "Theme" } }) {
         nodes {
           data {
             Name
-            Image {
-              localFiles {
-                childImageSharp {
-                  gatsbyImageData(
-                    aspectRatio: 1.4
-                    layout: FULL_WIDTH
-                    transformOptions: { fit: CONTAIN }
-                    backgroundColor: "transparent"
-                  )
-                }
-              }
-            }
           }
           recordId
         }
@@ -79,18 +69,6 @@ const SidebarDescription = () => {
         nodes {
           data {
             Name
-            Image {
-              localFiles {
-                childImageSharp {
-                  gatsbyImageData(
-                    aspectRatio: 1.4
-                    layout: FULL_WIDTH
-                    transformOptions: { fit: CONTAIN }
-                    backgroundColor: "transparent"
-                  )
-                }
-              }
-            }
           }
           recordId
         }
@@ -100,26 +78,16 @@ const SidebarDescription = () => {
         nodes {
           data {
             Name
-            Image {
-              localFiles {
-                childImageSharp {
-                  gatsbyImageData(
-                    aspectRatio: 1.4
-                    layout: FULL_WIDTH
-                    transformOptions: { fit: CONTAIN }
-                    backgroundColor: "transparent"
-                  )
-                }
-              }
-            }
           }
           recordId
         }
       }
+
       locations: allAirtable(filter: { table: { eq: "Location" } }) {
         nodes {
           data {
             Name
+            Address
             Image {
               localFiles {
                 childImageSharp {
@@ -206,6 +174,7 @@ const SidebarDescription = () => {
       Name: name,
       Interview: interview,
       Video: video,
+      Address: address,
     },
   } = metadata
 
@@ -267,6 +236,17 @@ const SidebarDescription = () => {
         ) : (
           <p className="text-lg mt-2">Description coming soon</p>
         )}
+      </div>
+      <div className="mt-2 text-lg">
+        <span className="font-bold">Address:</span>{" "}
+        <a
+          className="transition-all underline-blue"
+          href={`https://maps.google.com/?q=${address}`}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {address}
+        </a>
       </div>
       {selectedFilter.filterType === "artist" && interview && (
         <>

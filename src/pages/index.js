@@ -18,46 +18,38 @@ export default function Home() {
   const initialSteps = [
     {
       target: `nav`,
-      content:
-      `Welcome to Intersections, a citywide group of art exhibitions taking place 
+      content: `Welcome to Intersections, a citywide group of art exhibitions taking place 
       in public spaces across Santa Fe and on this interactive website! If you are viewing this website on
       a mobile device, we highly encourage you to check out the desktop version which includes a data visualization.
       Organized by Vital Spaces, MAIDA and Warehouse 21.`,
     },
     {
       target: `.artist-dropdown`,
-      content:
-      `Use the Artist filter to find artists that are featured in Intersections.`,
+      content: `Use the Artist filter to find artists that are featured in Intersections.`,
     },
     {
       target: `.artwork-dropdown`,
-      content:
-      `Use the Artwork filter to explore artwork that is on exhibit throughout the city of Santa Fe.`,
+      content: `Use the Artwork filter to explore artwork that is on exhibit throughout the city of Santa Fe.`,
     },
     {
       target: `.location-dropdown`,
-      content:
-      `Use the Location filter to find locations throughout Santa Fe that have artwork you would like to visit.`,
+      content: `Use the Location filter to find locations throughout Santa Fe that have artwork you would like to visit.`,
     },
     {
       target: `.theme-dropdown`,
-      content:
-      `Use the Theme filter to explore how artwork intersects by theme.`,
+      content: `Use the Theme filter to explore how artwork intersects by theme.`,
     },
     {
       target: `.medium-dropdown`,
-      content:
-      `Use the Medium filter to explore artwork by various mediums.`,
+      content: `Use the Medium filter to explore artwork by various mediums.`,
     },
     {
       target: `.affiliation-dropdown`,
-      content:
-      `Use the Affiliation filter to see how artists are connected by affiliations and community.`,
+      content: `Use the Affiliation filter to see how artists are connected by affiliations and community.`,
     },
     {
       target: `.node-area`,
-      content:
-      `If you are viewing this website on a desktop, you can click the Artist
+      content: `If you are viewing this website on a desktop, you can click the Artist
        or Artwork nodes to explore artists and artwork featured in this exhibition.`,
     },
   ]
@@ -85,6 +77,10 @@ export default function Home() {
         <meta property="og:title" content={title} />
         <meta name="description" content={description} />
         <meta property="og:description" content={description} />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
       </Helmet>
       {IS_MOBILE && <MobileNav isOpen={isOpen} />}
       <LayoutMain>

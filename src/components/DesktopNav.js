@@ -6,7 +6,6 @@ const DesktopNav = ({
   locations,
   themes,
   mediums,
-  influences,
   affiliations,
   generateDropdown,
 }) => {
