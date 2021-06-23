@@ -8,7 +8,6 @@ const SidebarTheme = ({ data }) => {
     <>
       <Description data={data} />
       <ArtistsAndArtwork data={data} />
-      <Location data={data} />
     </>
   )
 }
