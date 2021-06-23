@@ -33,6 +33,7 @@ const SidebarDescription = () => {
           recordId
         }
       }
+
       artwork: allAirtable(filter: { table: { eq: "Artwork" } }) {
         nodes {
           data {
@@ -54,22 +55,11 @@ const SidebarDescription = () => {
           recordId
         }
       }
+
       themes: allAirtable(filter: { table: { eq: "Theme" } }) {
         nodes {
           data {
             Name
-            Image {
-              localFiles {
-                childImageSharp {
-                  gatsbyImageData(
-                    aspectRatio: 1.4
-                    layout: FULL_WIDTH
-                    transformOptions: { fit: CONTAIN }
-                    backgroundColor: "transparent"
-                  )
-                }
-              }
-            }
           }
           recordId
         }
@@ -79,18 +69,6 @@ const SidebarDescription = () => {
         nodes {
           data {
             Name
-            Image {
-              localFiles {
-                childImageSharp {
-                  gatsbyImageData(
-                    aspectRatio: 1.4
-                    layout: FULL_WIDTH
-                    transformOptions: { fit: CONTAIN }
-                    backgroundColor: "transparent"
-                  )
-                }
-              }
-            }
           }
           recordId
         }
@@ -100,22 +78,11 @@ const SidebarDescription = () => {
         nodes {
           data {
             Name
-            Image {
-              localFiles {
-                childImageSharp {
-                  gatsbyImageData(
-                    aspectRatio: 1.4
-                    layout: FULL_WIDTH
-                    transformOptions: { fit: CONTAIN }
-                    backgroundColor: "transparent"
-                  )
-                }
-              }
-            }
           }
           recordId
         }
       }
+
       locations: allAirtable(filter: { table: { eq: "Location" } }) {
         nodes {
           data {
