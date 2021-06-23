@@ -178,8 +178,6 @@ const SidebarDescription = () => {
     },
   } = metadata
 
-  console.log(metadata)
-
   const desc = description || bio
   let videoLink
   if (video) {
