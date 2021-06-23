@@ -223,6 +223,13 @@ const SidebarDescription = () => {
       </p>
     )
     // determines if the first paragraph should be bolded and end with an <hr />
+    // This REQUIRES that the Airtable field be formatted like this:
+    // TITLE
+    // double return
+    // CONTENT
+    // double return
+    // CONTENT (this is usually a list of artists)
+    // double return... (and repeat)
     return (
       <>
         {" "}
@@ -232,7 +239,7 @@ const SidebarDescription = () => {
       </>
     )
   })
-
+  // list of specially formatted affiliations (MUST MATCH IN AIRTABLE)
   const speciallyFormattedAffiliations = [
     "Artist Collectives",
     "Artist Residencies",
@@ -247,7 +254,7 @@ const SidebarDescription = () => {
   ]
 
   let renderedDescription = []
-
+  // sets renderedDescription to a normal or specially-formatted set of paragraphs
   for (let item of speciallyFormattedAffiliations) {
     if (name === item) {
       renderedDescription = renderedDescriptionSpecial
