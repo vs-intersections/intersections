@@ -307,6 +307,7 @@ const SidebarDescription = () => {
         )}
         {video && <Video videoSrcURL={videoLink} videoTitle="Artwork Video" />}
       </div>
+      {selectedFilter?.filterType === "location" && renderedAddress}
       <div className="mt-2">
         {desc ? (
           renderedDescription
@@ -314,7 +315,6 @@ const SidebarDescription = () => {
           <p className="text-lg mt-2">Description coming soon</p>
         )}
       </div>
-      {selectedFilter?.filterType === "location" && renderedAddress}
       {selectedFilter.filterType === "artist" && interview && (
         <>
           <p className="text-lg mt-3 font-bold mb-2">Interview Video</p>

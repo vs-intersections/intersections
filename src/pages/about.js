@@ -18,127 +18,263 @@ const About = () => {
           <div
             className={`flex flex-col justify-center item-center w-2/3 mx-auto mb-16 pt-8`}
           >
-            <span className="bold text-orange text-4xl my-4">MISSION</span>
-            <p>
-              Vital Spaces is a Santa Fe-based 501(c)3 organization whose
-              mission is to sustain and enhance Santa Fe's cultural vibrancy by
-              creating affordable spaces for artists working in all media to
-              create, present, connect, and teach. Our focus is on fostering a
-              collaborative creative community and supporting people, ideas, and
-              art forms that are underrepresented in Santa Fe's commercial art
-              scene.
+            <span className="bold text-orange text-4xl my-4">
+              INTERSECTIONS
+            </span>
+            <p className="mb-4">
+              Intersections is a citywide group art exhibition that takes place
+              in public space across the City of Santa Fe, New Mexico and on
+              this interactive website. Rather than pick a single theme or other
+              unifying commonality to structure the exhibition, the
+              Intersections website allows us to highlight multiple points of
+              connection--the intersections--among a wide range of artworks and
+              among a diverse group of artists who call Santa Fe home. You can
+              sort the works of art by theme, medium, or location and the
+              artists by professional and personal affiliation, in effect,
+              creating hundreds of mini group exhibitions. Or, you can spend
+              time learning about one artist and exploring their work in depth.
+            </p>
+            <p className="mb-4">
+              This website also contains new videos that bring together artists
+              working in different art forms like dance, poetry, visual art, and
+              music to reflect on a series of shared themes. You can see the
+              first one, Intersections: Displacement, on the video page and we
+              will be releasing three additional videos over the course of the
+              summer.
+            </p>
+            <p className="mb-4">
+              We’ve installed banners with a selection of artworks on them in
+              parks and other public spaces across Santa Fe. We invite you to
+              visit these physical installations, listed in the locations
+              section of the website, to look for points of connection among the
+              works of art on display and between the art and its surroundings.
+              Please use <span className="font-bold">#Intersections2021</span>{" "}
+              on social media to share the intersections you come up with!
+            </p>
+            <p className="mb-4">
+              We have found that the commonalities shared by different works of
+              art and artists are mutually illuminating. We hope that you love
+              the art you see here, that you find new artists to follow and
+              support, and that each intersection prompts unexpected insights
+              and further exploration. Please consider a tip for the artists if
+              you have been inspired by the artwork. 100% of this money goes
+              directly to the artists you select:{" "}
+              <span className="block font-bold">
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:bg-gray-200 transition-all"
+                  href="https://secure.givelively.org/donate/vital-spaces-inc/intersections"
+                >
+                  secure.givelively.org/donate/vital-spaces-inc/intersections
+                </a>
+              </span>
+            </p>
+            <p className="font-bold">
+              PS: It appears that you are viewing this website on your phone, we
+              encourage you to also view it on a computer to see a visual
+              rendering of the intersections.{" "}
             </p>
           </div>
 
           <div className="flex flex-col justify-center item-center w-2/3 mx-auto mb-16">
             <span className="bold text-orange text-4xl my-4">
-              IN SERVICE OF ARTISTS & THE ARTS
+              PARTICIPATING ARTISTS:
             </span>
-            <p>
-              We aim to support BIPOC artists, a population whose work has
-              historically been underrepresented in contemporary art spaces in
-              Santa Fe, as well as artists of all backgrounds whose
-              socioeconomic status makes it difficult to maintain an artistic
-              practice here. Beyond this focus, we wish to be inclusive of
-              artists of all ages, religious beliefs, sexual orientations, and
-              countries of origin. Our vision is a city in which people of all
-              backgrounds have access to space for creating and showing their
-              work. We operate on the principles of inclusion, equity, openness,
-              and community engagement. As much as we want to promote diverse
-              individuals, we also want to support diverse forms of artistic
-              expression and thought including but not limited to performance,
-              installation art, mixed media, the literary arts, and music. We
-              hope to provide spaces where artists can push boundaries without
-              having to focus on the marketability of their work. By providing
-              affordable space, we aim to provide a venue for artists who might
-              not otherwise know one another to come together in community and
-              collaboration. We work to share this collaborative energy with the
-              broader Santa Fe public through discussions, workshops,
-              performance, and interactive art projects.
-            </p>
+            <div className={`${!IS_MOBILE ? "grid grid-cols-3 pl-4" : ""}`}>
+              <div className="mb-2">Alberto Zalma</div>
+              <div className="mb-2">Alejandra Avila</div>
+              <div className="mb-2">Amelia Bauer</div>
+              <div className="mb-2">Andrea Vargas</div>
+              <div className="mb-2">Anjamora Ishi Sato</div>
+              <div className="mb-2">Ariana Salazar</div>
+              <div className="mb-2">Arista Slater-Sandoval</div>
+              <div className="mb-2">Artemisio Romero y Carver</div>
+              <div className="mb-2">Brandon Adriano Ortiz</div>
+              <div className="mb-2">Camilla Trujillo</div>
+              <div className="mb-2">Carolyn Mae Lassiter</div>
+              <div className="mb-2">Diego Medina</div>
+              <div className="mb-2">Ditch the Box Studios</div>
+              <div className="mb-2">Enrique Figueredo</div>
+              <div className="mb-2">Gino Antonio</div>
+              <div className="mb-2">Ian Kuali’i</div>
+              <div className="mb-2">Ileana Alarcon</div>
+              <div className="mb-2">Johnny Ortiz</div>
+              <div className="mb-2">Josh Tafoya</div>
+              <div className="mb-2">Lara Manzanares</div>
+              <div className="mb-2">Layli Long Soldier</div>
+              <div className="mb-2">Linda Lomahaftewa</div>
+              <div className="mb-2">Macy Loy</div>
+              <div className="mb-2">Morgan Barnard</div>
+              <div className="mb-2">Nikesha Breeze</div>
+              <div className="mb-2">Reena Saini Kallat</div>
+              <div className="mb-2">Tigre Bailando</div>
+              <div className="mb-2">Tintawi Kaigziabiher</div>
+              <div className="mb-2">Tony Abeyta</div>
+            </div>
           </div>
 
           <div className="flex flex-col justify-center item-center w-2/3 mx-auto mb-16">
             <span className="bold text-orange text-4xl my-4">
-              WHY SANTA FE?
+              PARTNER ORGANIZATIONS:
             </span>
+            <p className="mb-4">
+              Intersections was organized by Raashan Ahmad, Hannah Yohalem, and
+              Rica Maestas from Vital Spaces, Ana Gallegos y Reinhardt from
+              Warehouse 21, and Maida Branch from MAIDA.
+            </p>
+            <p className="mb-4">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold hover:bg-gray-200 transition-all"
+                href="https://www.vitalspaces.org/"
+              >
+                Vital Spaces
+              </a>{" "}
+              aims to create a vibrant, inclusive arts community, providing
+              accessible spaces and opportunities to create, present, and
+              experience quality art. We seek to enhance Santa Fe’s reputation
+              as a contemporary art center by lifting up low-income and
+              underrepresented artists and fostering connections across a
+              diverse intersection of local artists, residents, and visitors.
+            </p>
+            <p className="mb-4">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold hover:bg-gray-200 transition-all"
+                href="https://www.warehouse21.org/"
+              >
+                Warehouse 21
+              </a>{" "}
+              supports a diverse, inclusive, positive, and welcoming community
+              for young people by encouraging art, public service, mentoring,
+              and meaningful exchange that challenges, empowers, and grows
+              artistic development.
+            </p>
             <p>
-              We see the lack of affordable space in Santa Fe as the biggest
-              threat the city faces in sustaining a vibrant cultural
-              environment. We believe that affordable studio space and equitable
-              access to exhibition opportunities are critical to the health and
-              diversity of Santa Fe’s creative culture. Vital Spaces is a city
-              vitality organization as much as it is an arts organization. The
-              arts are Santa Fe’s second largest industry. We believe that a
-              successful and relevant arts community that exists outside of
-              commercial galleries is essential to the long term vibrancy of the
-              city of Santa Fe. Our impact is multidimensional: when we give
-              artists space, we breathe life into our communities with
-              innovative artistic programming that inspires Santa Feans of all
-              ages and backgrounds; we bring economic vitality to the creative
-              community; and we raise Santa Fe’s profile on the national art
-              stage. Santa Fe’s artistic history is rich and deep. It is also
-              threatened by rising property costs and other socioeconomic
-              factors that might suppress artistic growth by limiting access to
-              resources and opportunities. We want to address that threat by
-              providing affordable spaces to artists.
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold hover:bg-gray-200 transition-all"
+                href="https://maidagoods.com/"
+              >
+                MAIDA
+              </a>{" "}
+              is a love story, a coming home story. An ever evolving project and
+              expression of ancestry, homecoming, diaspora forced and chosen,
+              memory learned and lost, reclamation and preservation. Inspired by
+              her family and the land from which they came, Maida Branch founded
+              MAIDA in 2017 - an online collective of Indigenous and
+              Indo-hispano artists. MAIDA supports and promotes their work and
+              preservation of their homelands with a 50/50 profit sharing model.
+              Artists’ stories are told through the history of northern New
+              Mexico via thoughtfully curated products/objects, photography, and
+              short films about community and place.
             </p>
           </div>
 
           <div className="flex flex-col justify-center item-center w-2/3 mx-auto mb-16">
             <span className="bold text-orange text-4xl my-4 uppercase">
-              Our Model
+              SPECIAL THANKS TO:
             </span>
-            <p>
-              While the market prices in Santa Fe will almost certainly always
-              be too high for many artists to afford, we take advantage of the
-              downtime in buildings destined for other projects by rotating
-              through unused spaces. We seek out temporary vacancies—buildings
-              awaiting long-term tenants, building awaiting redevelopment, and
-              buildings that are actively for lease but expect to remain on the
-              market for some time—and turn them into studios and public venues
-              for exhibitions, performance, events, and workshops.
+            <p className="mb-4">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold hover:bg-gray-200 transition-all"
+                href="https://www.albertpadilla.com/"
+              >
+                Albert Padilla
+              </a>{" "}
+              and{" "}
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold hover:bg-gray-200 transition-all"
+                href="https://www.davidsanderson.dev/"
+              >
+                David Sanderson
+              </a>{" "}
+              for web design and web development.
             </p>
-            <p>The benefits for property owners are clear:</p>
-            <ul className="list-disc mx-auto my-4">
-              <li>
-                Vital Spaces manages the buildings while we use them, leaving
-                them in better condition than we found them.
-              </li>
-              <li>
-                We provide eyes on the ground throughout vacancies, protecting
-                the space and alerting the owner to any leaks or other problems.
-              </li>
-              <li>
-                By covering utilities and insurance while using the space, Vital
-                Spaces saves owners money.
-              </li>
-              <li>
-                We bring vitality and public programming to diverse
-                neighborhoods across Santa Fe.
-              </li>
-              <li>
-                We bring positive attention to the spaces we occupy and to their
-                owners.
-              </li>
-              <li>
-                We have a track-reco∏rd of successful building activations
-                working with the following property owners in Santa Fe:
-              </li>
-            </ul>
-            <ul className="list-decimal ml-24">
-              <li>Adobe Star Properties</li>
-              <li>The City of Santa Fe</li>
-              <li>Colliers International</li>
-              <li>Geisler Projects</li>
-              <li>Thomas Properties</li>
-            </ul>
-            <p className="mt-5">
-              Chashama, an organization from New York with a twenty-five-year
-              track record of turning unused real estate into opportunities for
-              artists and creatives, inspired our model. We are grateful to
-              Chashama and its director, Anita Durst, for their guidance and
-              support.
+            <p className="mb-4">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold hover:bg-gray-200 transition-all"
+                href="http://www.dgrey.com/"
+              >
+                David Grey
+              </a>{" "}
+              for graphic design.
+            </p>
+            <p className="mb-4">
+              Joanne Lefrak, Sage Sommer, and Brandee Caoba from{" "}
+              <p className="mb-4">
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-bold hover:bg-gray-200 transition-all"
+                  href="https://sitesantafe.org/"
+                >
+                  SITE Santa Fe
+                </a>
+                and Sandy Zane and Jordan Eddy from{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-bold hover:bg-gray-200 transition-all"
+                  href="https://www.formandconcept.center/"
+                >
+                  form & concept
+                </a>{" "}
+                for allowing us to film in your galleries.
+              </p>
+              <p className="mb-4">
+                Richard Ross from{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-bold hover:bg-gray-200 transition-all"
+                  href="https://www.generalservices.state.nm.us/stateprinting/"
+                >
+                  New Mexico State Printing and Graphics
+                </a>
+                , Jason Poole from{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-bold hover:bg-gray-200 transition-all"
+                  href="http://www.imageratio.com/"
+                >
+                  Image Ratio
+                </a>
+                , Amelia Bauer, and John Vokoun for printing support.
+              </p>
+              <p className="mb-4">Carolina Franco for advertising advice.</p>
+              <p className="mb-6">
+                Doza and Anaid from{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-bold hover:bg-gray-200 transition-all"
+                  href="https://www.ditchtheboxstudios.com/"
+                >
+                  Ditch the Box Studios
+                </a>{" "}
+                for filming and editing the Intersections videos.
+              </p>
+              <p className="mb-4">
+                Intersections is sponsored by The City of Santa Fe Arts and
+                Culture Department, Cultural Investment Funding Program, Digital
+                Collaborative Impact Award.{" "}
+              </p>
+              <p>
+                Additional funding provided by the Santa Fe Community
+                Foundation.
+              </p>
             </p>
           </div>
         </div>
