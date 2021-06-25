@@ -212,6 +212,25 @@ const SidebarDescription = () => {
       </>
     )
   })
+  // Formats the paragraphs when the selected filter is a Theme of 'Emotion'
+  const renderedDescriptionThemeEmotion = processedDescription.map(
+    (item, i) => {
+      // if (i) {
+      //   const regex = item.match(/.*?:/i)
+      //   // console.log(regex)
+      //   console.log(item.split(/.*?:/i))
+      // }
+
+      return (
+        <>
+          <p key={item} className="text-lg">
+            {item}
+          </p>
+          {i <= processedDescription.length - 1 && <br />}
+        </>
+      )
+    }
+  )
   // Formats the paragraph for specific affiliations
   const renderedDescriptionSpecial = processedDescription.map((item, i) => {
     const normalParagraph = (

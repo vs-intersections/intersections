@@ -107,9 +107,15 @@ const Videos = () => {
       </div>
     ))
 
+  const handleNavClick = () => {
+    setIsOpen(false)
+  }
+
   return (
     <>
-      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
+      {IS_MOBILE && (
+        <MobileNav isOpen={isOpen} handleNavClick={handleNavClick} />
+      )}
       <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="w-full pt-8 overflow-x-hidden">

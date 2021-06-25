@@ -67,6 +67,10 @@ export default function Home() {
     html.style.left = 0
   }, [])
 
+  const handleNavClick = () => {
+    setIsOpen(false)
+  }
+
   return (
     <>
       <Helmet title={title}>
@@ -78,7 +82,9 @@ export default function Home() {
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
       </Helmet>
-      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
+      {IS_MOBILE && (
+        <MobileNav isOpen={isOpen} handleNavClick={handleNavClick} />
+      )}
       <LayoutMain>
         <div className="h-full overflow-hidden flex flex-col">
           <Joyride

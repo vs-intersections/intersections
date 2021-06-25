@@ -10,9 +10,16 @@ const NotFound = () => {
   const IS_MOBILE = width <= 1024
 
   const [isOpen, setIsOpen] = useState(false)
+
+  const handleNavClick = () => {
+    setIsOpen(false)
+  }
+
   return (
     <div>
-      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
+      {IS_MOBILE && (
+        <MobileNav isOpen={isOpen} handleNavClick={handleNavClick} />
+      )}
       <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="w-full">
