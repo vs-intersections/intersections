@@ -67,6 +67,10 @@ export default function Home() {
     html.style.left = 0
   }, [])
 
+  const handleNavClick = () => {
+    setIsOpen(false)
+  }
+
   return (
     <>
       <Helmet title={title}>
@@ -78,10 +82,17 @@ export default function Home() {
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
       </Helmet>
-      {IS_MOBILE && <MobileNav isOpen={isOpen} />}
+      {IS_MOBILE && (
+        <MobileNav isOpen={isOpen} handleNavClick={handleNavClick} />
+      )}
       <LayoutMain>
         <div className="h-full overflow-hidden flex flex-col">
-          <Joyride steps={steps} continuous={true} showSkipButton={true} />
+          <Joyride
+            steps={steps}
+            continuous={true}
+            showSkipButton={true}
+            styles={{ options: { zIndex: 40 } }}
+          />
           <Lightbox />
           <Header
             className={`${IS_MOBILE ? "h-8" : "h-10"} flex-auto relative`}

@@ -3,7 +3,6 @@ import { useFilterContext } from "../context/FilterContext"
 import { useNodeContext } from "../context/NodeContext"
 import { DataContext } from "../context/DataContext"
 import { linkGenerator } from "../../utils"
-import { useWindowSize } from "../../hooks"
 import {
   forceSimulation,
   forceManyBody,
@@ -13,6 +12,8 @@ import {
   select,
   drag,
   zoom,
+  forceX,
+  forceY,
   selectAll,
 } from "d3"
 
@@ -21,8 +22,6 @@ const NodeGraph = () => {
   // this keeps track of the selected filter
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { setSelectedNode } = useNodeContext()
-  const { width: windowWidth } = useWindowSize()
-  let IS_MOBILE = windowWidth <= 1024
 
   // refs to grab the SVG element and SVG element container
   const ref = useRef()
@@ -31,8 +30,11 @@ const NodeGraph = () => {
   // declare vars here to be used through out this component
   const DEFAULT_LINK_COLOR = "#ddd"
   const MAX_TEXT_LENGTH = 25
+  const DEFAULT_NODE_TEXT_SIZE = 0.4
+  // the Y position of the node graph (a higher number decreases the Y value)
+  const ASPECT_RATIO_Y_POS_MULTIPLIER = 1.8
   // the default zoom of the SVG (lower the number to zoom in)
-  const ASPECT_BASE = 850
+  const ASPECT_BASE = 950
   let width, height, aspectW, aspectH, aspectRatioWidth, aspectRatioHeight
 
   // determine aspect ratio of value inputs
@@ -84,11 +86,13 @@ const NodeGraph = () => {
     svg.attr("transform", "none")
 
     let centerX = width / 2
-    let centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
+    let centerY = aspectRatioHeight / ASPECT_RATIO_Y_POS_MULTIPLIER
 
     // simulation force settings
     const simulation = forceSimulation(nodes)
       .force("charge", forceManyBody().strength(-500))
+      // .force("x", forceX(-50))
+      .force("y", forceY(-50))
       .force(
         "link",
         forceLink(links).distance(link => link.distance)
@@ -131,7 +135,7 @@ const NodeGraph = () => {
 
       // re-center SVG after window resizing
       centerX = aspectRatioWidth / 2
-      centerY = IS_MOBILE ? aspectRatioHeight / 2.4 : aspectRatioHeight / 1.75
+      centerY = aspectRatioHeight / ASPECT_RATIO_Y_POS_MULTIPLIER
       simulation.force("center", forceCenter(centerX, centerY))
       // set new values for viewbox, and SVG width and height
       svgWrapper.attr("viewBox", `0 0 ${aspectRatioWidth} ${aspectRatioHeight}`)
@@ -279,7 +283,11 @@ const NodeGraph = () => {
       .enter()
       .append("text")
       .attr("text-anchor", "middle")
-      .attr("font-size", node => node.size * 0.4)
+      .attr("font-size", node =>
+        node.table === "Artist"
+          ? node.size * 0.6
+          : node.size * DEFAULT_NODE_TEXT_SIZE
+      )
       .attr("alignment-baseline", "middle")
       .style("pointer-events", "none")
       .text(node =>

@@ -1,17 +1,29 @@
 import React from "react"
 import { Link } from "gatsby"
-function MobileNav({ isOpen }) {
+function MobileNav({ isOpen, handleNavClick }) {
   return (
     <ul
       className={`mt-0 sm:mt-12 bg-white justify-center divide-y-2 flex align-middle items-center transition-all absolute overflow-y-hidden l-0 w-full z-50 transition-height ${
         isOpen ? "h-full" : "h-0"
       }`}
     >
-      <div className="divide-y-2 text-2xl font-extrabold">
-        <li className="py-8 hover:underline tracking-widest text-center">
-          <Link to="/">Home</Link>
+      <div className="divide-y-2 text-xl sm:text-2xl md:text-3xl font-extrabold">
+        <li className="py-6 sm:py-8 hover:underline tracking-widest text-center">
+          <Link to="/" onClick={handleNavClick}>
+            Home
+          </Link>
         </li>
-        <li className="py-8 hover:underline tracking-widest">
+        <li className="py-6 sm:py-8 hover:underline tracking-widest text-center">
+          <Link to="/about" onClick={handleNavClick}>
+            About
+          </Link>
+        </li>
+        <li className="py-6 sm:py-8 hover:underline tracking-widest text-center">
+          <Link to="/videos" onClick={handleNavClick}>
+            Videos
+          </Link>
+        </li>
+        <li className="py-6 sm:py-8 hover:underline tracking-widest">
           <a
             href="https://www.vitalspaces.org/"
             target="_blank"
@@ -19,14 +31,27 @@ function MobileNav({ isOpen }) {
             className="flex flex-col items-center"
           >
             <span>Vital Spaces</span>
-            <span>Main Site</span>
           </a>
         </li>
-        <li className="py-8 hover:underline tracking-widest text-center">
-          <Link to="/videos">Videos</Link>
+        <li className="py-6 sm:py-8 hover:underline tracking-widest">
+          <a
+            href="https://maidagoods.com/"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="flex flex-col items-center"
+          >
+            <span>MAIDA</span>
+          </a>
         </li>
-        <li className="py-8 hover:underline tracking-widest text-center">
-          <Link to="/about">About</Link>
+        <li className="py-6 sm:py-8 hover:underline tracking-widest">
+          <a
+            href="https://www.warehouse21.org/"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="flex flex-col items-center"
+          >
+            <span>Warehouse 21</span>
+          </a>
         </li>
       </div>
     </ul>
