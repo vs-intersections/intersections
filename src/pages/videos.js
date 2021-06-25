@@ -52,7 +52,7 @@ const Videos = () => {
     }
   `)
 
-  const intersectionsVideos = data?.artwork?.nodes
+  let intersectionsVideos = data?.artwork?.nodes
     .filter(
       el =>
         el.data.Video &&
@@ -70,6 +70,9 @@ const Videos = () => {
         </div>
       )
     })
+
+  // have "Intersections" come before "Intersections: Bonus Footage"
+  intersectionsVideos.reverse()
 
   const artworkVideos = data?.artwork?.nodes
     .filter(
