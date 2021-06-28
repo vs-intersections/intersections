@@ -1,6 +1,6 @@
 import React from "react"
 
-const DesktopNav = ({
+const DeskTopFilterBar = ({
   artwork,
   artists,
   locations,
@@ -23,4 +23,4 @@ const DesktopNav = ({
   )
 }
 
-export default DesktopNav
+export default DeskTopFilterBar

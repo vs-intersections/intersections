@@ -2,10 +2,10 @@ import React, { useContext } from "react"
 import { useFilterContext } from "./context/FilterContext"
 import { useNodeContext } from "./context/NodeContext"
 import { DataContext } from "./context/DataContext"
-import DesktopNav from "./DesktopNav"
-import MobileNav2 from "./MobileNav2"
+import DeskTopFilterBar from "./DesktopFilterBar"
+import MobileFilterBar from "./MobileFilterBar"
 
-const Navigation = ({ isMobile }) => {
+const Navigation = ({ isMobile, displayJoyride }) => {
   const [data] = useContext(DataContext)
   const { selectedFilter, setSelectedFilter } = useFilterContext()
   const { selectedNode, setSelectedNode } = useNodeContext()
@@ -117,7 +117,7 @@ const Navigation = ({ isMobile }) => {
   }
 
   return isMobile ? (
-    <MobileNav2
+    <MobileFilterBar
       generateDropdown={generateDropdown}
       artists={artists}
       artwork={artwork}
@@ -125,9 +125,10 @@ const Navigation = ({ isMobile }) => {
       mediums={mediums}
       locations={locations}
       affiliations={affiliations}
+      displayJoyride={displayJoyride}
     />
   ) : (
-    <DesktopNav
+    <DeskTopFilterBar
       className="h-18 flex-auto"
       generateDropdown={generateDropdown}
       artists={artists}
