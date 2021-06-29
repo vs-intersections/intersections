@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { IoMdArrowDropupCircle } from "react-icons/io"
 
-const MobileNav2 = ({
+const MobileFilterBar = ({
   artwork,
   artists,
   locations,
@@ -9,9 +9,9 @@ const MobileNav2 = ({
   mediums,
   affiliations,
   generateDropdown,
+  displayJoyride
 }) => {
   const [filterBarIsopen, setFilterBarIsopen] = useState(true)
-
   return (
     <div className="relative">
       <nav
@@ -37,7 +37,7 @@ const MobileNav2 = ({
       <div className="absolute w-full b-0 z-40 flex justify-center">
         <div
           className="w-40 relative"
-          onClick={() => setFilterBarIsopen(!filterBarIsopen)}
+          onClick={() => displayJoyride ? alert('Click on the red beacon to continue. You must run read through OR dismiss the tutorial before you can close the filter bar.') : setFilterBarIsopen(!filterBarIsopen)}
         >
           <div className="w-40 h-8 bg-orange rounded-b-lg flex items-center justify-center">
             <span>FILTERS</span>
@@ -60,4 +60,4 @@ const MobileNav2 = ({
   )
 }
 
-export default MobileNav2
+export default MobileFilterBar

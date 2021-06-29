@@ -70,7 +70,7 @@ export default function Home() {
   const handleNavClick = () => {
     setIsOpen(false)
   }
-
+  const [displayJoyride, setDisplayJoyride] = useState(true)
   return (
     <>
       <Helmet title={title}>
@@ -87,19 +87,29 @@ export default function Home() {
       )}
       <LayoutMain>
         <div className="h-full overflow-hidden flex flex-col">
-          <Joyride
-            steps={steps}
-            continuous={true}
-            showSkipButton={true}
-            styles={{ options: { zIndex: 40 } }}
-          />
+          {displayJoyride && (
+            <Joyride
+              callback={data =>
+                (data.action === "close" || data.action === "reset")
+                && setDisplayJoyride(false)
+              }
+              steps={steps}
+              continuous={true}
+              showSkipButton={true}
+              styles={{ options: { zIndex: 40 } }}
+            />
+          )}
           <Lightbox />
           <Header
             className={`${IS_MOBILE ? "h-8" : "h-10"} flex-auto relative`}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />
-          <Navigation className="navigation" isMobile={IS_MOBILE} />
+          <Navigation
+            className="navigation"
+            isMobile={IS_MOBILE}
+            displayJoyride={displayJoyride}
+          />
           <div className="flex-auto">
             <main className="h-full relative">
               <div
