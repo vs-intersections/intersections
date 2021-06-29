@@ -108,6 +108,7 @@ const About = () => {
               <div className="mb-2">Ileana Alarcon</div>
               <div className="mb-2">Johnny Ortiz</div>
               <div className="mb-2">Josh Tafoya</div>
+              <div className="mb-2">Juan Pablo A.</div>
               <div className="mb-2">Lara Manzanares</div>
               <div className="mb-2">Layli Long Soldier</div>
               <div className="mb-2">Linda Lomahaftewa</div>
@@ -115,6 +116,7 @@ const About = () => {
               <div className="mb-2">Morgan Barnard</div>
               <div className="mb-2">Nikesha Breeze</div>
               <div className="mb-2">Reena Saini Kallat</div>
+              <div className="mb-2">Teresita V.</div>
               <div className="mb-2">Tigre Bailando</div>
               <div className="mb-2">Tintawi Kaigziabiher</div>
               <div className="mb-2">Tony Abeyta</div>
@@ -226,7 +228,7 @@ const About = () => {
                   className="font-bold hover:bg-gray-200 transition-all"
                   href="https://sitesantafe.org/"
                 >
-                  SITE Santa Fe
+                  SITE Santa Fe{" "}
                 </a>
                 and Sandy Zane and Jordan Eddy from{" "}
                 <a
@@ -260,7 +262,18 @@ const About = () => {
                 </a>
                 , Amelia Bauer, and John Vokoun for printing support.
               </p>
-              <p className="mb-4">Carolina Franco for advertising advice.</p>
+              <p className="mb-4">
+                Carolina Franco from{" "}
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="font-bold hover:bg-gray-200 transition-all"
+                  href="https://sitesantafe.org/"
+                >
+                  SITE Santa Fe{" "}
+                </a>
+                for advertising advice.
+              </p>
               <p className="mb-6">
                 Doza and Anaid from{" "}
                 <a

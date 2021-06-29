@@ -90,13 +90,15 @@ export default function Home() {
           {displayJoyride && (
             <Joyride
               callback={data =>
-                (data.action === "close" || data.action === "reset")
-                && setDisplayJoyride(false)
+                (data.action === "close" || data.action === "reset") &&
+                setDisplayJoyride(false)
               }
               steps={steps}
               continuous={true}
               showSkipButton={true}
-              styles={{ options: { zIndex: 40 } }}
+              styles={{
+                options: { zIndex: 40, beaconSize: IS_MOBILE ? 50 : 70 },
+              }}
             />
           )}
           <Lightbox />
