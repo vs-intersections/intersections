@@ -13,7 +13,7 @@ const MobileFilterBar = ({
 }) => {
   const [filterBarIsopen, setFilterBarIsopen] = useState(true)
   return (
-    <div className="relative pt-11">
+    <div className="relative pt-12">
       <nav
         className={`bg-gray-100 relative overflow-hidden border-b border-orange mobile-nav ${
           filterBarIsopen ? "h-48" : "h-0"

@@ -120,7 +120,7 @@ const Videos = () => {
         <MobileNav isOpen={isOpen} handleNavClick={handleNavClick} />
       )}
       <div className="h-full overflow-x-hidden flex flex-col">
-        <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Header isOpen={isOpen} setIsOpen={setIsOpen} isMobile={IS_MOBILE} />
         <div className="w-full pt-16 overflow-x-hidden">
           <div className="container mx-auto">
             <div className="mb-12">

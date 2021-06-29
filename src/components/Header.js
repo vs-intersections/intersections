@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import menu from "../../static/menu-icon.svg"
-const Header = ({ setIsOpen, isOpen }) => {
+const Header = ({ setIsOpen, isOpen, isMobile }) => {
   return (
     <header
       className={`px-2 md:px-6 lg:px-16 lg:py-4 py-2 flex flex-row items-center justify-between z-50 bg-white border-b fixed w-full`}
@@ -9,10 +9,10 @@ const Header = ({ setIsOpen, isOpen }) => {
       <div className="flex items-center justify-self-center">
         <Link to="/">
           <span className="mx-3 uppercase tracking-wider flex items-center">
-            <div className="font-bold text-xs xs:text-sm sm:text-base inline-block">
+            <div className="font-bold text-xxs xxs:text-xs xs:text-sm sm:text-base inline-block">
               Intersections:{" "}
             </div>
-            <div className="text-xs xs:text-sm sm:text-base inline-block ml-2">
+            <div className="text-xxs xxs:text-xxs xs:text-sm sm:text-base inline-block ml-2">
               Vital Spaces, Maida, Warehouse 21
             </div>
           </span>

@@ -108,6 +108,7 @@ export default function Home() {
           <Header
             className={`${IS_MOBILE ? "h-8" : "h-10"} flex-auto relative`}
             isOpen={isOpen}
+            isMobile={IS_MOBILE}
             setIsOpen={setIsOpen}
           />
           <Navigation
