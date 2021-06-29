@@ -66,7 +66,9 @@ const Videos = () => {
             videoSrcURL={el.data.Video}
             videoTitle={el?.data?.Name || "Artwork Video"}
           />
-          <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
+          <h3 className="text-center text-lg lg:text-2xl mt-3">
+            {el?.data?.Name}
+          </h3>
         </div>
       )
     })
@@ -87,7 +89,7 @@ const Videos = () => {
           videoSrcURL={el.data.Video}
           videoTitle={el?.data?.Name || "Artwork Video"}
         />
-        <h3 className="text-center text-2xl mt-3">
+        <h3 className="text-center text-lg lg:text-2xl mt-3">
           {translateIdToName(
             data,
             el.data.Primary_Artist__REQUIRED_[0],
@@ -106,7 +108,9 @@ const Videos = () => {
           videoSrcURL={el.data.Interview}
           videoTitle={el?.data?.Name || "Artist Interview"}
         />
-        <h3 className="text-center text-2xl mt-3">{el?.data?.Name}</h3>
+        <h3 className="text-center text-lg lg:text-2xl mt-3">
+          {el?.data?.Name}
+        </h3>
       </div>
     ))
 
@@ -123,25 +127,33 @@ const Videos = () => {
         <Header isOpen={isOpen} setIsOpen={setIsOpen} isMobile={IS_MOBILE} />
         <div className="w-full pt-16 overflow-x-hidden">
           <div className="container mx-auto">
-            <div className="mb-12">
-              <h1 className="ml-4 mt-4 mb-6 text-5xl">Intersections</h1>
+            <div className="mb-16">
+              <h1 className="ml-4 mt-4 mb-6 text-4xl lg:text-5xl text-center sm:text-left">
+                Intersections
+              </h1>
               <div className="flex flex-col md:flex-row flex-wrap">
                 {intersectionsVideos}
               </div>
             </div>
-            <div className="mb-12">
-              <h1 className="ml-4 mt-4 mb-6 text-5xl">Artwork Videos</h1>
+            <div className="mb-16">
+              <h1 className="ml-4 mt-4 mb-6 text-4xl lg:text-5xl text-center sm:text-left">
+                Artwork Videos
+              </h1>
               <div className="flex flex-col md:flex-row flex-wrap">
                 {artworkVideos}
               </div>
             </div>
-            <div className="mb-12">
-              <h1 className="ml-4 mt-4 mb-6 text-5xl">Interviews</h1>
+            <div className="mb-16">
+              <h1 className="ml-4 mt-4 mb-6 text-4xl lg:text-5xl text-center sm:text-left">
+                Interviews
+              </h1>
               <div className="flex flex-col md:flex-row flex-wrap">
                 {interviewVideos.length > 0 ? (
                   interviewVideos
                 ) : (
-                  <div className="ml-4 mt-4 mb-6 text-2xl">COMING SOON</div>
+                  <div className="ml-4 mt-4 mb-6 text-lg lg:text-2xl text-center sm:text-left">
+                    COMING SOON
+                  </div>
                 )}
               </div>
             </div>
