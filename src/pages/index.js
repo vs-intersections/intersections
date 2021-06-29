@@ -17,7 +17,7 @@ export default function Home() {
   const IS_MOBILE = width <= 1024
   const initialSteps = [
     {
-      target: `nav`,
+      target: `.nav`,
       content: `Welcome to Intersections, a citywide group art exhibition taking place in public spaces across Santa Fe and on this interactive website! If you are viewing this website on a mobile device, we highly encourage you to check out the desktop version, which includes a data visualization. Organized by Vital Spaces, MAIDA, and Warehouse 21.`,
     },
     {
