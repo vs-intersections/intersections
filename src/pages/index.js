@@ -91,7 +91,9 @@ export default function Home() {
             steps={steps}
             continuous={true}
             showSkipButton={true}
-            styles={{ options: { zIndex: 40 } }}
+            styles={{
+              options: { zIndex: 40, beaconSize: IS_MOBILE ? 50 : 70 },
+            }}
           />
           <Lightbox />
           <Header
