@@ -97,7 +97,10 @@ export default function Home() {
               continuous={true}
               showSkipButton={true}
               styles={{
-                options: { zIndex: 40, beaconSize: IS_MOBILE ? 50 : 70 },
+                options: {
+                  zIndex: isOpen ? 40 : 50,
+                  beaconSize: IS_MOBILE ? 50 : 70,
+                },
               }}
             />
           )}

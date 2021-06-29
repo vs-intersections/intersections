@@ -83,7 +83,7 @@ const NodeGraph = () => {
     svgWrapper.selectAll("g").remove()
 
     const svg = svgWrapper.append("g")
-    svg.attr("transform", "none")
+    svg.attr("transform", "none").classed("node-area", true)
 
     let centerX = width / 2
     let centerY = aspectRatioHeight / ASPECT_RATIO_Y_POS_MULTIPLIER
@@ -311,7 +311,7 @@ const NodeGraph = () => {
 
   return (
     <div ref={containerRef} className="w-full h-full overflow-hidden">
-      <svg ref={ref} className="w-full h-full node-area" version="1.1"></svg>
+      <svg ref={ref} className="w-full h-full" version="1.1"></svg>
     </div>
   )
 }
