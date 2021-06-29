@@ -3,8 +3,8 @@ import { Link } from "gatsby"
 function MobileNav({ isOpen, handleNavClick }) {
   return (
     <ul
-      className={`mt-0 sm:mt-12 bg-white justify-center divide-y-2 flex align-middle items-center transition-all absolute overflow-y-hidden l-0 w-full z-50 transition-height ${
-        isOpen ? "h-full" : "h-0"
+      className={`mt-0 sm:mt-12 bg-white justify-center divide-y-2 flex align-middle items-center transition-all overflow-y-hidden l-0 w-full z-50 transition-height ${
+        isOpen ? "h-full fixed" : "h-0 absolute"
       }`}
     >
       <div className="divide-y-2 text-xl sm:text-2xl md:text-3xl font-extrabold">

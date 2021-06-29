@@ -10,7 +10,7 @@ const DeskTopFilterBar = ({
   generateDropdown,
 }) => {
   return (
-    <nav className="bg-gray-100 flex justify-center items-center relative desktop-nav">
+    <nav className="bg-gray-100 flex justify-center items-center relative pt-14 desktop-nav">
       <ul className="flex items-center text-xs justify-evenly w-full">
         {generateDropdown("artist", artists, "lightGreen")}
         {generateDropdown("artwork", artwork, "orange")}

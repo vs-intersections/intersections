@@ -9,11 +9,11 @@ const MobileFilterBar = ({
   mediums,
   affiliations,
   generateDropdown,
-  displayJoyride
+  displayJoyride,
 }) => {
   const [filterBarIsopen, setFilterBarIsopen] = useState(true)
   return (
-    <div className="relative">
+    <div className="relative pt-11">
       <nav
         className={`bg-gray-100 relative overflow-hidden border-b border-orange mobile-nav ${
           filterBarIsopen ? "h-48" : "h-0"
@@ -37,7 +37,13 @@ const MobileFilterBar = ({
       <div className="absolute w-full b-0 z-40 flex justify-center">
         <div
           className="w-40 relative"
-          onClick={() => displayJoyride ? alert('Click on the red beacon to continue. You must run read through OR dismiss the tutorial before you can close the filter bar.') : setFilterBarIsopen(!filterBarIsopen)}
+          onClick={() =>
+            displayJoyride
+              ? alert(
+                  "Click on the red beacon to continue. You must run read through OR dismiss the tutorial before you can close the filter bar."
+                )
+              : setFilterBarIsopen(!filterBarIsopen)
+          }
         >
           <div className="w-40 h-8 bg-orange rounded-b-lg flex items-center justify-center">
             <span>FILTERS</span>

@@ -60,7 +60,7 @@ const Videos = () => {
     )
     .map(el => {
       return (
-        <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
+        <div className="mx-auto md:mx-0 w-full md:w-1/3 mb-16 px-4 h-64 sm:h-96 md:h-48 lg:h-80 pb-4">
           <Video
             key={el.recordId}
             videoSrcURL={el.data.Video}
@@ -81,7 +81,7 @@ const Videos = () => {
         el.data.Primary_Artist__REQUIRED_[0] !== "rec6GjpkqIFLImQsm" // Ditch The Box Studios
     )
     .map(el => (
-      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
+      <div className="mx-auto md:mx-0 w-full md:w-1/3 mb-16 px-4 h-64 sm:h-96 md:h-48 lg:h-80 pb-4">
         <Video
           key={el.recordId}
           videoSrcURL={el.data.Video}
@@ -100,7 +100,7 @@ const Videos = () => {
   const interviewVideos = data?.artists?.nodes
     .filter(el => el.data.Interview)
     .map(el => (
-      <div className="mx-auto md:mx-0 w-screen md:w-1/3 mb-16 px-4 h-96 md:h-48 lg:h-80 pb-4">
+      <div className="mx-auto md:mx-0 w-full md:w-1/3 mb-16 px-4 h-64 sm:h-96 md:h-48 lg:h-80 pb-4">
         <Video
           key={el.recordId}
           videoSrcURL={el.data.Interview}
@@ -121,7 +121,7 @@ const Videos = () => {
       )}
       <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className="w-full pt-8 overflow-x-hidden">
+        <div className="w-full pt-16 overflow-x-hidden">
           <div className="container mx-auto">
             <div className="mb-12">
               <h1 className="ml-4 mt-4 mb-6 text-5xl">Intersections</h1>

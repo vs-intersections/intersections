@@ -21,11 +21,11 @@ const About = () => {
       )}
       <div className="h-full overflow-x-hidden flex flex-col">
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div className="w-full lg:pt-4 pb-8 lg:pb-12">
+        <div className="w-full pt-10 lg:pt-16 pb-8 lg:pb-12">
           <div
             className={`flex flex-col justify-center item-center w-2/3 mx-auto mb-16 pt-8`}
           >
-            <span className="bold text-orange text-4xl my-4">
+            <span className="bold text-orange text-3xl md:text-4xl my-4">
               INTERSECTIONS
             </span>
             <p className="mb-4">
@@ -85,7 +85,7 @@ const About = () => {
           </div>
 
           <div className="flex flex-col justify-center item-center w-2/3 mx-auto mb-16">
-            <span className="bold text-orange text-4xl my-4">
+            <span className="bold text-orange text-2xl my-4">
               PARTICIPATING ARTISTS:
             </span>
             <div className={`${!IS_MOBILE ? "grid grid-cols-3 pl-4" : ""}`}>
@@ -124,7 +124,7 @@ const About = () => {
           </div>
 
           <div className="flex flex-col justify-center item-center w-2/3 mx-auto mb-16">
-            <span className="bold text-orange text-4xl my-4">
+            <span className="bold text-orange text-2xl my-4">
               PARTNER ORGANIZATIONS:
             </span>
             <p className="mb-4">
@@ -185,7 +185,7 @@ const About = () => {
           </div>
 
           <div className="flex flex-col justify-center item-center w-2/3 mx-auto mb-16">
-            <span className="bold text-orange text-4xl my-4 uppercase">
+            <span className="bold text-orange text-2xl my-4 uppercase">
               SPECIAL THANKS TO:
             </span>
             <p className="mb-4">
