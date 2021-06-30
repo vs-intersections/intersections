@@ -40,7 +40,7 @@ const MobileFilterBar = ({
           onClick={() =>
             displayJoyride
               ? alert(
-                  "Click on the red beacon to continue. You must run read through OR dismiss the tutorial before you can close the filter bar."
+                  "Click on the red beacon to continue. You must read through OR dismiss the tutorial before you can close the filter bar."
                 )
               : setFilterBarIsopen(!filterBarIsopen)
           }
